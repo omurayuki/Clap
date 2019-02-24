@@ -73,7 +73,6 @@
 			children = (
 				C937FD52222287B800F9624E /* AppDelegate.swift */,
 				C937FD6E222292B600F9624E /* R.generated.swift */,
-				C937FD642222888B00F9624E /* Model */,
 				C937FD662222889600F9624E /* Screen */,
 				C937FD59222287B900F9624E /* Assets.xcassets */,
 				C937FD5B222287B900F9624E /* LaunchScreen.storyboard */,
@@ -81,13 +80,6 @@
 				C937FD6A22228A7200F9624E /* GoogleService-Info.plist */,
 			);
 			path = project_clap;
-			sourceTree = "<group>";
-		};
-		C937FD642222888B00F9624E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C937FD662222889600F9624E /* Screen */ = {
