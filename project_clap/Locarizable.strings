@@ -1,0 +1,25 @@
+/* for TopVC */
+"clap" = "Clap";
+"log_in" = "ログイン";
+"sign_up" = "新規登録";
+
+/* for selectVC */
+"select_usage_type" = "利用者タイプを選んでください";
+"team" = "チーム";
+"member" = "メンバー";
+
+/* for team info registVC */
+"select" = "--選択--";
+"junior_high_school" = "中学";
+"high_school" = "高校";
+"university" = "大学";
+"social" = "社会人";
+"rugby" = "ラグビー";
+"base_ball" = "野球";
+"soccer" = "サッカー";
+"basket_ball" = "バスケットボール";
+"kendo" = "剣道";
+"judo" = "柔道";
+"regist_team_info" = "チーム情報を登録してください";
+"team_id" = "チームID";
+"next" = "次へ";

@@ -5,17 +5,23 @@ import RxSwift
 
 class SelectViewController: UIViewController {
     
+    private struct Constants {
+        struct Constraint {
+            static let memberRegistBtnLeftConstraint: CGFloat = 20
+        }
+    }
+    
     private lazy var selectionTeamOrMemberTitle: UILabel = {
         let label = UILabel()
-        label.text = "利用者タイプを選んでください"
-        label.textColor = UIColor(hex: "eab60e")
+        label.text = R.string.locarizable.select_usage_type()
+        label.textColor = AppResources.ColorResources.baseColor
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var teamRegistBtn: UIButton = {
         let button = UIButton()
-        button.setTitle("チーム", for: .normal)
+        button.setTitle(R.string.locarizable.team(), for: .normal)
         button.backgroundColor = .gray
         button.addTarget(self, action: #selector(showTeamRegister(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +30,7 @@ class SelectViewController: UIViewController {
     
     private lazy var memberRegistBtn: UIButton = {
         let button = UIButton()
-        button.setTitle("メンバー", for: .normal)
+        button.setTitle(R.string.locarizable.member(), for: .normal)
         button.backgroundColor = .black
         button.addTarget(self, action: #selector(showMemberRegister(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -58,16 +64,16 @@ extension SelectViewController {
         teamRegistBtn.heightAnchor.constraint(equalToConstant: view.bounds.size.width / 3.5).isActive = true
         memberRegistBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 3.5).isActive = true
         memberRegistBtn.heightAnchor.constraint(equalToConstant: view.bounds.size.width / 3.5).isActive = true
-        memberRegistBtn.leftAnchor.constraint(equalTo: teamRegistBtn.rightAnchor, constant: 20).isActive = true
+        memberRegistBtn.leftAnchor.constraint(equalTo: teamRegistBtn.rightAnchor, constant: Constants.Constraint.memberRegistBtnLeftConstraint).isActive = true
     }
     
     @objc
     func showTeamRegister(sender: UIButton) {
-        
+        navigationController?.pushViewController(TeamInfoRegistViewController(), animated: true)
     }
     
     @objc
     func showMemberRegister(sender: UIButton) {
-        
+        navigationController?.pushViewController(MemberInfoRegistViewController(), animated: true)
     }
 }
