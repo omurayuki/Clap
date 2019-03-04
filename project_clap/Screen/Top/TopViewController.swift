@@ -53,7 +53,7 @@ extension TopViewController {
     private func setupUI() {
         view.addSubview(topTitle)
         topTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        topTitle.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        topTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.size.height / 2.5).isActive = true
         view.addSubview(loginBtn)
         loginBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         loginBtn.topAnchor.constraint(equalTo: topTitle.bottomAnchor, constant: view.bounds.size.height / 4).isActive = true

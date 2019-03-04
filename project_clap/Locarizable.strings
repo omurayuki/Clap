@@ -7,8 +7,10 @@
 "select_usage_type" = "利用者タイプを選んでください";
 "team" = "チーム";
 "member" = "メンバー";
+"type" = "タイプ";
 
 /* for team info registVC */
+"team_info_title" = "チーム登録";
 "select" = "--選択--";
 "junior_high_school" = "中学";
 "high_school" = "高校";
@@ -23,3 +25,21 @@
 "regist_team_info" = "チーム情報を登録してください";
 "team_id" = "チームID";
 "next" = "次へ";
+
+/* for representVC */
+"notice_user_regist" = "ユーザー登録してください";
+"name" = "名前";
+"mail_address" = "メールアドレス";
+"password" = "パスワード";
+"remain_password" = "確認用パスワード";
+"regist" = "登録する";
+"represent_vc_title" = "ユーザー登録";
+"position" = "--役職--";
+"year" = "--学年--";
+"player" = "選手";
+"leader" = "監督";
+"manager" = "マネージャー";
+"first_year_student" = "1年生";
+"second_year_student" = "2年生";
+"third_year_student" = "3年生";
+"fourth_year_student" = "4年生";

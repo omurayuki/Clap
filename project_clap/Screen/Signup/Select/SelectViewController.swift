@@ -48,6 +48,7 @@ class SelectViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        navigationItem.title = R.string.locarizable.type()
         setupUI()
     }
 }
