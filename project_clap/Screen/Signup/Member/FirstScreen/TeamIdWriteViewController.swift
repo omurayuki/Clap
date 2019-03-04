@@ -77,7 +77,7 @@ extension TeamIdWriteViewController {
         view.addSubview(confirmTeamIdBtn)
         confirmTeamIdBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         confirmTeamIdBtn.topAnchor.constraint(equalTo: teamIdField.bottomAnchor, constant: view.bounds.size.width / 3.5).isActive = true
-        confirmTeamIdBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 2).isActive = true
+        confirmTeamIdBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
     }
     
     private func setupViewModel() {

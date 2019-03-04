@@ -131,7 +131,7 @@ extension TeamInfoRegistViewController {
         view.addSubview(nextBtn)
         nextBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         nextBtn.topAnchor.constraint(equalTo: sportsKindField.bottomAnchor, constant: view.bounds.size.width / 2).isActive = true
-        nextBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 2).isActive = true
+        nextBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
     }
     
     private func setupViewModel() {

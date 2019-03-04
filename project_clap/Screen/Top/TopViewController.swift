@@ -60,11 +60,11 @@ extension TopViewController {
         view.addSubview(loginBtn)
         loginBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         loginBtn.topAnchor.constraint(equalTo: topTitle.bottomAnchor, constant: view.bounds.size.height / 4).isActive = true
-        loginBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 2).isActive = true
+        loginBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
         view.addSubview(signupBtn)
         signupBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         signupBtn.topAnchor.constraint(equalTo: loginBtn.bottomAnchor, constant: Constants.Constraint.signupBtnTopConstraint).isActive = true
-        signupBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 2).isActive = true
+        signupBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
     }
     
     private func setupNaviBar() {

@@ -58,3 +58,7 @@
 "boss" = "監督";
 "staff" = "スタッフ";
 "department" = "部長";
+/* for login VC */
+"please_input_login_info" = "ログイン情報を入力してください";
+"log_in" = "ログイン";
+"to_forgot_pass" = "パスワードを忘れた方へ";

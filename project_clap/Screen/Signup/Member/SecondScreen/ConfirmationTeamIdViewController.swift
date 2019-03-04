@@ -80,11 +80,11 @@ extension ConfirmationTeamIdViewController {
         view.addSubview(confirmBtn)
         confirmBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         confirmBtn.topAnchor.constraint(equalTo: confirmationTeamId.bottomAnchor, constant: view.bounds.size.width / 3.5).isActive = true
-        confirmBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 2).isActive = true
+        confirmBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
         view.addSubview(cancelBtn)
         cancelBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         cancelBtn.topAnchor.constraint(equalTo: confirmBtn.bottomAnchor, constant: view.bounds.size.width / 9.5).isActive = true
-        cancelBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 2).isActive = true
+        cancelBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
     }
     
     private func setupViewModel() {

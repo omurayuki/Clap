@@ -192,7 +192,7 @@ extension RepresentMemberRegisterViewController {
         view.addSubview(teamRegistBtn)
         teamRegistBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         teamRegistBtn.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: view.bounds.size.width / 3).isActive = true
-        teamRegistBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 2).isActive = true
+        teamRegistBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
     }
     
     private func setupInsideStack() {
