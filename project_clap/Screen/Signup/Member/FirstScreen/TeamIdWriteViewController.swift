@@ -5,16 +5,6 @@ import RxCocoa
 //validationであれば遷移, なければアラート
 class TeamIdWriteViewController: UIViewController {
     
-    private struct Constants {
-        struct Constraint {
-            static let noticeTeamTextWidthConstraint: CGFloat = 70
-        }
-        
-        struct View {
-            static let confirmBtnCornerRadius: CGFloat = 15
-        }
-    }
-    
     private let disposeBag = DisposeBag()
     private var viewModel: TeamIdWriteViewModel?
     
@@ -47,14 +37,12 @@ class TeamIdWriteViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(R.string.locarizable.confirm(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.baseColor
-        button.layer.cornerRadius = Constants.View.confirmBtnCornerRadius
+        button.layer.cornerRadius = TeamIdWriteResources.View.confirmBtnCornerRadius
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        navigationItem.title = R.string.locarizable.team_id()
         viewModel = TeamIdWriteViewModel(teamIdField: teamIdField.rx.text.orEmpty.asObservable())
         setupUI()
         setupViewModel()
@@ -63,13 +51,15 @@ class TeamIdWriteViewController: UIViewController {
 
 extension TeamIdWriteViewController {
     private func setupUI() {
+        view.backgroundColor = .white
+        navigationItem.title = R.string.locarizable.team_id()
         view.addSubview(noticeTeamTitle)
         noticeTeamTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         noticeTeamTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.size.width / 2.5).isActive = true
         view.addSubview(noticeTeamText)
         noticeTeamText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         noticeTeamText.topAnchor.constraint(equalTo: noticeTeamTitle.bottomAnchor, constant: view.bounds.size.width / 4).isActive = true
-        noticeTeamText.widthAnchor.constraint(equalToConstant: view.bounds.size.width - Constants.Constraint.noticeTeamTextWidthConstraint).isActive = true
+        noticeTeamText.widthAnchor.constraint(equalToConstant: view.bounds.size.width - TeamIdWriteResources.Constraint.noticeTeamTextWidthConstraint).isActive = true
         view.addSubview(teamIdField)
         teamIdField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         teamIdField.topAnchor.constraint(equalTo: noticeTeamText.bottomAnchor, constant: view.bounds.size.width / 4.5).isActive = true

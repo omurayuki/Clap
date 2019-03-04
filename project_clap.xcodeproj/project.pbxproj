@@ -32,6 +32,14 @@
 		C959BF66222D124300207986 /* MemberInfoRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF65222D124300207986 /* MemberInfoRegisterViewModel.swift */; };
 		C959BF68222D125B00207986 /* MemberInfoRegisterValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF67222D125B00207986 /* MemberInfoRegisterValidation.swift */; };
 		C959BF6A222D3A3700207986 /* LoginValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF69222D3A3700207986 /* LoginValidation.swift */; };
+		C959BF6C222D4AE500207986 /* LoginResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF6B222D4AE500207986 /* LoginResources.swift */; };
+		C959BF6E222D4B3500207986 /* TeamIdWriteResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF6D222D4B3500207986 /* TeamIdWriteResources.swift */; };
+		C959BF70222D4B7400207986 /* ConfirmationTeamIdResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF6F222D4B7400207986 /* ConfirmationTeamIdResources.swift */; };
+		C959BF72222D4BA700207986 /* MemberInfoRegisterResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF71222D4BA700207986 /* MemberInfoRegisterResources.swift */; };
+		C959BF74222D4BEE00207986 /* TeamInfoRegisterResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF73222D4BEE00207986 /* TeamInfoRegisterResources.swift */; };
+		C959BF76222D4C2E00207986 /* RepresentMemberRegisterResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF75222D4C2E00207986 /* RepresentMemberRegisterResources.swift */; };
+		C959BF78222D4C6A00207986 /* SelectResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF77222D4C6A00207986 /* SelectResources.swift */; };
+		C959BF7A222D4C8E00207986 /* TopResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF79222D4C8E00207986 /* TopResources.swift */; };
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
 		DFB5334197BF2263EBE8960C /* Pods_project_clap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -66,6 +74,14 @@
 		C959BF65222D124300207986 /* MemberInfoRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoRegisterViewModel.swift; sourceTree = "<group>"; };
 		C959BF67222D125B00207986 /* MemberInfoRegisterValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoRegisterValidation.swift; sourceTree = "<group>"; };
 		C959BF69222D3A3700207986 /* LoginValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidation.swift; sourceTree = "<group>"; };
+		C959BF6B222D4AE500207986 /* LoginResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResources.swift; sourceTree = "<group>"; };
+		C959BF6D222D4B3500207986 /* TeamIdWriteResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamIdWriteResources.swift; sourceTree = "<group>"; };
+		C959BF6F222D4B7400207986 /* ConfirmationTeamIdResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationTeamIdResources.swift; sourceTree = "<group>"; };
+		C959BF71222D4BA700207986 /* MemberInfoRegisterResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoRegisterResources.swift; sourceTree = "<group>"; };
+		C959BF73222D4BEE00207986 /* TeamInfoRegisterResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegisterResources.swift; sourceTree = "<group>"; };
+		C959BF75222D4C2E00207986 /* RepresentMemberRegisterResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterResources.swift; sourceTree = "<group>"; };
+		C959BF77222D4C6A00207986 /* SelectResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectResources.swift; sourceTree = "<group>"; };
+		C959BF79222D4C8E00207986 /* TopResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopResources.swift; sourceTree = "<group>"; };
 		C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterViewController.swift; sourceTree = "<group>"; };
 		C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewModel.swift; sourceTree = "<group>"; };
 		C9CA312A22265595003E600C /* RxBlocking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxBlocking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				C937FD68222288C700F9624E /* TopViewController.swift */,
+				C959BF79222D4C8E00207986 /* TopResources.swift */,
 			);
 			path = Top;
 			sourceTree = "<group>";
@@ -180,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				C937FD792222E1B400F9624E /* LoginViewController.swift */,
+				C959BF6B222D4AE500207986 /* LoginResources.swift */,
 				C937FD7D2222E22B00F9624E /* LoginViewModel.swift */,
 				C959BF69222D3A3700207986 /* LoginValidation.swift */,
 			);
@@ -190,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				C937FD762222DF2600F9624E /* SelectViewController.swift */,
+				C959BF77222D4C6A00207986 /* SelectResources.swift */,
 			);
 			path = Select;
 			sourceTree = "<group>";
@@ -217,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */,
+				C959BF75222D4C2E00207986 /* RepresentMemberRegisterResources.swift */,
 				C959BF5422290ADA00207986 /* RepresentMemberRegisterViewModel.swift */,
 				C959BF562229100500207986 /* RepresentMemberRegisterValidation.swift */,
 			);
@@ -227,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				C937FD8422237E5A00F9624E /* TeamIdWriteViewController.swift */,
+				C959BF6D222D4B3500207986 /* TeamIdWriteResources.swift */,
 				C959BF61222CED8700207986 /* TeamIdWriteViewModel.swift */,
 				C959BF63222CEDD700207986 /* TeamIdWriteValidation.swift */,
 			);
@@ -237,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				C959BF58222CC05400207986 /* ConfirmationTeamIdViewController.swift */,
+				C959BF6F222D4B7400207986 /* ConfirmationTeamIdResources.swift */,
 			);
 			path = SecondScreen;
 			sourceTree = "<group>";
@@ -245,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				C959BF5C222CC9E800207986 /* MemberInfoRegistViewController.swift */,
+				C959BF71222D4BA700207986 /* MemberInfoRegisterResources.swift */,
 				C959BF65222D124300207986 /* MemberInfoRegisterViewModel.swift */,
 				C959BF67222D125B00207986 /* MemberInfoRegisterValidation.swift */,
 			);
@@ -255,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				C937FD8222237E0000F9624E /* TeamInfoRegistViewController.swift */,
+				C959BF73222D4BEE00207986 /* TeamInfoRegisterResources.swift */,
 				C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */,
 				C959BF512227EA7F00207986 /* TeamInfoRegistValidation.swift */,
 			);
@@ -427,10 +451,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C959BF76222D4C2E00207986 /* RepresentMemberRegisterResources.swift in Sources */,
 				C959BF5B222CC45E00207986 /* UILabel+Extension.swift in Sources */,
 				C937FD7A2222E1B400F9624E /* LoginViewController.swift in Sources */,
 				C937FD8522237E5A00F9624E /* TeamIdWriteViewController.swift in Sources */,
 				C937FD8322237E0000F9624E /* TeamInfoRegistViewController.swift in Sources */,
+				C959BF72222D4BA700207986 /* MemberInfoRegisterResources.swift in Sources */,
 				C937FD69222288C700F9624E /* TopViewController.swift in Sources */,
 				C937FD53222287B800F9624E /* AppDelegate.swift in Sources */,
 				C937FD7E2222E22B00F9624E /* LoginViewModel.swift in Sources */,
@@ -439,13 +465,19 @@
 				C959BF522227EA7F00207986 /* TeamInfoRegistValidation.swift in Sources */,
 				C937FD772222DF2600F9624E /* SelectViewController.swift in Sources */,
 				C959BF5D222CC9E800207986 /* MemberInfoRegistViewController.swift in Sources */,
+				C959BF74222D4BEE00207986 /* TeamInfoRegisterResources.swift in Sources */,
 				C937FD6F222292B700F9624E /* R.generated.swift in Sources */,
+				C959BF7A222D4C8E00207986 /* TopResources.swift in Sources */,
 				C937FD722222D7F300F9624E /* UIColor+Extension.swift in Sources */,
+				C959BF6E222D4B3500207986 /* TeamIdWriteResources.swift in Sources */,
 				C959BF5522290ADA00207986 /* RepresentMemberRegisterViewModel.swift in Sources */,
+				C959BF70222D4B7400207986 /* ConfirmationTeamIdResources.swift in Sources */,
 				C959BF6A222D3A3700207986 /* LoginValidation.swift in Sources */,
+				C959BF78222D4C6A00207986 /* SelectResources.swift in Sources */,
 				C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */,
 				C959BF59222CC05400207986 /* ConfirmationTeamIdViewController.swift in Sources */,
 				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
+				C959BF6C222D4AE500207986 /* LoginResources.swift in Sources */,
 				C908D2982223AEE3000344B0 /* AppResources.swift in Sources */,
 				C959BF68222D125B00207986 /* MemberInfoRegisterValidation.swift in Sources */,
 				C959BF62222CED8700207986 /* TeamIdWriteViewModel.swift in Sources */,

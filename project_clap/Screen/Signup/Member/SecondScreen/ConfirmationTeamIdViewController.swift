@@ -5,12 +5,6 @@ import RxCocoa
 
 class ConfirmationTeamIdViewController: UIViewController {
     
-    private struct Constants {
-        struct View {
-            static let confirmBtnCornerRadius: CGFloat = 15
-        }
-    }
-    
     private let disposeBag = DisposeBag()
     var recievedTeamId: String
     
@@ -36,7 +30,7 @@ class ConfirmationTeamIdViewController: UIViewController {
         let button = UIButton()
         button.setTitle(R.string.locarizable.yes(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.baseColor
-        button.layer.cornerRadius = Constants.View.confirmBtnCornerRadius
+        button.layer.cornerRadius = ConfirmationTeamIdResources.View.confirmBtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -45,7 +39,7 @@ class ConfirmationTeamIdViewController: UIViewController {
         let button = UIButton()
         button.setTitle(R.string.locarizable.cancel(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.baseColor
-        button.layer.cornerRadius = Constants.View.confirmBtnCornerRadius
+        button.layer.cornerRadius = ConfirmationTeamIdResources.View.confirmBtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -61,8 +55,6 @@ class ConfirmationTeamIdViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        navigationItem.title = R.string.locarizable.confirmation()
         confirmationTeamId.text = recievedTeamId
         setupUI()
         setupViewModel()
@@ -71,6 +63,8 @@ class ConfirmationTeamIdViewController: UIViewController {
 
 extension ConfirmationTeamIdViewController {
     private func setupUI() {
+        view.backgroundColor = .white
+        navigationItem.title = R.string.locarizable.confirmation()
         view.addSubview(confirmationTeamTitle)
         confirmationTeamTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         confirmationTeamTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.size.width / 2.5).isActive = true

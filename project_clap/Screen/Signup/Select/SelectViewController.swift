@@ -5,12 +5,6 @@ import RxCocoa
 
 class SelectViewController: UIViewController {
     
-    private struct Constants {
-        struct Constraint {
-            static let memberRegistBtnLeftConstraint: CGFloat = 20
-        }
-    }
-    
     private let disposeBag = DisposeBag()
     
     private lazy var selectionTeamOrMemberTitle: UILabel = {
@@ -47,8 +41,6 @@ class SelectViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        navigationItem.title = R.string.locarizable.type()
         setupUI()
         setupViewModel()
     }
@@ -56,6 +48,8 @@ class SelectViewController: UIViewController {
 
 extension SelectViewController {
     private func setupUI() {
+        view.backgroundColor = .white
+        navigationItem.title = R.string.locarizable.type()
         view.addSubview(selectionTeamOrMemberTitle)
         selectionTeamOrMemberTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         selectionTeamOrMemberTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.size.width / 2.5).isActive = true
@@ -66,7 +60,7 @@ extension SelectViewController {
         teamRegistBtn.heightAnchor.constraint(equalToConstant: view.bounds.size.width / 3.5).isActive = true
         memberRegistBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 3.5).isActive = true
         memberRegistBtn.heightAnchor.constraint(equalToConstant: view.bounds.size.width / 3.5).isActive = true
-        memberRegistBtn.leftAnchor.constraint(equalTo: teamRegistBtn.rightAnchor, constant: Constants.Constraint.memberRegistBtnLeftConstraint).isActive = true
+        memberRegistBtn.leftAnchor.constraint(equalTo: teamRegistBtn.rightAnchor, constant: SelectResources.Constraint.memberRegistBtnLeftConstraint).isActive = true
     }
     
     private func setupViewModel() {

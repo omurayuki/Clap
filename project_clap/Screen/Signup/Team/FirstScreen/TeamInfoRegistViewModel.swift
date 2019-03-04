@@ -10,6 +10,8 @@ protocol TeamInfoRegistViewModelInput {
 
 protocol TeamInfoRegistViewModelOutput {
     var isNextBtnEnable: Observable<Bool> { get }
+    var gradeArr: Array<String> { get }
+    var sportsKindArr: Array<String> { get }
 }
 
 protocol TeamInfoRegistViewModelType {
@@ -24,11 +26,22 @@ struct TeamInfoRegistViewModel: TeamInfoRegistViewModelType, TeamInfoRegistViewM
     var representGrade: Observable<String>
     var representSportsKind: Observable<String>
     var isNextBtnEnable: Observable<Bool>
+    var gradeArr: Array<String>
+    var sportsKindArr: Array<String>
     
     init(teamIdField: Observable<String>, gradeField: Observable<String>, sportsKindField: Observable<String>) {
         teamIdText = teamIdField
         representGrade = gradeField
         representSportsKind = sportsKindField
+        gradeArr = [
+            R.string.locarizable.empty(), R.string.locarizable.junior_high_school(),
+            R.string.locarizable.high_school(), R.string.locarizable.university(), R.string.locarizable.social()
+        ]
+        sportsKindArr = [
+            R.string.locarizable.empty(), R.string.locarizable.rugby(),
+            R.string.locarizable.base_ball(), R.string.locarizable.soccer(),
+            R.string.locarizable.basket_ball(), R.string.locarizable.kendo(), R.string.locarizable.judo()
+        ]
         
         let isEmptyPicker = Observable
             .combineLatest(representGrade, representSportsKind) { position, year -> TeamInfoRegistValidationResult in

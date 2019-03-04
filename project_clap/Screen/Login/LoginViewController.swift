@@ -5,17 +5,6 @@ import RxSwift
 
 class LoginViewCountroller: UIViewController {
     
-    private struct Constants {
-        struct Constraint {
-            static let mailFieldTopConstraint: CGFloat = 80
-            static let passFieldTopConstraint: CGFloat = 50
-        }
-        
-        struct View {
-            static let BtnCornerRadius: CGFloat = 15
-        }
-    }
-    
     private let disposeBag = DisposeBag()
     private var viewModel: LoginViewModel?
     
@@ -50,7 +39,7 @@ class LoginViewCountroller: UIViewController {
         let button = UIButton()
         button.setTitle(R.string.locarizable.log_in(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.baseColor
-        button.layer.cornerRadius = Constants.View.BtnCornerRadius
+        button.layer.cornerRadius = LoginResources.View.BtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -59,15 +48,13 @@ class LoginViewCountroller: UIViewController {
         let button = UIButton()
         button.setTitle(R.string.locarizable.to_forgot_pass(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.baseColor
-        button.layer.cornerRadius = Constants.View.BtnCornerRadius
+        button.layer.cornerRadius = LoginResources.View.BtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        navigationItem.title = R.string.locarizable.log_in()
         viewModel = LoginViewModel(emailField: mailField.rx.text.orEmpty.asObservable(), passField: passField.rx.text.orEmpty.asObservable())
         setupViewModel()
         setupUI()
@@ -76,16 +63,18 @@ class LoginViewCountroller: UIViewController {
 
 extension LoginViewCountroller {
     private func setupUI() {
+        view.backgroundColor = .white
+        navigationItem.title = R.string.locarizable.log_in()
         view.addSubview(noticeUserLoginTitle)
         noticeUserLoginTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         noticeUserLoginTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.size.width / 2.5).isActive = true
         view.addSubview(mailField)
         mailField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        mailField.topAnchor.constraint(equalTo: noticeUserLoginTitle.bottomAnchor, constant: Constants.Constraint.mailFieldTopConstraint).isActive = true
+        mailField.topAnchor.constraint(equalTo: noticeUserLoginTitle.bottomAnchor, constant: LoginResources.Constraint.mailFieldTopConstraint).isActive = true
         mailField.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
         view.addSubview(passField)
         passField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        passField.topAnchor.constraint(equalTo: mailField.bottomAnchor, constant: Constants.Constraint.passFieldTopConstraint).isActive = true
+        passField.topAnchor.constraint(equalTo: mailField.bottomAnchor, constant: LoginResources.Constraint.passFieldTopConstraint).isActive = true
         passField.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
         view.addSubview(logintBtn)
         logintBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

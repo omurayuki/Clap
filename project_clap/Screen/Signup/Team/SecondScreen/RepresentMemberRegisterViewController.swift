@@ -10,35 +10,8 @@ class RepresentMemberRegisterViewController: UIViewController {
         case year
     }
     
-    private struct Constants {
-        struct Constraint {
-            static let userPhotoRegistBtnTopConstraint: CGFloat = 30
-            static let nameFieldtopConstraint: CGFloat = 30
-            static let mailFieldTopConstraint: CGFloat = 25
-            static let passFieldTopConstraint: CGFloat = 25
-            static let rePassFieldTopConstraint: CGFloat = 25
-            static let stackTopConstraint: CGFloat = 25
-            static let representMemberPositionHeightConstraint: CGFloat = 20
-            static let representMemberYearHeightConstraint: CGFloat = 20
-        }
-        
-        struct View {
-            static let BtnCornerRadius: CGFloat = 15
-            static let toolBarHeight: CGFloat = 44
-            static let pickerNumberOfComponents = 1
-        }
-    }
-    
     private var viewModel: RepresentMemberRegisterViewModel?
     private let disposeBag = DisposeBag()
-    
-    private let positionArr = [
-        R.string.locarizable.empty(), R.string.locarizable.player(), R.string.locarizable.leader(), R.string.locarizable.manager()
-    ]
-    private let yearArr = [
-        R.string.locarizable.empty(), R.string.locarizable.first_year_student(),
-        R.string.locarizable.second_year_student(), R.string.locarizable.third_year_student(), R.string.locarizable.fourth_year_student()
-    ]
     
     private lazy var noticeUserRegistTitle: UILabel = {
         let label = UILabel()
@@ -122,13 +95,13 @@ class RepresentMemberRegisterViewController: UIViewController {
         let button = UIButton()
         button.setTitle(R.string.locarizable.regist(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.baseColor
-        button.layer.cornerRadius = Constants.View.BtnCornerRadius
+        button.layer.cornerRadius = RepresentMemberRegisterResources.View.BtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var positionToolBar: UIToolbar = {
-        let toolbarFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: Constants.View.toolBarHeight)
+        let toolbarFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: RepresentMemberRegisterResources.View.toolBarHeight)
         let accessoryToolbar = UIToolbar(frame: toolbarFrame)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tappedPosionBtn(sender:)))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -138,7 +111,7 @@ class RepresentMemberRegisterViewController: UIViewController {
     }()
     
     private lazy var yearToolBar: UIToolbar = {
-        let toolbarFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: Constants.View.toolBarHeight)
+        let toolbarFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: RepresentMemberRegisterResources.View.toolBarHeight)
         let accessoryToolbar = UIToolbar(frame: toolbarFrame)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tappedYearBtn(sender:)))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -149,10 +122,8 @@ class RepresentMemberRegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        navigationItem.title = R.string.locarizable.regist_user()
-        setupToolBar(representMemberPosition, type: .position, toolBar: positionToolBar, content: positionArr)
-        setupToolBar(representMemberYear, type: .year, toolBar: yearToolBar, content: yearArr)
+        setupToolBar(representMemberPosition, type: .position, toolBar: positionToolBar, content: viewModel?.outputs.positionArr ?? [R.string.locarizable.empty()])
+        setupToolBar(representMemberYear, type: .year, toolBar: yearToolBar, content: viewModel?.outputs.yearArr ?? [R.string.locarizable.empty()])
         viewModel = RepresentMemberRegisterViewModel(nameField: nameField.rx.text.orEmpty.asObservable(), mailField: mailField.rx.text.orEmpty.asObservable(), passField: passField.rx.text.orEmpty.asObservable(), rePassField: rePassField.rx.text.orEmpty.asObservable(), positionField: representMemberPosition.rx.text.orEmpty.asObservable(), yearField: representMemberYear.rx.text.orEmpty.asObservable(), registBtn: teamRegistBtn.rx.tap.asObservable())
         setupUI()
         setupInsideStack()
@@ -162,33 +133,35 @@ class RepresentMemberRegisterViewController: UIViewController {
 
 extension RepresentMemberRegisterViewController {
     private func setupUI() {
+        view.backgroundColor = .white
+        navigationItem.title = R.string.locarizable.regist_user()
         view.addSubview(noticeUserRegistTitle)
         noticeUserRegistTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         noticeUserRegistTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.size.width / 2.5).isActive = true
         view.addSubview(userPhotoRegistBtn)
         userPhotoRegistBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        userPhotoRegistBtn.topAnchor.constraint(equalTo: noticeUserRegistTitle.bottomAnchor, constant: Constants.Constraint.userPhotoRegistBtnTopConstraint).isActive = true
+        userPhotoRegistBtn.topAnchor.constraint(equalTo: noticeUserRegistTitle.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.userPhotoRegistBtnTopConstraint).isActive = true
         userPhotoRegistBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 7).isActive = true
         userPhotoRegistBtn.heightAnchor.constraint(equalToConstant: view.bounds.size.width / 7).isActive = true
         view.addSubview(nameField)
         nameField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        nameField.topAnchor.constraint(equalTo: userPhotoRegistBtn.bottomAnchor, constant: Constants.Constraint.nameFieldtopConstraint).isActive = true
+        nameField.topAnchor.constraint(equalTo: userPhotoRegistBtn.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.nameFieldtopConstraint).isActive = true
         nameField.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
         view.addSubview(mailField)
         mailField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        mailField.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: Constants.Constraint.mailFieldTopConstraint).isActive = true
+        mailField.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.mailFieldTopConstraint).isActive = true
         mailField.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
         view.addSubview(passField)
         passField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        passField.topAnchor.constraint(equalTo: mailField.bottomAnchor, constant: Constants.Constraint.passFieldTopConstraint).isActive = true
+        passField.topAnchor.constraint(equalTo: mailField.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.passFieldTopConstraint).isActive = true
         passField.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
         view.addSubview(rePassField)
         rePassField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        rePassField.topAnchor.constraint(equalTo: passField.bottomAnchor, constant: Constants.Constraint.rePassFieldTopConstraint).isActive = true
+        rePassField.topAnchor.constraint(equalTo: passField.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.rePassFieldTopConstraint).isActive = true
         rePassField.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
         view.addSubview(stack)
         stack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        stack.topAnchor.constraint(equalTo: rePassField.bottomAnchor, constant: Constants.Constraint.stackTopConstraint).isActive = true
+        stack.topAnchor.constraint(equalTo: rePassField.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.stackTopConstraint).isActive = true
         view.addSubview(teamRegistBtn)
         teamRegistBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         teamRegistBtn.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: view.bounds.size.width / 3).isActive = true
@@ -197,9 +170,9 @@ extension RepresentMemberRegisterViewController {
     
     private func setupInsideStack() {
         representMemberPosition.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 6).isActive = true
-        representMemberPosition.heightAnchor.constraint(equalToConstant: Constants.Constraint.representMemberPositionHeightConstraint).isActive = true
+        representMemberPosition.heightAnchor.constraint(equalToConstant: RepresentMemberRegisterResources.Constraint.representMemberPositionHeightConstraint).isActive = true
         representMemberYear.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 6).isActive = true
-        representMemberYear.heightAnchor.constraint(equalToConstant: Constants.Constraint.representMemberYearHeightConstraint).isActive = true
+        representMemberYear.heightAnchor.constraint(equalToConstant: RepresentMemberRegisterResources.Constraint.representMemberYearHeightConstraint).isActive = true
         representMemberYear.leftAnchor.constraint(equalTo: representMemberPosition.rightAnchor, constant: view.bounds.size.width / 3).isActive = true
     }
     
@@ -256,13 +229,13 @@ fileprivate class YearPickerView: UIPickerView {}
 
 extension RepresentMemberRegisterViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return Constants.View.pickerNumberOfComponents
+        return RepresentMemberRegisterResources.View.pickerNumberOfComponents
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
-        case is PositionPickerView: return positionArr.count
-        case is YearPickerView: return yearArr.count
+        case is PositionPickerView: return viewModel?.outputs.positionArr.count ?? 0
+        case is YearPickerView: return viewModel?.outputs.yearArr.count ?? 0
         default: return 0
         }
     }
@@ -271,16 +244,16 @@ extension RepresentMemberRegisterViewController: UIPickerViewDataSource {
 extension RepresentMemberRegisterViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
-        case is PositionPickerView: return positionArr[row]
-        case is YearPickerView: return yearArr[row]
+        case is PositionPickerView: return viewModel?.outputs.positionArr[row] ?? R.string.locarizable.empty()
+        case is YearPickerView: return viewModel?.outputs.yearArr[row] ?? R.string.locarizable.empty()
         default: return Optional<String>("")
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
-        case is PositionPickerView: representMemberPosition.text = positionArr[row]
-        case is YearPickerView: representMemberYear.text = yearArr[row]
+        case is PositionPickerView: representMemberPosition.text = viewModel?.outputs.positionArr[row]
+        case is YearPickerView: representMemberYear.text = viewModel?.outputs.yearArr[row]
         default: break
         }
     }

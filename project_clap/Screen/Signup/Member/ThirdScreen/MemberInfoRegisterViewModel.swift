@@ -13,6 +13,7 @@ protocol MemberInfoRegisterViewModelInput {
 
 protocol MemberInfoRegisterViewModelOutput {
     var isRegistBtnEnable: Observable<Bool> { get }
+    var positionArr: Array<String> { get }
 }
 
 protocol MemberInfoRegisterViewModelType {
@@ -30,6 +31,7 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
     var registBtnTap: Observable<()>
     var memberPosition: Observable<String>
     var isRegistBtnEnable: Observable<Bool>
+    var positionArr: Array<String>
     
     init(nameField: Observable<String>, mailField: Observable<String>, passField: Observable<String>, rePassField: Observable<String>, positionField: Observable<String>, registBtn: Observable<()>) {
         nameText = nameField
@@ -38,6 +40,10 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
         rePassText = rePassField
         memberPosition = positionField
         registBtnTap = registBtn
+        positionArr = [
+            R.string.locarizable.empty(), R.string.locarizable.player(), R.string.locarizable.manager(),
+            R.string.locarizable.boss(), R.string.locarizable.department(), R.string.locarizable.staff()
+        ]
         
         let isEmptyField = Observable.combineLatest(nameText, mailText, passText, rePassText) { name, mail, pass, rePass -> MemberInfoRegisterValidationResult in
             return MemberInfoRegisterValidation.validateEmpty(name: name, mail: mail, pass: pass, rePass: rePass)

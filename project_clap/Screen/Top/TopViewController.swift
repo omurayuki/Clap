@@ -5,16 +5,6 @@ import RxCocoa
  
 class TopViewController: UIViewController {
     
-    private struct Constants {
-        struct Constraint {
-            static let signupBtnTopConstraint: CGFloat = 20
-        }
-        
-        struct View {
-            static let BtnCornerRadius: CGFloat = 15
-        }
-    }
-    
     private let disposeBag = DisposeBag()
     
     private lazy var topTitle: UILabel = {
@@ -30,7 +20,7 @@ class TopViewController: UIViewController {
         let button = UIButton()
         button.setTitle(R.string.locarizable.log_in(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.baseColor
-        button.layer.cornerRadius = Constants.View.BtnCornerRadius
+        button.layer.cornerRadius = TopResources.View.BtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -39,7 +29,7 @@ class TopViewController: UIViewController {
         let button = UIButton()
         button.setTitle(R.string.locarizable.sign_up(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.baseColor
-        button.layer.cornerRadius = Constants.View.BtnCornerRadius
+        button.layer.cornerRadius = TopResources.View.BtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -63,7 +53,7 @@ extension TopViewController {
         loginBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
         view.addSubview(signupBtn)
         signupBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        signupBtn.topAnchor.constraint(equalTo: loginBtn.bottomAnchor, constant: Constants.Constraint.signupBtnTopConstraint).isActive = true
+        signupBtn.topAnchor.constraint(equalTo: loginBtn.bottomAnchor, constant: TopResources.Constraint.signupBtnTopConstraint).isActive = true
         signupBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
     }
     

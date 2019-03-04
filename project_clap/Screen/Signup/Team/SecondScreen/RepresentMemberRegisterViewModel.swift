@@ -14,6 +14,8 @@ protocol RepresentMemberRegisterViewModelInput {
 
 protocol RepresentMemberRegisterViewModelOutput {
     var isRegistBtnEnable: Observable<Bool> { get }
+    var positionArr: Array<String> { get }
+    var yearArr: Array<String> { get }
 }
 
 protocol RepresentMemberRegisterViewModelType {
@@ -32,6 +34,8 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
     var memberPosition: Observable<String>
     var memberYear: Observable<String>
     var isRegistBtnEnable: Observable<Bool>
+    var positionArr: Array<String>
+    var yearArr: Array<String>
     
     init(nameField: Observable<String>, mailField: Observable<String>, passField: Observable<String>, rePassField: Observable<String>, positionField: Observable<String>, yearField: Observable<String>, registBtn: Observable<()>) {
         nameText = nameField
@@ -41,6 +45,13 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
         memberPosition = positionField
         memberYear = yearField
         registBtnTap = registBtn
+        positionArr = [
+            R.string.locarizable.empty(), R.string.locarizable.player(), R.string.locarizable.leader(), R.string.locarizable.manager()
+        ]
+        yearArr = [
+            R.string.locarizable.empty(), R.string.locarizable.first_year_student(),
+            R.string.locarizable.second_year_student(), R.string.locarizable.third_year_student(), R.string.locarizable.fourth_year_student()
+        ]
         
         let isEmptyField = Observable.combineLatest(nameText, mailText, passText, rePassText) { name, mail, pass, rePass -> RepresentMemberRegisterValidationResult in
             return RepresentMemberRegisterValidation.validateEmpty(name: name, mail: mail, pass: pass, rePass: rePass)
