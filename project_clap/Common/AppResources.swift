@@ -8,5 +8,6 @@ struct AppResources {
     
     struct FontResources {
         static let topLabelFont = UIFont.systemFont(ofSize: 100)
+        static let confirmationTeamIdFont = UIFont.systemFont(ofSize: 24)
     }
 }

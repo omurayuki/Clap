@@ -20,10 +20,17 @@
 		C937FD7A2222E1B400F9624E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD792222E1B400F9624E /* LoginViewController.swift */; };
 		C937FD7E2222E22B00F9624E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD7D2222E22B00F9624E /* LoginViewModel.swift */; };
 		C937FD8322237E0000F9624E /* TeamInfoRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD8222237E0000F9624E /* TeamInfoRegistViewController.swift */; };
-		C937FD8522237E5A00F9624E /* MemberInfoRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD8422237E5A00F9624E /* MemberInfoRegistViewController.swift */; };
+		C937FD8522237E5A00F9624E /* TeamIdWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD8422237E5A00F9624E /* TeamIdWriteViewController.swift */; };
 		C959BF522227EA7F00207986 /* TeamInfoRegistValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF512227EA7F00207986 /* TeamInfoRegistValidation.swift */; };
 		C959BF5522290ADA00207986 /* RepresentMemberRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF5422290ADA00207986 /* RepresentMemberRegisterViewModel.swift */; };
-		C959BF572229100500207986 /* RepresentMemberRegisterValidate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF562229100500207986 /* RepresentMemberRegisterValidate.swift */; };
+		C959BF572229100500207986 /* RepresentMemberRegisterValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF562229100500207986 /* RepresentMemberRegisterValidation.swift */; };
+		C959BF59222CC05400207986 /* ConfirmationTeamIdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF58222CC05400207986 /* ConfirmationTeamIdViewController.swift */; };
+		C959BF5B222CC45E00207986 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF5A222CC45E00207986 /* UILabel+Extension.swift */; };
+		C959BF5D222CC9E800207986 /* MemberInfoRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF5C222CC9E800207986 /* MemberInfoRegistViewController.swift */; };
+		C959BF62222CED8700207986 /* TeamIdWriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF61222CED8700207986 /* TeamIdWriteViewModel.swift */; };
+		C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF63222CEDD700207986 /* TeamIdWriteValidation.swift */; };
+		C959BF66222D124300207986 /* MemberInfoRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF65222D124300207986 /* MemberInfoRegisterViewModel.swift */; };
+		C959BF68222D125B00207986 /* MemberInfoRegisterValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF67222D125B00207986 /* MemberInfoRegisterValidation.swift */; };
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
 		DFB5334197BF2263EBE8960C /* Pods_project_clap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -46,10 +53,17 @@
 		C937FD792222E1B400F9624E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C937FD7D2222E22B00F9624E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C937FD8222237E0000F9624E /* TeamInfoRegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewController.swift; sourceTree = "<group>"; };
-		C937FD8422237E5A00F9624E /* MemberInfoRegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoRegistViewController.swift; sourceTree = "<group>"; };
+		C937FD8422237E5A00F9624E /* TeamIdWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamIdWriteViewController.swift; sourceTree = "<group>"; };
 		C959BF512227EA7F00207986 /* TeamInfoRegistValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistValidation.swift; sourceTree = "<group>"; };
 		C959BF5422290ADA00207986 /* RepresentMemberRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterViewModel.swift; sourceTree = "<group>"; };
-		C959BF562229100500207986 /* RepresentMemberRegisterValidate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterValidate.swift; sourceTree = "<group>"; };
+		C959BF562229100500207986 /* RepresentMemberRegisterValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterValidation.swift; sourceTree = "<group>"; };
+		C959BF58222CC05400207986 /* ConfirmationTeamIdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationTeamIdViewController.swift; sourceTree = "<group>"; };
+		C959BF5A222CC45E00207986 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		C959BF5C222CC9E800207986 /* MemberInfoRegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoRegistViewController.swift; sourceTree = "<group>"; };
+		C959BF61222CED8700207986 /* TeamIdWriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamIdWriteViewModel.swift; sourceTree = "<group>"; };
+		C959BF63222CEDD700207986 /* TeamIdWriteValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamIdWriteValidation.swift; sourceTree = "<group>"; };
+		C959BF65222D124300207986 /* MemberInfoRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoRegisterViewModel.swift; sourceTree = "<group>"; };
+		C959BF67222D125B00207986 /* MemberInfoRegisterValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoRegisterValidation.swift; sourceTree = "<group>"; };
 		C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterViewController.swift; sourceTree = "<group>"; };
 		C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewModel.swift; sourceTree = "<group>"; };
 		C9CA312A22265595003E600C /* RxBlocking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxBlocking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				C937FD712222D7F200F9624E /* UIColor+Extension.swift */,
+				C959BF5A222CC45E00207986 /* UILabel+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -179,8 +194,8 @@
 		C937FD8022237D3E00F9624E /* Team */ = {
 			isa = PBXGroup;
 			children = (
-				C9A5C24D2224243A00BF1EBC /* TeamInfoRegist */,
-				C959BF532229099000207986 /* RepresentMemberRegister */,
+				C9A5C24D2224243A00BF1EBC /* FirstScreen */,
+				C959BF532229099000207986 /* SecondScreen */,
 			);
 			path = Team;
 			sourceTree = "<group>";
@@ -188,29 +203,59 @@
 		C937FD8122237D4C00F9624E /* Member */ = {
 			isa = PBXGroup;
 			children = (
-				C937FD8422237E5A00F9624E /* MemberInfoRegistViewController.swift */,
+				C959BF5E222CCF2700207986 /* FirstScreen */,
+				C959BF5F222CCF3500207986 /* SecondScreen */,
+				C959BF60222CCF3F00207986 /* ThirdScreen */,
 			);
 			path = Member;
 			sourceTree = "<group>";
 		};
-		C959BF532229099000207986 /* RepresentMemberRegister */ = {
+		C959BF532229099000207986 /* SecondScreen */ = {
 			isa = PBXGroup;
 			children = (
 				C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */,
 				C959BF5422290ADA00207986 /* RepresentMemberRegisterViewModel.swift */,
-				C959BF562229100500207986 /* RepresentMemberRegisterValidate.swift */,
+				C959BF562229100500207986 /* RepresentMemberRegisterValidation.swift */,
 			);
-			path = RepresentMemberRegister;
+			path = SecondScreen;
 			sourceTree = "<group>";
 		};
-		C9A5C24D2224243A00BF1EBC /* TeamInfoRegist */ = {
+		C959BF5E222CCF2700207986 /* FirstScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C937FD8422237E5A00F9624E /* TeamIdWriteViewController.swift */,
+				C959BF61222CED8700207986 /* TeamIdWriteViewModel.swift */,
+				C959BF63222CEDD700207986 /* TeamIdWriteValidation.swift */,
+			);
+			path = FirstScreen;
+			sourceTree = "<group>";
+		};
+		C959BF5F222CCF3500207986 /* SecondScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C959BF58222CC05400207986 /* ConfirmationTeamIdViewController.swift */,
+			);
+			path = SecondScreen;
+			sourceTree = "<group>";
+		};
+		C959BF60222CCF3F00207986 /* ThirdScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C959BF5C222CC9E800207986 /* MemberInfoRegistViewController.swift */,
+				C959BF65222D124300207986 /* MemberInfoRegisterViewModel.swift */,
+				C959BF67222D125B00207986 /* MemberInfoRegisterValidation.swift */,
+			);
+			path = ThirdScreen;
+			sourceTree = "<group>";
+		};
+		C9A5C24D2224243A00BF1EBC /* FirstScreen */ = {
 			isa = PBXGroup;
 			children = (
 				C937FD8222237E0000F9624E /* TeamInfoRegistViewController.swift */,
 				C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */,
 				C959BF512227EA7F00207986 /* TeamInfoRegistValidation.swift */,
 			);
-			path = TeamInfoRegist;
+			path = FirstScreen;
 			sourceTree = "<group>";
 		};
 		E1168D8F28D0957839E6D20B /* Pods */ = {
@@ -379,21 +424,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C959BF5B222CC45E00207986 /* UILabel+Extension.swift in Sources */,
 				C937FD7A2222E1B400F9624E /* LoginViewController.swift in Sources */,
-				C937FD8522237E5A00F9624E /* MemberInfoRegistViewController.swift in Sources */,
+				C937FD8522237E5A00F9624E /* TeamIdWriteViewController.swift in Sources */,
 				C937FD8322237E0000F9624E /* TeamInfoRegistViewController.swift in Sources */,
 				C937FD69222288C700F9624E /* TopViewController.swift in Sources */,
 				C937FD53222287B800F9624E /* AppDelegate.swift in Sources */,
 				C937FD7E2222E22B00F9624E /* LoginViewModel.swift in Sources */,
+				C959BF66222D124300207986 /* MemberInfoRegisterViewModel.swift in Sources */,
 				C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */,
 				C959BF522227EA7F00207986 /* TeamInfoRegistValidation.swift in Sources */,
 				C937FD772222DF2600F9624E /* SelectViewController.swift in Sources */,
+				C959BF5D222CC9E800207986 /* MemberInfoRegistViewController.swift in Sources */,
 				C937FD6F222292B700F9624E /* R.generated.swift in Sources */,
 				C937FD722222D7F300F9624E /* UIColor+Extension.swift in Sources */,
 				C959BF5522290ADA00207986 /* RepresentMemberRegisterViewModel.swift in Sources */,
 				C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */,
+				C959BF59222CC05400207986 /* ConfirmationTeamIdViewController.swift in Sources */,
+				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
 				C908D2982223AEE3000344B0 /* AppResources.swift in Sources */,
-				C959BF572229100500207986 /* RepresentMemberRegisterValidate.swift in Sources */,
+				C959BF68222D125B00207986 /* MemberInfoRegisterValidation.swift in Sources */,
+				C959BF62222CED8700207986 /* TeamIdWriteViewModel.swift in Sources */,
+				C959BF572229100500207986 /* RepresentMemberRegisterValidation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,8 @@ protocol RepresentMemberRegisterViewModelInput {
     var mailText: Observable<String> { get }
     var passText: Observable<String> { get }
     var rePassText: Observable<String> { get }
+    var memberPosition: Observable<String> { get }
+    var memberYear: Observable<String> { get }
     var registBtnTap: Observable<()> { get }
 }
 
@@ -27,34 +29,43 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
     var passText: Observable<String>
     var rePassText: Observable<String>
     var registBtnTap: Observable<()>
+    var memberPosition: Observable<String>
+    var memberYear: Observable<String>
     var isRegistBtnEnable: Observable<Bool>
     
-    init(nameField: Observable<String>, mailField: Observable<String>, passField: Observable<String>, rePassField: Observable<String>, registBtn: Observable<()>) {
+    init(nameField: Observable<String>, mailField: Observable<String>, passField: Observable<String>, rePassField: Observable<String>, positionField: Observable<String>, yearField: Observable<String>, registBtn: Observable<()>) {
         nameText = nameField
         mailText = mailField
         passText = passField
         rePassText = rePassField
+        memberPosition = positionField
+        memberYear = yearField
         registBtnTap = registBtn
         
         let isEmptyField = Observable.combineLatest(nameText, mailText, passText, rePassText) { name, mail, pass, rePass -> RepresentMemberRegisterValidationResult in
-            return RepresentMemberRegisterValidate.validateEmpty(name: name, mail: mail, pass: pass, rePass: rePass)
+            return RepresentMemberRegisterValidation.validateEmpty(name: name, mail: mail, pass: pass, rePass: rePass)
         }
         .share(replay: 1)
         
         let passFieldWhetherMatch = Observable.combineLatest(passText, rePassText) { pass, repass -> RepresentMemberRegisterValidationResult in
-            return RepresentMemberRegisterValidate.validatePass(pass: pass, rePass: repass)
+            return RepresentMemberRegisterValidation.validatePass(pass: pass, rePass: repass)
         }
         .share(replay: 1)
         
         let emailFieldWhetherMatch = Observable.combineLatest([mailText], { mail -> RepresentMemberRegisterValidationResult in
-            return RepresentMemberRegisterValidate.validateEmail(email: mail[0])
+            return RepresentMemberRegisterValidation.validateEmail(email: mail[0])
         })
         .share(replay: 1)
         
-        isRegistBtnEnable = Observable.combineLatest(isEmptyField, passFieldWhetherMatch, emailFieldWhetherMatch) { (empty, pass, mail) in
+        let isEmptyPicker = Observable.combineLatest(memberPosition, memberYear) { position, year -> RepresentMemberRegisterValidationResult in
+            return RepresentMemberRegisterValidation.validatePicker(position: position, year: year)
+        }
+        
+        isRegistBtnEnable = Observable.combineLatest(isEmptyField, passFieldWhetherMatch, emailFieldWhetherMatch, isEmptyPicker) { (empty, pass, mail, picker) in
             empty.isValid &&
             pass.isValid &&
-            mail.isValid
+            mail.isValid &&
+            picker.isValid
         }
         .share(replay: 1)
     }

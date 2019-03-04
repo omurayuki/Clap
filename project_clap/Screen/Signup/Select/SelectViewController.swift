@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
-import RxCocoa
 import RxSwift
+import RxCocoa
 
 class SelectViewController: UIViewController {
     
@@ -10,6 +10,8 @@ class SelectViewController: UIViewController {
             static let memberRegistBtnLeftConstraint: CGFloat = 20
         }
     }
+    
+    private let disposeBag = DisposeBag()
     
     private lazy var selectionTeamOrMemberTitle: UILabel = {
         let label = UILabel()
@@ -23,7 +25,6 @@ class SelectViewController: UIViewController {
         let button = UIButton()
         button.setTitle(R.string.locarizable.team(), for: .normal)
         button.backgroundColor = .gray
-        button.addTarget(self, action: #selector(showTeamRegister(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -32,7 +33,6 @@ class SelectViewController: UIViewController {
         let button = UIButton()
         button.setTitle(R.string.locarizable.member(), for: .normal)
         button.backgroundColor = .black
-        button.addTarget(self, action: #selector(showMemberRegister(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -50,6 +50,7 @@ class SelectViewController: UIViewController {
         view.backgroundColor = .white
         navigationItem.title = R.string.locarizable.type()
         setupUI()
+        setupViewModel()
     }
 }
 
@@ -68,13 +69,19 @@ extension SelectViewController {
         memberRegistBtn.leftAnchor.constraint(equalTo: teamRegistBtn.rightAnchor, constant: Constants.Constraint.memberRegistBtnLeftConstraint).isActive = true
     }
     
-    @objc
-    func showTeamRegister(sender: UIButton) {
-        navigationController?.pushViewController(TeamInfoRegistViewController(), animated: true)
-    }
-    
-    @objc
-    func showMemberRegister(sender: UIButton) {
-        navigationController?.pushViewController(MemberInfoRegistViewController(), animated: true)
+    private func setupViewModel() {
+        teamRegistBtn.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] _  in
+                guard let navi = self?.navigationController else { return }
+                navi.pushViewController(TeamInfoRegistViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        memberRegistBtn.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] _  in
+                guard let navi = self?.navigationController else { return }
+                navi.pushViewController(TeamIdWriteViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }

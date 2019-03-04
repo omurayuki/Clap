@@ -1,5 +1,7 @@
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
  
 class TopViewController: UIViewController {
     
@@ -12,6 +14,8 @@ class TopViewController: UIViewController {
             static let BtnCornerRadius: CGFloat = 15
         }
     }
+    
+    private let disposeBag = DisposeBag()
     
     private lazy var topTitle: UILabel = {
         let label = UILabel()
@@ -27,7 +31,6 @@ class TopViewController: UIViewController {
         button.setTitle(R.string.locarizable.log_in(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.baseColor
         button.layer.cornerRadius = Constants.View.BtnCornerRadius
-        button.addTarget(self, action: #selector(showLogin(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -37,7 +40,6 @@ class TopViewController: UIViewController {
         button.setTitle(R.string.locarizable.sign_up(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.baseColor
         button.layer.cornerRadius = Constants.View.BtnCornerRadius
-        button.addTarget(self, action: #selector(showSignup(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -46,6 +48,7 @@ class TopViewController: UIViewController {
         super.viewDidLoad()
         setupNaviBar()
         setupUI()
+        setupViewModel()
     }
 }
 
@@ -71,13 +74,18 @@ extension TopViewController {
         navigationController?.navigationBar.barTintColor = .white
     }
     
-    @objc
-    func showLogin(sender: UIButton) {
-        navigationController?.pushViewController(LoginViewCountroller(), animated: true)
-    }
-    
-    @objc
-    func showSignup(sender: UIButton) {
-        navigationController?.pushViewController(SelectViewController(), animated: true)
+    private func setupViewModel() {
+        loginBtn.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                guard let navi = self?.navigationController else { return }
+                navi.pushViewController(LoginViewCountroller(), animated: true)
+            })
+            .disposed(by: disposeBag)
+        signupBtn.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                guard let navi = self?.navigationController else { return }
+                navi.pushViewController(SelectViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }

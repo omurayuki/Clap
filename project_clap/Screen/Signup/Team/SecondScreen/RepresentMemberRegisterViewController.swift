@@ -33,10 +33,10 @@ class RepresentMemberRegisterViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     private let positionArr = [
-        R.string.locarizable.position(),R.string.locarizable.player(), R.string.locarizable.leader(), R.string.locarizable.manager()
+        R.string.locarizable.empty(), R.string.locarizable.player(), R.string.locarizable.leader(), R.string.locarizable.manager()
     ]
     private let yearArr = [
-        R.string.locarizable.year(), R.string.locarizable.first_year_student(),
+        R.string.locarizable.empty(), R.string.locarizable.first_year_student(),
         R.string.locarizable.second_year_student(), R.string.locarizable.third_year_student(), R.string.locarizable.fourth_year_student()
     ]
     
@@ -77,6 +77,7 @@ class RepresentMemberRegisterViewController: UIViewController {
         let field = UITextField()
         field.placeholder = R.string.locarizable.password()
         field.clearButtonMode = .always
+        field.isSecureTextEntry = true
         field.delegate = self
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -86,6 +87,7 @@ class RepresentMemberRegisterViewController: UIViewController {
         let field = UITextField()
         field.placeholder = R.string.locarizable.remain_password()
         field.clearButtonMode = .always
+        field.isSecureTextEntry = true
         field.delegate = self
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -93,16 +95,16 @@ class RepresentMemberRegisterViewController: UIViewController {
     
     private lazy var representMemberPosition: UITextField = {
         let field = UITextField()
+        field.placeholder = R.string.locarizable.select()
         field.tintColor = .clear
-        field.textAlignment = .center
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
     private lazy var representMemberYear: UITextField = {
         let field = UITextField()
+        field.placeholder = R.string.locarizable.select()
         field.tintColor = .clear
-        field.textAlignment = .center
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
@@ -121,7 +123,6 @@ class RepresentMemberRegisterViewController: UIViewController {
         button.setTitle(R.string.locarizable.regist(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.baseColor
         button.layer.cornerRadius = Constants.View.BtnCornerRadius
-        button.addTarget(self, action: #selector(showMainPage(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -132,7 +133,7 @@ class RepresentMemberRegisterViewController: UIViewController {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tappedPosionBtn(sender:)))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         accessoryToolbar.items = [flexibleSpace, doneButton]
-        accessoryToolbar.barTintColor = UIColor.white
+        accessoryToolbar.barTintColor = .white
         return accessoryToolbar
     }()
     
@@ -142,17 +143,17 @@ class RepresentMemberRegisterViewController: UIViewController {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tappedYearBtn(sender:)))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         accessoryToolbar.items = [flexibleSpace, doneButton]
-        accessoryToolbar.barTintColor = UIColor.white
+        accessoryToolbar.barTintColor = .white
         return accessoryToolbar
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        navigationItem.title = R.string.locarizable.represent_vc_title()
+        navigationItem.title = R.string.locarizable.regist_user()
         setupToolBar(representMemberPosition, type: .position, toolBar: positionToolBar, content: positionArr)
         setupToolBar(representMemberYear, type: .year, toolBar: yearToolBar, content: yearArr)
-        viewModel = RepresentMemberRegisterViewModel(nameField: nameField.rx.text.orEmpty.asObservable(), mailField: mailField.rx.text.orEmpty.asObservable(), passField: passField.rx.text.orEmpty.asObservable(), rePassField: rePassField.rx.text.orEmpty.asObservable(), registBtn: teamRegistBtn.rx.tap.asObservable())
+        viewModel = RepresentMemberRegisterViewModel(nameField: nameField.rx.text.orEmpty.asObservable(), mailField: mailField.rx.text.orEmpty.asObservable(), passField: passField.rx.text.orEmpty.asObservable(), rePassField: rePassField.rx.text.orEmpty.asObservable(), positionField: representMemberPosition.rx.text.orEmpty.asObservable(), yearField: representMemberYear.rx.text.orEmpty.asObservable(), registBtn: teamRegistBtn.rx.tap.asObservable())
         setupUI()
         setupInsideStack()
         setupViewModel()
@@ -209,6 +210,12 @@ extension RepresentMemberRegisterViewController {
                 self?.teamRegistBtn.isHidden = !isValid
             })
             .disposed(by: disposeBag)
+        
+        teamRegistBtn.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                print("遷移する")
+            })
+            .disposed(by: disposeBag)
     }
     
     private func getPickerView(type: PickerType) -> UIPickerView {
@@ -241,11 +248,6 @@ extension RepresentMemberRegisterViewController {
         if representMemberYear.isFirstResponder {
             representMemberYear.resignFirstResponder()
         }
-    }
-    
-    @objc
-    func showMainPage(sender: UIButton) {
-        print("signupinputにデータ突っ込んでvalidate? viewModelでvalidate?")
     }
 }
 

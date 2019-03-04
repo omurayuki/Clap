@@ -27,12 +27,12 @@ class  TeamInfoRegistViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     private let gradeArr = [
-        R.string.locarizable.select(), R.string.locarizable.junior_high_school(),
+        R.string.locarizable.empty(), R.string.locarizable.junior_high_school(),
         R.string.locarizable.high_school(), R.string.locarizable.university(), R.string.locarizable.social()
     ]
     
     private let sportsKindArr = [
-        R.string.locarizable.select(), R.string.locarizable.rugby(),
+        R.string.locarizable.empty(), R.string.locarizable.rugby(),
         R.string.locarizable.base_ball(), R.string.locarizable.soccer(),
         R.string.locarizable.basket_ball(), R.string.locarizable.kendo(), R.string.locarizable.judo()
     ]
@@ -56,6 +56,7 @@ class  TeamInfoRegistViewController: UIViewController {
     
     private lazy var gradeField: UITextField = {
         let field = UITextField()
+        field.placeholder = R.string.locarizable.select()
         field.tintColor = .clear
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -63,6 +64,7 @@ class  TeamInfoRegistViewController: UIViewController {
     
     private lazy var sportsKindField: UITextField = {
         let field = UITextField()
+        field.placeholder = R.string.locarizable.select()
         field.tintColor = .clear
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -73,7 +75,6 @@ class  TeamInfoRegistViewController: UIViewController {
         button.setTitle(R.string.locarizable.next(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.baseColor
         button.layer.cornerRadius = Constants.View.nextBtnCornerRadius
-        button.addTarget(self, action: #selector(showUserRegister(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -104,7 +105,7 @@ class  TeamInfoRegistViewController: UIViewController {
         navigationItem.title = R.string.locarizable.team_info_title()
         setupToolBar(gradeField, type: .grade, toolBar: gradeToolBar, content: gradeArr)
         setupToolBar(sportsKindField, type: .sports, toolBar: sportsKindToolBar, content: sportsKindArr)
-        viewModel = TeamInfoRegistViewModel(teamIdText: teamIdField.rx.text.orEmpty.asObservable())
+        viewModel = TeamInfoRegistViewModel(teamIdField: teamIdField.rx.text.orEmpty.asObservable(), gradeField: gradeField.rx.text.orEmpty.asObservable(), sportsKindField: sportsKindField.rx.text.orEmpty.asObservable())
         setupUI()
         setupViewModel()
     }
@@ -120,12 +121,12 @@ extension TeamInfoRegistViewController {
         teamIdField.topAnchor.constraint(equalTo: noticeTeamInfoRegistTitle.bottomAnchor, constant: view.bounds.size.width / 4).isActive = true
         teamIdField.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
         view.addSubview(gradeField)
-        gradeField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         gradeField.topAnchor.constraint(equalTo: teamIdField.bottomAnchor, constant: Constants.Constraint.gradeFieldTopConstraint).isActive = true
+        gradeField.leftAnchor.constraint(equalTo: teamIdField.leftAnchor).isActive = true
         teamIdField.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
         view.addSubview(sportsKindField)
-        sportsKindField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         sportsKindField.topAnchor.constraint(equalTo: gradeField.bottomAnchor, constant: Constants.Constraint.sportsKindFieldTopConstraint).isActive = true
+        sportsKindField.leftAnchor.constraint(equalTo: teamIdField.leftAnchor).isActive = true
         teamIdField.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
         view.addSubview(nextBtn)
         nextBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -135,11 +136,18 @@ extension TeamInfoRegistViewController {
     
     private func setupViewModel() {
         viewModel?.outputs.isNextBtnEnable.asObservable()
-            .subscribe(onNext: { [weak self] validationResult in
-                self?.nextBtn.isHidden = !validationResult.isValid
+            .subscribe(onNext: { [weak self] isValid in
+                print(isValid)
+                self?.nextBtn.isHidden = !isValid
             })
             .disposed(by: disposeBag)
 
+        nextBtn.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                guard let navi = self?.navigationController else { return }
+                navi.pushViewController(RepresentMemberRegisterViewController(), animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func getPickerView(type: PickerType) -> UIPickerView {
@@ -172,11 +180,6 @@ extension TeamInfoRegistViewController {
         if sportsKindField.isFirstResponder {
             sportsKindField.resignFirstResponder()
         }
-    }
-    
-    @objc
-    func showUserRegister(sender: UIButton) {
-        navigationController?.pushViewController(RepresentMemberRegisterViewController(), animated: true)
     }
 }
 

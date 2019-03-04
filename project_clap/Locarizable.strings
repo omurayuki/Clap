@@ -1,3 +1,6 @@
+/* for global */
+"empty" = "";
+"regist_user" = "ユーザー登録";
 /* for TopVC */
 "clap" = "Clap";
 "log_in" = "ログイン";
@@ -33,9 +36,6 @@
 "password" = "パスワード";
 "remain_password" = "確認用パスワード";
 "regist" = "登録する";
-"represent_vc_title" = "ユーザー登録";
-"position" = "--役職--";
-"year" = "--学年--";
 "player" = "選手";
 "leader" = "監督";
 "manager" = "マネージャー";
@@ -43,3 +43,18 @@
 "second_year_student" = "2年生";
 "third_year_student" = "3年生";
 "fourth_year_student" = "4年生";
+/* for team id write VC */
+"please_write_team_id" = "チームIDを入力してください";
+"please_confirm" = "わからない場合は、すでに使用しているチームメンバーにマイページを確認してもらいましょう";
+"team_id" = "チームID";
+"confirm" = "確定";
+/* for confirmation team id VC */
+"yes" = "はい";
+"cancel" = "キャンセル";
+"confirmation" = "確認";
+/* member info regist VC */
+"player" = "選手";
+"manager" = "マネージャー";
+"boss" = "監督";
+"staff" = "スタッフ";
+"department" = "部長";
