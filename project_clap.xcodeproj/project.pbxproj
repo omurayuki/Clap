@@ -186,9 +186,9 @@
 		C937FD752222DF0E00F9624E /* Signup */ = {
 			isa = PBXGroup;
 			children = (
-				C937FD7F22237D3200F9624E /* Select */,
-				C937FD8022237D3E00F9624E /* Team */,
-				C937FD8122237D4C00F9624E /* Member */,
+				C937FD7F22237D3200F9624E /* SelectPage */,
+				C937FD8022237D3E00F9624E /* TeamSignup */,
+				C937FD8122237D4C00F9624E /* MemberSignup */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -204,32 +204,32 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		C937FD7F22237D3200F9624E /* Select */ = {
+		C937FD7F22237D3200F9624E /* SelectPage */ = {
 			isa = PBXGroup;
 			children = (
 				C937FD762222DF2600F9624E /* SelectViewController.swift */,
 				C959BF77222D4C6A00207986 /* SelectResources.swift */,
 			);
-			path = Select;
+			path = SelectPage;
 			sourceTree = "<group>";
 		};
-		C937FD8022237D3E00F9624E /* Team */ = {
+		C937FD8022237D3E00F9624E /* TeamSignup */ = {
 			isa = PBXGroup;
 			children = (
 				C9A5C24D2224243A00BF1EBC /* FirstScreen */,
 				C959BF532229099000207986 /* SecondScreen */,
 			);
-			path = Team;
+			path = TeamSignup;
 			sourceTree = "<group>";
 		};
-		C937FD8122237D4C00F9624E /* Member */ = {
+		C937FD8122237D4C00F9624E /* MemberSignup */ = {
 			isa = PBXGroup;
 			children = (
 				C959BF5E222CCF2700207986 /* FirstScreen */,
 				C959BF5F222CCF3500207986 /* SecondScreen */,
 				C959BF60222CCF3F00207986 /* ThirdScreen */,
 			);
-			path = Member;
+			path = MemberSignup;
 			sourceTree = "<group>";
 		};
 		C959BF532229099000207986 /* SecondScreen */ = {
