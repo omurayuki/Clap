@@ -1,0 +1,64 @@
+/* for global */
+"empty" = "";
+"regist_user" = "ユーザー登録";
+/* for TopVC */
+"clap" = "Clap";
+"log_in" = "ログイン";
+"sign_up" = "新規登録";
+
+/* for selectVC */
+"select_usage_type" = "利用者タイプを選んでください";
+"team" = "チーム";
+"member" = "メンバー";
+"type" = "タイプ";
+
+/* for team info registVC */
+"team_info_title" = "チーム登録";
+"select" = "--選択--";
+"junior_high_school" = "中学";
+"high_school" = "高校";
+"university" = "大学";
+"social" = "社会人";
+"rugby" = "ラグビー";
+"base_ball" = "野球";
+"soccer" = "サッカー";
+"basket_ball" = "バスケットボール";
+"kendo" = "剣道";
+"judo" = "柔道";
+"regist_team_info" = "チーム情報を登録してください";
+"team_id" = "チームID";
+"next" = "次へ";
+
+/* for representVC */
+"notice_user_regist" = "ユーザー登録してください";
+"name" = "名前";
+"mail_address" = "メールアドレス";
+"password" = "パスワード";
+"remain_password" = "確認用パスワード";
+"regist" = "登録する";
+"player" = "選手";
+"leader" = "監督";
+"manager" = "マネージャー";
+"first_year_student" = "1年生";
+"second_year_student" = "2年生";
+"third_year_student" = "3年生";
+"fourth_year_student" = "4年生";
+/* for team id write VC */
+"please_write_team_id" = "チームIDを入力してください";
+"please_confirm" = "わからない場合は、すでに使用しているチームメンバーにマイページを確認してもらいましょう";
+"team_id" = "チームID";
+"confirm" = "確定";
+/* for confirmation team id VC */
+"yes" = "はい";
+"cancel" = "キャンセル";
+"confirmation" = "確認";
+/* member info regist VC */
+"player" = "選手";
+"manager" = "マネージャー";
+"boss" = "監督";
+"staff" = "スタッフ";
+"department" = "部長";
+/* for login VC */
+"please_input_login_info" = "ログイン情報を入力してください";
+"log_in" = "ログイン";
+"to_forgot_pass" = "パスワードを忘れた方へ";
