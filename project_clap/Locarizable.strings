@@ -62,3 +62,17 @@
 "please_input_login_info" = "ログイン情報を入力してください";
 "log_in" = "ログイン";
 "to_forgot_pass" = "パスワードを忘れた方へ";
+/* for remind pass VC */
+"notice_remind_label" = "新しいパスワードを設定します。一度新しくすると古いパスワードは無効になります。";
+"submit" = "送信";
+"password_settings" = "パスワード再設定";
+/* for tab bar VC */
+"calendar" = "calendar";
+"diary" = "diary";
+"mypage" = "mypage";
+/* for calendar VC */
+"calendar_title" = "カレンダー";
+/* for group VC */
+"group" = "グループ";
+/* for mypage VC */
+"mypage_title" = "マイページ";

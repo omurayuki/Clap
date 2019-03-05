@@ -11,13 +11,13 @@ class LoginViewCountroller: UIViewController {
     private lazy var noticeUserLoginTitle: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.please_input_login_info()
-        label.textColor = AppResources.ColorResources.baseColor
+        label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var mailField: UITextField = {
-        let field = UITextField()
+    private lazy var mailField: CustomTextField = {
+        let field = CustomTextField()
         field.placeholder = R.string.locarizable.mail_address()
         field.clearButtonMode = .always
         field.delegate = self
@@ -25,8 +25,8 @@ class LoginViewCountroller: UIViewController {
         return field
     }()
     
-    private lazy var passField: UITextField = {
-        let field = UITextField()
+    private lazy var passField: CustomTextField = {
+        let field = CustomTextField()
         field.placeholder = R.string.locarizable.password()
         field.clearButtonMode = .always
         field.isSecureTextEntry = true
@@ -38,7 +38,7 @@ class LoginViewCountroller: UIViewController {
     private lazy var logintBtn: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.log_in(), for: .normal)
-        button.backgroundColor = AppResources.ColorResources.baseColor
+        button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = LoginResources.View.BtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -47,7 +47,7 @@ class LoginViewCountroller: UIViewController {
     private lazy var reissuePass: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.to_forgot_pass(), for: .normal)
-        button.backgroundColor = AppResources.ColorResources.baseColor
+        button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = LoginResources.View.BtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -95,7 +95,16 @@ extension LoginViewCountroller {
         
         logintBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
-                print("遷移する")
+                guard let `self` = self else { return }
+                let tabbarVC = TabBarController(calendar: DisplayCalendarViewController(), diary: DiaryGroupViewController(), mypage: MypageViewController())
+                `self`.present(tabbarVC, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        reissuePass.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                guard let navi = self?.navigationController else { return }
+                navi.pushViewController(RemindPassViewController(), animated: true)
             })
             .disposed(by: disposeBag)
     }

@@ -11,13 +11,13 @@ class MemberInfoRegistViewController: UIViewController {
     private lazy var noticeUserRegistTitle: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.notice_user_regist()
-        label.textColor = AppResources.ColorResources.baseColor
+        label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var nameField: UITextField = {
-        let field = UITextField()
+    private lazy var nameField: CustomTextField = {
+        let field = CustomTextField()
         field.placeholder = R.string.locarizable.name()
         field.clearButtonMode = .always
         field.delegate = self
@@ -25,8 +25,8 @@ class MemberInfoRegistViewController: UIViewController {
         return field
     }()
     
-    private lazy var mailField: UITextField = {
-        let field = UITextField()
+    private lazy var mailField: CustomTextField = {
+        let field = CustomTextField()
         field.placeholder = R.string.locarizable.mail_address()
         field.clearButtonMode = .always
         field.delegate = self
@@ -34,8 +34,8 @@ class MemberInfoRegistViewController: UIViewController {
         return field
     }()
     
-    private lazy var passField: UITextField = {
-        let field = UITextField()
+    private lazy var passField: CustomTextField = {
+        let field = CustomTextField()
         field.placeholder = R.string.locarizable.password()
         field.clearButtonMode = .always
         field.isSecureTextEntry = true
@@ -44,8 +44,8 @@ class MemberInfoRegistViewController: UIViewController {
         return field
     }()
     
-    private lazy var rePassField: UITextField = {
-        let field = UITextField()
+    private lazy var rePassField: CustomTextField = {
+        let field = CustomTextField()
         field.placeholder = R.string.locarizable.remain_password()
         field.clearButtonMode = .always
         field.isSecureTextEntry = true
@@ -54,8 +54,8 @@ class MemberInfoRegistViewController: UIViewController {
         return field
     }()
     
-    private lazy var memberPosition: UITextField = {
-        let field = UITextField()
+    private lazy var memberPosition: CustomTextField = {
+        let field = CustomTextField()
         field.placeholder = R.string.locarizable.select()
         field.tintColor = .clear
         field.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +75,7 @@ class MemberInfoRegistViewController: UIViewController {
     private lazy var memberRegistBtn: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.regist(), for: .normal)
-        button.backgroundColor = AppResources.ColorResources.baseColor
+        button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = MemberInfoRegisterResources.View.BtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -133,7 +133,9 @@ extension MemberInfoRegistViewController {
         
         memberRegistBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
-                print("遷移する")
+                guard let `self` = self else { return }
+                let tabbarVC = TabBarController(calendar: DisplayCalendarViewController(), diary: DiaryGroupViewController(), mypage: MypageViewController())
+                `self`.present(tabbarVC, animated: true)
             })
             .disposed(by: disposeBag)
     }

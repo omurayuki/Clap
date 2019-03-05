@@ -43,6 +43,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (5.3.7):
     - GoogleUtilities/Logger
+  - JTAppleCalendar (7.1.7)
   - Kingfisher (5.1.1)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -65,6 +66,7 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Core
+  - JTAppleCalendar (~> 7.0)
   - Kingfisher (~> 5.0)
   - R.swift
   - RealmSwift
@@ -79,6 +81,7 @@ SPEC REPOS:
     - FirebaseInstanceID
     - GoogleAppMeasurement
     - GoogleUtilities
+    - JTAppleCalendar
     - Kingfisher
     - nanopb
     - R.swift
@@ -96,6 +99,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 97ea7a5dca9afd72c79bfcdddb7a44aa1cbb42a1
   GoogleAppMeasurement: 621f3bc6211d5ba548debe01fafad30cf5ab6859
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
+  JTAppleCalendar: 96da4d8388fa6dc82d6a60d41ef36a015e167e2f
   Kingfisher: 2558186963e5be42d98c5b110ccb3130148b77e4
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   R.swift: 81455d81467763cbd3f4d79d938d05f4ac4c0228
@@ -106,6 +110,6 @@ SPEC CHECKSUMS:
   RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
   RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
 
-PODFILE CHECKSUM: c4ef74bff4270b791ee430dd20b5bff58ea188c5
+PODFILE CHECKSUM: e71407dc3552b72002ed5214eb3fa116ef84e27f
 
 COCOAPODS: 1.6.0

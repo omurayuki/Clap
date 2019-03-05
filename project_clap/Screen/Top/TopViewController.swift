@@ -10,7 +10,7 @@ class TopViewController: UIViewController {
     private lazy var topTitle: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.clap()
-        label.textColor = AppResources.ColorResources.baseColor
+        label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.font = AppResources.FontResources.topLabelFont
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -19,7 +19,7 @@ class TopViewController: UIViewController {
     private lazy var loginBtn: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.log_in(), for: .normal)
-        button.backgroundColor = AppResources.ColorResources.baseColor
+        button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = TopResources.View.BtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -28,7 +28,7 @@ class TopViewController: UIViewController {
     private lazy var signupBtn: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.sign_up(), for: .normal)
-        button.backgroundColor = AppResources.ColorResources.baseColor
+        button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = TopResources.View.BtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

@@ -11,8 +11,8 @@ class ConfirmationTeamIdViewController: UIViewController {
     private lazy var confirmationTeamTitle: UILabel = {
         let label = UILabel()
         label.text = "あなたのチームはfarでお間違い無いですか？"
-        label.textColor = AppResources.ColorResources.baseColor
-        label.numberOfLines = 0
+        label.textColor = AppResources.ColorResources.subShallowBlueColor
+        label.numberOfLines = ConfirmationTeamIdResources.View.titleNumberOfLines
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -20,7 +20,7 @@ class ConfirmationTeamIdViewController: UIViewController {
     private lazy var confirmationTeamId: UILabel = {
         let label = UILabel()
         label.font = AppResources.FontResources.confirmationTeamIdFont
-        label.textColor = AppResources.ColorResources.baseColor
+        label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.addUnderLine(text: label.text)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -29,7 +29,7 @@ class ConfirmationTeamIdViewController: UIViewController {
     private lazy var confirmBtn: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.yes(), for: .normal)
-        button.backgroundColor = AppResources.ColorResources.baseColor
+        button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = ConfirmationTeamIdResources.View.confirmBtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -38,7 +38,7 @@ class ConfirmationTeamIdViewController: UIViewController {
     private lazy var cancelBtn: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.cancel(), for: .normal)
-        button.backgroundColor = AppResources.ColorResources.baseColor
+        button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = ConfirmationTeamIdResources.View.confirmBtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

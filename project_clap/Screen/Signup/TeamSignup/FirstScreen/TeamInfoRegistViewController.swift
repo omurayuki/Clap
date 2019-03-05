@@ -16,13 +16,13 @@ class  TeamInfoRegistViewController: UIViewController {
     private lazy var noticeTeamInfoRegistTitle: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.regist_team_info()
-        label.textColor = AppResources.ColorResources.baseColor
+        label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var teamIdField: UITextField = {
-        let field = UITextField()
+    private lazy var teamIdField: CustomTextField = {
+        let field = CustomTextField()
         field.placeholder = R.string.locarizable.team_id()
         field.clearButtonMode = .always
         field.delegate = self
@@ -30,16 +30,16 @@ class  TeamInfoRegistViewController: UIViewController {
         return field
     }()
     
-    private lazy var gradeField: UITextField = {
-        let field = UITextField()
+    private lazy var gradeField: CustomTextField = {
+        let field = CustomTextField()
         field.placeholder = R.string.locarizable.select()
         field.tintColor = .clear
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
-    private lazy var sportsKindField: UITextField = {
-        let field = UITextField()
+    private lazy var sportsKindField: CustomTextField = {
+        let field = CustomTextField()
         field.placeholder = R.string.locarizable.select()
         field.tintColor = .clear
         field.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +49,7 @@ class  TeamInfoRegistViewController: UIViewController {
     private lazy var nextBtn: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.next(), for: .normal)
-        button.backgroundColor = AppResources.ColorResources.baseColor
+        button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = TeamInfoRegisterResources.View.nextBtnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

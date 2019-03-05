@@ -11,7 +11,7 @@ class TeamIdWriteViewController: UIViewController {
     private lazy var noticeTeamTitle: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.please_write_team_id()
-        label.textColor = AppResources.ColorResources.baseColor
+        label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -19,14 +19,14 @@ class TeamIdWriteViewController: UIViewController {
     private lazy var noticeTeamText: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.please_confirm()
-        label.textColor = AppResources.ColorResources.baseColor
-        label.numberOfLines = 0
+        label.textColor = AppResources.ColorResources.subShallowBlueColor
+        label.numberOfLines = TeamIdWriteResources.View.titleNumberOfLines
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var teamIdField: UITextField = {
-        let field = UITextField()
+    private lazy var teamIdField: CustomTextField = {
+        let field = CustomTextField()
         field.placeholder = R.string.locarizable.team_id()
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -36,7 +36,7 @@ class TeamIdWriteViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(R.string.locarizable.confirm(), for: .normal)
-        button.backgroundColor = AppResources.ColorResources.baseColor
+        button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = TeamIdWriteResources.View.confirmBtnCornerRadius
         return button
     }()
