@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
-        let firstScreen = TopViewController()
-        window?.rootViewController = UINavigationController(rootViewController: firstScreen)
+        let firstScreen = TabBarController(calendar: DisplayCalendarViewController(), diary: DiaryGroupViewController(), mypage: MypageViewController())
+        window?.rootViewController = firstScreen
         window?.makeKeyAndVisible()
         FirebaseApp.configure()
         return true

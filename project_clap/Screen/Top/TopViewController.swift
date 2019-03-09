@@ -36,7 +36,6 @@ class TopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNaviBar()
         setupUI()
         setupViewModel()
     }
@@ -44,6 +43,10 @@ class TopViewController: UIViewController {
 
 extension TopViewController {
     private func setupUI() {
+        view.backgroundColor = .white
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.barTintColor = .white
         view.addSubview(topTitle)
         topTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         topTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.size.height / 2.5).isActive = true
@@ -55,13 +58,6 @@ extension TopViewController {
         signupBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         signupBtn.topAnchor.constraint(equalTo: loginBtn.bottomAnchor, constant: TopResources.Constraint.signupBtnTopConstraint).isActive = true
         signupBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
-    }
-    
-    private func setupNaviBar() {
-        view.backgroundColor = .white
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.barTintColor = .white
     }
     
     private func setupViewModel() {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C908D2952223AB3D000344B0 /* Locarizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C908D2942223AB3D000344B0 /* Locarizable.strings */; };
 		C908D2982223AEE3000344B0 /* AppResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C908D2972223AEE3000344B0 /* AppResources.swift */; };
+		C92704222232C2E300B15B45 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92704212232C2E300B15B45 /* CustomView.swift */; };
 		C937FD53222287B800F9624E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD52222287B800F9624E /* AppDelegate.swift */; };
 		C937FD5A222287B900F9624E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C937FD59222287B900F9624E /* Assets.xcassets */; };
 		C937FD5D222287B900F9624E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C937FD5B222287B900F9624E /* LaunchScreen.storyboard */; };
@@ -40,6 +41,7 @@
 		C959BF76222D4C2E00207986 /* RepresentMemberRegisterResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF75222D4C2E00207986 /* RepresentMemberRegisterResources.swift */; };
 		C959BF78222D4C6A00207986 /* SelectResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF77222D4C6A00207986 /* SelectResources.swift */; };
 		C959BF7A222D4C8E00207986 /* TopResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF79222D4C8E00207986 /* TopResources.swift */; };
+		C95EBC54222F5DD200D24181 /* DisplayCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95EBC52222F5DD200D24181 /* DisplayCalendarCell.swift */; };
 		C970577E222E5E68007F8B1C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C970577D222E5E68007F8B1C /* CustomTextField.swift */; };
 		C9705783222E6680007F8B1C /* RemindPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9705782222E6680007F8B1C /* RemindPassViewController.swift */; };
 		C9705785222E6BF5007F8B1C /* RemindPassResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9705784222E6BF5007F8B1C /* RemindPassResources.swift */; };
@@ -54,6 +56,7 @@
 		C97057A1222E9B0F007F8B1C /* TabBarResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97057A0222E9B0F007F8B1C /* TabBarResources.swift */; };
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
+		C9F086D52232F8CC00F25E7A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */; };
 		DFB5334197BF2263EBE8960C /* Pods_project_clap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,7 @@
 		3897593163CD2F94D6D2FB55 /* Pods-project_clap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project_clap.release.xcconfig"; path = "Target Support Files/Pods-project_clap/Pods-project_clap.release.xcconfig"; sourceTree = "<group>"; };
 		C908D2942223AB3D000344B0 /* Locarizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Locarizable.strings; sourceTree = "<group>"; };
 		C908D2972223AEE3000344B0 /* AppResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppResources.swift; sourceTree = "<group>"; };
+		C92704212232C2E300B15B45 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		C937FD4F222287B800F9624E /* project_clap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project_clap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C937FD52222287B800F9624E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C937FD59222287B900F9624E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 		C959BF75222D4C2E00207986 /* RepresentMemberRegisterResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterResources.swift; sourceTree = "<group>"; };
 		C959BF77222D4C6A00207986 /* SelectResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectResources.swift; sourceTree = "<group>"; };
 		C959BF79222D4C8E00207986 /* TopResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopResources.swift; sourceTree = "<group>"; };
+		C95EBC52222F5DD200D24181 /* DisplayCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCalendarCell.swift; sourceTree = "<group>"; };
 		C970577D222E5E68007F8B1C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		C9705782222E6680007F8B1C /* RemindPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassViewController.swift; sourceTree = "<group>"; };
 		C9705784222E6BF5007F8B1C /* RemindPassResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassResources.swift; sourceTree = "<group>"; };
@@ -110,6 +115,7 @@
 		C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewModel.swift; sourceTree = "<group>"; };
 		C9CA312A22265595003E600C /* RxBlocking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxBlocking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CA312C22265595003E600C /* RxTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		E7FE8D4EDE255747AFF42437 /* Pods-project_clap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project_clap.debug.xcconfig"; path = "Target Support Files/Pods-project_clap/Pods-project_clap.debug.xcconfig"; sourceTree = "<group>"; };
 		E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_project_clap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -141,6 +147,7 @@
 			children = (
 				C908D2972223AEE3000344B0 /* AppResources.swift */,
 				C970577D222E5E68007F8B1C /* CustomTextField.swift */,
+				C92704212232C2E300B15B45 /* CustomView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -209,6 +216,7 @@
 			children = (
 				C937FD712222D7F200F9624E /* UIColor+Extension.swift */,
 				C959BF5A222CC45E00207986 /* UILabel+Extension.swift */,
+				C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -304,6 +312,14 @@
 			path = ThirdScreen;
 			sourceTree = "<group>";
 		};
+		C95EBC45222F5B8300D24181 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C95EBC52222F5DD200D24181 /* DisplayCalendarCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		C9705781222E6666007F8B1C /* RemindPass */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +361,7 @@
 			isa = PBXGroup;
 			children = (
 				C970578F222E8A43007F8B1C /* DisplayCalendarViewController.swift */,
+				C95EBC45222F5B8300D24181 /* Cell */,
 			);
 			path = DisplayCalendar;
 			sourceTree = "<group>";
@@ -565,11 +582,13 @@
 				C959BF5B222CC45E00207986 /* UILabel+Extension.swift in Sources */,
 				C937FD7A2222E1B400F9624E /* LoginViewController.swift in Sources */,
 				C937FD8522237E5A00F9624E /* TeamIdWriteViewController.swift in Sources */,
+				C95EBC54222F5DD200D24181 /* DisplayCalendarCell.swift in Sources */,
 				C937FD8322237E0000F9624E /* TeamInfoRegistViewController.swift in Sources */,
 				C970579F222E8C76007F8B1C /* TabBarController.swift in Sources */,
 				C959BF72222D4BA700207986 /* MemberInfoRegisterResources.swift in Sources */,
 				C9705792222E8A6F007F8B1C /* RegistCalendarViewController.swift in Sources */,
 				C937FD69222288C700F9624E /* TopViewController.swift in Sources */,
+				C9F086D52232F8CC00F25E7A /* UIView+Extension.swift in Sources */,
 				C9705785222E6BF5007F8B1C /* RemindPassResources.swift in Sources */,
 				C937FD53222287B800F9624E /* AppDelegate.swift in Sources */,
 				C937FD7E2222E22B00F9624E /* LoginViewModel.swift in Sources */,
@@ -590,6 +609,7 @@
 				C9705789222E6F21007F8B1C /* RemindPassValidation.swift in Sources */,
 				C959BF70222D4B7400207986 /* ConfirmationTeamIdResources.swift in Sources */,
 				C959BF6A222D3A3700207986 /* LoginValidation.swift in Sources */,
+				C92704222232C2E300B15B45 /* CustomView.swift in Sources */,
 				C9705787222E6E1F007F8B1C /* RemindPassViewModel.swift in Sources */,
 				C9705783222E6680007F8B1C /* RemindPassViewController.swift in Sources */,
 				C959BF78222D4C6A00207986 /* SelectResources.swift in Sources */,
