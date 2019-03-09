@@ -1,4 +1,5 @@
 PODS:
+  - CalculateCalendarLogic (0.2.5)
   - Firebase/Core (5.16.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 5.5.0)
@@ -65,6 +66,7 @@ PODS:
     - RxAtomic (~> 4.4)
 
 DEPENDENCIES:
+  - CalculateCalendarLogic
   - Firebase/Core
   - JTAppleCalendar (~> 7.0)
   - Kingfisher (~> 5.0)
@@ -75,6 +77,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - CalculateCalendarLogic
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -93,6 +96,7 @@ SPEC REPOS:
     - RxSwift
 
 SPEC CHECKSUMS:
+  CalculateCalendarLogic: 27db31b8f27a42869ecf7ad0d43963a05af14193
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
   FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
   FirebaseCore: ea2d1816723ef21492b8e9113303e1350db5e08c
@@ -110,6 +114,6 @@ SPEC CHECKSUMS:
   RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
   RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
 
-PODFILE CHECKSUM: e71407dc3552b72002ed5214eb3fa116ef84e27f
+PODFILE CHECKSUM: 9d00b7ce2a02f18d425e5c910b89560bac6d0dc2
 
 COCOAPODS: 1.6.0

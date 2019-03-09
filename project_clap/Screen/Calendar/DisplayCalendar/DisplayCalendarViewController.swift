@@ -3,6 +3,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import JTAppleCalendar
+import CalculateCalendarLogic
 
 class DisplayCalendarViewController: UIViewController {
     
@@ -18,14 +19,14 @@ class DisplayCalendarViewController: UIViewController {
     
     private lazy var dateOfYear: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
+        label.font = DisplayCalendarResources.Font.dateOfYearFont
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private lazy var dateOfMonth: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 32)
+        label.font = DisplayCalendarResources.Font.dateOfMonth
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -38,7 +39,7 @@ class DisplayCalendarViewController: UIViewController {
 
     private lazy var sunday: UILabel = {
         let label = UILabel()
-        label.text = "日"
+        label.text = R.string.locarizable.sunday()
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -46,7 +47,7 @@ class DisplayCalendarViewController: UIViewController {
 
     private lazy var monday: UILabel = {
         let label = UILabel()
-        label.text = "月"
+        label.text = R.string.locarizable.monday()
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -54,7 +55,7 @@ class DisplayCalendarViewController: UIViewController {
 
     private lazy var tuesday: UILabel = {
         let label = UILabel()
-        label.text = "火"
+        label.text = R.string.locarizable.tuesday()
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -62,7 +63,7 @@ class DisplayCalendarViewController: UIViewController {
 
     private lazy var wednesday: UILabel = {
         let label = UILabel()
-        label.text = "水"
+        label.text = R.string.locarizable.wednesday()
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -70,7 +71,7 @@ class DisplayCalendarViewController: UIViewController {
 
     private lazy var thursday: UILabel = {
         let label = UILabel()
-        label.text = "木"
+        label.text = R.string.locarizable.thursday()
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -78,7 +79,7 @@ class DisplayCalendarViewController: UIViewController {
 
     private lazy var friday: UILabel = {
         let label = UILabel()
-        label.text = "金"
+        label.text = R.string.locarizable.friday()
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -86,7 +87,7 @@ class DisplayCalendarViewController: UIViewController {
 
     private lazy var saturday: UILabel = {
         let label = UILabel()
-        label.text = "土"
+        label.text = R.string.locarizable.saturday()
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -135,20 +136,8 @@ class DisplayCalendarViewController: UIViewController {
         setupUI()
         setupInsideDisplayCalendar()
         setupCalendar()
-        calendarView.scrollToDate(Date(), animateScroll: false) {
-            self.calendarView.selectDates([Date()])
-        }
-        
-        DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) {
-            let recievedData = self.getObjectFromServer()
-            for (date, event) in recievedData {
-                let stringDate = self.formatter.string(from: date)
-                self.recievedFromServer[stringDate] = event
-            }
-            DispatchQueue.main.async {
-                self.calendarView.reloadData()
-            }
-        }
+        getCurrentDay()
+        loadEventData()
     }
 }
 
@@ -161,16 +150,16 @@ extension DisplayCalendarViewController {
         navigationItem.title = R.string.locarizable.calendar_title()
         view.addSubview(dateOfYear)
         dateOfYear.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        dateOfYear.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        dateOfYear.leftAnchor.constraint(equalTo: view.leftAnchor, constant: DisplayCalendarResources.Constraint.dateOfYearLeftConstraint).isActive = true
         view.addSubview(dateOfMonth)
-        dateOfMonth.topAnchor.constraint(equalTo: dateOfYear.bottomAnchor, constant: 15).isActive = true
-        dateOfMonth.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10).isActive = true
+        dateOfMonth.topAnchor.constraint(equalTo: dateOfYear.bottomAnchor, constant: DisplayCalendarResources.Constraint.dateOfMonthTopConstraint).isActive = true
+        dateOfMonth.leftAnchor.constraint(equalTo: view.leftAnchor, constant: DisplayCalendarResources.Constraint.dateOfMonthLeftConstraint).isActive = true
         view.addSubview(displayCalendarView)
-        displayCalendarView.topAnchor.constraint(equalTo: dateOfMonth.bottomAnchor, constant: 10).isActive = true
+        displayCalendarView.topAnchor.constraint(equalTo: dateOfMonth.bottomAnchor, constant: DisplayCalendarResources.Constraint.displayCalendarViewTopConstraint).isActive = true
         displayCalendarView.heightAnchor.constraint(equalToConstant: view.bounds.size.height / 2).isActive = true
         displayCalendarView.widthAnchor.constraint(equalToConstant: view.bounds.size.width).isActive = true
         view.addSubview(eventField)
-        eventField.topAnchor.constraint(equalTo: displayCalendarView.bottomAnchor, constant: 12.5).isActive = true
+        eventField.topAnchor.constraint(equalTo: displayCalendarView.bottomAnchor, constant: DisplayCalendarResources.Constraint.eventFieldTopConstraint).isActive = true
         eventField.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         eventField.widthAnchor.constraint(equalToConstant: view.bounds.size.width).isActive = true
     }
@@ -180,17 +169,36 @@ extension DisplayCalendarViewController {
         monthOfDayStack.topAnchor.constraint(equalTo: displayCalendarView.topAnchor).isActive = true
         monthOfDayStack.leftAnchor.constraint(equalTo: displayCalendarView.leftAnchor).isActive = true
         monthOfDayStack.rightAnchor.constraint(equalTo: displayCalendarView.rightAnchor).isActive = true
-        monthOfDayStack.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        monthOfDayStack.heightAnchor.constraint(equalToConstant: DisplayCalendarResources.Constraint.monthOfDayStackHeightConstraint).isActive = true
         displayCalendarView.addSubview(calendarView)
-        calendarView.topAnchor.constraint(equalTo: monthOfDayStack.bottomAnchor, constant: 10).isActive = true
+        calendarView.topAnchor.constraint(equalTo: monthOfDayStack.bottomAnchor, constant: DisplayCalendarResources.Constraint.calendarViewTopConstraint).isActive = true
         calendarView.bottomAnchor.constraint(equalTo: displayCalendarView.bottomAnchor).isActive = true
         calendarView.widthAnchor.constraint(equalTo: displayCalendarView.widthAnchor).isActive = true
-        calendarView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        calendarView.heightAnchor.constraint(equalToConstant: DisplayCalendarResources.Constraint.calendarViewHeightConstraint).isActive = true
     }
     
     private func setupCalendar() {
         calendarView.visibleDates { visibleDates in
             self.setupViewsOfCalendar(from: visibleDates)
+        }
+    }
+    
+    private func getCurrentDay() {
+        calendarView.scrollToDate(Date(), animateScroll: false) {
+            self.calendarView.selectDates([Date()])
+        }
+    }
+    
+    private func loadEventData() {
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) {
+            let recievedData = self.getObjectFromServer()
+            for (date, event) in recievedData {
+                let stringDate = self.formatter.string(from: date)
+                self.recievedFromServer[stringDate] = event
+            }
+            DispatchQueue.main.async {
+                self.calendarView.reloadData()
+            }
         }
     }
     
@@ -203,7 +211,7 @@ extension DisplayCalendarViewController {
 
     }
     
-    private func handleCellTextColor(view: JTAppleCell?, cellState: CellState) {
+    private func handleCellTextColor(view: JTAppleCell?, cellState: CellState, date: Date) {
         guard let cell = view as? DisplayCalendarCell else { return }
         
         let todaysDate = Date()
@@ -211,14 +219,29 @@ extension DisplayCalendarViewController {
         let todaysDateString = formatter.string(from: todaysDate)
         let monthDateString = formatter.string(from: cellState.date)
         
-        if cellState.dateBelongsTo == .thisMonth {
-            if todaysDateString == monthDateString {
-                cell.stateOfDateAtCalendar.textColor = .green
-            } else {
-                cell.stateOfDateAtCalendar.textColor = cellState.isSelected ? .white : .black
-            }
+        let weekday = CalendarLogic.getWeekIdx(date)
+        if weekday == DisplayCalendarResources.View.sunday {
+            cell.stateOfDateAtCalendar.textColor = .red
+        } else if weekday == DisplayCalendarResources.View.saturday {
+            cell.stateOfDateAtCalendar.textColor = .blue
         } else {
-            cell.stateOfDateAtCalendar.textColor = .gray
+            if CalendarLogic.judgeHoliday(date) {
+                cell.stateOfDateAtCalendar.textColor = .red
+            } else if cellState.dateBelongsTo == .thisMonth {
+                if todaysDateString != monthDateString {
+                    cell.stateOfDateAtCalendar.textColor = cellState.isSelected ? .white : .black
+                } else {
+                    cell.stateOfDateAtCalendar.textColor = .black
+                }
+            } else if cellState.dateBelongsTo == .previousMonthWithinBoundary {
+                cell.stateOfDateAtCalendar.textColor = .gray
+            } else if cellState.dateBelongsTo == .followingMonthWithinBoundary {
+                cell.stateOfDateAtCalendar.textColor = .gray
+            } else if cellState.dateBelongsTo == .previousMonthOutsideBoundary {
+                cell.stateOfDateAtCalendar.textColor = .gray
+            } else {
+                cell.stateOfDateAtCalendar.textColor = .black
+            }
         }
     }
     
@@ -236,6 +259,7 @@ extension DisplayCalendarViewController {
         cell.calendarEventDots.isHidden = !recievedFromServer.contains { $0.key == formatter.string(from: cellState.date) }
     }
     
+    #warning("仮実装や")
     private func getObjectFromServer() -> [Date: String] {
         formatter.dateFormat = "yyyy MM dd"
         return [
@@ -264,7 +288,7 @@ extension DisplayCalendarViewController: JTAppleCalendarViewDelegate {
         guard let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: String(describing: DisplayCalendarCell.self), for: indexPath) as? DisplayCalendarCell else { return JTAppleCell() }
         cell.configureInit(stateOfDateAtCalendar: cellState.text)
         handleCellSelected(view: cell, cellState: cellState)
-        handleCellTextColor(view: cell, cellState: cellState)
+        handleCellTextColor(view: cell, cellState: cellState, date: date)
         handleCellEvents(view: cell, cellState: cellState)
         return cell
     }
@@ -281,13 +305,13 @@ extension DisplayCalendarViewController: JTAppleCalendarViewDelegate {
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         handleCellSelected(view: cell, cellState: cellState)
-        handleCellTextColor(view: cell, cellState: cellState)
+        handleCellTextColor(view: cell, cellState: cellState, date: date)
         cell?.bounce()
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         handleCellSelected(view: cell, cellState: cellState)
-        handleCellTextColor(view: cell, cellState: cellState)
+        handleCellTextColor(view: cell, cellState: cellState, date: date)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {

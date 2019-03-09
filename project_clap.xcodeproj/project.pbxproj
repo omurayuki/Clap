@@ -57,6 +57,8 @@
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
 		C9F086D52232F8CC00F25E7A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */; };
+		C9F086D72233C24600F25E7A /* CalendarLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D62233C24600F25E7A /* CalendarLogic.swift */; };
+		C9F086D92233C91000F25E7A /* DisplayCalendarResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D82233C91000F25E7A /* DisplayCalendarResources.swift */; };
 		DFB5334197BF2263EBE8960C /* Pods_project_clap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
@@ -116,6 +118,8 @@
 		C9CA312A22265595003E600C /* RxBlocking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxBlocking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CA312C22265595003E600C /* RxTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		C9F086D62233C24600F25E7A /* CalendarLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLogic.swift; sourceTree = "<group>"; };
+		C9F086D82233C91000F25E7A /* DisplayCalendarResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCalendarResources.swift; sourceTree = "<group>"; };
 		E7FE8D4EDE255747AFF42437 /* Pods-project_clap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project_clap.debug.xcconfig"; path = "Target Support Files/Pods-project_clap/Pods-project_clap.debug.xcconfig"; sourceTree = "<group>"; };
 		E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_project_clap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -361,6 +365,8 @@
 			isa = PBXGroup;
 			children = (
 				C970578F222E8A43007F8B1C /* DisplayCalendarViewController.swift */,
+				C9F086D62233C24600F25E7A /* CalendarLogic.swift */,
+				C9F086D82233C91000F25E7A /* DisplayCalendarResources.swift */,
 				C95EBC45222F5B8300D24181 /* Cell */,
 			);
 			path = DisplayCalendar;
@@ -499,6 +505,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-project_clap/Pods-project_clap-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CalculateCalendarLogic/CalculateCalendarLogic.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -514,6 +521,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CalculateCalendarLogic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -578,9 +586,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9F086D72233C24600F25E7A /* CalendarLogic.swift in Sources */,
 				C959BF76222D4C2E00207986 /* RepresentMemberRegisterResources.swift in Sources */,
 				C959BF5B222CC45E00207986 /* UILabel+Extension.swift in Sources */,
 				C937FD7A2222E1B400F9624E /* LoginViewController.swift in Sources */,
+				C9F086D92233C91000F25E7A /* DisplayCalendarResources.swift in Sources */,
 				C937FD8522237E5A00F9624E /* TeamIdWriteViewController.swift in Sources */,
 				C95EBC54222F5DD200D24181 /* DisplayCalendarCell.swift in Sources */,
 				C937FD8322237E0000F9624E /* TeamInfoRegistViewController.swift in Sources */,

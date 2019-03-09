@@ -11,6 +11,7 @@ target 'project_clap' do
     pod 'R.swift'
     pod 'Kingfisher', '~> 5.0'
     pod 'JTAppleCalendar', '~> 7.0'
+    pod 'CalculateCalendarLogic' 
 
 
   # Pods for project_clap
