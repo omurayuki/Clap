@@ -96,3 +96,9 @@
 "do_you_wanto_logout" = "ログアウトしますか？";
 /* for mypage edit VC */
 "save" = "保存";
+/* for regist calendar VC */
+"check" = "✔︎";
+"batsu" = "×";
+"title" = "タイトル";
+"between" = "〜";
+"long_day" = "終日";

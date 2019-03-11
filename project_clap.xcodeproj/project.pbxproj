@@ -23,6 +23,9 @@
 		C937FD8322237E0000F9624E /* TeamInfoRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD8222237E0000F9624E /* TeamInfoRegistViewController.swift */; };
 		C937FD8522237E5A00F9624E /* TeamIdWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD8422237E5A00F9624E /* TeamIdWriteViewController.swift */; };
 		C9557CC62236457000D6F7A6 /* RegistCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9557CC52236457000D6F7A6 /* RegistCalendarViewController.swift */; };
+		C9557CC82236868F00D6F7A6 /* RegistCalendarResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9557CC72236868F00D6F7A6 /* RegistCalendarResources.swift */; };
+		C9557CCA223689C300D6F7A6 /* RegistCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9557CC9223689C300D6F7A6 /* RegistCalendarViewModel.swift */; };
+		C9557CCC223689D500D6F7A6 /* RegistCalendarValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9557CCB223689D500D6F7A6 /* RegistCalendarValidation.swift */; };
 		C959BF522227EA7F00207986 /* TeamInfoRegistValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF512227EA7F00207986 /* TeamInfoRegistValidation.swift */; };
 		C959BF5522290ADA00207986 /* RepresentMemberRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF5422290ADA00207986 /* RepresentMemberRegisterViewModel.swift */; };
 		C959BF572229100500207986 /* RepresentMemberRegisterValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF562229100500207986 /* RepresentMemberRegisterValidation.swift */; };
@@ -89,6 +92,9 @@
 		C937FD8222237E0000F9624E /* TeamInfoRegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewController.swift; sourceTree = "<group>"; };
 		C937FD8422237E5A00F9624E /* TeamIdWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamIdWriteViewController.swift; sourceTree = "<group>"; };
 		C9557CC52236457000D6F7A6 /* RegistCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarViewController.swift; sourceTree = "<group>"; };
+		C9557CC72236868F00D6F7A6 /* RegistCalendarResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarResources.swift; sourceTree = "<group>"; };
+		C9557CC9223689C300D6F7A6 /* RegistCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarViewModel.swift; sourceTree = "<group>"; };
+		C9557CCB223689D500D6F7A6 /* RegistCalendarValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarValidation.swift; sourceTree = "<group>"; };
 		C959BF512227EA7F00207986 /* TeamInfoRegistValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistValidation.swift; sourceTree = "<group>"; };
 		C959BF5422290ADA00207986 /* RepresentMemberRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterViewModel.swift; sourceTree = "<group>"; };
 		C959BF562229100500207986 /* RepresentMemberRegisterValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterValidation.swift; sourceTree = "<group>"; };
@@ -395,6 +401,9 @@
 			isa = PBXGroup;
 			children = (
 				C9557CC52236457000D6F7A6 /* RegistCalendarViewController.swift */,
+				C9557CC72236868F00D6F7A6 /* RegistCalendarResources.swift */,
+				C9557CC9223689C300D6F7A6 /* RegistCalendarViewModel.swift */,
+				C9557CCB223689D500D6F7A6 /* RegistCalendarValidation.swift */,
 			);
 			path = RegistCalendar;
 			sourceTree = "<group>";
@@ -630,6 +639,7 @@
 				C970579F222E8C76007F8B1C /* TabBarController.swift in Sources */,
 				C959BF72222D4BA700207986 /* MemberInfoRegisterResources.swift in Sources */,
 				C9F086DD2233E92100F25E7A /* MypageResources.swift in Sources */,
+				C9557CC82236868F00D6F7A6 /* RegistCalendarResources.swift in Sources */,
 				C937FD69222288C700F9624E /* TopViewController.swift in Sources */,
 				C9F086D52232F8CC00F25E7A /* UIView+Extension.swift in Sources */,
 				C9705785222E6BF5007F8B1C /* RemindPassResources.swift in Sources */,
@@ -660,7 +670,9 @@
 				C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */,
 				C959BF59222CC05400207986 /* ConfirmationTeamIdViewController.swift in Sources */,
 				C9F086E82235DC6900F25E7A /* CalendarEvent.swift in Sources */,
+				C9557CCC223689D500D6F7A6 /* RegistCalendarValidation.swift in Sources */,
 				C970579C222E8BF3007F8B1C /* TimelineViewController.swift in Sources */,
+				C9557CCA223689C300D6F7A6 /* RegistCalendarViewModel.swift in Sources */,
 				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
 				C959BF6C222D4AE500207986 /* LoginResources.swift in Sources */,
 				C9F086E622346ACC00F25E7A /* DisplayEventCell.swift in Sources */,
