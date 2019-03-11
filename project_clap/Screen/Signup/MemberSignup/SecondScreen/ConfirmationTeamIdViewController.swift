@@ -84,16 +84,20 @@ extension ConfirmationTeamIdViewController {
     private func setupViewModel() {
         confirmBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
-                guard let navi = self?.navigationController else { return }
-                navi.pushViewController(MemberInfoRegistViewController(), animated: true)
+                self?.confirmBtn.bounce(completion: {
+                    guard let navi = self?.navigationController else { return }
+                    navi.pushViewController(MemberInfoRegistViewController(), animated: true)
+                })
             })
             .disposed(by: disposeBag)
         
         cancelBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
-                guard let navi = self?.navigationController else { return }
-                let vc = navi.viewControllers[navi.viewControllers.count - 4]
-                navi.popToViewController(vc, animated: true)
+                self?.cancelBtn.bounce(completion: {
+                    guard let navi = self?.navigationController else { return }
+                    let vc = navi.viewControllers[navi.viewControllers.count - 4]
+                    navi.popToViewController(vc, animated: true)
+                })
             })
             .disposed(by: disposeBag)
     }

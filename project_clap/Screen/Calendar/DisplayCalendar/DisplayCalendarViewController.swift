@@ -6,6 +6,8 @@ import JTAppleCalendar
 import CalculateCalendarLogic
 
 class DisplayCalendarViewController: UIViewController {
+    
+    private let disposeBag = DisposeBag()
     //Realmだと仮定
     private var recievedFromServer: [String: [String]] = [:]
     private var selectedDayEvent: [CalendarEvent] = []
@@ -151,6 +153,7 @@ class DisplayCalendarViewController: UIViewController {
         setupCalendar()
         getCurrentDay()
         loadEventData()
+        setupViewModel()
     }
 }
 
@@ -193,6 +196,18 @@ extension DisplayCalendarViewController {
         calendarView.bottomAnchor.constraint(equalTo: displayCalendarView.bottomAnchor).isActive = true
         calendarView.widthAnchor.constraint(equalTo: displayCalendarView.widthAnchor).isActive = true
         calendarView.heightAnchor.constraint(equalToConstant: DisplayCalendarResources.Constraint.calendarViewHeightConstraint).isActive = true
+    }
+    
+    private func setupViewModel() {
+        eventAddBtn.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.eventAddBtn.bounce(completion: {
+                    guard let `self` = self?.navigationController else { return }
+                    
+                    `self`.present(RegistCalendarViewController(), animated: true)
+                })
+            })
+            .disposed(by: disposeBag)
     }
     
     private func setupCalendar() {

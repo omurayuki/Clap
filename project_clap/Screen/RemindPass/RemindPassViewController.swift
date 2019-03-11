@@ -67,6 +67,14 @@ extension RemindPassViewController {
                 self?.submitBtn.isHidden = !isValid
             })
             .disposed(by: disposeBag)
+        
+        submitBtn.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.submitBtn.bounce(completion: {
+                    print("firebaseにrequest")
+                })
+            })
+            .disposed(by: disposeBag)
     }
 }
 

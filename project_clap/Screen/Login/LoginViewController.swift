@@ -95,16 +95,20 @@ extension LoginViewCountroller {
         
         logintBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
-                let tabbarVC = TabBarController(calendar: DisplayCalendarViewController(), diary: DiaryGroupViewController(), mypage: MypageViewController())
-                `self`.present(tabbarVC, animated: true)
+                self?.logintBtn.bounce(completion: {
+                    guard let `self` = self else { return }
+                    let tabbarVC = TabBarController(calendar: DisplayCalendarViewController(), diary: DiaryGroupViewController(), mypage: MypageViewController())
+                    `self`.present(tabbarVC, animated: true)
+                })
             })
             .disposed(by: disposeBag)
         
         reissuePass.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
-                guard let navi = self?.navigationController else { return }
-                navi.pushViewController(RemindPassViewController(), animated: true)
+                self?.reissuePass.bounce(completion: {
+                    guard let navi = self?.navigationController else { return }
+                    navi.pushViewController(RemindPassViewController(), animated: true)
+                })
             })
             .disposed(by: disposeBag)
     }

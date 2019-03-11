@@ -156,5 +156,12 @@ extension MypageEditViewController {
                 self?.saveBtn.isHidden = !isValid
             })
             .disposed(by: disposeBag)
+        
+        saveBtn.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                guard let navi = self?.navigationController else { return }
+                navi.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }

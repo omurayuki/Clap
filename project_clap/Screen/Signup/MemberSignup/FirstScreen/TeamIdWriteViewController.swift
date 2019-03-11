@@ -79,10 +79,11 @@ extension TeamIdWriteViewController {
         
         confirmTeamIdBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
-                guard let navi = self?.navigationController else { return }
-                guard let teamId = self?.teamIdField.text else { return }
-                let a = ConfirmationTeamIdViewController(teamId: teamId)
-                navi.pushViewController(ConfirmationTeamIdViewController(teamId: teamId), animated: true)
+                self?.confirmTeamIdBtn.bounce(completion: {
+                    guard let navi = self?.navigationController else { return }
+                    guard let teamId = self?.teamIdField.text else { return }
+                    navi.pushViewController(ConfirmationTeamIdViewController(teamId: teamId), animated: true)
+                })
             })
             .disposed(by: disposeBag)
     }

@@ -68,15 +68,19 @@ extension SelectViewController {
     private func setupViewModel() {
         teamRegistBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _  in
-                guard let navi = self?.navigationController else { return }
-                navi.pushViewController(TeamInfoRegistViewController(), animated: true)
+                self?.teamRegistBtn.bounce(completion: {
+                    guard let navi = self?.navigationController else { return }
+                    navi.pushViewController(TeamInfoRegistViewController(), animated: true)
+                })
             })
             .disposed(by: disposeBag)
         
         memberRegistBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _  in
-                guard let navi = self?.navigationController else { return }
-                navi.pushViewController(TeamIdWriteViewController(), animated: true)
+                self?.memberRegistBtn.bounce(completion: {
+                    guard let navi = self?.navigationController else { return }
+                    navi.pushViewController(TeamIdWriteViewController(), animated: true)
+                })
             })
             .disposed(by: disposeBag)
     }

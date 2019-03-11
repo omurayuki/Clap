@@ -63,14 +63,18 @@ extension TopViewController {
     private func setupViewModel() {
         loginBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
-                guard let navi = self?.navigationController else { return }
-                navi.pushViewController(LoginViewCountroller(), animated: true)
+                self?.loginBtn.bounce(completion: {
+                    guard let navi = self?.navigationController else { return }
+                    navi.pushViewController(LoginViewCountroller(), animated: true)
+                })
             })
             .disposed(by: disposeBag)
         signupBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
-                guard let navi = self?.navigationController else { return }
-                navi.pushViewController(SelectViewController(), animated: true)
+                self?.signupBtn.bounce(completion: {
+                    guard let navi = self?.navigationController else { return }
+                    navi.pushViewController(SelectViewController(), animated: true)
+                })
             })
             .disposed(by: disposeBag)
     }

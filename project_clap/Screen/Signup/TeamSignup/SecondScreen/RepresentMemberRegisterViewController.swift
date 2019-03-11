@@ -186,9 +186,11 @@ extension RepresentMemberRegisterViewController {
         
         teamRegistBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
-                guard let `self` = self else { return }
-                let tabbarVC = TabBarController(calendar: DisplayCalendarViewController(), diary: DiaryGroupViewController(), mypage: MypageViewController())
-                `self`.present(tabbarVC, animated: true)
+                self?.teamRegistBtn.bounce(completion: {
+                    guard let `self` = self else { return }
+                    let tabbarVC = TabBarController(calendar: DisplayCalendarViewController(), diary: DiaryGroupViewController(), mypage: MypageViewController())
+                    `self`.present(tabbarVC, animated: true)
+                })
             })
             .disposed(by: disposeBag)
     }

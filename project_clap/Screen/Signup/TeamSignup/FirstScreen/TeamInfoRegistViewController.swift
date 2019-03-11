@@ -120,8 +120,10 @@ extension TeamInfoRegistViewController {
 
         nextBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
-                guard let navi = self?.navigationController else { return }
-                navi.pushViewController(RepresentMemberRegisterViewController(), animated: true)
+                self?.nextBtn.bounce(completion: {
+                    guard let navi = self?.navigationController else { return }
+                    navi.pushViewController(RepresentMemberRegisterViewController(), animated: true)
+                })
             })
             .disposed(by: disposeBag)
     }
