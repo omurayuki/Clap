@@ -4,6 +4,7 @@ import RxSwift
 import RxCocoa
 import JTAppleCalendar
 import CalculateCalendarLogic
+import PopupDialog
 
 class DisplayCalendarViewController: UIViewController {
     
@@ -203,7 +204,6 @@ extension DisplayCalendarViewController {
             .subscribe(onNext: { [weak self] _ in
                 self?.eventAddBtn.bounce(completion: {
                     guard let `self` = self?.navigationController else { return }
-                    
                     `self`.present(RegistCalendarViewController(), animated: true)
                 })
             })
@@ -241,7 +241,6 @@ extension DisplayCalendarViewController {
         self.dateOfYear.text = self.formatter.string(from: date)
         self.formatter.dateFormat = "MMMM"
         self.dateOfMonth.text = self.formatter.string(from: date)
-
     }
     
     private func handleCellTextColor(view: JTAppleCell?, cellState: CellState, date: Date) {

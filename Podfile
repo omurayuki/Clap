@@ -12,6 +12,7 @@ target 'project_clap' do
     pod 'Kingfisher', '~> 5.0'
     pod 'JTAppleCalendar', '~> 7.0'
     pod 'CalculateCalendarLogic' 
+    pod 'PopupDialog', '~> 0.9'
 
 
   # Pods for project_clap

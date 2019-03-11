@@ -1,6 +1,8 @@
 /* for global */
 "empty" = "";
 "regist_user" = "ユーザー登録";
+"yes" = "はい";
+"cancel" = "キャンセル";
 /* for TopVC */
 "clap" = "Clap";
 "log_in" = "ログイン";
@@ -49,8 +51,6 @@
 "team_id" = "チームID";
 "confirm" = "確定";
 /* for confirmation team id VC */
-"yes" = "はい";
-"cancel" = "キャンセル";
 "confirmation" = "確認";
 /* member info regist VC */
 "player" = "選手";
@@ -91,5 +91,8 @@
 "position" = "役職";
 "teamId" = "チームID";
 "mail" = "メール";
+"logout" = "ログアウト";
+"message" = "メッセージ";
+"do_you_wanto_logout" = "ログアウトしますか？";
 /* for mypage edit VC */
 "save" = "保存";

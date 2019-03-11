@@ -2,11 +2,17 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import PopupDialog
 
 class MypageViewController: UIViewController {
     
     private lazy var editBtn: UIBarButtonItem = {
         let button = UIBarButtonItem(title: R.string.locarizable.edit(), style: .plain, target: self, action: #selector(showEditPage))
+        return button
+    }()
+    
+    private lazy var logoutBtn: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: R.string.locarizable.logout(), style: .plain, target: self, action: #selector(showLogoutDiaplog))
         return button
     }()
     
@@ -133,6 +139,7 @@ extension MypageViewController {
     private func setupUI() {
         view.backgroundColor = .white
         navigationItem.title = R.string.locarizable.mypage_title()
+        navigationItem.leftBarButtonItem = logoutBtn
         navigationItem.rightBarButtonItem = editBtn
         view.addSubview(userPhotoWrapView)
         userPhotoWrapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -172,8 +179,21 @@ extension MypageViewController {
         mail.leftAnchor.constraint(equalTo: mailTitle.rightAnchor, constant: MypageResources.Constraint.mailLeftConstraint).isActive = true
     }
     
+    private func createLogoutAlert() {
+        let alert = PopupDialog(title: R.string.locarizable.message(), message: R.string.locarizable.do_you_wanto_logout())
+        let logout = DefaultButton(title: R.string.locarizable.yes()) { self.present(UINavigationController(rootViewController: TopViewController()), animated: true) }
+        let cancel = CancelButton(title: R.string.locarizable.cancel()) { self.dismiss(animated: true) }
+        alert.addButtons([logout, cancel])
+        self.present(alert, animated: true)
+    }
+    
     @objc
     private func showEditPage() {
         navigationController?.pushViewController(MypageEditViewController(), animated: true)
+    }
+    
+    @objc
+    private func showLogoutDiaplog() {
+        createLogoutAlert()
     }
 }

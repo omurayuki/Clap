@@ -22,6 +22,7 @@
 		C937FD7E2222E22B00F9624E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD7D2222E22B00F9624E /* LoginViewModel.swift */; };
 		C937FD8322237E0000F9624E /* TeamInfoRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD8222237E0000F9624E /* TeamInfoRegistViewController.swift */; };
 		C937FD8522237E5A00F9624E /* TeamIdWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD8422237E5A00F9624E /* TeamIdWriteViewController.swift */; };
+		C9557CC62236457000D6F7A6 /* RegistCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9557CC52236457000D6F7A6 /* RegistCalendarViewController.swift */; };
 		C959BF522227EA7F00207986 /* TeamInfoRegistValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF512227EA7F00207986 /* TeamInfoRegistValidation.swift */; };
 		C959BF5522290ADA00207986 /* RepresentMemberRegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF5422290ADA00207986 /* RepresentMemberRegisterViewModel.swift */; };
 		C959BF572229100500207986 /* RepresentMemberRegisterValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF562229100500207986 /* RepresentMemberRegisterValidation.swift */; };
@@ -48,7 +49,6 @@
 		C9705787222E6E1F007F8B1C /* RemindPassViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9705786222E6E1F007F8B1C /* RemindPassViewModel.swift */; };
 		C9705789222E6F21007F8B1C /* RemindPassValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9705788222E6F21007F8B1C /* RemindPassValidation.swift */; };
 		C9705790222E8A43007F8B1C /* DisplayCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C970578F222E8A43007F8B1C /* DisplayCalendarViewController.swift */; };
-		C9705792222E8A6F007F8B1C /* RegistCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9705791222E8A6F007F8B1C /* RegistCalendarViewController.swift */; };
 		C9705796222E8B29007F8B1C /* DiaryGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9705795222E8B29007F8B1C /* DiaryGroupViewController.swift */; };
 		C9705798222E8B6F007F8B1C /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9705797222E8B6F007F8B1C /* MypageViewController.swift */; };
 		C970579C222E8BF3007F8B1C /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C970579B222E8BF3007F8B1C /* TimelineViewController.swift */; };
@@ -88,6 +88,7 @@
 		C937FD7D2222E22B00F9624E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C937FD8222237E0000F9624E /* TeamInfoRegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewController.swift; sourceTree = "<group>"; };
 		C937FD8422237E5A00F9624E /* TeamIdWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamIdWriteViewController.swift; sourceTree = "<group>"; };
+		C9557CC52236457000D6F7A6 /* RegistCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarViewController.swift; sourceTree = "<group>"; };
 		C959BF512227EA7F00207986 /* TeamInfoRegistValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistValidation.swift; sourceTree = "<group>"; };
 		C959BF5422290ADA00207986 /* RepresentMemberRegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterViewModel.swift; sourceTree = "<group>"; };
 		C959BF562229100500207986 /* RepresentMemberRegisterValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterValidation.swift; sourceTree = "<group>"; };
@@ -114,7 +115,6 @@
 		C9705786222E6E1F007F8B1C /* RemindPassViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassViewModel.swift; sourceTree = "<group>"; };
 		C9705788222E6F21007F8B1C /* RemindPassValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassValidation.swift; sourceTree = "<group>"; };
 		C970578F222E8A43007F8B1C /* DisplayCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCalendarViewController.swift; sourceTree = "<group>"; };
-		C9705791222E8A6F007F8B1C /* RegistCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarViewController.swift; sourceTree = "<group>"; };
 		C9705795222E8B29007F8B1C /* DiaryGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryGroupViewController.swift; sourceTree = "<group>"; };
 		C9705797222E8B6F007F8B1C /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		C970579B222E8BF3007F8B1C /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -394,7 +394,7 @@
 		C970578E222E8A1B007F8B1C /* RegistCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				C9705791222E8A6F007F8B1C /* RegistCalendarViewController.swift */,
+				C9557CC52236457000D6F7A6 /* RegistCalendarViewController.swift */,
 			);
 			path = RegistCalendar;
 			sourceTree = "<group>";
@@ -535,9 +535,11 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-project_clap/Pods-project_clap-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CalculateCalendarLogic/CalculateCalendarLogic.framework",
+				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -551,9 +553,11 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CalculateCalendarLogic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -626,7 +630,6 @@
 				C970579F222E8C76007F8B1C /* TabBarController.swift in Sources */,
 				C959BF72222D4BA700207986 /* MemberInfoRegisterResources.swift in Sources */,
 				C9F086DD2233E92100F25E7A /* MypageResources.swift in Sources */,
-				C9705792222E8A6F007F8B1C /* RegistCalendarViewController.swift in Sources */,
 				C937FD69222288C700F9624E /* TopViewController.swift in Sources */,
 				C9F086D52232F8CC00F25E7A /* UIView+Extension.swift in Sources */,
 				C9705785222E6BF5007F8B1C /* RemindPassResources.swift in Sources */,
@@ -649,6 +652,7 @@
 				C9705789222E6F21007F8B1C /* RemindPassValidation.swift in Sources */,
 				C959BF70222D4B7400207986 /* ConfirmationTeamIdResources.swift in Sources */,
 				C959BF6A222D3A3700207986 /* LoginValidation.swift in Sources */,
+				C9557CC62236457000D6F7A6 /* RegistCalendarViewController.swift in Sources */,
 				C92704222232C2E300B15B45 /* CustomView.swift in Sources */,
 				C9705787222E6E1F007F8B1C /* RemindPassViewModel.swift in Sources */,
 				C9705783222E6680007F8B1C /* RemindPassViewController.swift in Sources */,
