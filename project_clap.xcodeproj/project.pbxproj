@@ -59,6 +59,13 @@
 		C9F086D52232F8CC00F25E7A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */; };
 		C9F086D72233C24600F25E7A /* CalendarLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D62233C24600F25E7A /* CalendarLogic.swift */; };
 		C9F086D92233C91000F25E7A /* DisplayCalendarResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D82233C91000F25E7A /* DisplayCalendarResources.swift */; };
+		C9F086DB2233D5EA00F25E7A /* CustomStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086DA2233D5EA00F25E7A /* CustomStackView.swift */; };
+		C9F086DD2233E92100F25E7A /* MypageResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086DC2233E92100F25E7A /* MypageResources.swift */; };
+		C9F086E02233ECD800F25E7A /* MypageEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086DF2233ECD800F25E7A /* MypageEditViewController.swift */; };
+		C9F086E22233F6A200F25E7A /* MypageEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086E12233F6A200F25E7A /* MypageEditViewModel.swift */; };
+		C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086E32233F6AF00F25E7A /* MypageEditValidation.swift */; };
+		C9F086E622346ACC00F25E7A /* DisplayEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086E522346ACC00F25E7A /* DisplayEventCell.swift */; };
+		C9F086E82235DC6900F25E7A /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086E72235DC6900F25E7A /* CalendarEvent.swift */; };
 		DFB5334197BF2263EBE8960C /* Pods_project_clap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
@@ -120,6 +127,13 @@
 		C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		C9F086D62233C24600F25E7A /* CalendarLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLogic.swift; sourceTree = "<group>"; };
 		C9F086D82233C91000F25E7A /* DisplayCalendarResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCalendarResources.swift; sourceTree = "<group>"; };
+		C9F086DA2233D5EA00F25E7A /* CustomStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStackView.swift; sourceTree = "<group>"; };
+		C9F086DC2233E92100F25E7A /* MypageResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageResources.swift; sourceTree = "<group>"; };
+		C9F086DF2233ECD800F25E7A /* MypageEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageEditViewController.swift; sourceTree = "<group>"; };
+		C9F086E12233F6A200F25E7A /* MypageEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageEditViewModel.swift; sourceTree = "<group>"; };
+		C9F086E32233F6AF00F25E7A /* MypageEditValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageEditValidation.swift; sourceTree = "<group>"; };
+		C9F086E522346ACC00F25E7A /* DisplayEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayEventCell.swift; sourceTree = "<group>"; };
+		C9F086E72235DC6900F25E7A /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
 		E7FE8D4EDE255747AFF42437 /* Pods-project_clap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project_clap.debug.xcconfig"; path = "Target Support Files/Pods-project_clap/Pods-project_clap.debug.xcconfig"; sourceTree = "<group>"; };
 		E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_project_clap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -152,6 +166,7 @@
 				C908D2972223AEE3000344B0 /* AppResources.swift */,
 				C970577D222E5E68007F8B1C /* CustomTextField.swift */,
 				C92704212232C2E300B15B45 /* CustomView.swift */,
+				C9F086DA2233D5EA00F25E7A /* CustomStackView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -320,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				C95EBC52222F5DD200D24181 /* DisplayCalendarCell.swift */,
+				C9F086E522346ACC00F25E7A /* DisplayEventCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -357,6 +373,8 @@
 			isa = PBXGroup;
 			children = (
 				C9705797222E8B6F007F8B1C /* MypageViewController.swift */,
+				C9F086DC2233E92100F25E7A /* MypageResources.swift */,
+				C9F086DE2233ECB000F25E7A /* Edit */,
 			);
 			path = Mypage;
 			sourceTree = "<group>";
@@ -365,6 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				C970578F222E8A43007F8B1C /* DisplayCalendarViewController.swift */,
+				C9F086E72235DC6900F25E7A /* CalendarEvent.swift */,
 				C9F086D62233C24600F25E7A /* CalendarLogic.swift */,
 				C9F086D82233C91000F25E7A /* DisplayCalendarResources.swift */,
 				C95EBC45222F5B8300D24181 /* Cell */,
@@ -414,6 +433,16 @@
 				C959BF512227EA7F00207986 /* TeamInfoRegistValidation.swift */,
 			);
 			path = FirstScreen;
+			sourceTree = "<group>";
+		};
+		C9F086DE2233ECB000F25E7A /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				C9F086DF2233ECD800F25E7A /* MypageEditViewController.swift */,
+				C9F086E12233F6A200F25E7A /* MypageEditViewModel.swift */,
+				C9F086E32233F6AF00F25E7A /* MypageEditValidation.swift */,
+			);
+			path = Edit;
 			sourceTree = "<group>";
 		};
 		E1168D8F28D0957839E6D20B /* Pods */ = {
@@ -596,6 +625,7 @@
 				C937FD8322237E0000F9624E /* TeamInfoRegistViewController.swift in Sources */,
 				C970579F222E8C76007F8B1C /* TabBarController.swift in Sources */,
 				C959BF72222D4BA700207986 /* MemberInfoRegisterResources.swift in Sources */,
+				C9F086DD2233E92100F25E7A /* MypageResources.swift in Sources */,
 				C9705792222E8A6F007F8B1C /* RegistCalendarViewController.swift in Sources */,
 				C937FD69222288C700F9624E /* TopViewController.swift in Sources */,
 				C9F086D52232F8CC00F25E7A /* UIView+Extension.swift in Sources */,
@@ -625,15 +655,21 @@
 				C959BF78222D4C6A00207986 /* SelectResources.swift in Sources */,
 				C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */,
 				C959BF59222CC05400207986 /* ConfirmationTeamIdViewController.swift in Sources */,
+				C9F086E82235DC6900F25E7A /* CalendarEvent.swift in Sources */,
 				C970579C222E8BF3007F8B1C /* TimelineViewController.swift in Sources */,
 				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
 				C959BF6C222D4AE500207986 /* LoginResources.swift in Sources */,
+				C9F086E622346ACC00F25E7A /* DisplayEventCell.swift in Sources */,
 				C908D2982223AEE3000344B0 /* AppResources.swift in Sources */,
 				C9705790222E8A43007F8B1C /* DisplayCalendarViewController.swift in Sources */,
+				C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */,
+				C9F086E22233F6A200F25E7A /* MypageEditViewModel.swift in Sources */,
 				C959BF68222D125B00207986 /* MemberInfoRegisterValidation.swift in Sources */,
 				C959BF62222CED8700207986 /* TeamIdWriteViewModel.swift in Sources */,
+				C9F086DB2233D5EA00F25E7A /* CustomStackView.swift in Sources */,
 				C97057A1222E9B0F007F8B1C /* TabBarResources.swift in Sources */,
 				C959BF572229100500207986 /* RepresentMemberRegisterValidation.swift in Sources */,
+				C9F086E02233ECD800F25E7A /* MypageEditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

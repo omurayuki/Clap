@@ -5,6 +5,7 @@ struct DisplayCalendarResources {
     struct Font {
         static let dateOfYearFont = UIFont.systemFont(ofSize: 15)
         static let dateOfMonth = UIFont.systemFont(ofSize: 32)
+        static let eventAddBtnFont = UIFont.systemFont(ofSize: 32)
     }
     
     struct Constraint {
@@ -16,10 +17,16 @@ struct DisplayCalendarResources {
         static let monthOfDayStackHeightConstraint: CGFloat = 35
         static let calendarViewTopConstraint: CGFloat = 10
         static let calendarViewHeightConstraint: CGFloat = 250
+        static let eventAddBtnRightConstraint: CGFloat = -10
+        static let eventAddBtnBottomConstraint: CGFloat = -10
+        static let eventAddBtnWidthConstraint: CGFloat = 50
+        static let eventAddBtnHeightConstraint: CGFloat = 50
     }
     
     struct View {
         static let sunday = 1
         static let saturday = 7
+        static let tableViewHeight: CGFloat = 65
+        static let eventAddBtnCornerLayerRadius: CGFloat = 25
     }
 }

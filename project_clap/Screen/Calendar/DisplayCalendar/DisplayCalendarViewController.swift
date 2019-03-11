@@ -6,8 +6,9 @@ import JTAppleCalendar
 import CalculateCalendarLogic
 
 class DisplayCalendarViewController: UIViewController {
-    
-    private var recievedFromServer: [String: String] = [:]
+    //Realmだと仮定
+    private var recievedFromServer: [String: [String]] = [:]
+    private var selectedDayEvent: [CalendarEvent] = []
     
     private let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -127,8 +128,20 @@ class DisplayCalendarViewController: UIViewController {
         let table = UITableView()
         table.delegate = self
         table.dataSource = self
+        table.rowHeight = DisplayCalendarResources.View.tableViewHeight
+        table.register(DisplayEventCell.self, forCellReuseIdentifier: String(describing: DisplayEventCell.self))
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
+    }()
+    
+    private lazy var eventAddBtn: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = AppResources.ColorResources.deepBlueColor
+        button.setTitle(R.string.locarizable.eventAddTitle(), for: .normal)
+        button.titleLabel?.font = DisplayCalendarResources.Font.eventAddBtnFont
+        button.layer.cornerRadius = DisplayCalendarResources.View.eventAddBtnCornerLayerRadius
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
 
     override func viewDidLoad() {
@@ -162,6 +175,11 @@ extension DisplayCalendarViewController {
         eventField.topAnchor.constraint(equalTo: displayCalendarView.bottomAnchor, constant: DisplayCalendarResources.Constraint.eventFieldTopConstraint).isActive = true
         eventField.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         eventField.widthAnchor.constraint(equalToConstant: view.bounds.size.width).isActive = true
+        view.addSubview(eventAddBtn)
+        eventAddBtn.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: DisplayCalendarResources.Constraint.eventAddBtnRightConstraint).isActive = true
+        eventAddBtn.rightAnchor.constraint(equalTo: view.rightAnchor, constant: DisplayCalendarResources.Constraint.eventAddBtnBottomConstraint).isActive = true
+        eventAddBtn.widthAnchor.constraint(equalToConstant: DisplayCalendarResources.Constraint.eventAddBtnWidthConstraint).isActive = true
+        eventAddBtn.heightAnchor.constraint(equalToConstant: DisplayCalendarResources.Constraint.eventAddBtnHeightConstraint).isActive = true
     }
 
     private func setupInsideDisplayCalendar() {
@@ -260,19 +278,21 @@ extension DisplayCalendarViewController {
     }
     
     #warning("仮実装や")
-    private func getObjectFromServer() -> [Date: String] {
+    private func getObjectFromServer() -> [Date: [String]] {
+        //年ごとにデータを取得してローカルDBにセット
         formatter.dateFormat = "yyyy MM dd"
         return [
-            formatter.date(from: "2019 03 06")!: "aaaaa",
-            formatter.date(from: "2019 03 05")!: "aaaaa",
-            formatter.date(from: "2019 03 01")!: "aaaaa",
-            formatter.date(from: "2019 03 09")!: "aaaaa",
-            formatter.date(from: "2019 03 18")!: "aaaaa"
+            formatter.date(from: "2019 03 06")!: ["aaaaa"],
+            formatter.date(from: "2019 03 05")!: ["bbbbb"],
+            formatter.date(from: "2019 03 01")!: ["ccccc"],
+            formatter.date(from: "2019 03 09")!: ["ddddd"],
+            formatter.date(from: "2019 03 18")!: ["eeeee", "fffff"],
         ]
     }
 }
 
 extension DisplayCalendarViewController: JTAppleCalendarViewDataSource {
+    
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         guard let startDate = formatter.date(from: "2019 01 01"), let endDate = formatter.date(from: "2100 12 31") else {
             return ConfigurationParameters(startDate: Date(), endDate: Date())
@@ -307,11 +327,22 @@ extension DisplayCalendarViewController: JTAppleCalendarViewDelegate {
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState, date: date)
         cell?.bounce()
+        let stringDate = formatter.string(from: cellState.date)
+        for (date, events) in recievedFromServer {
+            if date == stringDate {
+                _ = events.map { event in
+                    self.selectedDayEvent.append(CalendarEvent(event: event))
+                }
+                eventField.reloadData()
+            }
+        }
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState, date: date)
+        selectedDayEvent = []
+        eventField.reloadData()
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
@@ -327,15 +358,20 @@ extension DisplayCalendarViewController: JTAppleCalendarViewDelegate {
 }
 
 extension DisplayCalendarViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DisplayEventCell.self), for: indexPath) as? DisplayEventCell else { return UITableViewCell() }
+        guard let event = selectedDayEvent[indexPath.row].event else { return cell }
+        cell.configureInit(start: "10:00", end: "18:00", event: event)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return selectedDayEvent.count
     }
 }
 
 extension DisplayCalendarViewController: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
 }
