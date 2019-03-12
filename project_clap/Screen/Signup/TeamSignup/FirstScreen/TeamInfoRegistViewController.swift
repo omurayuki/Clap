@@ -136,7 +136,7 @@ extension TeamInfoRegistViewController {
         }
         pickerView.dataSource = self
         pickerView.delegate = self
-        pickerView.backgroundColor = UIColor.white
+        pickerView.backgroundColor = .white
         return pickerView
     }
     

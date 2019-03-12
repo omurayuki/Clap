@@ -102,3 +102,5 @@
 "title" = "タイトル";
 "between" = "〜";
 "long_day" = "終日";
+"detail" = "詳細";
+"lost_written_info" = "このまま戻ると記入情報が失われますがよろしいですか？";

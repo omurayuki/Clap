@@ -182,7 +182,7 @@ extension MypageViewController {
     private func createLogoutAlert() {
         let alert = PopupDialog(title: R.string.locarizable.message(), message: R.string.locarizable.do_you_wanto_logout())
         let logout = DefaultButton(title: R.string.locarizable.yes()) { self.present(UINavigationController(rootViewController: TopViewController()), animated: true) }
-        let cancel = CancelButton(title: R.string.locarizable.cancel()) { self.dismiss(animated: true) }
+        let cancel = CancelButton(title: R.string.locarizable.cancel()) {}
         alert.addButtons([logout, cancel])
         self.present(alert, animated: true)
     }
