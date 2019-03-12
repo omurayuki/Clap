@@ -21,6 +21,13 @@ struct RegistCalendarResources {
         static let switchLongdayOrShortdayTopCounstraint: CGFloat = 10
         static let switchLongdayOrShortdayRightCounstraint: CGFloat = -10
         static let switchLongdayOrShortdayBottomCounstraint: CGFloat = -10
+        static let detailStackTopConstraint: CGFloat = 10
+        static let detailStackLeftConstraint: CGFloat = 40
+        static let detailStackRightConstraint: CGFloat = -40
+        static let detailTitleTopConstraint: CGFloat = 10
+        static let detailTitleLeftConstraint: CGFloat = 10
+        static let detailFieldTopConstraint: CGFloat = 20
+        static let detailFieldLeftConstraint: CGFloat = 10
     }
     
     struct Font {
@@ -28,5 +35,11 @@ struct RegistCalendarResources {
         static let dateFont = UIFont.systemFont(ofSize: 17)
         static let timeFont = UIFont.systemFont(ofSize: 29)
         static let betweenFont = UIFont.boldSystemFont(ofSize: 24)
+        static let detailFieldFont = UIFont.systemFont(ofSize: 15)
+    }
+    
+    struct View {
+        static let frtailFieldCornerRadius: CGFloat = 5
+        static let frtailFieldCornerWidth: CGFloat = 1
     }
 }

@@ -150,6 +150,34 @@ class RegistCalendarViewController: UIViewController {
         return stack
     }()
     
+    private lazy var detailTitle: UILabel = {
+        let label = UILabel()
+        label.text = "詳細"
+        label.textColor = .gray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var detailField: UITextView = {
+        let field = UITextView()
+        field.font = RegistCalendarResources.Font.detailFieldFont
+        field.layer.cornerRadius = RegistCalendarResources.View.frtailFieldCornerRadius
+        field.layer.borderWidth = RegistCalendarResources.View.frtailFieldCornerWidth
+        field.layer.borderColor = UIColor.gray.cgColor
+        field.delegate = self
+        field.translatesAutoresizingMaskIntoConstraints = false
+        return field
+    }()
+    
+    private lazy var detailStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.addArrangedSubview(detailTitle)
+        stack.addArrangedSubview(detailField)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -181,6 +209,11 @@ extension RegistCalendarViewController {
         longdayOrShortdayStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: RegistCalendarResources.Constraint.longdayOrShortdayStackLeftCounstraint).isActive = true
         longdayOrShortdayStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: RegistCalendarResources.Constraint.longdayOrShortdayStackRightCounstraint).isActive = true
         setupInsideLongdayOrShortdayStack()
+        view.addSubview(detailStack)
+        detailStack.topAnchor.constraint(equalTo: longdayOrShortdayStack.bottomAnchor, constant: RegistCalendarResources.Constraint.detailStackTopConstraint).isActive = true
+        detailStack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: RegistCalendarResources.Constraint.detailStackLeftConstraint).isActive = true
+        detailStack.rightAnchor.constraint(equalTo: view.rightAnchor, constant: RegistCalendarResources.Constraint.detailStackRightConstraint).isActive = true
+        setupInsideDetailStack()
     }
     
     private func setupInsideTotalStack() {
@@ -203,6 +236,16 @@ extension RegistCalendarViewController {
         switchLongdayOrShortday.bottomAnchor.constraint(equalTo: longdayOrShortdayStack.bottomAnchor, constant: RegistCalendarResources.Constraint.switchLongdayOrShortdayBottomCounstraint).isActive = true
     }
     
+    private func setupInsideDetailStack() {
+        detailTitle.topAnchor.constraint(equalTo: detailStack.topAnchor, constant: RegistCalendarResources.Constraint.detailTitleTopConstraint).isActive = true
+        detailTitle.leftAnchor.constraint(equalTo: detailStack.leftAnchor, constant: RegistCalendarResources.Constraint.detailTitleLeftConstraint).isActive = true
+        detailField.topAnchor.constraint(equalTo: detailTitle.bottomAnchor, constant: RegistCalendarResources.Constraint.detailFieldTopConstraint).isActive = true
+        detailField.leftAnchor.constraint(equalTo: detailStack.leftAnchor, constant: RegistCalendarResources.Constraint.detailFieldLeftConstraint).isActive = true
+        detailField.rightAnchor.constraint(equalTo: detailStack.rightAnchor).isActive = true
+        detailField.widthAnchor.constraint(equalToConstant: view.bounds.size.width - 50).isActive = true
+        detailField.heightAnchor.constraint(equalToConstant: view.bounds.size.height / 5).isActive = true
+    }
+    
     @objc
     private func registEvent() {
         
@@ -215,5 +258,9 @@ extension RegistCalendarViewController {
 }
 
 extension RegistCalendarViewController: UITextFieldDelegate {
+    
+}
+
+extension RegistCalendarViewController: UITextViewDelegate {
     
 }
