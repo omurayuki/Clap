@@ -59,6 +59,7 @@
 		C97057A1222E9B0F007F8B1C /* TabBarResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97057A0222E9B0F007F8B1C /* TabBarResources.swift */; };
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
+		C9DBEE0F223E613800979664 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DBEE0E223E613800979664 /* DateFormatter+Extension.swift */; };
 		C9F086D52232F8CC00F25E7A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */; };
 		C9F086D72233C24600F25E7A /* CalendarLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D62233C24600F25E7A /* CalendarLogic.swift */; };
 		C9F086D92233C91000F25E7A /* DisplayCalendarResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D82233C91000F25E7A /* DisplayCalendarResources.swift */; };
@@ -130,6 +131,7 @@
 		C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewModel.swift; sourceTree = "<group>"; };
 		C9CA312A22265595003E600C /* RxBlocking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxBlocking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CA312C22265595003E600C /* RxTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9DBEE0E223E613800979664 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		C9F086D62233C24600F25E7A /* CalendarLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLogic.swift; sourceTree = "<group>"; };
 		C9F086D82233C91000F25E7A /* DisplayCalendarResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCalendarResources.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				C937FD712222D7F200F9624E /* UIColor+Extension.swift */,
 				C959BF5A222CC45E00207986 /* UILabel+Extension.swift */,
 				C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */,
+				C9DBEE0E223E613800979664 /* DateFormatter+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -676,6 +679,7 @@
 				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
 				C959BF6C222D4AE500207986 /* LoginResources.swift in Sources */,
 				C9F086E622346ACC00F25E7A /* DisplayEventCell.swift in Sources */,
+				C9DBEE0F223E613800979664 /* DateFormatter+Extension.swift in Sources */,
 				C908D2982223AEE3000344B0 /* AppResources.swift in Sources */,
 				C9705790222E8A43007F8B1C /* DisplayCalendarViewController.swift in Sources */,
 				C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */,

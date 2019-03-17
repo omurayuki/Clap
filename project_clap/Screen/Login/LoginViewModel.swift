@@ -1,13 +1,14 @@
 import Foundation
 import RxSwift
+import RxCocoa
 
 protocol LoginViewModelInput {
-    var emailText: Observable<String> { get }
-    var passText: Observable<String> { get }
+    var emailText:Driver<String> { get }
+    var passText: Driver<String> { get }
 }
 
 protocol LoginViewModelOutput {
-    var isLoginBtnEnable: Observable<Bool> { get }
+    var isLoginBtnEnable: Driver<Bool> { get }
 }
 
 protocol LoginViewModelType {
@@ -18,22 +19,30 @@ protocol LoginViewModelType {
 struct LoginViewModel: LoginViewModelType, LoginViewModelInput, LoginViewModelOutput {
     var inputs: LoginViewModelInput { return self }
     var outputs: LoginViewModelOutput { return self }
-    var emailText: Observable<String>
-    var passText: Observable<String>
-    var isLoginBtnEnable: Observable<Bool>
+    var emailText: Driver<String>
+    var passText: Driver<String>
+    var isLoginBtnEnable: Driver<Bool>
+    let disposeBag = DisposeBag()
     
-    init(emailField: Observable<String>, passField: Observable<String>) {
+    init(emailField: Driver<String>, passField: Driver<String>, loginTapped: Driver<Void>) {
         emailText = emailField
         passText = passField
         
-        let isEmpty = Observable.combineLatest(emailText, passText) { email, pass -> LoginValidationResult in
+        let isEmpty = Driver.combineLatest(emailText, passText) { email, pass -> LoginValidationResult in
             LoginValidation.validateEmpty(email: email, pass: pass)
-        }
-        .share(replay: 1)
+        }.asDriver()
         
-        isLoginBtnEnable = Observable.combineLatest([isEmpty], { empty in
+        isLoginBtnEnable = Driver.combineLatest([isEmpty], { empty in
             empty[0].isValid
-        })
-        .share(replay: 1)
+        }).asDriver()
+        
+        let loginParamater = Driver.combineLatest(emailText, passText) { (email: $0, pass: $1) }
+        
+        loginTapped.asObservable()
+            .observeOn(MainScheduler.instance)
+            .withLatestFrom(loginParamater)
+            .subscribe(onNext: { params in
+                print(params)
+            }).disposed(by: disposeBag)
     }
 }

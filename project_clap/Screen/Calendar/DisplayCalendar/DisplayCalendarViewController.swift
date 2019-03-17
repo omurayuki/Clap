@@ -12,6 +12,7 @@ class DisplayCalendarViewController: UIViewController {
     //Realmだと仮定
     private var recievedFromServer: [String: [String]] = [:]
     private var selectedDayEvent: [CalendarEvent] = []
+    private var selectedDateToSendRegistPage: Date = Date()
     
     private let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -203,8 +204,9 @@ extension DisplayCalendarViewController {
         eventAddBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
                 self?.eventAddBtn.bounce(completion: {
+                    guard let selectedDate = self?.selectedDateToSendRegistPage else { return }
                     guard let `self` = self?.navigationController else { return }
-                    `self`.present(RegistCalendarViewController(), animated: true)
+                    `self`.present(RegistCalendarViewController(selectedDate: selectedDate), animated: true)
                 })
             })
             .disposed(by: disposeBag)
@@ -341,6 +343,7 @@ extension DisplayCalendarViewController: JTAppleCalendarViewDelegate {
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState, date: date)
         cell?.bounce()
+        selectedDateToSendRegistPage = date
         let stringDate = formatter.string(from: cellState.date)
         for (date, events) in recievedFromServer {
             if date == stringDate {

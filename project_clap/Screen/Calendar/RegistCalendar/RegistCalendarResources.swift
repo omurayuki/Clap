@@ -32,10 +32,11 @@ struct RegistCalendarResources {
     
     struct Font {
         static let titleFieldFont = UIFont.systemFont(ofSize: 32)
-        static let dateFont = UIFont.systemFont(ofSize: 17)
+        static let defaultDateFont = UIFont.systemFont(ofSize: 17)
         static let timeFont = UIFont.systemFont(ofSize: 29)
         static let betweenFont = UIFont.boldSystemFont(ofSize: 24)
         static let detailFieldFont = UIFont.systemFont(ofSize: 15)
+        static let largeDateFont = UIFont.systemFont(ofSize: 20)
     }
     
     struct View {

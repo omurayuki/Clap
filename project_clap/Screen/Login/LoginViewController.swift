@@ -55,7 +55,7 @@ class LoginViewCountroller: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = LoginViewModel(emailField: mailField.rx.text.orEmpty.asObservable(), passField: passField.rx.text.orEmpty.asObservable())
+        viewModel = LoginViewModel(emailField: mailField.rx.text.orEmpty.asDriver(), passField: passField.rx.text.orEmpty.asDriver(), loginTapped: logintBtn.rx.tap.asDriver())
         setupViewModel()
         setupUI()
     }

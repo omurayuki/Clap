@@ -77,7 +77,7 @@ class  TeamInfoRegistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = TeamInfoRegistViewModel(teamIdField: teamIdField.rx.text.orEmpty.asObservable(), gradeField: gradeField.rx.text.orEmpty.asObservable(), sportsKindField: sportsKindField.rx.text.orEmpty.asObservable())
+        viewModel = TeamInfoRegistViewModel(teamIdField: teamIdField.rx.text.orEmpty.asDriver(), gradeField: gradeField.rx.text.orEmpty.asDriver(), sportsKindField: sportsKindField.rx.text.orEmpty.asDriver())
         setupToolBar(gradeField, type: .grade, toolBar: gradeToolBar, content: viewModel?.outputs.gradeArr ?? [R.string.locarizable.empty()])
         setupToolBar(sportsKindField, type: .sports, toolBar: sportsKindToolBar, content: viewModel?.outputs.sportsKindArr ?? [R.string.locarizable.empty()])
         setupUI()

@@ -3,9 +3,9 @@ import RxSwift
 import RxCocoa
 
 protocol TeamInfoRegistViewModelInput {
-    var teamIdText: Observable<String> { get }
-    var representGrade: Observable<String> { get }
-    var representSportsKind: Observable<String> { get }
+    var teamIdText: Driver<String> { get }
+    var representGrade: Driver<String> { get }
+    var representSportsKind: Driver<String> { get }
 }
 
 protocol TeamInfoRegistViewModelOutput {
@@ -22,14 +22,15 @@ protocol TeamInfoRegistViewModelType {
 struct TeamInfoRegistViewModel: TeamInfoRegistViewModelType, TeamInfoRegistViewModelInput, TeamInfoRegistViewModelOutput {
     var inputs: TeamInfoRegistViewModelInput { return self }
     var outputs: TeamInfoRegistViewModelOutput { return self }
-    var teamIdText: Observable<String>
-    var representGrade: Observable<String>
-    var representSportsKind: Observable<String>
+    var teamIdText: Driver<String>
+    var representGrade: Driver<String>
+    var representSportsKind: Driver<String>
     var isNextBtnEnable: Observable<Bool>
     var gradeArr: Array<String>
     var sportsKindArr: Array<String>
+    let disposeBag = DisposeBag()
     
-    init(teamIdField: Observable<String>, gradeField: Observable<String>, sportsKindField: Observable<String>) {
+    init(teamIdField: Driver<String>, gradeField: Driver<String>, sportsKindField: Driver<String>) {
         teamIdText = teamIdField
         representGrade = gradeField
         representSportsKind = sportsKindField
@@ -43,23 +44,21 @@ struct TeamInfoRegistViewModel: TeamInfoRegistViewModelType, TeamInfoRegistViewM
             R.string.locarizable.basket_ball(), R.string.locarizable.kendo(), R.string.locarizable.judo()
         ]
         
-        let isEmptyPicker = Observable
+        let isEmptyPicker = Driver
             .combineLatest(representGrade, representSportsKind) { position, year -> TeamInfoRegistValidationResult in
                 return TeamInfoRegistValidation.validatePicker(position: position, year: year)
-            }
-            .share(replay: 1)
+            }.asDriver()
         
         
-        let isCount = teamIdText.asObservable()
+        
+        let isCount = teamIdText.asDriver()
             .map({ text -> TeamInfoRegistValidationResult in
                 return TeamInfoRegistValidation.validate(teamId: text)
-            })
-            .share(replay: 1)
+            }).asDriver()
         
-        isNextBtnEnable = Observable.combineLatest(isEmptyPicker, isCount) { (picker, count) in
+        isNextBtnEnable = Driver.combineLatest(isEmptyPicker, isCount) { (picker, count) in
                 picker.isValid &&
                 count.isValid
-            }
-            .share(replay: 1)
+            }.asObservable()
     }
 }

@@ -6,7 +6,7 @@ import PopupDialog
 
 class RegistCalendarViewController: UIViewController {
     
-    private enum Date {
+    private enum DateOrTime {
         enum BetweenDate {
             case startDate
             case endDate
@@ -18,8 +18,12 @@ class RegistCalendarViewController: UIViewController {
         }
     }
     
+    private let disposeBag = DisposeBag()
+    private let recievedSelectedDate: Date?
+    
     private lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
         return formatter
     }()
     
@@ -71,11 +75,12 @@ class RegistCalendarViewController: UIViewController {
     
     private lazy var startDate: UITextField = {
         let field = UITextField()
-        field.text = "2018年12月21日"
+        let dateText = formatter.convertToMonthAndYears(recievedSelectedDate)
+        field.text = dateText
         field.textAlignment = .center
         field.tintColor = .clear
         field.inputView = startDatePicker
-        field.font = RegistCalendarResources.Font.dateFont
+        field.font = RegistCalendarResources.Font.defaultDateFont
         field.delegate = self
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -92,11 +97,12 @@ class RegistCalendarViewController: UIViewController {
     
     private lazy var endDate: UITextField = {
         let field = UITextField()
-        field.text = "2018年12月21日"
+        let dateText = formatter.convertToMonthAndYears(recievedSelectedDate)
+        field.text = dateText
         field.textAlignment = .center
         field.tintColor = .clear
         field.inputView = endDatePicker
-        field.font = RegistCalendarResources.Font.dateFont
+        field.font = RegistCalendarResources.Font.defaultDateFont
         field.delegate = self
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -113,7 +119,8 @@ class RegistCalendarViewController: UIViewController {
     
     private lazy var startTime: UITextField = {
         let field = UITextField()
-        field.text = "10:00"
+        let dateText = formatter.convertToTime(recievedSelectedDate)
+        field.text = dateText
         field.textAlignment = .center
         field.tintColor = .clear
         field.inputView = startTimePicker
@@ -134,7 +141,8 @@ class RegistCalendarViewController: UIViewController {
     
     private lazy var endTime: UITextField = {
         let field = UITextField()
-        field.text = "12:00"
+        let dateText = formatter.convertToTime(recievedSelectedDate)
+        field.text = dateText
         field.textAlignment = .center
         field.tintColor = .clear
         field.inputView = endTimePicker
@@ -240,9 +248,20 @@ class RegistCalendarViewController: UIViewController {
         return stack
     }()
     
+    init(selectedDate: Date) {
+        recievedSelectedDate = selectedDate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupDatePickerDate()
+        setupViewModel()
     }
 }
 
@@ -308,12 +327,38 @@ extension RegistCalendarViewController {
         detailField.heightAnchor.constraint(equalToConstant: view.bounds.size.height / 5).isActive = true
     }
     
+    private func setupDatePickerDate() {
+        guard let date = recievedSelectedDate else { return }
+        startDatePicker.date = date
+        endDatePicker.date = date
+        startTimePicker.date = date
+        endTimePicker.date = date
+    }
+    
+    private func setupViewModel() {
+        switchLongdayOrShortday.rx.isOn.asObservable()
+            .subscribe(onNext: { event in
+                if event {
+                    self.isOnCalendarLabel(event, size: RegistCalendarResources.Font.largeDateFont)
+                } else {
+                    self.isOnCalendarLabel(event, size: RegistCalendarResources.Font.defaultDateFont)
+                }
+            }).disposed(by: disposeBag)
+    }
+    
     private func createCancelAlert() {
         let alert = PopupDialog(title: R.string.locarizable.message(), message: R.string.locarizable.lost_written_info())
         let logout = DefaultButton(title: R.string.locarizable.yes()) { self.dismiss(animated: true) }
         let cancel = CancelButton(title: R.string.locarizable.cancel()) {}
         alert.addButtons([logout, cancel])
         self.present(alert, animated: true)
+    }
+    
+    private func isOnCalendarLabel(_ isOn: Bool, size: UIFont) {
+        self.startTime.isHidden = isOn
+        self.endTime.isHidden = isOn
+        self.startDate.font = size
+        self.endDate.font = size
     }
     
     @objc
@@ -329,25 +374,25 @@ extension RegistCalendarViewController {
     @objc
     private func changeStartDate() {
         formatter.dateFormat = "yyyy年MM月dd日"
-        startDate.text = "\(formatter.string(from: startDatePicker.date))"
+        startDate.text = "\(formatter.convertToMonthAndYears(startTimePicker.date))"
     }
     
     @objc
     private func changeEndDate() {
         formatter.dateFormat = "yyyy年MM月dd日"
-        endDate.text = "\(formatter.string(from: endDatePicker.date))"
+        endDate.text = "\(formatter.convertToMonthAndYears(endTimePicker.date))"
     }
     
     @objc
     private func changeStartTime() {
         formatter.dateFormat = "hh:mm"
-        startTime.text = "\(formatter.string(from: startTimePicker.date))"
+        startTime.text = "\(formatter.convertToTime(startTimePicker.date))"
     }
     
     @objc
     private func changeEndTime() {
         formatter.dateFormat = "hh:mm"
-        endTime.text = "\(formatter.string(from: endTimePicker.date))"
+        endTime.text = "\(formatter.convertToTime(endTimePicker.date))"
     }
 }
 
@@ -361,6 +406,4 @@ extension RegistCalendarViewController: UITextFieldDelegate {
     }
 }
 
-extension RegistCalendarViewController: UITextViewDelegate {
-    
-}
+extension RegistCalendarViewController: UITextViewDelegate {}
