@@ -44,12 +44,9 @@ struct TeamInfoRegistViewModel: TeamInfoRegistViewModelType, TeamInfoRegistViewM
             R.string.locarizable.basket_ball(), R.string.locarizable.kendo(), R.string.locarizable.judo()
         ]
         
-        let isEmptyPicker = Driver
-            .combineLatest(representGrade, representSportsKind) { position, year -> TeamInfoRegistValidationResult in
+        let isEmptyPicker = Driver.combineLatest(representGrade, representSportsKind) { position, year -> TeamInfoRegistValidationResult in
                 return TeamInfoRegistValidation.validatePicker(position: position, year: year)
             }.asDriver()
-        
-        
         
         let isCount = teamIdText.asDriver()
             .map({ text -> TeamInfoRegistValidationResult in

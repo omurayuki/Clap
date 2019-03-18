@@ -61,7 +61,8 @@ extension TopViewController {
     }
     
     private func setupViewModel() {
-        loginBtn.rx.tap.asObservable()
+        loginBtn.rx.tap
+            .throttle(1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.loginBtn.bounce(completion: {
                     guard let navi = self?.navigationController else { return }
@@ -69,7 +70,8 @@ extension TopViewController {
                 })
             })
             .disposed(by: disposeBag)
-        signupBtn.rx.tap.asObservable()
+        signupBtn.rx.tap
+            .throttle(1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.signupBtn.bounce(completion: {
                     guard let navi = self?.navigationController else { return }

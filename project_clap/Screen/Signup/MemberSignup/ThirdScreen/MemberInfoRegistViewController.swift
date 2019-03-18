@@ -132,6 +132,7 @@ extension MemberInfoRegistViewController {
             .disposed(by: disposeBag)
         
         memberRegistBtn.rx.tap.asObservable()
+            .throttle(1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.memberRegistBtn.bounce(completion: {
                     guard let `self` = self else { return }

@@ -185,6 +185,7 @@ extension RepresentMemberRegisterViewController {
             .disposed(by: disposeBag)
         
         teamRegistBtn.rx.tap.asObservable()
+            .throttle(1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.teamRegistBtn.bounce(completion: {
                     guard let `self` = self else { return }

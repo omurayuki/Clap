@@ -111,6 +111,8 @@ extension TeamInfoRegistViewController {
     }
     
     private func setupViewModel() {
+        viewModel?.outputs.gradeArr
+        
         viewModel?.outputs.isNextBtnEnable.asObservable()
             .subscribe(onNext: { [weak self] isValid in
                 print(isValid)
@@ -119,6 +121,7 @@ extension TeamInfoRegistViewController {
             .disposed(by: disposeBag)
 
         nextBtn.rx.tap.asObservable()
+            .throttle(1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.nextBtn.bounce(completion: {
                     guard let navi = self?.navigationController else { return }

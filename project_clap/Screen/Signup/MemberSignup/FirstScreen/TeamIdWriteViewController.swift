@@ -78,6 +78,7 @@ extension TeamIdWriteViewController {
             .disposed(by: disposeBag)
         
         confirmTeamIdBtn.rx.tap.asObservable()
+            .throttle(1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.confirmTeamIdBtn.bounce(completion: {
                     guard let navi = self?.navigationController else { return }

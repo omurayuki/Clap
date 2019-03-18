@@ -130,6 +130,8 @@ class DisplayCalendarViewController: UIViewController {
 
     private lazy var eventField: UITableView = {
         let table = UITableView()
+        table.separatorStyle = .none
+        table.backgroundColor = AppResources.ColorResources.appCommonClearColor
         table.delegate = self
         table.dataSource = self
         table.rowHeight = DisplayCalendarResources.View.tableViewHeight
@@ -202,6 +204,7 @@ extension DisplayCalendarViewController {
     
     private func setupViewModel() {
         eventAddBtn.rx.tap.asObservable()
+            .throttle(1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.eventAddBtn.bounce(completion: {
                     guard let selectedDate = self?.selectedDateToSendRegistPage else { return }

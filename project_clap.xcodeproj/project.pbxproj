@@ -59,6 +59,13 @@
 		C97057A1222E9B0F007F8B1C /* TabBarResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97057A0222E9B0F007F8B1C /* TabBarResources.swift */; };
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
+		C9CC6192223F45980093D37F /* TimeLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC6191223F45970093D37F /* TimeLineCell.swift */; };
+		C9CC6194223F5BDB0093D37F /* TimeLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC6193223F5BDB0093D37F /* TimeLineViewModel.swift */; };
+		C9CC6196223F62A50093D37F /* TimeLineResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC6195223F62A50093D37F /* TimeLineResources.swift */; };
+		C9CC6199223F7B8D0093D37F /* DiaryRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC6198223F7B8D0093D37F /* DiaryRegistViewController.swift */; };
+		C9CC619C223F963B0093D37F /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC619B223F963B0093D37F /* DiaryView.swift */; };
+		C9CC619E223F98AF0093D37F /* DiaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9CC619D223F98AF0093D37F /* DiaryView.xib */; };
+		C9CC61A0223FBDAF0093D37F /* DiaryRegistResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC619F223FBDAE0093D37F /* DiaryRegistResources.swift */; };
 		C9DBEE0F223E613800979664 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DBEE0E223E613800979664 /* DateFormatter+Extension.swift */; };
 		C9F086D52232F8CC00F25E7A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */; };
 		C9F086D72233C24600F25E7A /* CalendarLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D62233C24600F25E7A /* CalendarLogic.swift */; };
@@ -131,6 +138,13 @@
 		C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewModel.swift; sourceTree = "<group>"; };
 		C9CA312A22265595003E600C /* RxBlocking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxBlocking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CA312C22265595003E600C /* RxTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9CC6191223F45970093D37F /* TimeLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCell.swift; sourceTree = "<group>"; };
+		C9CC6193223F5BDB0093D37F /* TimeLineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewModel.swift; sourceTree = "<group>"; };
+		C9CC6195223F62A50093D37F /* TimeLineResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineResources.swift; sourceTree = "<group>"; };
+		C9CC6198223F7B8D0093D37F /* DiaryRegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRegistViewController.swift; sourceTree = "<group>"; };
+		C9CC619B223F963B0093D37F /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
+		C9CC619D223F98AF0093D37F /* DiaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaryView.xib; sourceTree = "<group>"; };
+		C9CC619F223FBDAE0093D37F /* DiaryRegistResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRegistResources.swift; sourceTree = "<group>"; };
 		C9DBEE0E223E613800979664 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		C9F086D62233C24600F25E7A /* CalendarLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLogic.swift; sourceTree = "<group>"; };
@@ -423,6 +437,10 @@
 			isa = PBXGroup;
 			children = (
 				C970579B222E8BF3007F8B1C /* TimelineViewController.swift */,
+				C9CC6193223F5BDB0093D37F /* TimeLineViewModel.swift */,
+				C9CC6195223F62A50093D37F /* TimeLineResources.swift */,
+				C9CC6190223F457E0093D37F /* Cell */,
+				C9CC6197223F7B6C0093D37F /* DiaryRegistViewController */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -445,6 +463,33 @@
 				C959BF512227EA7F00207986 /* TeamInfoRegistValidation.swift */,
 			);
 			path = FirstScreen;
+			sourceTree = "<group>";
+		};
+		C9CC6190223F457E0093D37F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C9CC6191223F45970093D37F /* TimeLineCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C9CC6197223F7B6C0093D37F /* DiaryRegistViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C9CC6198223F7B8D0093D37F /* DiaryRegistViewController.swift */,
+				C9CC619F223FBDAE0093D37F /* DiaryRegistResources.swift */,
+				C9CC619A223F96200093D37F /* View */,
+			);
+			path = DiaryRegistViewController;
+			sourceTree = "<group>";
+		};
+		C9CC619A223F96200093D37F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C9CC619D223F98AF0093D37F /* DiaryView.xib */,
+				C9CC619B223F963B0093D37F /* DiaryView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		C9F086DE2233ECB000F25E7A /* Edit */ = {
@@ -528,6 +573,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C937FD5D222287B900F9624E /* LaunchScreen.storyboard in Resources */,
+				C9CC619E223F98AF0093D37F /* DiaryView.xib in Resources */,
 				C937FD5A222287B900F9624E /* Assets.xcassets in Resources */,
 				C937FD6B22228A7200F9624E /* GoogleService-Info.plist in Resources */,
 				C908D2952223AB3D000344B0 /* Locarizable.strings in Resources */,
@@ -645,6 +691,7 @@
 				C9557CC82236868F00D6F7A6 /* RegistCalendarResources.swift in Sources */,
 				C937FD69222288C700F9624E /* TopViewController.swift in Sources */,
 				C9F086D52232F8CC00F25E7A /* UIView+Extension.swift in Sources */,
+				C9CC61A0223FBDAF0093D37F /* DiaryRegistResources.swift in Sources */,
 				C9705785222E6BF5007F8B1C /* RemindPassResources.swift in Sources */,
 				C937FD53222287B800F9624E /* AppDelegate.swift in Sources */,
 				C937FD7E2222E22B00F9624E /* LoginViewModel.swift in Sources */,
@@ -652,6 +699,7 @@
 				C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */,
 				C959BF522227EA7F00207986 /* TeamInfoRegistValidation.swift in Sources */,
 				C9705796222E8B29007F8B1C /* DiaryGroupViewController.swift in Sources */,
+				C9CC6199223F7B8D0093D37F /* DiaryRegistViewController.swift in Sources */,
 				C9705798222E8B6F007F8B1C /* MypageViewController.swift in Sources */,
 				C937FD772222DF2600F9624E /* SelectViewController.swift in Sources */,
 				C959BF5D222CC9E800207986 /* MemberInfoRegistViewController.swift in Sources */,
@@ -660,6 +708,7 @@
 				C959BF7A222D4C8E00207986 /* TopResources.swift in Sources */,
 				C937FD722222D7F300F9624E /* UIColor+Extension.swift in Sources */,
 				C959BF6E222D4B3500207986 /* TeamIdWriteResources.swift in Sources */,
+				C9CC6194223F5BDB0093D37F /* TimeLineViewModel.swift in Sources */,
 				C959BF5522290ADA00207986 /* RepresentMemberRegisterViewModel.swift in Sources */,
 				C970577E222E5E68007F8B1C /* CustomTextField.swift in Sources */,
 				C9705789222E6F21007F8B1C /* RemindPassValidation.swift in Sources */,
@@ -679,8 +728,10 @@
 				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
 				C959BF6C222D4AE500207986 /* LoginResources.swift in Sources */,
 				C9F086E622346ACC00F25E7A /* DisplayEventCell.swift in Sources */,
+				C9CC6192223F45980093D37F /* TimeLineCell.swift in Sources */,
 				C9DBEE0F223E613800979664 /* DateFormatter+Extension.swift in Sources */,
 				C908D2982223AEE3000344B0 /* AppResources.swift in Sources */,
+				C9CC6196223F62A50093D37F /* TimeLineResources.swift in Sources */,
 				C9705790222E8A43007F8B1C /* DisplayCalendarViewController.swift in Sources */,
 				C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */,
 				C9F086E22233F6A200F25E7A /* MypageEditViewModel.swift in Sources */,
@@ -689,6 +740,7 @@
 				C9F086DB2233D5EA00F25E7A /* CustomStackView.swift in Sources */,
 				C97057A1222E9B0F007F8B1C /* TabBarResources.swift in Sources */,
 				C959BF572229100500207986 /* RepresentMemberRegisterValidation.swift in Sources */,
+				C9CC619C223F963B0093D37F /* DiaryView.swift in Sources */,
 				C9F086E02233ECD800F25E7A /* MypageEditViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

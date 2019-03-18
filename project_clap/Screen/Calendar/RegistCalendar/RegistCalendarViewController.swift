@@ -300,10 +300,12 @@ extension RegistCalendarViewController {
     private func setupInsideTotalStack() {
         startDate.topAnchor.constraint(equalTo: startStack.topAnchor).isActive = true
         startDate.centerXAnchor.constraint(equalTo: startStack.centerXAnchor).isActive = true
+        startDate.widthAnchor.constraint(equalToConstant: 150).isActive = true
         startTime.topAnchor.constraint(equalTo: startDate.bottomAnchor, constant: RegistCalendarResources.Constraint.startTimeTopConstraint).isActive = true
         startTime.centerXAnchor.constraint(equalTo: startStack.centerXAnchor).isActive = true
         endDate.topAnchor.constraint(equalTo: endStack.topAnchor).isActive = true
         endDate.centerXAnchor.constraint(equalTo: endStack.centerXAnchor).isActive = true
+        endDate.widthAnchor.constraint(equalToConstant: 150).isActive = true
         endTime.topAnchor.constraint(equalTo: endDate.bottomAnchor, constant: RegistCalendarResources.Constraint.endTimeTopConstrint).isActive = true
         endTime.leftAnchor.constraint(equalTo: endStack.leftAnchor).isActive = true
     }
@@ -374,25 +376,25 @@ extension RegistCalendarViewController {
     @objc
     private func changeStartDate() {
         formatter.dateFormat = "yyyy年MM月dd日"
-        startDate.text = "\(formatter.convertToMonthAndYears(startTimePicker.date))"
+        startDate.text = formatter.convertToMonthAndYears(startTimePicker.date)
     }
     
     @objc
     private func changeEndDate() {
         formatter.dateFormat = "yyyy年MM月dd日"
-        endDate.text = "\(formatter.convertToMonthAndYears(endTimePicker.date))"
+        endDate.text = formatter.convertToMonthAndYears(endTimePicker.date)
     }
     
     @objc
     private func changeStartTime() {
         formatter.dateFormat = "hh:mm"
-        startTime.text = "\(formatter.convertToTime(startTimePicker.date))"
+        startTime.text = formatter.convertToTime(startTimePicker.date)
     }
     
     @objc
     private func changeEndTime() {
         formatter.dateFormat = "hh:mm"
-        endTime.text = "\(formatter.convertToTime(endTimePicker.date))"
+        endTime.text = formatter.convertToTime(endTimePicker.date)
     }
 }
 

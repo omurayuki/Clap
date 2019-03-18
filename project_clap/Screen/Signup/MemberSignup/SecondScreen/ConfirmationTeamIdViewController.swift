@@ -83,6 +83,7 @@ extension ConfirmationTeamIdViewController {
     
     private func setupViewModel() {
         confirmBtn.rx.tap.asObservable()
+            .throttle(1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.confirmBtn.bounce(completion: {
                     guard let navi = self?.navigationController else { return }
@@ -92,6 +93,7 @@ extension ConfirmationTeamIdViewController {
             .disposed(by: disposeBag)
         
         cancelBtn.rx.tap.asObservable()
+            .throttle(1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.cancelBtn.bounce(completion: {
                     guard let navi = self?.navigationController else { return }

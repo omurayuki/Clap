@@ -67,6 +67,7 @@ extension SelectViewController {
     
     private func setupViewModel() {
         teamRegistBtn.rx.tap.asObservable()
+            .throttle(1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _  in
                 self?.teamRegistBtn.bounce(completion: {
                     guard let navi = self?.navigationController else { return }
@@ -76,6 +77,7 @@ extension SelectViewController {
             .disposed(by: disposeBag)
         
         memberRegistBtn.rx.tap.asObservable()
+            .throttle(1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _  in
                 self?.memberRegistBtn.bounce(completion: {
                     guard let navi = self?.navigationController else { return }

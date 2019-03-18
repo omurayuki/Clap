@@ -8,6 +8,7 @@ struct AppResources {
         static let normalBlueColor = UIColor(hex: "0000ff")
         static let subShallowBlueColor = UIColor(hex: "005dff")
         static let shallowBlueColor = UIColor(hex: "008cff")
+        static let appCommonClearColor = UIColor(hex: "f7f7f7")
     }
     
     struct FontResources {

@@ -12,7 +12,7 @@ class DisplayCalendarCell: JTAppleCell {
     
     lazy var selectedDateMarker: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 20
+        view.layer.cornerRadius = DisplayCalendarResources.View.selectedDateMarkerLayerCornerRadius
         view.isHidden = true
         view.backgroundColor = AppResources.ColorResources.shallowBlueColor
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +23,7 @@ class DisplayCalendarCell: JTAppleCell {
         let label = UILabel()
         label.clipsToBounds = true
         label.backgroundColor = .gray
-        label.layer.cornerRadius = 3.5
+        label.layer.cornerRadius = DisplayCalendarResources.View.calendarEventDotsLayerCornerRadius
         label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -44,16 +44,16 @@ extension DisplayCalendarCell {
         contentView.addSubview(selectedDateMarker)
         selectedDateMarker.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         selectedDateMarker.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        selectedDateMarker.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        selectedDateMarker.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        selectedDateMarker.widthAnchor.constraint(equalToConstant: DisplayCalendarResources.Constraint.selectedDateMarkerWidthConstraint).isActive = true
+        selectedDateMarker.heightAnchor.constraint(equalToConstant: DisplayCalendarResources.Constraint.selectedDateMarkerHeightConstraint).isActive = true
         contentView.addSubview(stateOfDateAtCalendar)
         stateOfDateAtCalendar.centerXAnchor.constraint(equalTo: selectedDateMarker.centerXAnchor).isActive = true
         stateOfDateAtCalendar.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         contentView.addSubview(calendarEventDots)
         calendarEventDots.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        calendarEventDots.topAnchor.constraint(equalTo: stateOfDateAtCalendar.bottomAnchor, constant: 10).isActive = true
-        calendarEventDots.widthAnchor.constraint(equalToConstant: 7).isActive = true
-        calendarEventDots.heightAnchor.constraint(equalToConstant: 7).isActive = true
+        calendarEventDots.topAnchor.constraint(equalTo: stateOfDateAtCalendar.bottomAnchor, constant: DisplayCalendarResources.Constraint.calendarEventDotsTopConstraint).isActive = true
+        calendarEventDots.widthAnchor.constraint(equalToConstant: DisplayCalendarResources.Constraint.calendarEventDotsWidthConstraint).isActive = true
+        calendarEventDots.heightAnchor.constraint(equalToConstant: DisplayCalendarResources.Constraint.calendarEventDotsHeightConstraint).isActive = true
     }
     
     func configureInit(stateOfDateAtCalendar: String) {
