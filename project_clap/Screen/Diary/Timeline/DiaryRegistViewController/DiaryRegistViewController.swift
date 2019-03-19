@@ -83,7 +83,8 @@ class DiaryRegistViewController: UIViewController {
     
     private lazy var pageControl: UIPageControl = {
         let control = UIPageControl()
-        control.backgroundColor = .gray
+        control.pageIndicatorTintColor = .gray
+        control.currentPageIndicatorTintColor = AppResources.ColorResources.shallowBlueColor
         control.currentPage = DiaryRegistResouces.View.currentPageNum
         control.translatesAutoresizingMaskIntoConstraints = false
         return control

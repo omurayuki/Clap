@@ -7,6 +7,7 @@
 "clap" = "Clap";
 "log_in" = "ログイン";
 "sign_up" = "新規登録";
+"top" = "Top";
 
 /* for selectVC */
 "select_usage_type" = "利用者タイプを選んでください";

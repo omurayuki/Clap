@@ -15,7 +15,6 @@
 		C937FD5D222287B900F9624E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C937FD5B222287B900F9624E /* LaunchScreen.storyboard */; };
 		C937FD69222288C700F9624E /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD68222288C700F9624E /* TopViewController.swift */; };
 		C937FD6B22228A7200F9624E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C937FD6A22228A7200F9624E /* GoogleService-Info.plist */; };
-		C937FD6F222292B700F9624E /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD6E222292B600F9624E /* R.generated.swift */; };
 		C937FD722222D7F300F9624E /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD712222D7F200F9624E /* UIColor+Extension.swift */; };
 		C937FD772222DF2600F9624E /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD762222DF2600F9624E /* SelectViewController.swift */; };
 		C937FD7A2222E1B400F9624E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD792222E1B400F9624E /* LoginViewController.swift */; };
@@ -57,8 +56,28 @@
 		C970579C222E8BF3007F8B1C /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C970579B222E8BF3007F8B1C /* TimelineViewController.swift */; };
 		C970579F222E8C76007F8B1C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C970579E222E8C76007F8B1C /* TabBarController.swift */; };
 		C97057A1222E9B0F007F8B1C /* TabBarResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97057A0222E9B0F007F8B1C /* TabBarResources.swift */; };
+		C98778FD22410A8B005AAEA5 /* TopRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98778FC22410A8B005AAEA5 /* TopRouting.swift */; };
+		C987790022410E44005AAEA5 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98778FF22410E44005AAEA5 /* Routing.swift */; };
+		C98779022241117C005AAEA5 /* SelectRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98779012241117C005AAEA5 /* SelectRouting.swift */; };
+		C987790422411317005AAEA5 /* TeamInfoRegistRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C987790322411317005AAEA5 /* TeamInfoRegistRouting.swift */; };
+		C987790622411477005AAEA5 /* RepresentMemberRegisterRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C987790522411477005AAEA5 /* RepresentMemberRegisterRouting.swift */; };
+		C9877908224117CB005AAEA5 /* LoginUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9877907224117CB005AAEA5 /* LoginUI.swift */; };
+		C987790A22411B23005AAEA5 /* LoginRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C987790922411B23005AAEA5 /* LoginRouting.swift */; };
+		C987790C22412021005AAEA5 /* TeamIdWriteUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C987790B22412021005AAEA5 /* TeamIdWriteUI.swift */; };
+		C9877910224123C2005AAEA5 /* ConfirmationTeamIdUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C987790F224123C2005AAEA5 /* ConfirmationTeamIdUI.swift */; };
+		C98779122241256D005AAEA5 /* ConfirmationTeamIdRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98779112241256D005AAEA5 /* ConfirmationTeamIdRouting.swift */; };
+		C987791422412991005AAEA5 /* MemberInfoRegistUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C987791322412990005AAEA5 /* MemberInfoRegistUI.swift */; };
+		C987791622412D02005AAEA5 /* MemberInfoRegistRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C987791522412D02005AAEA5 /* MemberInfoRegistRouting.swift */; };
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
+		C9C6FE7D2240A2B6001FE7A5 /* TopUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE7C2240A2B6001FE7A5 /* TopUI.swift */; };
+		C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE7E2240A2EE001FE7A5 /* UI.swift */; };
+		C9C6FE812240A59E001FE7A5 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE802240A59D001FE7A5 /* R.generated.swift */; };
+		C9C6FE832240A8B4001FE7A5 /* SelectUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE822240A8B4001FE7A5 /* SelectUI.swift */; };
+		C9C6FE852240ADB4001FE7A5 /* TeamInfoRegistUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE842240ADB4001FE7A5 /* TeamInfoRegistUI.swift */; };
+		C9C6FE872240B5D5001FE7A5 /* TeamInfoRegistEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE862240B5D5001FE7A5 /* TeamInfoRegistEnum.swift */; };
+		C9C6FE8C2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE8B2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift */; };
+		C9C6FE902240B7C7001FE7A5 /* RepresentMemberRegisterUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE8F2240B7C7001FE7A5 /* RepresentMemberRegisterUI.swift */; };
 		C9CC6192223F45980093D37F /* TimeLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC6191223F45970093D37F /* TimeLineCell.swift */; };
 		C9CC6194223F5BDB0093D37F /* TimeLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC6193223F5BDB0093D37F /* TimeLineViewModel.swift */; };
 		C9CC6196223F62A50093D37F /* TimeLineResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC6195223F62A50093D37F /* TimeLineResources.swift */; };
@@ -92,7 +111,6 @@
 		C937FD5E222287B900F9624E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C937FD68222288C700F9624E /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		C937FD6A22228A7200F9624E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		C937FD6E222292B600F9624E /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		C937FD712222D7F200F9624E /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		C937FD762222DF2600F9624E /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
 		C937FD792222E1B400F9624E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -134,8 +152,28 @@
 		C970579B222E8BF3007F8B1C /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		C970579E222E8C76007F8B1C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C97057A0222E9B0F007F8B1C /* TabBarResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarResources.swift; sourceTree = "<group>"; };
+		C98778FC22410A8B005AAEA5 /* TopRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRouting.swift; sourceTree = "<group>"; };
+		C98778FF22410E44005AAEA5 /* Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
+		C98779012241117C005AAEA5 /* SelectRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRouting.swift; sourceTree = "<group>"; };
+		C987790322411317005AAEA5 /* TeamInfoRegistRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistRouting.swift; sourceTree = "<group>"; };
+		C987790522411477005AAEA5 /* RepresentMemberRegisterRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterRouting.swift; sourceTree = "<group>"; };
+		C9877907224117CB005AAEA5 /* LoginUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUI.swift; sourceTree = "<group>"; };
+		C987790922411B23005AAEA5 /* LoginRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouting.swift; sourceTree = "<group>"; };
+		C987790B22412021005AAEA5 /* TeamIdWriteUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamIdWriteUI.swift; sourceTree = "<group>"; };
+		C987790F224123C2005AAEA5 /* ConfirmationTeamIdUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationTeamIdUI.swift; sourceTree = "<group>"; };
+		C98779112241256D005AAEA5 /* ConfirmationTeamIdRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationTeamIdRouting.swift; sourceTree = "<group>"; };
+		C987791322412990005AAEA5 /* MemberInfoRegistUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoRegistUI.swift; sourceTree = "<group>"; };
+		C987791522412D02005AAEA5 /* MemberInfoRegistRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberInfoRegistRouting.swift; sourceTree = "<group>"; };
 		C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterViewController.swift; sourceTree = "<group>"; };
 		C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewModel.swift; sourceTree = "<group>"; };
+		C9C6FE7C2240A2B6001FE7A5 /* TopUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUI.swift; sourceTree = "<group>"; };
+		C9C6FE7E2240A2EE001FE7A5 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		C9C6FE802240A59D001FE7A5 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		C9C6FE822240A8B4001FE7A5 /* SelectUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUI.swift; sourceTree = "<group>"; };
+		C9C6FE842240ADB4001FE7A5 /* TeamInfoRegistUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistUI.swift; sourceTree = "<group>"; };
+		C9C6FE862240B5D5001FE7A5 /* TeamInfoRegistEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistEnum.swift; sourceTree = "<group>"; };
+		C9C6FE8B2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterEnum.swift; sourceTree = "<group>"; };
+		C9C6FE8F2240B7C7001FE7A5 /* RepresentMemberRegisterUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterUI.swift; sourceTree = "<group>"; };
 		C9CA312A22265595003E600C /* RxBlocking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxBlocking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CA312C22265595003E600C /* RxTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CC6191223F45970093D37F /* TimeLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCell.swift; sourceTree = "<group>"; };
@@ -215,10 +253,10 @@
 			isa = PBXGroup;
 			children = (
 				C937FD52222287B800F9624E /* AppDelegate.swift */,
-				C937FD6E222292B600F9624E /* R.generated.swift */,
+				C9C6FE802240A59D001FE7A5 /* R.generated.swift */,
 				C908D2942223AB3D000344B0 /* Locarizable.strings */,
-				C908D2962223AECE000344B0 /* Common */,
-				C937FD702222D7DC00F9624E /* Extension */,
+				C9C6FE7A2240A1DE001FE7A5 /* Utility */,
+				C9C6FE7B2240A242001FE7A5 /* Domain */,
 				C937FD662222889600F9624E /* Screen */,
 				C937FD59222287B900F9624E /* Assets.xcassets */,
 				C937FD5B222287B900F9624E /* LaunchScreen.storyboard */,
@@ -231,6 +269,8 @@
 		C937FD662222889600F9624E /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				C98778FE22410E38005AAEA5 /* Routing */,
+				C9C6FE8D2240B729001FE7A5 /* UI */,
 				C937FD67222288AB00F9624E /* Top */,
 				C937FD752222DF0E00F9624E /* Signup */,
 				C937FD782222E18600F9624E /* Login */,
@@ -247,6 +287,8 @@
 			isa = PBXGroup;
 			children = (
 				C937FD68222288C700F9624E /* TopViewController.swift */,
+				C9C6FE7C2240A2B6001FE7A5 /* TopUI.swift */,
+				C98778FC22410A8B005AAEA5 /* TopRouting.swift */,
 				C959BF79222D4C8E00207986 /* TopResources.swift */,
 			);
 			path = Top;
@@ -277,6 +319,8 @@
 			isa = PBXGroup;
 			children = (
 				C937FD792222E1B400F9624E /* LoginViewController.swift */,
+				C9877907224117CB005AAEA5 /* LoginUI.swift */,
+				C987790922411B23005AAEA5 /* LoginRouting.swift */,
 				C959BF6B222D4AE500207986 /* LoginResources.swift */,
 				C937FD7D2222E22B00F9624E /* LoginViewModel.swift */,
 				C959BF69222D3A3700207986 /* LoginValidation.swift */,
@@ -288,6 +332,8 @@
 			isa = PBXGroup;
 			children = (
 				C937FD762222DF2600F9624E /* SelectViewController.swift */,
+				C9C6FE822240A8B4001FE7A5 /* SelectUI.swift */,
+				C98779012241117C005AAEA5 /* SelectRouting.swift */,
 				C959BF77222D4C6A00207986 /* SelectResources.swift */,
 			);
 			path = SelectPage;
@@ -316,6 +362,8 @@
 			isa = PBXGroup;
 			children = (
 				C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */,
+				C9C6FE8F2240B7C7001FE7A5 /* RepresentMemberRegisterUI.swift */,
+				C987790522411477005AAEA5 /* RepresentMemberRegisterRouting.swift */,
 				C959BF75222D4C2E00207986 /* RepresentMemberRegisterResources.swift */,
 				C959BF5422290ADA00207986 /* RepresentMemberRegisterViewModel.swift */,
 				C959BF562229100500207986 /* RepresentMemberRegisterValidation.swift */,
@@ -327,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				C937FD8422237E5A00F9624E /* TeamIdWriteViewController.swift */,
+				C987790B22412021005AAEA5 /* TeamIdWriteUI.swift */,
 				C959BF6D222D4B3500207986 /* TeamIdWriteResources.swift */,
 				C959BF61222CED8700207986 /* TeamIdWriteViewModel.swift */,
 				C959BF63222CEDD700207986 /* TeamIdWriteValidation.swift */,
@@ -338,6 +387,8 @@
 			isa = PBXGroup;
 			children = (
 				C959BF58222CC05400207986 /* ConfirmationTeamIdViewController.swift */,
+				C987790F224123C2005AAEA5 /* ConfirmationTeamIdUI.swift */,
+				C98779112241256D005AAEA5 /* ConfirmationTeamIdRouting.swift */,
 				C959BF6F222D4B7400207986 /* ConfirmationTeamIdResources.swift */,
 			);
 			path = SecondScreen;
@@ -347,6 +398,8 @@
 			isa = PBXGroup;
 			children = (
 				C959BF5C222CC9E800207986 /* MemberInfoRegistViewController.swift */,
+				C987791322412990005AAEA5 /* MemberInfoRegistUI.swift */,
+				C987791522412D02005AAEA5 /* MemberInfoRegistRouting.swift */,
 				C959BF71222D4BA700207986 /* MemberInfoRegisterResources.swift */,
 				C959BF65222D124300207986 /* MemberInfoRegisterViewModel.swift */,
 				C959BF67222D125B00207986 /* MemberInfoRegisterValidation.swift */,
@@ -454,15 +507,75 @@
 			path = MainTab;
 			sourceTree = "<group>";
 		};
+		C98778FE22410E38005AAEA5 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				C98778FF22410E44005AAEA5 /* Routing.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
 		C9A5C24D2224243A00BF1EBC /* FirstScreen */ = {
 			isa = PBXGroup;
 			children = (
 				C937FD8222237E0000F9624E /* TeamInfoRegistViewController.swift */,
+				C9C6FE842240ADB4001FE7A5 /* TeamInfoRegistUI.swift */,
+				C987790322411317005AAEA5 /* TeamInfoRegistRouting.swift */,
 				C959BF73222D4BEE00207986 /* TeamInfoRegisterResources.swift */,
 				C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */,
 				C959BF512227EA7F00207986 /* TeamInfoRegistValidation.swift */,
 			);
 			path = FirstScreen;
+			sourceTree = "<group>";
+		};
+		C9C6FE7A2240A1DE001FE7A5 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				C9C6FE882240B5D8001FE7A5 /* Enumration */,
+				C908D2962223AECE000344B0 /* Common */,
+				C937FD702222D7DC00F9624E /* Extension */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		C9C6FE7B2240A242001FE7A5 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		C9C6FE882240B5D8001FE7A5 /* Enumration */ = {
+			isa = PBXGroup;
+			children = (
+				C9C6FE892240B5F5001FE7A5 /* TeamInfoRegistEnum */,
+				C9C6FE8A2240B6DC001FE7A5 /* RepresentMemberRegister */,
+			);
+			path = Enumration;
+			sourceTree = "<group>";
+		};
+		C9C6FE892240B5F5001FE7A5 /* TeamInfoRegistEnum */ = {
+			isa = PBXGroup;
+			children = (
+				C9C6FE862240B5D5001FE7A5 /* TeamInfoRegistEnum.swift */,
+			);
+			path = TeamInfoRegistEnum;
+			sourceTree = "<group>";
+		};
+		C9C6FE8A2240B6DC001FE7A5 /* RepresentMemberRegister */ = {
+			isa = PBXGroup;
+			children = (
+				C9C6FE8B2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift */,
+			);
+			path = RepresentMemberRegister;
+			sourceTree = "<group>";
+		};
+		C9C6FE8D2240B729001FE7A5 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				C9C6FE7E2240A2EE001FE7A5 /* UI.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		C9CC6190223F457E0093D37F /* Cell */ = {
@@ -680,14 +793,21 @@
 				C9F086D72233C24600F25E7A /* CalendarLogic.swift in Sources */,
 				C959BF76222D4C2E00207986 /* RepresentMemberRegisterResources.swift in Sources */,
 				C959BF5B222CC45E00207986 /* UILabel+Extension.swift in Sources */,
+				C9C6FE832240A8B4001FE7A5 /* SelectUI.swift in Sources */,
+				C987790A22411B23005AAEA5 /* LoginRouting.swift in Sources */,
+				C98779122241256D005AAEA5 /* ConfirmationTeamIdRouting.swift in Sources */,
 				C937FD7A2222E1B400F9624E /* LoginViewController.swift in Sources */,
 				C9F086D92233C91000F25E7A /* DisplayCalendarResources.swift in Sources */,
+				C98779022241117C005AAEA5 /* SelectRouting.swift in Sources */,
+				C9877910224123C2005AAEA5 /* ConfirmationTeamIdUI.swift in Sources */,
 				C937FD8522237E5A00F9624E /* TeamIdWriteViewController.swift in Sources */,
 				C95EBC54222F5DD200D24181 /* DisplayCalendarCell.swift in Sources */,
+				C987790022410E44005AAEA5 /* Routing.swift in Sources */,
 				C937FD8322237E0000F9624E /* TeamInfoRegistViewController.swift in Sources */,
 				C970579F222E8C76007F8B1C /* TabBarController.swift in Sources */,
 				C959BF72222D4BA700207986 /* MemberInfoRegisterResources.swift in Sources */,
 				C9F086DD2233E92100F25E7A /* MypageResources.swift in Sources */,
+				C98778FD22410A8B005AAEA5 /* TopRouting.swift in Sources */,
 				C9557CC82236868F00D6F7A6 /* RegistCalendarResources.swift in Sources */,
 				C937FD69222288C700F9624E /* TopViewController.swift in Sources */,
 				C9F086D52232F8CC00F25E7A /* UIView+Extension.swift in Sources */,
@@ -702,11 +822,14 @@
 				C9CC6199223F7B8D0093D37F /* DiaryRegistViewController.swift in Sources */,
 				C9705798222E8B6F007F8B1C /* MypageViewController.swift in Sources */,
 				C937FD772222DF2600F9624E /* SelectViewController.swift in Sources */,
+				C9C6FE7D2240A2B6001FE7A5 /* TopUI.swift in Sources */,
 				C959BF5D222CC9E800207986 /* MemberInfoRegistViewController.swift in Sources */,
+				C987790622411477005AAEA5 /* RepresentMemberRegisterRouting.swift in Sources */,
 				C959BF74222D4BEE00207986 /* TeamInfoRegisterResources.swift in Sources */,
-				C937FD6F222292B700F9624E /* R.generated.swift in Sources */,
+				C9C6FE902240B7C7001FE7A5 /* RepresentMemberRegisterUI.swift in Sources */,
 				C959BF7A222D4C8E00207986 /* TopResources.swift in Sources */,
 				C937FD722222D7F300F9624E /* UIColor+Extension.swift in Sources */,
+				C987790422411317005AAEA5 /* TeamInfoRegistRouting.swift in Sources */,
 				C959BF6E222D4B3500207986 /* TeamIdWriteResources.swift in Sources */,
 				C9CC6194223F5BDB0093D37F /* TimeLineViewModel.swift in Sources */,
 				C959BF5522290ADA00207986 /* RepresentMemberRegisterViewModel.swift in Sources */,
@@ -725,21 +848,30 @@
 				C9557CCC223689D500D6F7A6 /* RegistCalendarValidation.swift in Sources */,
 				C970579C222E8BF3007F8B1C /* TimelineViewController.swift in Sources */,
 				C9557CCA223689C300D6F7A6 /* RegistCalendarViewModel.swift in Sources */,
+				C9C6FE8C2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift in Sources */,
+				C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */,
 				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
+				C987790C22412021005AAEA5 /* TeamIdWriteUI.swift in Sources */,
 				C959BF6C222D4AE500207986 /* LoginResources.swift in Sources */,
 				C9F086E622346ACC00F25E7A /* DisplayEventCell.swift in Sources */,
 				C9CC6192223F45980093D37F /* TimeLineCell.swift in Sources */,
 				C9DBEE0F223E613800979664 /* DateFormatter+Extension.swift in Sources */,
+				C9C6FE852240ADB4001FE7A5 /* TeamInfoRegistUI.swift in Sources */,
+				C987791422412991005AAEA5 /* MemberInfoRegistUI.swift in Sources */,
 				C908D2982223AEE3000344B0 /* AppResources.swift in Sources */,
+				C9C6FE872240B5D5001FE7A5 /* TeamInfoRegistEnum.swift in Sources */,
 				C9CC6196223F62A50093D37F /* TimeLineResources.swift in Sources */,
 				C9705790222E8A43007F8B1C /* DisplayCalendarViewController.swift in Sources */,
 				C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */,
+				C9C6FE812240A59E001FE7A5 /* R.generated.swift in Sources */,
+				C987791622412D02005AAEA5 /* MemberInfoRegistRouting.swift in Sources */,
 				C9F086E22233F6A200F25E7A /* MypageEditViewModel.swift in Sources */,
 				C959BF68222D125B00207986 /* MemberInfoRegisterValidation.swift in Sources */,
 				C959BF62222CED8700207986 /* TeamIdWriteViewModel.swift in Sources */,
 				C9F086DB2233D5EA00F25E7A /* CustomStackView.swift in Sources */,
 				C97057A1222E9B0F007F8B1C /* TabBarResources.swift in Sources */,
 				C959BF572229100500207986 /* RepresentMemberRegisterValidation.swift in Sources */,
+				C9877908224117CB005AAEA5 /* LoginUI.swift in Sources */,
 				C9CC619C223F963B0093D37F /* DiaryView.swift in Sources */,
 				C9F086E02233ECD800F25E7A /* MypageEditViewController.swift in Sources */,
 			);

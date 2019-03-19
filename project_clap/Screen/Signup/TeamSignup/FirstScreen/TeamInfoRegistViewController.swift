@@ -1,171 +1,77 @@
 import Foundation
-import UIKit
 import RxSwift
 import RxCocoa
 
 class  TeamInfoRegistViewController: UIViewController {
     
-    private enum PickerType {
-        case grade
-        case sports
-    }
-    
     private var viewModel: TeamInfoRegistViewModel?
     private let disposeBag = DisposeBag()
+    private let gradeDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
+    private let sportsKindDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
     
-    private lazy var noticeTeamInfoRegistTitle: UILabel = {
-        let label = UILabel()
-        label.text = R.string.locarizable.regist_team_info()
-        label.textColor = AppResources.ColorResources.subShallowBlueColor
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    private lazy var ui: TeamInfoRegistUI = {
+        let ui = TeamInfoRegistUIImpl()
+        ui.viewController = self
+        ui.teamIdField.delegate = self
+        return ui
     }()
     
-    private lazy var teamIdField: CustomTextField = {
-        let field = CustomTextField()
-        field.placeholder = R.string.locarizable.team_id()
-        field.clearButtonMode = .always
-        field.delegate = self
-        field.translatesAutoresizingMaskIntoConstraints = false
-        return field
-    }()
-    
-    private lazy var gradeField: CustomTextField = {
-        let field = CustomTextField()
-        field.placeholder = R.string.locarizable.select()
-        field.tintColor = .clear
-        field.translatesAutoresizingMaskIntoConstraints = false
-        return field
-    }()
-    
-    private lazy var sportsKindField: CustomTextField = {
-        let field = CustomTextField()
-        field.placeholder = R.string.locarizable.select()
-        field.tintColor = .clear
-        field.translatesAutoresizingMaskIntoConstraints = false
-        return field
-    }()
-    
-    private lazy var nextBtn: UIButton = {
-        let button = UIButton()
-        button.setTitle(R.string.locarizable.next(), for: .normal)
-        button.backgroundColor = AppResources.ColorResources.normalBlueColor
-        button.layer.cornerRadius = TeamInfoRegisterResources.View.nextBtnCornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private lazy var gradeToolBar: UIToolbar = {
-        let toolbarFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: TeamInfoRegisterResources.View.toolBarHeight)
-        let accessoryToolbar = UIToolbar(frame: toolbarFrame)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tappedGradeBtn(sender:)))
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        accessoryToolbar.items = [flexibleSpace, doneButton]
-        accessoryToolbar.barTintColor = .white
-        return accessoryToolbar
-    }()
-    
-    private lazy var sportsKindToolBar: UIToolbar = {
-        let toolbarFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: TeamInfoRegisterResources.View.toolBarHeight)
-        let accessoryToolbar = UIToolbar(frame: toolbarFrame)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(tappedSportsKindBtn(sender:)))
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        accessoryToolbar.items = [flexibleSpace, doneButton]
-        accessoryToolbar.barTintColor = .white
-        return accessoryToolbar
+    private lazy var routing: TeamInfoRegistRouting = {
+        let routing = TeamInfoRegistRoutingImpl()
+        routing.viewController = self
+        return routing
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = TeamInfoRegistViewModel(teamIdField: teamIdField.rx.text.orEmpty.asDriver(), gradeField: gradeField.rx.text.orEmpty.asDriver(), sportsKindField: sportsKindField.rx.text.orEmpty.asDriver())
-        setupToolBar(gradeField, type: .grade, toolBar: gradeToolBar, content: viewModel?.outputs.gradeArr ?? [R.string.locarizable.empty()])
-        setupToolBar(sportsKindField, type: .sports, toolBar: sportsKindToolBar, content: viewModel?.outputs.sportsKindArr ?? [R.string.locarizable.empty()])
-        setupUI()
+        ui.setup(storeName: R.string.locarizable.team_info_title())
+        viewModel = TeamInfoRegistViewModel(teamIdField: ui.teamIdField.rx.text.orEmpty.asDriver(), gradeField: ui.gradeField.rx.text.orEmpty.asDriver(), sportsKindField: ui.sportsKindField.rx.text.orEmpty.asDriver())
         setupViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ui.gradeToolBar.items = [gradeDoneButton]
+        ui.sportsKindToolBar.items = [sportsKindDoneButton]
+        ui.setupToolBar(ui.gradeField, type: .grade, toolBar: ui.gradeToolBar, content: viewModel?.outputs.gradeArr ?? [R.string.locarizable.empty()], vc: self)
+        ui.setupToolBar(ui.sportsKindField, type: .sports, toolBar: ui.sportsKindToolBar, content: viewModel?.outputs.sportsKindArr ?? [R.string.locarizable.empty()], vc: self)
     }
 }
 
 extension TeamInfoRegistViewController {
-    private func setupUI() {
-        view.backgroundColor = .white
-        navigationItem.title = R.string.locarizable.team_info_title()
-        view.addSubview(noticeTeamInfoRegistTitle)
-        noticeTeamInfoRegistTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        noticeTeamInfoRegistTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.size.width / 2.5).isActive = true
-        view.addSubview(teamIdField)
-        teamIdField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        teamIdField.topAnchor.constraint(equalTo: noticeTeamInfoRegistTitle.bottomAnchor, constant: view.bounds.size.width / 4).isActive = true
-        teamIdField.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
-        view.addSubview(gradeField)
-        gradeField.topAnchor.constraint(equalTo: teamIdField.bottomAnchor, constant: TeamInfoRegisterResources.Constraint.gradeFieldTopConstraint).isActive = true
-        gradeField.leftAnchor.constraint(equalTo: teamIdField.leftAnchor).isActive = true
-        teamIdField.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
-        view.addSubview(sportsKindField)
-        sportsKindField.topAnchor.constraint(equalTo: gradeField.bottomAnchor, constant: TeamInfoRegisterResources.Constraint.sportsKindFieldTopConstraint).isActive = true
-        sportsKindField.leftAnchor.constraint(equalTo: teamIdField.leftAnchor).isActive = true
-        teamIdField.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
-        view.addSubview(nextBtn)
-        nextBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        nextBtn.topAnchor.constraint(equalTo: sportsKindField.bottomAnchor, constant: view.bounds.size.width / 2).isActive = true
-        nextBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
-    }
     
     private func setupViewModel() {
-        viewModel?.outputs.gradeArr
-        
         viewModel?.outputs.isNextBtnEnable.asObservable()
             .subscribe(onNext: { [weak self] isValid in
                 print(isValid)
-                self?.nextBtn.isHidden = !isValid
-            })
-            .disposed(by: disposeBag)
+                self?.ui.nextBtn.isHidden = !isValid
+            }).disposed(by: disposeBag)
 
-        nextBtn.rx.tap.asObservable()
+        ui.nextBtn.rx.tap.asObservable()
             .throttle(1, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                self?.nextBtn.bounce(completion: {
-                    guard let navi = self?.navigationController else { return }
-                    navi.pushViewController(RepresentMemberRegisterViewController(), animated: true)
+                self?.ui.nextBtn.bounce(completion: {
+                    self?.routing.RepresentMemberRegister()
                 })
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    private func getPickerView(type: PickerType) -> UIPickerView {
-        var pickerView = UIPickerView()
-        switch type {
-        case .grade: pickerView = GradePickerView()
-        case .sports: pickerView = SportsKindPickerView()
-        }
-        pickerView.dataSource = self
-        pickerView.delegate = self
-        pickerView.backgroundColor = .white
-        return pickerView
-    }
-    
-    private func setupToolBar(_ textField: UITextField, type: PickerType, toolBar: UIToolbar, content: Array<String>) {
-        textField.inputView = getPickerView(type: type)
-        textField.inputAccessoryView = toolBar
-        textField.text = content[0]
-    }
-    
-    @objc
-    func tappedGradeBtn(sender: UIBarButtonItem) {
-        if gradeField.isFirstResponder {
-            gradeField.resignFirstResponder()
-        }
-    }
-    
-    @objc
-    func tappedSportsKindBtn(sender: UIBarButtonItem) {
-        if sportsKindField.isFirstResponder {
-            sportsKindField.resignFirstResponder()
-        }
+            }).disposed(by: disposeBag)
+        
+        gradeDoneButton.rx.tap
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .bind { [weak self] _ in
+                if let _ = self?.ui.gradeField.isFirstResponder {
+                    self?.ui.gradeField.resignFirstResponder()
+                }
+            }.disposed(by: disposeBag)
+        
+        sportsKindDoneButton.rx.tap
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .bind { [weak self] _ in
+                if let _ = self?.ui.sportsKindField.isFirstResponder {
+                    self?.ui.sportsKindField.resignFirstResponder()
+                }
+            }.disposed(by: disposeBag)
     }
 }
-
-fileprivate class GradePickerView: UIPickerView {}
-fileprivate class SportsKindPickerView: UIPickerView {}
 
 extension TeamInfoRegistViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -192,8 +98,8 @@ extension TeamInfoRegistViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
-        case is GradePickerView: gradeField.text = viewModel?.outputs.gradeArr[row]
-        case is SportsKindPickerView: sportsKindField.text = viewModel?.outputs.sportsKindArr[row]
+        case is GradePickerView: ui.gradeField.text = viewModel?.outputs.gradeArr[row]
+        case is SportsKindPickerView: ui.sportsKindField.text = viewModel?.outputs.sportsKindArr[row]
         default: break
         }
     }

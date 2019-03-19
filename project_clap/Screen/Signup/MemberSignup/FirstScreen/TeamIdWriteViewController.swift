@@ -8,84 +8,38 @@ class TeamIdWriteViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var viewModel: TeamIdWriteViewModel?
     
-    private lazy var noticeTeamTitle: UILabel = {
-        let label = UILabel()
-        label.text = R.string.locarizable.please_write_team_id()
-        label.textColor = AppResources.ColorResources.subShallowBlueColor
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    private lazy var ui: TeamIdWriteUI = {
+        let ui = TeamIdWriteUIImpl()
+        ui.viewController = self
+        return ui
     }()
     
-    private lazy var noticeTeamText: UILabel = {
-        let label = UILabel()
-        label.text = R.string.locarizable.please_confirm()
-        label.textColor = AppResources.ColorResources.subShallowBlueColor
-        label.numberOfLines = TeamIdWriteResources.View.titleNumberOfLines
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
     
-    private lazy var teamIdField: CustomTextField = {
-        let field = CustomTextField()
-        field.placeholder = R.string.locarizable.team_id()
-        field.translatesAutoresizingMaskIntoConstraints = false
-        return field
-    }()
-    
-    private lazy var confirmTeamIdBtn: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(R.string.locarizable.confirm(), for: .normal)
-        button.backgroundColor = AppResources.ColorResources.normalBlueColor
-        button.layer.cornerRadius = TeamIdWriteResources.View.confirmBtnCornerRadius
-        return button
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = TeamIdWriteViewModel(teamIdField: teamIdField.rx.text.orEmpty.asObservable())
-        setupUI()
+        ui.setup(vc: self)
+        viewModel = TeamIdWriteViewModel(teamIdField: ui.teamIdField.rx.text.orEmpty.asObservable())
         setupViewModel()
     }
 }
 
 extension TeamIdWriteViewController {
-    private func setupUI() {
-        view.backgroundColor = .white
-        navigationItem.title = R.string.locarizable.team_id()
-        view.addSubview(noticeTeamTitle)
-        noticeTeamTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        noticeTeamTitle.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.size.width / 2.5).isActive = true
-        view.addSubview(noticeTeamText)
-        noticeTeamText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        noticeTeamText.topAnchor.constraint(equalTo: noticeTeamTitle.bottomAnchor, constant: view.bounds.size.width / 4).isActive = true
-        noticeTeamText.widthAnchor.constraint(equalToConstant: view.bounds.size.width - TeamIdWriteResources.Constraint.noticeTeamTextWidthConstraint).isActive = true
-        view.addSubview(teamIdField)
-        teamIdField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        teamIdField.topAnchor.constraint(equalTo: noticeTeamText.bottomAnchor, constant: view.bounds.size.width / 4.5).isActive = true
-        teamIdField.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
-        view.addSubview(confirmTeamIdBtn)
-        confirmTeamIdBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        confirmTeamIdBtn.topAnchor.constraint(equalTo: teamIdField.bottomAnchor, constant: view.bounds.size.width / 3.5).isActive = true
-        confirmTeamIdBtn.widthAnchor.constraint(equalToConstant: view.bounds.size.width / 1.5).isActive = true
-    }
     
     private func setupViewModel() {
         viewModel?.outputs.isConfirmBtnEnable
             .subscribe(onNext: { [weak self] isValid in
-                self?.confirmTeamIdBtn.isHidden = !isValid
-            })
-            .disposed(by: disposeBag)
+                self?.ui.confirmTeamIdBtn.isHidden = !isValid
+            }).disposed(by: disposeBag)
         
-        confirmTeamIdBtn.rx.tap.asObservable()
-            .throttle(1, scheduler: MainScheduler.instance)
+        ui.confirmTeamIdBtn.rx.tap.asObservable()
+            .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
-                self?.confirmTeamIdBtn.bounce(completion: {
+                self?.ui.confirmTeamIdBtn.bounce(completion: {
                     guard let navi = self?.navigationController else { return }
-                    guard let teamId = self?.teamIdField.text else { return }
+                    guard let teamId = self?.ui.teamIdField.text else { return }
                     navi.pushViewController(ConfirmationTeamIdViewController(teamId: teamId), animated: true)
                 })
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
 }

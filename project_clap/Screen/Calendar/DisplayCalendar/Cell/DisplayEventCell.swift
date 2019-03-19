@@ -59,7 +59,7 @@ extension DisplayEventCell {
         startTime.leftAnchor.constraint(equalTo: wrapView.leftAnchor, constant: DisplayCalendarResources.Constraint.startTimeLeftConstraint).isActive = true
         wrapView.addSubview(endTime)
         endTime.leftAnchor.constraint(equalTo: wrapView.leftAnchor, constant: DisplayCalendarResources.Constraint.endTimeLeftConstraint).isActive = true
-        endTime.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: DisplayCalendarResources.Constraint.endTimeLeftConstraint).isActive = true
+        endTime.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: DisplayCalendarResources.Constraint.endTimeBottomConstraint).isActive = true
         wrapView.addSubview(displayEvent)
         displayEvent.centerYAnchor.constraint(equalTo: wrapView.centerYAnchor).isActive = true
         displayEvent.leftAnchor.constraint(equalTo: startTime.rightAnchor, constant: DisplayCalendarResources.Constraint.displayEventLeftConstraint).isActive = true

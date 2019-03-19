@@ -35,16 +35,5 @@ struct LoginViewModel: LoginViewModelType, LoginViewModelInput, LoginViewModelOu
         isLoginBtnEnable = Driver.combineLatest([isEmpty], { empty in
             empty[0].isValid
         }).asDriver()
-        
-        let loginParamater = Driver.combineLatest(emailText, passText) { (email: $0, pass: $1) }
-        
-        loginTapped.asObservable()
-            .observeOn(MainScheduler.instance)
-            .withLatestFrom(loginParamater)
-            .subscribe(onNext: { params in
-                print(params)
-            }).disposed(by: disposeBag)
-        
-        
     }
 }
