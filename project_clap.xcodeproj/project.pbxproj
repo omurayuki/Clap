@@ -493,7 +493,7 @@
 				C9CC6193223F5BDB0093D37F /* TimeLineViewModel.swift */,
 				C9CC6195223F62A50093D37F /* TimeLineResources.swift */,
 				C9CC6190223F457E0093D37F /* Cell */,
-				C9CC6197223F7B6C0093D37F /* DiaryRegistViewController */,
+				C9CC6197223F7B6C0093D37F /* DiaryRegist */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -586,14 +586,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		C9CC6197223F7B6C0093D37F /* DiaryRegistViewController */ = {
+		C9CC6197223F7B6C0093D37F /* DiaryRegist */ = {
 			isa = PBXGroup;
 			children = (
 				C9CC6198223F7B8D0093D37F /* DiaryRegistViewController.swift */,
 				C9CC619F223FBDAE0093D37F /* DiaryRegistResources.swift */,
 				C9CC619A223F96200093D37F /* View */,
 			);
-			path = DiaryRegistViewController;
+			path = DiaryRegist;
 			sourceTree = "<group>";
 		};
 		C9CC619A223F96200093D37F /* View */ = {
