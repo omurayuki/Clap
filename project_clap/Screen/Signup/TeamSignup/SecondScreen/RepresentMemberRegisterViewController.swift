@@ -6,16 +6,10 @@ class RepresentMemberRegisterViewController: UIViewController {
     
     private var viewModel: RepresentMemberRegisterViewModel?
     private let disposeBag = DisposeBag()
-    let positionDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
-    let yearDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
     
     private lazy var ui: RepresentMemberRegisterUI = {
         let ui = RepresentMemberRegisterUIImpl()
         ui.viewController = self
-        ui.nameField.delegate = self
-        ui.mailField.delegate = self
-        ui.passField.delegate = self
-        ui.rePassField.delegate = self
         return ui
     }()
     
@@ -31,14 +25,8 @@ class RepresentMemberRegisterViewController: UIViewController {
         ui.setupInsideStack(vc: self)
         viewModel = RepresentMemberRegisterViewModel(nameField: ui.nameField.rx.text.orEmpty.asObservable(), mailField: ui.mailField.rx.text.orEmpty.asObservable(), passField: ui.passField.rx.text.orEmpty.asObservable(), rePassField: ui.rePassField.rx.text.orEmpty.asObservable(), positionField: ui.representMemberPosition.rx.text.orEmpty.asObservable(), yearField: ui.representMemberYear.rx.text.orEmpty.asObservable(), registBtn: ui.teamRegistBtn.rx.tap.asObservable())
         setupViewModel()
-        ui.positionToolBar.items = [positionDoneButton]
-        ui.yearToolBar.items = [yearDoneButton]
         ui.setupToolBar(ui.representMemberPosition, type: .position, toolBar: ui.positionToolBar, content: viewModel?.outputs.positionArr ?? [R.string.locarizable.empty()], vc: self)
         ui.setupToolBar(ui.representMemberYear, type: .year, toolBar: ui.yearToolBar, content: viewModel?.outputs.yearArr ?? [R.string.locarizable.empty()], vc: self)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
 }
 
@@ -51,14 +39,14 @@ extension RepresentMemberRegisterViewController {
             }).disposed(by: disposeBag)
         
         ui.teamRegistBtn.rx.tap.asObservable()
-            .throttle(1, scheduler: MainScheduler.instance)
+            .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.ui.teamRegistBtn.bounce(completion: {
                     self?.routing.showTabBar()
                 })
             }).disposed(by: disposeBag)
         
-        positionDoneButton.rx.tap
+        ui.positionDoneBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
             .bind { [weak self] _ in
                 if let _ = self?.ui.representMemberPosition.isFirstResponder {
@@ -66,12 +54,45 @@ extension RepresentMemberRegisterViewController {
                 }
             }.disposed(by: disposeBag)
         
-        yearDoneButton.rx.tap
+        ui.yearDoneBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
             .bind { [weak self] _ in
                 if let _ = self?.ui.representMemberYear.isFirstResponder {
                     self?.ui.representMemberYear.resignFirstResponder()
                 }
+            }.disposed(by: disposeBag)
+        
+        ui.nameField.rx.controlEvent(.editingDidEndOnExit)
+            .bind { [weak self] _ in
+                if let _ = self?.ui.nameField.isFirstResponder {
+                    self?.ui.mailField.becomeFirstResponder()
+                }
+            }.disposed(by: disposeBag)
+        
+        ui.mailField.rx.controlEvent(.editingDidEndOnExit)
+            .bind { [weak self] _ in
+                if let _ = self?.ui.mailField.isFirstResponder {
+                    self?.ui.passField.becomeFirstResponder()
+                }
+            }.disposed(by: disposeBag)
+        
+        ui.passField.rx.controlEvent(.editingDidEndOnExit)
+            .bind { [weak self] _ in
+                if let _ = self?.ui.passField.isFirstResponder {
+                    self?.ui.rePassField.becomeFirstResponder()
+                }
+            }.disposed(by: disposeBag)
+        
+        ui.rePassField.rx.controlEvent(.editingDidEndOnExit)
+            .bind { [weak self] _ in
+                if let _ = self?.ui.rePassField.isFirstResponder {
+                    self?.ui.rePassField.resignFirstResponder()
+                }
+            }.disposed(by: disposeBag)
+        
+        ui.viewTapGesture.rx.event
+            .bind { [weak self] _ in
+                self?.view.endEditing(true)
             }.disposed(by: disposeBag)
     }
 }
@@ -105,16 +126,5 @@ extension RepresentMemberRegisterViewController: UIPickerViewDelegate {
         case is YearPickerView: ui.representMemberYear.text = viewModel?.outputs.yearArr[row]
         default: break
         }
-    }
-}
-
-extension RepresentMemberRegisterViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-        return true
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
     }
 }

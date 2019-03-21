@@ -3,12 +3,15 @@ import UIKit
 
 protocol TeamInfoRegistUI: UI {
     var noticeTeamInfoRegistTitle: UILabel { get }
+    var viewTapGesture: UITapGestureRecognizer { get }
     var teamIdField: CustomTextField { get }
     var gradeField: CustomTextField { get }
     var sportsKindField: CustomTextField { get }
     var nextBtn: UIButton { get }
     var gradeToolBar: UIToolbar { get }
+    var gradeDoneBtn: UIBarButtonItem { get }
     var sportsKindToolBar: UIToolbar { get }
+    var sportsKindDoneBtn: UIBarButtonItem { get }
     
     func setup(storeName: String)
     func getPickerView(type: TeamInfoRegistPickerType, vc: UIViewController) -> UIPickerView
@@ -25,6 +28,11 @@ final class TeamInfoRegistUIImpl: TeamInfoRegistUI {
         label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private(set) var viewTapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        return gesture
     }()
     
     private(set) var teamIdField: CustomTextField = {
@@ -69,6 +77,11 @@ final class TeamInfoRegistUIImpl: TeamInfoRegistUI {
         return accessoryToolbar
     }()
     
+    private(set) var gradeDoneBtn: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+        return button
+    }()
+    
     private(set) var sportsKindToolBar: UIToolbar = {
         let toolbarFrame = CGRect(x: 0, y: 0, width: UIViewController().view.frame.width, height: TeamInfoRegisterResources.View.toolBarHeight)
         let accessoryToolbar = UIToolbar(frame: toolbarFrame)
@@ -76,6 +89,11 @@ final class TeamInfoRegistUIImpl: TeamInfoRegistUI {
         accessoryToolbar.items = [flexibleSpace]
         accessoryToolbar.barTintColor = .white
         return accessoryToolbar
+    }()
+    
+    private(set) var sportsKindDoneBtn: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+        return button
     }()
 }
 
@@ -103,6 +121,10 @@ extension TeamInfoRegistUIImpl {
         nextBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
         nextBtn.topAnchor.constraint(equalTo: sportsKindField.bottomAnchor, constant: vc.view.bounds.size.width / 2).isActive = true
         nextBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
+        
+        vc.view.addGestureRecognizer(viewTapGesture)
+        gradeToolBar.items = [gradeDoneBtn]
+        sportsKindToolBar.items = [sportsKindDoneBtn]
     }
     
     func getPickerView(type: TeamInfoRegistPickerType, vc: UIViewController) -> UIPickerView {

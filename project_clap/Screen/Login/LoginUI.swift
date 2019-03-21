@@ -5,6 +5,7 @@ protocol LoginUI: UI {
     var noticeUserLoginTitle: UILabel { get }
     var mailField: CustomTextField { get }
     var passField: CustomTextField { get }
+    var viewTapGesture: UITapGestureRecognizer { get }
     var logintBtn: UIButton { get }
     var reissuePass: UIButton { get }
     
@@ -38,6 +39,11 @@ final class LoginUIImpl: LoginUI {
         field.isSecureTextEntry = true
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
+    }()
+    
+    private(set) var viewTapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        return gesture
     }()
     
     var logintBtn: UIButton = {
@@ -82,5 +88,7 @@ extension LoginUIImpl {
         reissuePass.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
         reissuePass.topAnchor.constraint(equalTo: logintBtn.bottomAnchor, constant: vc.view.bounds.size.width / 9.5).isActive = true
         reissuePass.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
+        
+        vc.view.addGestureRecognizer(viewTapGesture)
     }
 }

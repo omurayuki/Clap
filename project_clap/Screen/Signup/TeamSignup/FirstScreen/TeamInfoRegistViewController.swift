@@ -6,13 +6,10 @@ class  TeamInfoRegistViewController: UIViewController {
     
     private var viewModel: TeamInfoRegistViewModel?
     private let disposeBag = DisposeBag()
-    private let gradeDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
-    private let sportsKindDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
     
     private lazy var ui: TeamInfoRegistUI = {
         let ui = TeamInfoRegistUIImpl()
         ui.viewController = self
-        ui.teamIdField.delegate = self
         return ui
     }()
     
@@ -31,8 +28,6 @@ class  TeamInfoRegistViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ui.gradeToolBar.items = [gradeDoneButton]
-        ui.sportsKindToolBar.items = [sportsKindDoneButton]
         ui.setupToolBar(ui.gradeField, type: .grade, toolBar: ui.gradeToolBar, content: viewModel?.outputs.gradeArr ?? [R.string.locarizable.empty()], vc: self)
         ui.setupToolBar(ui.sportsKindField, type: .sports, toolBar: ui.sportsKindToolBar, content: viewModel?.outputs.sportsKindArr ?? [R.string.locarizable.empty()], vc: self)
     }
@@ -47,15 +42,15 @@ extension TeamInfoRegistViewController {
                 self?.ui.nextBtn.isHidden = !isValid
             }).disposed(by: disposeBag)
 
-        ui.nextBtn.rx.tap.asObservable()
-            .throttle(1, scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
+        ui.nextBtn.rx.tap
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .bind(onNext: { [weak self] _ in
                 self?.ui.nextBtn.bounce(completion: {
                     self?.routing.RepresentMemberRegister()
                 })
             }).disposed(by: disposeBag)
         
-        gradeDoneButton.rx.tap
+        ui.gradeDoneBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
             .bind { [weak self] _ in
                 if let _ = self?.ui.gradeField.isFirstResponder {
@@ -63,12 +58,22 @@ extension TeamInfoRegistViewController {
                 }
             }.disposed(by: disposeBag)
         
-        sportsKindDoneButton.rx.tap
+        ui.sportsKindDoneBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
             .bind { [weak self] _ in
                 if let _ = self?.ui.sportsKindField.isFirstResponder {
                     self?.ui.sportsKindField.resignFirstResponder()
                 }
+            }.disposed(by: disposeBag)
+        
+        ui.teamIdField.rx.controlEvent(.editingDidEndOnExit)
+            .bind { [weak self] _ in
+                self?.ui.teamIdField.resignFirstResponder()
+            }.disposed(by: disposeBag)
+        
+        ui.viewTapGesture.rx.event
+            .bind { [weak self] _ in
+                self?.view.endEditing(true)
             }.disposed(by: disposeBag)
     }
 }
@@ -102,16 +107,5 @@ extension TeamInfoRegistViewController: UIPickerViewDelegate {
         case is SportsKindPickerView: ui.sportsKindField.text = viewModel?.outputs.sportsKindArr[row]
         default: break
         }
-    }
-}
-
-extension TeamInfoRegistViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-        return true
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
     }
 }

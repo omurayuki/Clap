@@ -14,8 +14,6 @@ class TeamIdWriteViewController: UIViewController {
         return ui
     }()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(vc: self)

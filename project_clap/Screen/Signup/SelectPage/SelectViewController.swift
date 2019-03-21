@@ -28,17 +28,17 @@ class SelectViewController: UIViewController {
 extension SelectViewController {
     
     private func setupViewModel() {
-        ui.teamRegistBtn.rx.tap.asObservable()
-            .throttle(1, scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _  in
+        ui.teamRegistBtn.rx.tap
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .bind(onNext: { [weak self] _  in
                 self?.ui.teamRegistBtn.bounce(completion: {
                     self?.routing.showTeamInfoRegist()
                 })
             }).disposed(by: disposeBag)
         
-        ui.memberRegistBtn.rx.tap.asObservable()
-            .throttle(1, scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _  in
+        ui.memberRegistBtn.rx.tap
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .bind(onNext: { [weak self] _  in
                 self?.ui.memberRegistBtn.bounce(completion: {
                     self?.routing.showTeamIdWrite()
                 })

@@ -12,9 +12,9 @@ protocol TeamIdWriteUI: UI {
 
 final class TeamIdWriteUIImpl: TeamIdWriteUI {
     
-    var viewController: UIViewController?
+    weak var viewController: UIViewController?
     
-    var noticeTeamTitle: UILabel = {
+    private(set) var noticeTeamTitle: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.please_write_team_id()
         label.textColor = AppResources.ColorResources.subShallowBlueColor
@@ -22,7 +22,7 @@ final class TeamIdWriteUIImpl: TeamIdWriteUI {
         return label
     }()
     
-    var noticeTeamText: UILabel = {
+    private(set) var noticeTeamText: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.please_confirm()
         label.textColor = AppResources.ColorResources.subShallowBlueColor
@@ -31,14 +31,14 @@ final class TeamIdWriteUIImpl: TeamIdWriteUI {
         return label
     }()
     
-    var teamIdField: CustomTextField = {
+    private(set) var teamIdField: CustomTextField = {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.team_id()
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
-    var confirmTeamIdBtn: UIButton = {
+    private(set) var confirmTeamIdBtn: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(R.string.locarizable.confirm(), for: .normal)

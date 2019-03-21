@@ -20,7 +20,7 @@ class TopViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ui.setup()
+        ui.setup() 
         setupViewModel()
     }
 }

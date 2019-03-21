@@ -12,9 +12,9 @@ protocol ConfirmationTeamIdUI: UI {
 
 final class ConfirmationTeamIdUIImpl: ConfirmationTeamIdUI {
     
-    var viewController: UIViewController?
+    weak var viewController: UIViewController?
     
-    var confirmationTeamTitle: UILabel = {
+    private(set) var confirmationTeamTitle: UILabel = {
         let label = UILabel()
         label.text = "あなたのチームはfarでお間違い無いですか？"
         label.textColor = AppResources.ColorResources.subShallowBlueColor
@@ -23,7 +23,7 @@ final class ConfirmationTeamIdUIImpl: ConfirmationTeamIdUI {
         return label
     }()
     
-    var confirmationTeamId: UILabel = {
+    private(set) var confirmationTeamId: UILabel = {
         let label = UILabel()
         label.font = AppResources.FontResources.confirmationTeamIdFont
         label.textColor = AppResources.ColorResources.subShallowBlueColor
@@ -32,7 +32,7 @@ final class ConfirmationTeamIdUIImpl: ConfirmationTeamIdUI {
         return label
     }()
     
-    var confirmBtn: UIButton = {
+    private(set) var confirmBtn: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.yes(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
@@ -41,7 +41,7 @@ final class ConfirmationTeamIdUIImpl: ConfirmationTeamIdUI {
         return button
     }()
     
-    var cancelBtn: UIButton = {
+    private(set) var cancelBtn: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.cancel(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor

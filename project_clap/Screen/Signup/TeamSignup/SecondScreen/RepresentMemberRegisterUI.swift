@@ -8,12 +8,15 @@ protocol RepresentMemberRegisterUI: UI {
     var mailField: CustomTextField { get }
     var passField: CustomTextField { get }
     var rePassField: CustomTextField { get }
+    var viewTapGesture: UITapGestureRecognizer { get }
     var representMemberPosition: CustomTextField { get }
     var representMemberYear: CustomTextField { get }
     var stack: UIStackView { get }
     var teamRegistBtn: UIButton { get }
     var positionToolBar: UIToolbar { get }
+    var positionDoneBtn: UIBarButtonItem { get }
     var yearToolBar: UIToolbar { get }
+    var yearDoneBtn: UIBarButtonItem { get }
     
     func setup(storeName: String)
     func setupInsideStack(vc: UIViewController)
@@ -74,6 +77,11 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         return field
     }()
     
+    private(set) var viewTapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        return gesture
+    }()
+    
     private(set) var representMemberPosition: CustomTextField = {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.select()
@@ -115,6 +123,11 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         return accessoryToolbar
     }()
     
+    private(set) var positionDoneBtn: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+        return button
+    }()
+    
     private(set) var yearToolBar: UIToolbar = {
         let toolbarFrame = CGRect(x: 0, y: 0, width: UIViewController().view.frame.width, height: RepresentMemberRegisterResources.View.toolBarHeight)
         let accessoryToolbar = UIToolbar(frame: toolbarFrame)
@@ -122,6 +135,11 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         accessoryToolbar.items = [flexibleSpace]
         accessoryToolbar.barTintColor = .white
         return accessoryToolbar
+    }()
+    
+    private(set) var yearDoneBtn: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+        return button
     }()
 }
 
@@ -163,6 +181,10 @@ extension RepresentMemberRegisterUIImpl {
         teamRegistBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
         teamRegistBtn.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: vc.view.bounds.size.width / 3).isActive = true
         teamRegistBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
+        
+        vc.view.addGestureRecognizer(viewTapGesture)
+        positionToolBar.items = [positionDoneBtn]
+        yearToolBar.items = [yearDoneBtn]
     }
     
     func setupInsideStack(vc: UIViewController) {

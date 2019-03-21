@@ -86,6 +86,16 @@
 		C9CC619E223F98AF0093D37F /* DiaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9CC619D223F98AF0093D37F /* DiaryView.xib */; };
 		C9CC61A0223FBDAF0093D37F /* DiaryRegistResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC619F223FBDAE0093D37F /* DiaryRegistResources.swift */; };
 		C9DBEE0F223E613800979664 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DBEE0E223E613800979664 /* DateFormatter+Extension.swift */; };
+		C9EA285C22426267003F40DD /* TimeLineUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA285B22426267003F40DD /* TimeLineUI.swift */; };
+		C9EA285E22426509003F40DD /* TimeLineRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA285D22426509003F40DD /* TimeLineRouting.swift */; };
+		C9EA2860224266E0003F40DD /* DiaryRegistUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA285F224266E0003F40DD /* DiaryRegistUI.swift */; };
+		C9EA286222433B48003F40DD /* RemindPassUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA286122433B48003F40DD /* RemindPassUI.swift */; };
+		C9EA28642243455F003F40DD /* MypageUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA28632243455F003F40DD /* MypageUI.swift */; };
+		C9EA286622434978003F40DD /* MypageRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA286522434978003F40DD /* MypageRouting.swift */; };
+		C9EA286822434ADF003F40DD /* MypageEditUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA286722434ADF003F40DD /* MypageEditUI.swift */; };
+		C9EA286A22434DB5003F40DD /* MypageEditRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA286922434DB5003F40DD /* MypageEditRouting.swift */; };
+		C9EA286C22434F00003F40DD /* MypageEditResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA286B22434F00003F40DD /* MypageEditResources.swift */; };
+		C9EA286E22435109003F40DD /* DisplayCalendarUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA286D22435109003F40DD /* DisplayCalendarUI.swift */; };
 		C9F086D52232F8CC00F25E7A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */; };
 		C9F086D72233C24600F25E7A /* CalendarLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D62233C24600F25E7A /* CalendarLogic.swift */; };
 		C9F086D92233C91000F25E7A /* DisplayCalendarResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086D82233C91000F25E7A /* DisplayCalendarResources.swift */; };
@@ -184,6 +194,16 @@
 		C9CC619D223F98AF0093D37F /* DiaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaryView.xib; sourceTree = "<group>"; };
 		C9CC619F223FBDAE0093D37F /* DiaryRegistResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRegistResources.swift; sourceTree = "<group>"; };
 		C9DBEE0E223E613800979664 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+		C9EA285B22426267003F40DD /* TimeLineUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUI.swift; sourceTree = "<group>"; };
+		C9EA285D22426509003F40DD /* TimeLineRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineRouting.swift; sourceTree = "<group>"; };
+		C9EA285F224266E0003F40DD /* DiaryRegistUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRegistUI.swift; sourceTree = "<group>"; };
+		C9EA286122433B48003F40DD /* RemindPassUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassUI.swift; sourceTree = "<group>"; };
+		C9EA28632243455F003F40DD /* MypageUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUI.swift; sourceTree = "<group>"; };
+		C9EA286522434978003F40DD /* MypageRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageRouting.swift; sourceTree = "<group>"; };
+		C9EA286722434ADF003F40DD /* MypageEditUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageEditUI.swift; sourceTree = "<group>"; };
+		C9EA286922434DB5003F40DD /* MypageEditRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageEditRouting.swift; sourceTree = "<group>"; };
+		C9EA286B22434F00003F40DD /* MypageEditResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageEditResources.swift; sourceTree = "<group>"; };
+		C9EA286D22435109003F40DD /* DisplayCalendarUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCalendarUI.swift; sourceTree = "<group>"; };
 		C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		C9F086D62233C24600F25E7A /* CalendarLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarLogic.swift; sourceTree = "<group>"; };
 		C9F086D82233C91000F25E7A /* DisplayCalendarResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCalendarResources.swift; sourceTree = "<group>"; };
@@ -420,6 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				C9705782222E6680007F8B1C /* RemindPassViewController.swift */,
+				C9EA286122433B48003F40DD /* RemindPassUI.swift */,
 				C9705784222E6BF5007F8B1C /* RemindPassResources.swift */,
 				C9705786222E6E1F007F8B1C /* RemindPassViewModel.swift */,
 				C9705788222E6F21007F8B1C /* RemindPassValidation.swift */,
@@ -449,6 +470,8 @@
 			isa = PBXGroup;
 			children = (
 				C9705797222E8B6F007F8B1C /* MypageViewController.swift */,
+				C9EA28632243455F003F40DD /* MypageUI.swift */,
+				C9EA286522434978003F40DD /* MypageRouting.swift */,
 				C9F086DC2233E92100F25E7A /* MypageResources.swift */,
 				C9F086DE2233ECB000F25E7A /* Edit */,
 			);
@@ -459,6 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				C970578F222E8A43007F8B1C /* DisplayCalendarViewController.swift */,
+				C9EA286D22435109003F40DD /* DisplayCalendarUI.swift */,
 				C9F086E72235DC6900F25E7A /* CalendarEvent.swift */,
 				C9F086D62233C24600F25E7A /* CalendarLogic.swift */,
 				C9F086D82233C91000F25E7A /* DisplayCalendarResources.swift */,
@@ -490,6 +514,8 @@
 			isa = PBXGroup;
 			children = (
 				C970579B222E8BF3007F8B1C /* TimelineViewController.swift */,
+				C9EA285B22426267003F40DD /* TimeLineUI.swift */,
+				C9EA285D22426509003F40DD /* TimeLineRouting.swift */,
 				C9CC6193223F5BDB0093D37F /* TimeLineViewModel.swift */,
 				C9CC6195223F62A50093D37F /* TimeLineResources.swift */,
 				C9CC6190223F457E0093D37F /* Cell */,
@@ -590,6 +616,7 @@
 			isa = PBXGroup;
 			children = (
 				C9CC6198223F7B8D0093D37F /* DiaryRegistViewController.swift */,
+				C9EA285F224266E0003F40DD /* DiaryRegistUI.swift */,
 				C9CC619F223FBDAE0093D37F /* DiaryRegistResources.swift */,
 				C9CC619A223F96200093D37F /* View */,
 			);
@@ -609,6 +636,9 @@
 			isa = PBXGroup;
 			children = (
 				C9F086DF2233ECD800F25E7A /* MypageEditViewController.swift */,
+				C9EA286722434ADF003F40DD /* MypageEditUI.swift */,
+				C9EA286922434DB5003F40DD /* MypageEditRouting.swift */,
+				C9EA286B22434F00003F40DD /* MypageEditResources.swift */,
 				C9F086E12233F6A200F25E7A /* MypageEditViewModel.swift */,
 				C9F086E32233F6AF00F25E7A /* MypageEditValidation.swift */,
 			);
@@ -798,14 +828,17 @@
 				C98779122241256D005AAEA5 /* ConfirmationTeamIdRouting.swift in Sources */,
 				C937FD7A2222E1B400F9624E /* LoginViewController.swift in Sources */,
 				C9F086D92233C91000F25E7A /* DisplayCalendarResources.swift in Sources */,
+				C9EA285C22426267003F40DD /* TimeLineUI.swift in Sources */,
 				C98779022241117C005AAEA5 /* SelectRouting.swift in Sources */,
 				C9877910224123C2005AAEA5 /* ConfirmationTeamIdUI.swift in Sources */,
+				C9EA286822434ADF003F40DD /* MypageEditUI.swift in Sources */,
 				C937FD8522237E5A00F9624E /* TeamIdWriteViewController.swift in Sources */,
 				C95EBC54222F5DD200D24181 /* DisplayCalendarCell.swift in Sources */,
 				C987790022410E44005AAEA5 /* Routing.swift in Sources */,
 				C937FD8322237E0000F9624E /* TeamInfoRegistViewController.swift in Sources */,
 				C970579F222E8C76007F8B1C /* TabBarController.swift in Sources */,
 				C959BF72222D4BA700207986 /* MemberInfoRegisterResources.swift in Sources */,
+				C9EA2860224266E0003F40DD /* DiaryRegistUI.swift in Sources */,
 				C9F086DD2233E92100F25E7A /* MypageResources.swift in Sources */,
 				C98778FD22410A8B005AAEA5 /* TopRouting.swift in Sources */,
 				C9557CC82236868F00D6F7A6 /* RegistCalendarResources.swift in Sources */,
@@ -827,7 +860,9 @@
 				C987790622411477005AAEA5 /* RepresentMemberRegisterRouting.swift in Sources */,
 				C959BF74222D4BEE00207986 /* TeamInfoRegisterResources.swift in Sources */,
 				C9C6FE902240B7C7001FE7A5 /* RepresentMemberRegisterUI.swift in Sources */,
+				C9EA286622434978003F40DD /* MypageRouting.swift in Sources */,
 				C959BF7A222D4C8E00207986 /* TopResources.swift in Sources */,
+				C9EA286E22435109003F40DD /* DisplayCalendarUI.swift in Sources */,
 				C937FD722222D7F300F9624E /* UIColor+Extension.swift in Sources */,
 				C987790422411317005AAEA5 /* TeamInfoRegistRouting.swift in Sources */,
 				C959BF6E222D4B3500207986 /* TeamIdWriteResources.swift in Sources */,
@@ -837,8 +872,12 @@
 				C9705789222E6F21007F8B1C /* RemindPassValidation.swift in Sources */,
 				C959BF70222D4B7400207986 /* ConfirmationTeamIdResources.swift in Sources */,
 				C959BF6A222D3A3700207986 /* LoginValidation.swift in Sources */,
+				C9EA286222433B48003F40DD /* RemindPassUI.swift in Sources */,
+				C9EA286C22434F00003F40DD /* MypageEditResources.swift in Sources */,
 				C9557CC62236457000D6F7A6 /* RegistCalendarViewController.swift in Sources */,
+				C9EA28642243455F003F40DD /* MypageUI.swift in Sources */,
 				C92704222232C2E300B15B45 /* CustomView.swift in Sources */,
+				C9EA286A22434DB5003F40DD /* MypageEditRouting.swift in Sources */,
 				C9705787222E6E1F007F8B1C /* RemindPassViewModel.swift in Sources */,
 				C9705783222E6680007F8B1C /* RemindPassViewController.swift in Sources */,
 				C959BF78222D4C6A00207986 /* SelectResources.swift in Sources */,
@@ -874,6 +913,7 @@
 				C9877908224117CB005AAEA5 /* LoginUI.swift in Sources */,
 				C9CC619C223F963B0093D37F /* DiaryView.swift in Sources */,
 				C9F086E02233ECD800F25E7A /* MypageEditViewController.swift in Sources */,
+				C9EA285E22426509003F40DD /* TimeLineRouting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

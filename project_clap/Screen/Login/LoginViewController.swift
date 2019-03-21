@@ -10,8 +10,6 @@ class LoginViewCountroller: UIViewController {
     
     private lazy var ui: LoginUI = {
         let ui = LoginUIImpl()
-        ui.mailField.delegate = self
-        ui.passField.delegate = self
         ui.viewController = self
         return ui
     }()
@@ -38,29 +36,37 @@ extension LoginViewCountroller {
                 self?.ui.logintBtn.isHidden = !isValid
             }).disposed(by: disposeBag)
         
-        ui.logintBtn.rx.tap.asObservable()
-            .subscribe(onNext: { [weak self] _ in
+        ui.logintBtn.rx.tap
+            .bind(onNext: { [weak self] _ in
                 self?.ui.logintBtn.bounce(completion: {
                     self?.routing.showTabBar()
                 })
             }).disposed(by: disposeBag)
         
-        ui.reissuePass.rx.tap.asObservable()
-            .subscribe(onNext: { [weak self] _ in
+        ui.reissuePass.rx.tap
+            .bind(onNext: { [weak self] _ in
                 self?.ui.reissuePass.bounce(completion: {
                     self?.routing.showRemindPass()
                 })
             }).disposed(by: disposeBag)
-    }
-}
-
-extension LoginViewCountroller: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-        return true
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
+        
+        ui.mailField.rx.controlEvent(.editingDidEndOnExit)
+            .bind { [weak self] _ in
+                if let _ = self?.ui.mailField.isFirstResponder {
+                    self?.ui.passField.resignFirstResponder()
+                }
+            }.disposed(by: disposeBag)
+        
+        ui.passField.rx.controlEvent(.editingDidEndOnExit)
+            .bind { [weak self] _ in
+                if let _ = self?.ui.passField.isFirstResponder {
+                    self?.ui.passField.resignFirstResponder()
+                }
+            }.disposed(by: disposeBag)
+        
+        ui.viewTapGesture.rx.event
+            .bind { [weak self] _ in
+                self?.view.endEditing(true)
+            }.disposed(by: disposeBag)
     }
 }

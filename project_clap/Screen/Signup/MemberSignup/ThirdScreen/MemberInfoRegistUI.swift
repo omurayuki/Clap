@@ -7,8 +7,10 @@ protocol MemberInfoRegistUI: UI {
     var mailField: CustomTextField { get }
     var passField: CustomTextField { get }
     var rePassField: CustomTextField { get }
+    var viewTapGesture: UITapGestureRecognizer { get }
     var memberPosition: CustomTextField { get }
     var positionToolBar: UIToolbar { get }
+    var doneBtn: UIBarButtonItem { get }
     var memberRegistBtn: UIButton { get }
     
     func setup(vc: UIViewController)
@@ -19,9 +21,9 @@ protocol MemberInfoRegistUI: UI {
 final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
     
     
-    var viewController: UIViewController?
+    weak var viewController: UIViewController?
     
-    var noticeUserRegistTitle: UILabel = {
+    private(set) var noticeUserRegistTitle: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.notice_user_regist()
         label.textColor = AppResources.ColorResources.subShallowBlueColor
@@ -29,45 +31,46 @@ final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
         return label
     }()
     
-    var nameField: CustomTextField = {
+    private(set) var nameField: CustomTextField = {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.name()
         field.clearButtonMode = .always
-//        field.delegate = self
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
-    var mailField: CustomTextField = {
+    private(set) var mailField: CustomTextField = {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.mail_address()
         field.clearButtonMode = .always
-//        field.delegate = self
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
-    var passField: CustomTextField = {
+    private(set) var passField: CustomTextField = {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.password()
         field.clearButtonMode = .always
         field.isSecureTextEntry = true
-//        field.delegate = self
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
-    var rePassField: CustomTextField = {
+    private(set) var rePassField: CustomTextField = {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.remain_password()
         field.clearButtonMode = .always
         field.isSecureTextEntry = true
-//        field.delegate = self
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
-    var memberPosition: CustomTextField = {
+    private(set) var viewTapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        return gesture
+    }()
+    
+    private(set) var memberPosition: CustomTextField = {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.select()
         field.tintColor = .clear
@@ -75,7 +78,7 @@ final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
         return field
     }()
     
-    var positionToolBar: UIToolbar = {
+    private(set) var positionToolBar: UIToolbar = {
         let toolbarFrame = CGRect(x: 0, y: 0, width: UIViewController().view.frame.width, height: MemberInfoRegisterResources.View.toolBarHeight)
         let accessoryToolbar = UIToolbar(frame: toolbarFrame)
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -84,7 +87,12 @@ final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
         return accessoryToolbar
     }()
     
-    var memberRegistBtn: UIButton = {
+    private(set) var doneBtn: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+        return button
+    }()
+    
+    private(set) var memberRegistBtn: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.regist(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
@@ -126,6 +134,9 @@ extension MemberInfoRegistUIImpl {
         memberRegistBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
         memberRegistBtn.topAnchor.constraint(equalTo: memberPosition.bottomAnchor, constant: vc.view.bounds.size.width / 3).isActive = true
         memberRegistBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 2).isActive = true
+        
+        vc.view.addGestureRecognizer(viewTapGesture)
+        positionToolBar.items = [doneBtn]
     }
     
     func getPickerView(vc: UIViewController) -> UIPickerView {
