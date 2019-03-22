@@ -55,28 +55,42 @@ extension TimeLineCell {
     private func setupUI() {
         contentView.backgroundColor = AppResources.ColorResources.appCommonClearColor
         contentView.addSubview(wrapView)
-        wrapView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: TimeLineResources.Constraint.wrapViewTopConstraint).isActive = true
-        wrapView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: TimeLineResources.Constraint.wrapViewBottomConstraint).isActive = true
-        wrapView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: TimeLineResources.Constraint.wrapViewLeftConstraint).isActive = true
-        wrapView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: TimeLineResources.Constraint.wrapViewRightConstraint).isActive = true
+        wrapView.anchor()
+            .top(to: contentView.topAnchor, constant: TimeLineResources.Constraint.wrapViewTopConstraint)
+            .bottom(to: contentView.bottomAnchor, constant: TimeLineResources.Constraint.wrapViewBottomConstraint)
+            .left(to: contentView.leftAnchor, constant: TimeLineResources.Constraint.wrapViewLeftConstraint)
+            .right(to: contentView.rightAnchor, constant: TimeLineResources.Constraint.wrapViewRightConstraint)
+            .activate()
         setupInsideWrapView()
     }
     
     private func setupInsideWrapView() {
         wrapView.addSubview(userImage)
-        userImage.centerYAnchor.constraint(equalTo: wrapView.centerYAnchor).isActive = true
-        userImage.leftAnchor.constraint(equalTo: wrapView.leftAnchor, constant: TimeLineResources.Constraint.userImageLeftConstraint).isActive = true
-        userImage.widthAnchor.constraint(equalToConstant: TimeLineResources.Constraint.userImageWidthConstraint).isActive = true
-        userImage.heightAnchor.constraint(equalToConstant: TimeLineResources.Constraint.userImageHeightConstraint).isActive = true
         wrapView.addSubview(diaryTitle)
-        diaryTitle.centerYAnchor.constraint(equalTo: wrapView.centerYAnchor).isActive = true
-        diaryTitle.leftAnchor.constraint(equalTo: userImage.rightAnchor, constant: TimeLineResources.Constraint.diaryTitleLeftConstraint).isActive = true
         wrapView.addSubview(userName)
-        userName.leftAnchor.constraint(equalTo: userImage.rightAnchor, constant: TimeLineResources.Constraint.userNameLeftConstraint).isActive = true
-        userName.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: TimeLineResources.Constraint.userNameBottomConstraint).isActive = true
         wrapView.addSubview(submitTime)
-        submitTime.rightAnchor.constraint(equalTo: wrapView.rightAnchor, constant: TimeLineResources.Constraint.submitTimeRightConstraint).isActive = true
-        submitTime.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: TimeLineResources.Constraint.submitTimeBottomConstraint).isActive = true
+        
+        userImage.anchor()
+            .centerYToSuperview()
+            .left(to: wrapView.leftAnchor, constant: TimeLineResources.Constraint.userImageLeftConstraint)
+            .width(constant: TimeLineResources.Constraint.userImageWidthConstraint)
+            .height(constant: TimeLineResources.Constraint.userImageHeightConstraint)
+            .activate()
+        
+        diaryTitle.anchor()
+            .centerYToSuperview()
+            .left(to: userImage.rightAnchor, constant: TimeLineResources.Constraint.diaryTitleLeftConstraint)
+            .activate()
+        
+        userName.anchor()
+            .left(to: userImage.rightAnchor, constant: TimeLineResources.Constraint.userNameLeftConstraint)
+            .bottom(to: wrapView.bottomAnchor, constant: TimeLineResources.Constraint.userNameBottomConstraint)
+            .activate()
+        
+        submitTime.anchor()
+            .right(to: wrapView.rightAnchor, constant: TimeLineResources.Constraint.submitTimeRightConstraint)
+            .bottom(to: wrapView.bottomAnchor, constant: TimeLineResources.Constraint.submitTimeBottomConstraint)
+            .activate()
     }
     
     func configureInit(image: UIImage, name: String, title: String, time: String) {

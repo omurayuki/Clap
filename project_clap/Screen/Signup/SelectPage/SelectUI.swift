@@ -42,6 +42,7 @@ final class SelectUIImpl: SelectUI {
     
     private(set) var btnStack: UIStackView = {
         let stack = UIStackView()
+        stack.distribution = .fillEqually
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -55,15 +56,27 @@ extension SelectUIImpl {
         btnStack.addArrangedSubview(teamRegistBtn)
         btnStack.addArrangedSubview(memberRegistBtn)
         vc.view.addSubview(selectionTeamOrMemberTitle)
-        selectionTeamOrMemberTitle.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        selectionTeamOrMemberTitle.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5).isActive = true
         vc.view.addSubview(btnStack)
-        btnStack.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        btnStack.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
-        teamRegistBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 3.5).isActive = true
-        teamRegistBtn.heightAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 3.5).isActive = true
-        memberRegistBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 3.5).isActive = true
-        memberRegistBtn.heightAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 3.5).isActive = true
+        selectionTeamOrMemberTitle.anchor()
+            .centerXToSuperview()
+            .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5)
+            .activate()
+        
+        btnStack.anchor()
+            .centerXToSuperview()
+            .centerYToSuperview()
+            .activate()
+        
+        teamRegistBtn.anchor()
+            .width(constant: vc.view.bounds.size.width / 3.5)
+            .height(constant: vc.view.bounds.size.width / 3.5)
+            .activate()
+        
+        memberRegistBtn.anchor()
+            .width(constant: vc.view.bounds.size.width / 3.5)
+            .height(constant: vc.view.bounds.size.width / 3.5)
+            .activate()
+        
         memberRegistBtn.leftAnchor.constraint(equalTo: teamRegistBtn.rightAnchor, constant: vc.view.bounds.size.width / 5.5).isActive = true
     }
 }

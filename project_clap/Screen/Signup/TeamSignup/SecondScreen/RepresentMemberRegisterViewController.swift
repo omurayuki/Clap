@@ -38,9 +38,9 @@ extension RepresentMemberRegisterViewController {
                 self?.ui.teamRegistBtn.isHidden = !isValid
             }).disposed(by: disposeBag)
         
-        ui.teamRegistBtn.rx.tap.asObservable()
+        ui.teamRegistBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
+            .bind(onNext: { [weak self] _ in
                 self?.ui.teamRegistBtn.bounce(completion: {
                     self?.routing.showTabBar()
                 })

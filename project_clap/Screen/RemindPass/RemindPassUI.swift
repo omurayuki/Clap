@@ -52,18 +52,25 @@ extension RemindPassUIImple {
         vc.view.backgroundColor = .white
         vc.navigationItem.title = R.string.locarizable.password_settings()
         vc.view.addSubview(remindTitle)
-        remindTitle.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        remindTitle.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5).isActive = true
-        remindTitle.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width - RemindPassResources.Constraint.remindTitleWidthConstraint).isActive = true
         vc.view.addSubview(emailField)
-        emailField.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        emailField.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
-        emailField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
         vc.view.addSubview(submitBtn)
-        submitBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        submitBtn.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: vc.view.bounds.size.width / 2.5).isActive = true
-        submitBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
-        
         vc.view.addGestureRecognizer(viewTapGesture)
+        remindTitle.anchor()
+            .centerXToSuperview()
+            .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5)
+            .width(constant: vc.view.bounds.size.width - RemindPassResources.Constraint.remindTitleWidthConstraint)
+            .activate()
+        
+        emailField.anchor()
+            .centerXToSuperview()
+            .centerYToSuperview()
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        submitBtn.anchor()
+            .centerXToSuperview()
+            .top(to: emailField.bottomAnchor, constant: vc.view.bounds.size.width / 2.5)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
     }
 }

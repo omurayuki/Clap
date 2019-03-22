@@ -12,6 +12,8 @@ protocol TimeLineUI: UI {
     func setup(vc: UIViewController)
     func getPickerView(vc: UIViewController) -> UIPickerView
     func setupToolBar(_ textField: UITextField, toolBar: UIToolbar, content: Array<String>, vc: UIViewController)
+    func configureCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
+    func configureHeaderView(tableView: UITableView, section: Int) -> UIView?
 }
 
 final class TimeLineUIImpl: TimeLineUI {
@@ -75,19 +77,23 @@ extension TimeLineUIImpl {
     func setup(vc: UIViewController) {
         vc.view.backgroundColor = .white
         vc.navigationItem.title = R.string.locarizable.diary_title()
-        vc.view.addSubview(diariesTable)
-        diariesTable.topAnchor.constraint(equalTo: vc.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        diariesTable.leftAnchor.constraint(equalTo: vc.view.leftAnchor).isActive = true
-        diariesTable.rightAnchor.constraint(equalTo: vc.view.rightAnchor).isActive = true
-        diariesTable.bottomAnchor.constraint(equalTo: vc.view.bottomAnchor).isActive = true
-        vc.view.addSubview(diaryBtn)
-        diaryBtn.bottomAnchor.constraint(equalTo: vc.view.safeAreaLayoutGuide.bottomAnchor, constant: TimeLineResources.Constraint.diaryBtnBottomConstraint).isActive = true
-        diaryBtn.rightAnchor.constraint(equalTo: vc.view.rightAnchor, constant: TimeLineResources.Constraint.diaryBtnRightConstrain).isActive = true
-        diaryBtn.widthAnchor.constraint(equalToConstant: TimeLineResources.Constraint.diaryBtnWidthConstraint).isActive = true
-        diaryBtn.heightAnchor.constraint(equalToConstant: TimeLineResources.Constraint.diaryBtnHeightConstraint).isActive = true
-        
         timeLineToolBar.items = [doneBtn]
         vc.view.addGestureRecognizer(viewTapGesture)
+        vc.view.addSubview(diariesTable)
+        vc.view.addSubview(diaryBtn)
+        diariesTable.anchor()
+            .top(to: vc.view.safeAreaLayoutGuide.topAnchor)
+            .left(to: vc.view.leftAnchor)
+            .right(to: vc.view.rightAnchor)
+            .bottom(to: vc.view.bottomAnchor)
+            .activate()
+        
+        diaryBtn.anchor()
+            .bottom(to: vc.view.safeAreaLayoutGuide.bottomAnchor, constant: TimeLineResources.Constraint.diaryBtnBottomConstraint)
+            .right(to: vc.view.rightAnchor, constant: TimeLineResources.Constraint.diaryBtnRightConstrain)
+            .width(constant: TimeLineResources.Constraint.diaryBtnWidthConstraint)
+            .height(constant: TimeLineResources.Constraint.diaryBtnHeightConstraint)
+            .activate()
     }
     
     func getPickerView(vc: UIViewController) -> UIPickerView {
@@ -102,5 +108,23 @@ extension TimeLineUIImpl {
         textField.inputView = getPickerView(vc: vc)
         textField.inputAccessoryView = toolBar
         textField.text = content[0]
+    }
+    
+    func configureCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TimeLineCell.self), for: indexPath) as? TimeLineCell else { return UITableViewCell() }
+        cell.configureInit(image: UIImage(), name: "omura", title: "heyheyheyhey", time: "10:00")
+        return cell
+    }
+    
+    func configureHeaderView(tableView: UITableView, section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: TimeLineResources.View.tableHeaderHeight))
+        headerView.backgroundColor = AppResources.ColorResources.appCommonClearColor
+        headerView.addSubview(timeLineField)
+        timeLineField.anchor()
+            .centerXToSuperview()
+            .centerYToSuperview()
+            .width(constant: TimeLineResources.Constraint.timeLineFieldWidthConstraint)
+            .activate()
+        return headerView
     }
 }

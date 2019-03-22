@@ -103,28 +103,40 @@ extension TeamInfoRegistUIImpl {
         vc.view.backgroundColor = .white
         vc.navigationItem.title = storeName
         vc.view.addSubview(noticeTeamInfoRegistTitle)
-        noticeTeamInfoRegistTitle.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        noticeTeamInfoRegistTitle.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5).isActive = true
         vc.view.addSubview(teamIdField)
-        teamIdField.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        teamIdField.topAnchor.constraint(equalTo: noticeTeamInfoRegistTitle.bottomAnchor, constant: vc.view.bounds.size.width / 4).isActive = true
-        teamIdField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
         vc.view.addSubview(gradeField)
-        gradeField.topAnchor.constraint(equalTo: teamIdField.bottomAnchor, constant: TeamInfoRegisterResources.Constraint.gradeFieldTopConstraint).isActive = true
-        gradeField.leftAnchor.constraint(equalTo: teamIdField.leftAnchor).isActive = true
-        teamIdField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
         vc.view.addSubview(sportsKindField)
-        sportsKindField.topAnchor.constraint(equalTo: gradeField.bottomAnchor, constant: TeamInfoRegisterResources.Constraint.sportsKindFieldTopConstraint).isActive = true
-        sportsKindField.leftAnchor.constraint(equalTo: teamIdField.leftAnchor).isActive = true
-        teamIdField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
         vc.view.addSubview(nextBtn)
-        nextBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        nextBtn.topAnchor.constraint(equalTo: sportsKindField.bottomAnchor, constant: vc.view.bounds.size.width / 2).isActive = true
-        nextBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
-        
         vc.view.addGestureRecognizer(viewTapGesture)
         gradeToolBar.items = [gradeDoneBtn]
         sportsKindToolBar.items = [sportsKindDoneBtn]
+        
+        noticeTeamInfoRegistTitle.anchor()
+            .centerXToSuperview()
+            .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5)
+            .activate()
+        
+        teamIdField.anchor()
+            .centerXToSuperview()
+            .top(to: noticeTeamInfoRegistTitle.bottomAnchor, constant: vc.view.bounds.size.width / 4)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        gradeField.anchor()
+            .top(to: teamIdField.bottomAnchor, constant: TeamInfoRegisterResources.Constraint.gradeFieldTopConstraint)
+            .left(to: teamIdField.leftAnchor)
+            .activate()
+        
+        sportsKindField.anchor()
+            .top(to: gradeField.bottomAnchor, constant: TeamInfoRegisterResources.Constraint.sportsKindFieldTopConstraint)
+            .left(to: teamIdField.leftAnchor)
+            .activate()
+        
+        nextBtn.anchor()
+            .centerXToSuperview()
+            .top(to: sportsKindField.bottomAnchor, constant: vc.view.bounds.size.width / 2)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
     }
     
     func getPickerView(type: TeamInfoRegistPickerType, vc: UIViewController) -> UIPickerView {

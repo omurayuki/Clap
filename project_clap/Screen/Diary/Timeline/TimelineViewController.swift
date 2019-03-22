@@ -34,9 +34,9 @@ class TimelineViewController: UIViewController {
 extension TimelineViewController {
     
     private func setupViewModel() {
-        ui.diaryBtn.rx.tap.asObservable()
-            .throttle(1, scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
+        ui.diaryBtn.rx.tap
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .bind(onNext: { [weak self] _ in
                 self?.ui.diaryBtn.bounce(completion: {
                     self?.routing.showDiaryRegist()
                 })
@@ -68,9 +68,7 @@ extension TimelineViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TimeLineCell.self), for: indexPath) as? TimeLineCell else { return UITableViewCell() }
-        cell.configureInit(image: UIImage(), name: "omura", title: "heyheyheyhey", time: "10:00")
-        return cell
+        return ui.configureCell(tableView: tableView, indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -78,13 +76,7 @@ extension TimelineViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: TimeLineResources.View.tableHeaderHeight))
-        headerView.backgroundColor = AppResources.ColorResources.appCommonClearColor
-        headerView.addSubview(ui.timeLineField)
-        ui.timeLineField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
-        ui.timeLineField.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
-        ui.timeLineField.widthAnchor.constraint(equalToConstant: TimeLineResources.Constraint.timeLineFieldWidthConstraint).isActive = true
-        return headerView
+        return ui.configureHeaderView(tableView: tableView, section: section)
     }
 }
 

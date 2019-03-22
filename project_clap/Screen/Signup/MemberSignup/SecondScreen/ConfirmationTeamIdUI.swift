@@ -57,18 +57,30 @@ extension ConfirmationTeamIdUIImpl {
         vc.view.backgroundColor = .white
         vc.navigationItem.title = storeName
         vc.view.addSubview(confirmationTeamTitle)
-        confirmationTeamTitle.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        confirmationTeamTitle.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5).isActive = true
         vc.view.addSubview(confirmationTeamId)
-        confirmationTeamId.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        confirmationTeamId.topAnchor.constraint(equalTo: confirmationTeamTitle.bottomAnchor, constant: vc.view.bounds.size.width / 2.5).isActive = true
         vc.view.addSubview(confirmBtn)
-        confirmBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        confirmBtn.topAnchor.constraint(equalTo: confirmationTeamId.bottomAnchor, constant: vc.view.bounds.size.width / 3.5).isActive = true
-        confirmBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
         vc.view.addSubview(cancelBtn)
-        cancelBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        cancelBtn.topAnchor.constraint(equalTo: confirmBtn.bottomAnchor, constant: vc.view.bounds.size.width / 9.5).isActive = true
-        cancelBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
+        
+        confirmationTeamTitle.anchor()
+            .centerXToSuperview()
+            .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5)
+            .activate()
+        
+        confirmationTeamId.anchor()
+            .centerXToSuperview()
+            .top(to: confirmationTeamTitle.bottomAnchor, constant: vc.view.bounds.size.width / 2.5)
+            .activate()
+        
+        confirmBtn.anchor()
+            .centerXToSuperview()
+            .top(to: confirmationTeamId.bottomAnchor, constant: vc.view.bounds.size.width / 3.5)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        cancelBtn.anchor()
+            .centerXToSuperview()
+            .top(to: confirmBtn.bottomAnchor, constant: vc.view.bounds.size.width / 9.5)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
     }
 }

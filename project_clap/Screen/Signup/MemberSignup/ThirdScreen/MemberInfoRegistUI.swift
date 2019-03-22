@@ -104,39 +104,58 @@ final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
 
 extension MemberInfoRegistUIImpl {
     func setup(vc: UIViewController) {
+        positionToolBar.items = [doneBtn]
         vc.view.backgroundColor = .white
         vc.navigationItem.title = R.string.locarizable.regist_user()
-        vc.view.addSubview(noticeUserRegistTitle)
-        noticeUserRegistTitle.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        noticeUserRegistTitle.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5).isActive = true
-        vc.view.addSubview(nameField)
-        nameField.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        nameField.topAnchor.constraint(equalTo: noticeUserRegistTitle.bottomAnchor, constant: MemberInfoRegisterResources.Constraint.nameFieldtopConstraint).isActive = true
-        nameField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
-        vc.view.addSubview(mailField)
-        mailField.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        mailField.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: MemberInfoRegisterResources.Constraint.mailFieldTopConstraint).isActive = true
-        mailField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
-        vc.view.addSubview(passField)
-        passField.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        passField.topAnchor.constraint(equalTo: mailField.bottomAnchor, constant: MemberInfoRegisterResources.Constraint.passFieldTopConstraint).isActive = true
-        passField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
-        vc.view.addSubview(rePassField)
-        rePassField.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        rePassField.topAnchor.constraint(equalTo: passField.bottomAnchor, constant: MemberInfoRegisterResources.Constraint.rePassFieldTopConstraint).isActive = true
-        rePassField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
-        vc.view.addSubview(memberPosition)
-        memberPosition.topAnchor.constraint(equalTo: rePassField.bottomAnchor, constant: MemberInfoRegisterResources.Constraint.memberPositionTopConstraint).isActive = true
-        memberPosition.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 3).isActive = true
-        memberPosition.heightAnchor.constraint(equalToConstant: MemberInfoRegisterResources.Constraint.MemberPositionHeightConstraint).isActive = true
-        memberPosition.leftAnchor.constraint(equalTo: rePassField.leftAnchor).isActive = true
-        vc.view.addSubview(memberRegistBtn)
-        memberRegistBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        memberRegistBtn.topAnchor.constraint(equalTo: memberPosition.bottomAnchor, constant: vc.view.bounds.size.width / 3).isActive = true
-        memberRegistBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 2).isActive = true
-        
         vc.view.addGestureRecognizer(viewTapGesture)
-        positionToolBar.items = [doneBtn]
+        vc.view.addSubview(noticeUserRegistTitle)
+        vc.view.addSubview(nameField)
+        vc.view.addSubview(mailField)
+        vc.view.addSubview(passField)
+        vc.view.addSubview(rePassField)
+        vc.view.addSubview(memberPosition)
+        vc.view.addSubview(memberRegistBtn)
+        
+        noticeUserRegistTitle.anchor()
+            .centerXToSuperview()
+            .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5)
+            .activate()
+        
+        nameField.anchor()
+            .centerXToSuperview()
+            .top(to: noticeUserRegistTitle.bottomAnchor, constant: MemberInfoRegisterResources.Constraint.nameFieldtopConstraint)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        mailField.anchor()
+            .centerXToSuperview()
+            .top(to: nameField.bottomAnchor, constant: MemberInfoRegisterResources.Constraint.passFieldTopConstraint)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        passField.anchor()
+            .centerXToSuperview()
+            .top(to: mailField.bottomAnchor, constant: MemberInfoRegisterResources.Constraint.passFieldTopConstraint)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        rePassField.anchor()
+            .centerXToSuperview()
+            .top(to: passField.bottomAnchor, constant: MemberInfoRegisterResources.Constraint.rePassFieldTopConstraint)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        memberPosition.anchor()
+            .top(to: rePassField.bottomAnchor, constant: MemberInfoRegisterResources.Constraint.memberPositionTopConstraint)
+            .height(constant: MemberInfoRegisterResources.Constraint.MemberPositionHeightConstraint)
+            .left(to: rePassField.leftAnchor)
+            .activate()
+        
+        memberRegistBtn.anchor()
+            .centerXToSuperview()
+            .top(to: memberPosition.bottomAnchor, constant: vc.view.bounds.size.width / 3)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
     }
     
     func getPickerView(vc: UIViewController) -> UIPickerView {

@@ -70,24 +70,38 @@ extension LoginUIImpl {
         vc.view.backgroundColor = .white
         vc.navigationItem.title = R.string.locarizable.log_in()
         vc.view.addSubview(noticeUserLoginTitle)
-        noticeUserLoginTitle.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        noticeUserLoginTitle.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5).isActive = true
         vc.view.addSubview(mailField)
-        mailField.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        mailField.topAnchor.constraint(equalTo: noticeUserLoginTitle.bottomAnchor, constant: LoginResources.Constraint.mailFieldTopConstraint).isActive = true
-        mailField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
         vc.view.addSubview(passField)
-        passField.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        passField.topAnchor.constraint(equalTo: mailField.bottomAnchor, constant: LoginResources.Constraint.passFieldTopConstraint).isActive = true
-        passField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
         vc.view.addSubview(logintBtn)
-        logintBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        logintBtn.topAnchor.constraint(equalTo: passField.bottomAnchor, constant: vc.view.bounds.size.width / 2).isActive = true
-        logintBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
         vc.view.addSubview(reissuePass)
-        reissuePass.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        reissuePass.topAnchor.constraint(equalTo: logintBtn.bottomAnchor, constant: vc.view.bounds.size.width / 9.5).isActive = true
-        reissuePass.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
+        noticeUserLoginTitle.anchor()
+            .centerXToSuperview()
+            .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5)
+            .activate()
+        
+        mailField.anchor()
+            .centerXToSuperview()
+            .top(to: noticeUserLoginTitle.bottomAnchor, constant: LoginResources.Constraint.mailFieldTopConstraint)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        passField.anchor()
+            .centerXToSuperview()
+            .top(to: mailField.bottomAnchor, constant: LoginResources.Constraint.passFieldTopConstraint)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        logintBtn.anchor()
+            .centerXToSuperview()
+            .top(to: passField.bottomAnchor, constant: vc.view.bounds.size.width / 2)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        reissuePass.anchor()
+            .centerXToSuperview()
+            .top(to: logintBtn.bottomAnchor, constant: vc.view.bounds.size.width / 9.5)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
         
         vc.view.addGestureRecognizer(viewTapGesture)
     }

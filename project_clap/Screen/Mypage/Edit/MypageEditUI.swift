@@ -123,33 +123,50 @@ extension MypageEditUIImple {
     func setup(vc: UIViewController) {
         vc.view.backgroundColor = .white
         vc.navigationItem.title = R.string.locarizable.edit()
-        vc.view.addSubview(userPhotoWrapView)
-        userPhotoWrapView.topAnchor.constraint(equalTo: vc.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        userPhotoWrapView.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width).isActive = true
-        userPhotoWrapView.addSubview(userPhoto)
-        userPhoto.centerXAnchor.constraint(equalTo: userPhotoWrapView.centerXAnchor).isActive = true
-        userPhoto.topAnchor.constraint(equalTo: userPhotoWrapView.topAnchor, constant: MypageResources.Constraint.userPhotoTopConstraint).isActive = true
-        userPhoto.bottomAnchor.constraint(equalTo: userPhotoWrapView.bottomAnchor, constant: MypageResources.Constraint.userPhotoBottomConstraint).isActive = true
-        userPhoto.widthAnchor.constraint(equalToConstant: MypageResources.Constraint.userPhotoWidthConstraint).isActive = true
-        userPhoto.heightAnchor.constraint(equalToConstant: MypageResources.Constraint.userPhotoHeightConstraint).isActive = true
-        vc.view.addSubview(belongStack)
-        belongStack.topAnchor.constraint(equalTo: userPhotoWrapView.bottomAnchor, constant: MypageResources.Constraint.belongStackTopConstraint).isActive = true
-        belongStack.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width).isActive = true
-        belongStack.heightAnchor.constraint(equalToConstant: vc.view.bounds.size.height / 12).isActive = true
-        vc.view.addSubview(positionStack)
-        positionStack.topAnchor.constraint(equalTo: belongStack.bottomAnchor, constant: MypageResources.Constraint.positionStackTopConstraint).isActive = true
-        positionStack.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width).isActive = true
-        positionStack.heightAnchor.constraint(equalToConstant: vc.view.bounds.size.height / 12).isActive = true
-        vc.view.addSubview(mailStack)
-        mailStack.topAnchor.constraint(equalTo: positionStack.bottomAnchor, constant: MypageResources.Constraint.mailStackTopConstraint).isActive = true
-        mailStack.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width).isActive = true
-        mailStack.heightAnchor.constraint(equalToConstant: vc.view.bounds.size.height / 12).isActive = true
-        vc.view.addSubview(saveBtn)
-        saveBtn.topAnchor.constraint(equalTo: mailStack.bottomAnchor, constant: vc.view.bounds.size.height / 8).isActive = true
-        saveBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        saveBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
-        
         vc.view.addGestureRecognizer(viewTapGesture)
+        vc.view.addSubview(userPhotoWrapView)
+        userPhotoWrapView.addSubview(userPhoto)
+        vc.view.addSubview(belongStack)
+        vc.view.addSubview(positionStack)
+        vc.view.addSubview(mailStack)
+        vc.view.addSubview(saveBtn)
+        
+        userPhotoWrapView.anchor()
+            .top(to: vc.view.safeAreaLayoutGuide.topAnchor)
+            .width(constant: vc.view.bounds.size.width)
+            .activate()
+        
+        userPhoto.anchor()
+            .centerXToSuperview()
+            .top(to: userPhotoWrapView.topAnchor, constant: MypageResources.Constraint.userPhotoTopConstraint)
+            .bottom(to: userPhotoWrapView.bottomAnchor, constant: MypageResources.Constraint.userPhotoBottomConstraint)
+            .width(constant: MypageResources.Constraint.userPhotoWidthConstraint)
+            .height(constant: MypageResources.Constraint.userPhotoHeightConstraint)
+            .activate()
+        
+        belongStack.anchor()
+            .top(to: userPhotoWrapView.bottomAnchor, constant: MypageResources.Constraint.belongStackTopConstraint)
+            .width(constant: vc.view.bounds.size.width)
+            .height(constant: vc.view.bounds.size.height / 12)
+            .activate()
+        
+        positionStack.anchor()
+            .top(to: belongStack.bottomAnchor, constant: MypageResources.Constraint.positionStackTopConstraint)
+            .width(constant: vc.view.bounds.size.width)
+            .height(constant: vc.view.bounds.size.height / 12)
+            .activate()
+        
+        mailStack.anchor()
+            .top(to: positionStack.bottomAnchor, constant: MypageResources.Constraint.mailStackTopConstraint)
+            .width(constant: vc.view.bounds.size.width)
+            .height(constant: vc.view.bounds.size.height / 12)
+            .activate()
+        
+        saveBtn.anchor()
+            .top(to: mailStack.bottomAnchor, constant: vc.view.bounds.size.height / 8)
+            .centerXToSuperview()
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
     }
     
     func setupInsideStack(vc: UIViewController) {

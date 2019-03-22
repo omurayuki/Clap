@@ -10,6 +10,7 @@
 		C908D2952223AB3D000344B0 /* Locarizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C908D2942223AB3D000344B0 /* Locarizable.strings */; };
 		C908D2982223AEE3000344B0 /* AppResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C908D2972223AEE3000344B0 /* AppResources.swift */; };
 		C92704222232C2E300B15B45 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92704212232C2E300B15B45 /* CustomView.swift */; };
+		C92716CC2244BD2700372B77 /* NSLayoutAnchor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92716CB2244BD2700372B77 /* NSLayoutAnchor+Extension.swift */; };
 		C937FD53222287B800F9624E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD52222287B800F9624E /* AppDelegate.swift */; };
 		C937FD5A222287B900F9624E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C937FD59222287B900F9624E /* Assets.xcassets */; };
 		C937FD5D222287B900F9624E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C937FD5B222287B900F9624E /* LaunchScreen.storyboard */; };
@@ -114,6 +115,7 @@
 		C908D2942223AB3D000344B0 /* Locarizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Locarizable.strings; sourceTree = "<group>"; };
 		C908D2972223AEE3000344B0 /* AppResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppResources.swift; sourceTree = "<group>"; };
 		C92704212232C2E300B15B45 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		C92716CB2244BD2700372B77 /* NSLayoutAnchor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutAnchor+Extension.swift"; sourceTree = "<group>"; };
 		C937FD4F222287B800F9624E /* project_clap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project_clap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C937FD52222287B800F9624E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C937FD59222287B900F9624E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				C959BF5A222CC45E00207986 /* UILabel+Extension.swift */,
 				C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */,
 				C9DBEE0E223E613800979664 /* DateFormatter+Extension.swift */,
+				C92716CB2244BD2700372B77 /* NSLayoutAnchor+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -827,6 +830,7 @@
 				C987790A22411B23005AAEA5 /* LoginRouting.swift in Sources */,
 				C98779122241256D005AAEA5 /* ConfirmationTeamIdRouting.swift in Sources */,
 				C937FD7A2222E1B400F9624E /* LoginViewController.swift in Sources */,
+				C92716CC2244BD2700372B77 /* NSLayoutAnchor+Extension.swift in Sources */,
 				C9F086D92233C91000F25E7A /* DisplayCalendarResources.swift in Sources */,
 				C9EA285C22426267003F40DD /* TimeLineUI.swift in Sources */,
 				C98779022241117C005AAEA5 /* SelectRouting.swift in Sources */,

@@ -148,50 +148,81 @@ extension RepresentMemberRegisterUIImpl {
         guard let vc = viewController else { return }
         vc.view.backgroundColor = .white
         vc.navigationItem.title = storeName
-        stack.addArrangedSubview(representMemberPosition)
-        stack.addArrangedSubview(representMemberYear)
-        vc.view.addSubview(noticeUserRegistTitle)
-        noticeUserRegistTitle.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        noticeUserRegistTitle.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5).isActive = true
-        vc.view.addSubview(userPhotoRegistBtn)
-        userPhotoRegistBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        userPhotoRegistBtn.topAnchor.constraint(equalTo: noticeUserRegistTitle.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.userPhotoRegistBtnTopConstraint).isActive = true
-        userPhotoRegistBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 7).isActive = true
-        userPhotoRegistBtn.heightAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 7).isActive = true
-        vc.view.addSubview(nameField)
-        nameField.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        nameField.topAnchor.constraint(equalTo: userPhotoRegistBtn.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.nameFieldtopConstraint).isActive = true
-        nameField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
-        vc.view.addSubview(mailField)
-        mailField.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        mailField.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.mailFieldTopConstraint).isActive = true
-        mailField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
-        vc.view.addSubview(passField)
-        passField.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        passField.topAnchor.constraint(equalTo: mailField.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.passFieldTopConstraint).isActive = true
-        passField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
-        vc.view.addSubview(rePassField)
-        rePassField.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        rePassField.topAnchor.constraint(equalTo: passField.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.rePassFieldTopConstraint).isActive = true
-        rePassField.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
-        vc.view.addSubview(stack)
-        stack.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        stack.topAnchor.constraint(equalTo: rePassField.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.stackTopConstraint).isActive = true
-        vc.view.addSubview(teamRegistBtn)
-        teamRegistBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        teamRegistBtn.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: vc.view.bounds.size.width / 3).isActive = true
-        teamRegistBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
-        
         vc.view.addGestureRecognizer(viewTapGesture)
         positionToolBar.items = [positionDoneBtn]
         yearToolBar.items = [yearDoneBtn]
+        stack.addArrangedSubview(representMemberPosition)
+        stack.addArrangedSubview(representMemberYear)
+        vc.view.addSubview(noticeUserRegistTitle)
+        vc.view.addSubview(userPhotoRegistBtn)
+        vc.view.addSubview(nameField)
+        vc.view.addSubview(mailField)
+        vc.view.addSubview(passField)
+        vc.view.addSubview(rePassField)
+        vc.view.addSubview(stack)
+        vc.view.addSubview(teamRegistBtn)
+        
+        noticeUserRegistTitle.anchor()
+            .centerXToSuperview()
+            .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5)
+            .activate()
+        
+        userPhotoRegistBtn.anchor()
+            .centerXToSuperview()
+            .top(to: noticeUserRegistTitle.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.userPhotoRegistBtnTopConstraint)
+            .width(constant: vc.view.bounds.size.width / 7)
+            .height(constant: vc.view.bounds.size.width / 7)
+            .activate()
+        
+        nameField.anchor()
+            .centerXToSuperview()
+            .top(to: userPhotoRegistBtn.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.nameFieldtopConstraint)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        mailField.anchor()
+            .centerXToSuperview()
+            .top(to: nameField.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.mailFieldTopConstraint)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        passField.anchor()
+            .centerXToSuperview()
+            .top(to: mailField.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.passFieldTopConstraint)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        rePassField.anchor()
+            .centerXToSuperview()
+            .top(to: passField.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.rePassFieldTopConstraint)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        stack.anchor()
+            .centerXToSuperview()
+            .top(to: rePassField.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.stackTopConstraint)
+            .activate()
+        
+        teamRegistBtn.anchor()
+            .centerXToSuperview()
+            .top(to: stack.bottomAnchor, constant: vc.view.bounds.size.width / 3)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
     }
     
     func setupInsideStack(vc: UIViewController) {
-        representMemberPosition.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 6).isActive = true
-        representMemberPosition.heightAnchor.constraint(equalToConstant: RepresentMemberRegisterResources.Constraint.representMemberPositionHeightConstraint).isActive = true
-        representMemberYear.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 6).isActive = true
-        representMemberYear.heightAnchor.constraint(equalToConstant: RepresentMemberRegisterResources.Constraint.representMemberYearHeightConstraint).isActive = true
+        
+        representMemberPosition.anchor()
+            .width(constant: vc.view.bounds.size.width / 6)
+            .height(constant: RepresentMemberRegisterResources.Constraint.representMemberPositionHeightConstraint)
+            .activate()
+        
+        representMemberYear.anchor()
+            .width(constant: vc.view.bounds.size.width / 6)
+            .height(constant: RepresentMemberRegisterResources.Constraint.representMemberYearHeightConstraint)
+            .activate()
+        
         representMemberYear.leftAnchor.constraint(equalTo: representMemberPosition.rightAnchor, constant: vc.view.bounds.size.width / 3).isActive = true
     }
     

@@ -129,30 +129,44 @@ extension DiaryRegistUIImpl {
         submitDateField.text = formatter.string(from: Date())
         submitDateField.inputView = datePicker
         vc.view.backgroundColor = .white
-        vc.view.addSubview(registDiaryBar)
-        registDiaryBar.topAnchor.constraint(equalTo: vc.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        registDiaryBar.leftAnchor.constraint(equalTo: vc.view.leftAnchor).isActive = true
-        registDiaryBar.rightAnchor.constraint(equalTo: vc.view.rightAnchor).isActive = true
-        vc.view.addSubview(submitDateField)
-        submitDateField.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        submitDateField.topAnchor.constraint(equalTo: registDiaryBar.bottomAnchor, constant: DiaryRegistResouces.Constraint.submitDateFieldTopConstraint).isActive = true
-        submitDateField.widthAnchor.constraint(equalToConstant: DiaryRegistResouces.Constraint.submitDateFieldWidthConstraint).isActive = true
-        submitDateField.heightAnchor.constraint(equalToConstant: DiaryRegistResouces.Constraint.submitDateFieldHeightConstraint).isActive = true
-        vc.view.addSubview(diaryScrollView)
-        diaryScrollView.topAnchor.constraint(equalTo: submitDateField.bottomAnchor).isActive = true
-        diaryScrollView.leftAnchor.constraint(equalTo: vc.view.leftAnchor).isActive = true
-        diaryScrollView.rightAnchor.constraint(equalTo: vc.view.rightAnchor).isActive = true
-        diaryScrollView.heightAnchor.constraint(equalToConstant: vc.view.frame.size.height / 1.8).isActive = true
-        vc.view.addSubview(pageControl)
-        pageControl.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        pageControl.topAnchor.constraint(equalTo: diaryScrollView.bottomAnchor, constant: DiaryRegistResouces.Constraint.pageControlTopConstraint).isActive = true
-        pageControl.widthAnchor.constraint(equalToConstant: vc.view.frame.size.width / 1.5).isActive = true
-        vc.view.addSubview(submitBtn)
-        submitBtn.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: DiaryRegistResouces.Constraint.submitBtnTopConstraint).isActive = true
-        submitBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        submitBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
-        
         vc.view.addGestureRecognizer(viewTapGesture)
+        vc.view.addSubview(registDiaryBar)
+        vc.view.addSubview(submitDateField)
+        vc.view.addSubview(diaryScrollView)
+        vc.view.addSubview(pageControl)
+        vc.view.addSubview(submitBtn)
+        
+        registDiaryBar.anchor()
+            .top(to: vc.view.safeAreaLayoutGuide.topAnchor)
+            .left(to: vc.view.leftAnchor)
+            .right(to: vc.view.rightAnchor)
+            .activate()
+        
+        submitDateField.anchor()
+            .centerXToSuperview()
+            .top(to: registDiaryBar.bottomAnchor, constant: DiaryRegistResouces.Constraint.submitDateFieldTopConstraint)
+            .width(constant: DiaryRegistResouces.Constraint.submitDateFieldWidthConstraint)
+            .height(constant: DiaryRegistResouces.Constraint.submitDateFieldHeightConstraint)
+            .activate()
+        
+        diaryScrollView.anchor()
+            .top(to: submitDateField.bottomAnchor)
+            .left(to: vc.view.leftAnchor)
+            .right(to: vc.view.rightAnchor)
+            .height(constant: vc.view.frame.size.height / 1.8)
+            .activate()
+        
+        pageControl.anchor()
+            .centerXToSuperview()
+            .top(to: diaryScrollView.bottomAnchor, constant: DiaryRegistResouces.Constraint.pageControlTopConstraint)
+            .width(constant: vc.view.frame.size.width / 1.5)
+            .activate()
+        
+        submitBtn.anchor()
+            .centerXToSuperview()
+            .top(to: pageControl.bottomAnchor, constant: DiaryRegistResouces.Constraint.submitBtnTopConstraint)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
     }
     
     func createCancelAlert(vc: UIViewController) {

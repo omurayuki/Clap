@@ -48,15 +48,23 @@ extension TopUIImpl {
         vc.navigationController?.navigationBar.shadowImage = UIImage()
         vc.navigationController?.navigationBar.barTintColor = .white
         vc.view.addSubview(topTitle)
-        topTitle.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        topTitle.topAnchor.constraint(equalTo: vc.view.topAnchor, constant: vc.view.bounds.size.height / 2.5).isActive = true
         vc.view.addSubview(loginBtn)
-        loginBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        loginBtn.topAnchor.constraint(equalTo: topTitle.bottomAnchor, constant: vc.view.bounds.size.height / 4).isActive = true
-        loginBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
         vc.view.addSubview(signupBtn)
-        signupBtn.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        signupBtn.topAnchor.constraint(equalTo: loginBtn.bottomAnchor, constant: TopResources.Constraint.signupBtnTopConstraint).isActive = true
-        signupBtn.widthAnchor.constraint(equalToConstant: vc.view.bounds.size.width / 1.5).isActive = true
+        topTitle.anchor()
+            .centerXToSuperview()
+            .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.height / 2.5)
+            .activate()
+        
+        loginBtn.anchor()
+            .centerXToSuperview()
+            .top(to: topTitle.bottomAnchor, constant: vc.view.bounds.size.height / 4)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
+        
+        signupBtn.anchor()
+            .centerXToSuperview()
+            .top(to: loginBtn.bottomAnchor, constant: TopResources.Constraint.signupBtnTopConstraint)
+            .width(constant: vc.view.bounds.size.width / 1.5)
+            .activate()
     }
 }
