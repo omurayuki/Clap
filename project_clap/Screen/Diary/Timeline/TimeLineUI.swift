@@ -7,13 +7,14 @@ protocol TimeLineUI: UI {
     var viewTapGesture: UITapGestureRecognizer { get }
     var timeLineToolBar: UIToolbar { get }
     var timeLineField: UITextField { get }
+    var timeLineSegment: UISegmentedControl { get }
     var diaryBtn: UIButton { get }
     
     func setup(vc: UIViewController)
     func getPickerView(vc: UIViewController) -> UIPickerView
     func setupToolBar(_ textField: UITextField, toolBar: UIToolbar, content: Array<String>, vc: UIViewController)
-    func configureCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell
-    func configureHeaderView(tableView: UITableView, section: Int) -> UIView?
+    func configureCell(tableView: UITableView, indexPath: IndexPath, content: [TimeLineDataType]) -> UITableViewCell
+    func configureHeaderView(tableView: UITableView, section: Int, vc: UIViewController) -> UIView?
 }
 
 final class TimeLineUIImpl: TimeLineUI {
@@ -59,6 +60,12 @@ final class TimeLineUIImpl: TimeLineUI {
         field.layer.borderColor = UIColor.gray.cgColor
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
+    }()
+    
+    private(set) var timeLineSegment: UISegmentedControl = {
+        let sc = UISegmentedControl(items: ["タイムライン", "提出済", "下書き"])
+        sc.selectedSegmentIndex = 0
+        return sc
     }()
     
     private(set) var diaryBtn: UIButton = {
@@ -110,21 +117,23 @@ extension TimeLineUIImpl {
         textField.text = content[0]
     }
     
-    func configureCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+    func configureCell(tableView: UITableView, indexPath: IndexPath, content: [TimeLineDataType]) -> UITableViewCell {
+        let data = content[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TimeLineCell.self), for: indexPath) as? TimeLineCell else { return UITableViewCell() }
-        cell.configureInit(image: UIImage(), name: "omura", title: "heyheyheyhey", time: "10:00")
+        cell.configureInit(image: nil, name: data.name, title: data.title, time: data.submittedDate)
         return cell
     }
     
-    func configureHeaderView(tableView: UITableView, section: Int) -> UIView? {
+    func configureHeaderView(tableView: UITableView, section: Int, vc: UIViewController) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: TimeLineResources.View.tableHeaderHeight))
         headerView.backgroundColor = AppResources.ColorResources.appCommonClearColor
-        headerView.addSubview(timeLineField)
-        timeLineField.anchor()
+        headerView.addSubview(timeLineSegment)
+        timeLineSegment.anchor()
             .centerXToSuperview()
             .centerYToSuperview()
-            .width(constant: TimeLineResources.Constraint.timeLineFieldWidthConstraint)
+            .width(constant: vc.view.frame.size.width - 10 * 2)
             .activate()
+        
         return headerView
     }
 }

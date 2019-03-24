@@ -8,6 +8,39 @@ class TimelineViewController: UIViewController {
     private var viewModel: TimeLineViewModel?
     private let disposeBag = DisposeBag()
     
+    //MARK: dummy
+    let timeline: [TimeLineDataType] = [
+        TimeLineDataType(title: "どうや！！", name: "小村祐輝", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "とても最高", name: "小村祐輝", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "任天堂DS", name: "小村祐輝", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "デビルメイクライ", name: "小村祐輝", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "大愚和尚", name: "小村祐輝", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "大愚和尚", name: "ケンタッキー", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "大愚和尚", name: "御坂山", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "大愚和尚", name: "ドラえもん", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "大愚和尚", name: "常盤", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "大愚和尚", name: "エンドはるばる", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "大愚和尚", name: "侍", userImage: nil, submittedDate: "12月12日")
+    ]
+    
+    let selfSubmitted: [TimeLineDataType] = [
+        TimeLineDataType(title: "どうや！！", name: "小村祐輝", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "とても最高", name: "小村祐輝", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "任天堂DS", name: "小村祐輝", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "デビルメイクライ", name: "小村祐輝", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "大愚和尚", name: "小村祐輝", userImage: nil, submittedDate: "12月12日")
+    ]
+    
+    let draft: [TimeLineDataType] = [
+        TimeLineDataType(title: "draft", name: "小村祐輝", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "draft最高", name: "小村祐輝", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "draftDS", name: "小村祐輝", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "draftビルメイクライ", name: "小村祐輝", userImage: nil, submittedDate: "12月12日"),
+        TimeLineDataType(title: "draft和尚", name: "小村祐輝", userImage: nil, submittedDate: "12月12日")
+        ]
+    
+    private lazy var rowsToDisplay: [TimeLineDataType] = []
+    
     private lazy var ui: TimeLineUI = {
         let ui = TimeLineUIImpl()
         ui.viewController = self
@@ -26,6 +59,7 @@ class TimelineViewController: UIViewController {
         super.viewDidLoad()
         ui.setup(vc: self)
         viewModel = TimeLineViewModel()
+        rowsToDisplay = timeline
         ui.setupToolBar(ui.timeLineField, toolBar: ui.timeLineToolBar, content: viewModel?.outputs.timeLineArr ?? [R.string.locarizable.empty()], vc: self)
         setupViewModel()
     }
@@ -59,16 +93,27 @@ extension TimelineViewController {
             .bind { [weak self] _ in
                 self?.view.endEditing(true)
             }.disposed(by: disposeBag)
+        
+        ui.timeLineSegment.rx.controlEvent(.valueChanged)
+            .bind { [weak self] _ in
+                guard let this = self else { return }
+                switch this.ui.timeLineSegment.selectedSegmentIndex {
+                case 0: this.rowsToDisplay = this.timeline
+                case 1: this.rowsToDisplay = this.selfSubmitted
+                default: this.rowsToDisplay = this.draft
+                }
+                this.ui.diariesTable.reloadData()
+            }.disposed(by: disposeBag)
     }
 }
 
 extension TimelineViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return rowsToDisplay.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return ui.configureCell(tableView: tableView, indexPath: indexPath)
+        return ui.configureCell(tableView: tableView, indexPath: indexPath, content: rowsToDisplay)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -76,7 +121,7 @@ extension TimelineViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return ui.configureHeaderView(tableView: tableView, section: section)
+        return ui.configureHeaderView(tableView: tableView, section: section, vc: self)
     }
 }
 

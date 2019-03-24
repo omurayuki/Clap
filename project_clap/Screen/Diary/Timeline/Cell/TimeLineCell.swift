@@ -93,7 +93,7 @@ extension TimeLineCell {
             .activate()
     }
     
-    func configureInit(image: UIImage, name: String, title: String, time: String) {
+    func configureInit(image: UIImage?, name: String, title: String, time: String) {
         userImage.image = image
         userName.text = name
         diaryTitle.text = title
