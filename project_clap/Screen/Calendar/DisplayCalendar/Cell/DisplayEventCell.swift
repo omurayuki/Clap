@@ -46,23 +46,35 @@ extension DisplayEventCell {
     private func setupUI() {
         contentView.backgroundColor = AppResources.ColorResources.appCommonClearColor
         contentView.addSubview(wrapView)
-        wrapView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: DisplayCalendarResources.Constraint.wrapViewTopConstraint).isActive = true
-        wrapView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: DisplayCalendarResources.Constraint.wrapViewLeftConstraint).isActive = true
-        wrapView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: DisplayCalendarResources.Constraint.wrapViewBottomConstraint).isActive = true
-        wrapView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: DisplayCalendarResources.Constraint.wrapViewRightConstraint).isActive = true
+        wrapView.anchor()
+            .top(to: contentView.topAnchor, constant: DisplayCalendarResources.Constraint.wrapViewTopConstraint)
+            .left(to: contentView.leftAnchor, constant: DisplayCalendarResources.Constraint.wrapViewLeftConstraint)
+            .bottom(to: contentView.bottomAnchor, constant: DisplayCalendarResources.Constraint.wrapViewBottomConstraint)
+            .right(to: contentView.rightAnchor, constant: DisplayCalendarResources.Constraint.wrapViewRightConstraint)
+            .activate()
+        
         setupInsideWrapView()
     }
     
     private func setupInsideWrapView() {
         wrapView.addSubview(startTime)
-        startTime.topAnchor.constraint(equalTo: wrapView.topAnchor, constant: DisplayCalendarResources.Constraint.startTimeTopConstraint).isActive = true
-        startTime.leftAnchor.constraint(equalTo: wrapView.leftAnchor, constant: DisplayCalendarResources.Constraint.startTimeLeftConstraint).isActive = true
         wrapView.addSubview(endTime)
-        endTime.leftAnchor.constraint(equalTo: wrapView.leftAnchor, constant: DisplayCalendarResources.Constraint.endTimeLeftConstraint).isActive = true
-        endTime.bottomAnchor.constraint(equalTo: wrapView.bottomAnchor, constant: DisplayCalendarResources.Constraint.endTimeBottomConstraint).isActive = true
         wrapView.addSubview(displayEvent)
-        displayEvent.centerYAnchor.constraint(equalTo: wrapView.centerYAnchor).isActive = true
-        displayEvent.leftAnchor.constraint(equalTo: startTime.rightAnchor, constant: DisplayCalendarResources.Constraint.displayEventLeftConstraint).isActive = true
+        
+        startTime.anchor()
+            .top(to: wrapView.topAnchor, constant: DisplayCalendarResources.Constraint.startTimeTopConstraint)
+            .left(to: wrapView.leftAnchor, constant: DisplayCalendarResources.Constraint.startTimeLeftConstraint)
+            .activate()
+        
+        endTime.anchor()
+            .left(to: wrapView.leftAnchor, constant: DisplayCalendarResources.Constraint.endTimeLeftConstraint)
+            .bottom(to: wrapView.bottomAnchor, constant: DisplayCalendarResources.Constraint.endTimeBottomConstraint)
+            .activate()
+        
+        displayEvent.anchor()
+            .centerY(to: wrapView.centerYAnchor)
+            .left(to: startTime.rightAnchor, constant: DisplayCalendarResources.Constraint.displayEventLeftConstraint)
+            .activate()
     }
     
     func configureInit(start: String, end: String, event: String) {

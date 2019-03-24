@@ -29,6 +29,12 @@ class DisplayCalendarViewController: UIViewController {
         ui.viewController = self
         return ui
     }()
+    
+    private lazy var routing: DisplayCalendarRouting = {
+        let routing = DisplayCalendarRoutingImpl()
+        routing.viewController = self
+        return routing
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +55,7 @@ extension DisplayCalendarViewController {
             .bind(onNext: { [weak self] _ in
                 self?.ui.eventAddBtn.bounce(completion: {
                     guard let selectedDate = self?.ui.selectedDateToSendRegistPage else { return }
-                    guard let `self` = self?.navigationController else { return }
-                    `self`.present(RegistCalendarViewController(selectedDate: selectedDate), animated: true)
+                    self?.routing.showRegistCalendar(date: selectedDate)
                 })
             }).disposed(by: disposeBag)
     }

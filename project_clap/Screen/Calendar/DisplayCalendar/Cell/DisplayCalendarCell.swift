@@ -42,18 +42,26 @@ class DisplayCalendarCell: JTAppleCell {
 extension DisplayCalendarCell {
     private func setupUI() {
         contentView.addSubview(selectedDateMarker)
-        selectedDateMarker.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        selectedDateMarker.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        selectedDateMarker.widthAnchor.constraint(equalToConstant: DisplayCalendarResources.Constraint.selectedDateMarkerWidthConstraint).isActive = true
-        selectedDateMarker.heightAnchor.constraint(equalToConstant: DisplayCalendarResources.Constraint.selectedDateMarkerHeightConstraint).isActive = true
         contentView.addSubview(stateOfDateAtCalendar)
-        stateOfDateAtCalendar.centerXAnchor.constraint(equalTo: selectedDateMarker.centerXAnchor).isActive = true
-        stateOfDateAtCalendar.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         contentView.addSubview(calendarEventDots)
-        calendarEventDots.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        calendarEventDots.topAnchor.constraint(equalTo: stateOfDateAtCalendar.bottomAnchor, constant: DisplayCalendarResources.Constraint.calendarEventDotsTopConstraint).isActive = true
-        calendarEventDots.widthAnchor.constraint(equalToConstant: DisplayCalendarResources.Constraint.calendarEventDotsWidthConstraint).isActive = true
-        calendarEventDots.heightAnchor.constraint(equalToConstant: DisplayCalendarResources.Constraint.calendarEventDotsHeightConstraint).isActive = true
+        
+        selectedDateMarker.anchor()
+            .centerToSuperview()
+            .width(constant: DisplayCalendarResources.Constraint.selectedDateMarkerWidthConstraint)
+            .height(constant: DisplayCalendarResources.Constraint.selectedDateMarkerHeightConstraint)
+            .activate()
+        
+        stateOfDateAtCalendar.anchor()
+            .centerX(to: selectedDateMarker.centerXAnchor)
+            .centerY(to: contentView.centerYAnchor)
+            .activate()
+        
+        calendarEventDots.anchor()
+            .centerXToSuperview()
+            .top(to: stateOfDateAtCalendar.bottomAnchor, constant: DisplayCalendarResources.Constraint.calendarEventDotsTopConstraint)
+            .width(constant: DisplayCalendarResources.Constraint.calendarEventDotsWidthConstraint)
+            .height(constant: DisplayCalendarResources.Constraint.calendarEventDotsHeightConstraint)
+            .activate()
     }
     
     func configureInit(stateOfDateAtCalendar: String) {
