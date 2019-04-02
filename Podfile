@@ -7,6 +7,8 @@ target 'project_clap' do
     pod 'RxSwift',    '~> 4.0'
     pod 'RxCocoa',    '~> 4.0'
     pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Firestore'
     pod 'RealmSwift'
     pod 'R.swift'
     pod 'Kingfisher', '~> 5.0'

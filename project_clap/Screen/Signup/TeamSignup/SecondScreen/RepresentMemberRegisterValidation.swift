@@ -35,7 +35,7 @@ struct RepresentMemberRegisterValidation {
     }
     
     static func validateEmpty(name: String, mail: String, pass: String, rePass: String) -> RepresentMemberRegisterValidationResult {
-        guard name.count >= 3, mail.count >= 3, pass.count >= 3, rePass.count >= 3 else {
+        guard name.count >= 3, mail.count >= 3, pass.count >= 10, rePass.count >= 10 else {
             return .empty
         }
         return .ok

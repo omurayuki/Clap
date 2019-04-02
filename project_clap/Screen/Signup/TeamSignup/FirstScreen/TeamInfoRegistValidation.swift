@@ -18,8 +18,8 @@ extension TeamInfoRegistValidationResult {
 }
 
 struct TeamInfoRegistValidation {
-    static func validate(teamId: String) -> TeamInfoRegistValidationResult {
-        guard teamId.count >= 10 else {
+    static func validate(team: String) -> TeamInfoRegistValidationResult {
+        guard team.count >= 3 else {
             return .lessThanText
         }
         return .ok

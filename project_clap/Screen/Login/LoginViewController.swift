@@ -2,11 +2,14 @@ import Foundation
 import UIKit
 import RxCocoa
 import RxSwift
+import Firebase
+import FirebaseAuth
 
 class LoginViewCountroller: UIViewController {
     
     private let disposeBag = DisposeBag()
     private var viewModel: LoginViewModel?
+    let activityIndicator = UIActivityIndicatorView()
     
     private lazy var ui: LoginUI = {
         let ui = LoginUIImpl()
@@ -38,8 +41,13 @@ extension LoginViewCountroller {
         
         ui.logintBtn.rx.tap
             .bind(onNext: { [weak self] _ in
-                self?.ui.logintBtn.bounce(completion: {
-                    self?.routing.showTabBar()
+                guard let this = self else { return }
+                this.showIndicator()
+                this.ui.logintBtn.bounce(completion: {
+                    LoginRepositoryImpl.login(mail: this.ui.mailField.text ?? "", pass: this.ui.passField.text ?? "", vc: this, completion: {
+                        self?.hideIndicator()
+                        self?.routing.showTabBar()
+                    })
                 })
             }).disposed(by: disposeBag)
         
@@ -70,3 +78,5 @@ extension LoginViewCountroller {
             }.disposed(by: disposeBag)
     }
 }
+
+extension LoginViewCountroller: IndicatorShowable {}

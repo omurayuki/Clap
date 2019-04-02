@@ -1,11 +1,14 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RealmSwift
 
 class RepresentMemberRegisterViewController: UIViewController {
     
     private var viewModel: RepresentMemberRegisterViewModel?
     private let disposeBag = DisposeBag()
+    let activityIndicator = UIActivityIndicatorView()
+    let teamId = RandomString.generateRandomString()
     
     private lazy var ui: RepresentMemberRegisterUI = {
         let ui = RepresentMemberRegisterUIImpl()
@@ -23,15 +26,28 @@ class RepresentMemberRegisterViewController: UIViewController {
         super.viewDidLoad()
         ui.setup(storeName: R.string.locarizable.regist_user())
         ui.setupInsideStack(vc: self)
-        viewModel = RepresentMemberRegisterViewModel(nameField: ui.nameField.rx.text.orEmpty.asObservable(), mailField: ui.mailField.rx.text.orEmpty.asObservable(), passField: ui.passField.rx.text.orEmpty.asObservable(), rePassField: ui.rePassField.rx.text.orEmpty.asObservable(), positionField: ui.representMemberPosition.rx.text.orEmpty.asObservable(), yearField: ui.representMemberYear.rx.text.orEmpty.asObservable(), registBtn: ui.teamRegistBtn.rx.tap.asObservable())
+        viewModel = RepresentMemberRegisterViewModel(nameField: ui.nameField.rx.text.orEmpty.asObservable(),
+                                                     mailField: ui.mailField.rx.text.orEmpty.asObservable(),
+                                                     passField: ui.passField.rx.text.orEmpty.asObservable(),
+                                                     rePassField: ui.rePassField.rx.text.orEmpty.asObservable(),
+                                                     positionField: ui.representMemberPosition.rx.text.orEmpty.asObservable(),
+                                                     yearField: ui.representMemberYear.rx.text.orEmpty.asObservable(),
+                                                     registBtn: ui.teamRegistBtn.rx.tap.asObservable())
         setupViewModel()
-        ui.setupToolBar(ui.representMemberPosition, type: .position, toolBar: ui.positionToolBar, content: viewModel?.outputs.positionArr ?? [R.string.locarizable.empty()], vc: self)
-        ui.setupToolBar(ui.representMemberYear, type: .year, toolBar: ui.yearToolBar, content: viewModel?.outputs.yearArr ?? [R.string.locarizable.empty()], vc: self)
+        ui.setupToolBar(ui.representMemberPosition,
+                        type: .position,
+                        toolBar: ui.positionToolBar,
+                        content: viewModel?.outputs.positionArr ?? [R.string.locarizable.empty()],
+                        vc: self)
+        ui.setupToolBar(ui.representMemberYear,
+                        type: .year,
+                        toolBar: ui.yearToolBar,
+                        content: viewModel?.outputs.yearArr ?? [R.string.locarizable.empty()],
+                        vc: self)
     }
 }
 
 extension RepresentMemberRegisterViewController {
-    
     private func setupViewModel() {
         viewModel?.outputs.isRegistBtnEnable.asObservable()
             .subscribe(onNext: { [weak self] isValid in
@@ -42,7 +58,22 @@ extension RepresentMemberRegisterViewController {
             .throttle(0.5, scheduler: MainScheduler.instance)
             .bind(onNext: { [weak self] _ in
                 self?.ui.teamRegistBtn.bounce(completion: {
-                    self?.routing.showTabBar()
+                    self?.showIndicator()
+                    self?.saveToSingleton(name: self?.ui.nameField.text ?? "",
+                                          mail: self?.ui.mailField.text ?? "",
+                                          representMemberPosition: self?.ui.representMemberPosition.text ?? "",
+                                          representMemberYear: self?.ui.representMemberYear.text ?? "")
+                    SignupRepositoryImpl.signup(email: self?.ui.mailField.text ?? "", pass: self?.ui.passField.text ?? "", completion: {
+                        self?.hideIndicator()
+                        SignupRepositoryImpl.saveTeamData(teamId: self?.teamId ?? "",
+                                                          team: TeamSignupSingleton.sharedInstance.team,
+                                                          grade: TeamSignupSingleton.sharedInstance.grade,
+                                                          sportsKind: TeamSignupSingleton.sharedInstance.sportsKind)
+                        let realm = try! Realm()
+                        let results = realm.objects(User.self)
+                        SignupRepositoryImpl.whethreRegistUser(teamId: self?.teamId ?? "", uid: results.last?.uid ?? "")
+                        self?.routing.showTabBar()
+                    })
                 })
             }).disposed(by: disposeBag)
         
@@ -95,6 +126,13 @@ extension RepresentMemberRegisterViewController {
                 self?.view.endEditing(true)
             }.disposed(by: disposeBag)
     }
+    
+    private func saveToSingleton(name: String, mail: String, representMemberPosition: String, representMemberYear: String) {
+        TeamSignupSingleton.sharedInstance.name = name
+        TeamSignupSingleton.sharedInstance.mail = mail
+        TeamSignupSingleton.sharedInstance.representMemberPosition = representMemberPosition
+        TeamSignupSingleton.sharedInstance.representMemberYear = representMemberYear
+    }
 }
 
 extension RepresentMemberRegisterViewController: UIPickerViewDataSource {
@@ -128,3 +166,5 @@ extension RepresentMemberRegisterViewController: UIPickerViewDelegate {
         }
     }
 }
+
+extension RepresentMemberRegisterViewController: IndicatorShowable {}

@@ -36,8 +36,8 @@
 "notice_user_regist" = "ユーザー登録してください";
 "name" = "名前";
 "mail_address" = "メールアドレス";
-"password" = "パスワード";
-"remain_password" = "確認用パスワード";
+"password" = "パスワード(10文字以上)";
+"remain_password" = "確認用(10文字以上)";
 "regist" = "登録する";
 "player" = "選手";
 "leader" = "監督";
@@ -50,6 +50,7 @@
 "please_write_team_id" = "チームIDを入力してください";
 "please_confirm" = "わからない場合は、すでに使用しているチームメンバーにマイページを確認してもらいましょう";
 "team_id" = "チームID";
+"place_holder_team_id" = "チーム名";
 "confirm" = "確定";
 /* for confirmation team id VC */
 "confirmation" = "確認";

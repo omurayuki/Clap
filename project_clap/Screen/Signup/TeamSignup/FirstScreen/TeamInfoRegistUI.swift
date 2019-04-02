@@ -4,7 +4,7 @@ import UIKit
 protocol TeamInfoRegistUI: UI {
     var noticeTeamInfoRegistTitle: UILabel { get }
     var viewTapGesture: UITapGestureRecognizer { get }
-    var teamIdField: CustomTextField { get }
+    var teamNameField: CustomTextField { get }
     var gradeField: CustomTextField { get }
     var sportsKindField: CustomTextField { get }
     var nextBtn: UIButton { get }
@@ -35,9 +35,9 @@ final class TeamInfoRegistUIImpl: TeamInfoRegistUI {
         return gesture
     }()
     
-    private(set) var teamIdField: CustomTextField = {
+    private(set) var teamNameField: CustomTextField = {
         let field = CustomTextField()
-        field.placeholder = R.string.locarizable.team_id()
+        field.placeholder = R.string.locarizable.place_holder_team_id()
         field.clearButtonMode = .always
         field.translatesAutoresizingMaskIntoConstraints = false
         return field
@@ -103,7 +103,7 @@ extension TeamInfoRegistUIImpl {
         vc.view.backgroundColor = .white
         vc.navigationItem.title = storeName
         vc.view.addSubview(noticeTeamInfoRegistTitle)
-        vc.view.addSubview(teamIdField)
+        vc.view.addSubview(teamNameField)
         vc.view.addSubview(gradeField)
         vc.view.addSubview(sportsKindField)
         vc.view.addSubview(nextBtn)
@@ -116,20 +116,20 @@ extension TeamInfoRegistUIImpl {
             .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5)
             .activate()
         
-        teamIdField.anchor()
+        teamNameField.anchor()
             .centerXToSuperview()
             .top(to: noticeTeamInfoRegistTitle.bottomAnchor, constant: vc.view.bounds.size.width / 4)
             .width(constant: vc.view.bounds.size.width / 1.5)
             .activate()
         
         gradeField.anchor()
-            .top(to: teamIdField.bottomAnchor, constant: TeamInfoRegisterResources.Constraint.gradeFieldTopConstraint)
-            .left(to: teamIdField.leftAnchor)
+            .top(to: teamNameField.bottomAnchor, constant: TeamInfoRegisterResources.Constraint.gradeFieldTopConstraint)
+            .left(to: teamNameField.leftAnchor)
             .activate()
         
         sportsKindField.anchor()
             .top(to: gradeField.bottomAnchor, constant: TeamInfoRegisterResources.Constraint.sportsKindFieldTopConstraint)
-            .left(to: teamIdField.leftAnchor)
+            .left(to: teamNameField.leftAnchor)
             .activate()
         
         nextBtn.anchor()

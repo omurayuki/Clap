@@ -50,7 +50,7 @@ struct TeamInfoRegistViewModel: TeamInfoRegistViewModelType, TeamInfoRegistViewM
         
         let isCount = teamIdText.asDriver()
             .map({ text -> TeamInfoRegistValidationResult in
-                return TeamInfoRegistValidation.validate(teamId: text)
+                return TeamInfoRegistValidation.validate(team: text)
             }).asDriver()
         
         isNextBtnEnable = Driver.combineLatest(isEmptyPicker, isCount) { (picker, count) in

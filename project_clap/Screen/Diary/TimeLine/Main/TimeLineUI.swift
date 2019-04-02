@@ -44,6 +44,7 @@ class TimeLineUIImpl: TimeLineUI {
 
 extension TimeLineUIImpl {
     func setup(vc: UIViewController) {
+        vc.navigationItem.title = R.string.locarizable.time_line()
         
         vc.view.addSubview(menuBtn)
         menuBtn.anchor(top: nil,

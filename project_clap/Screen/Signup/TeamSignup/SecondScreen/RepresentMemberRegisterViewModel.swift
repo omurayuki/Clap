@@ -80,4 +80,6 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
         }
         .share(replay: 1)
     }
+    
+    
 }

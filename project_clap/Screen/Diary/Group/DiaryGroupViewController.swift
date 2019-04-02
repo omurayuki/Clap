@@ -99,7 +99,7 @@ extension DiaryGroupViewController {
             .subscribe(onNext: { [weak self] _ in
                 self?.timelineBtn.bounce(completion: {
                     self?.selectedTargetMenu()
-                    guard let `self` = self?.navigationController else { return }
+//                    guard let `self` = self?.navigationController else { return }
 //                    `self`.pushViewController(TimelineViewController(), animated: true)
                 })
             }).disposed(by: disposeBag)

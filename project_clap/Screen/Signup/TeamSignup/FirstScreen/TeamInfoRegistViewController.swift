@@ -22,14 +22,24 @@ class  TeamInfoRegistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(storeName: R.string.locarizable.team_info_title())
-        viewModel = TeamInfoRegistViewModel(teamIdField: ui.teamIdField.rx.text.orEmpty.asDriver(), gradeField: ui.gradeField.rx.text.orEmpty.asDriver(), sportsKindField: ui.sportsKindField.rx.text.orEmpty.asDriver())
+        viewModel = TeamInfoRegistViewModel(teamIdField: ui.teamNameField.rx.text.orEmpty.asDriver(),
+                                            gradeField: ui.gradeField.rx.text.orEmpty.asDriver(),
+                                            sportsKindField: ui.sportsKindField.rx.text.orEmpty.asDriver())
         setupViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ui.setupToolBar(ui.gradeField, type: .grade, toolBar: ui.gradeToolBar, content: viewModel?.outputs.gradeArr ?? [R.string.locarizable.empty()], vc: self)
-        ui.setupToolBar(ui.sportsKindField, type: .sports, toolBar: ui.sportsKindToolBar, content: viewModel?.outputs.sportsKindArr ?? [R.string.locarizable.empty()], vc: self)
+        ui.setupToolBar(ui.gradeField,
+                        type: .grade,
+                        toolBar: ui.gradeToolBar,
+                        content: viewModel?.outputs.gradeArr ?? [R.string.locarizable.empty()],
+                        vc: self)
+        ui.setupToolBar(ui.sportsKindField,
+                        type: .sports,
+                        toolBar: ui.sportsKindToolBar,
+                        content: viewModel?.outputs.sportsKindArr ?? [R.string.locarizable.empty()],
+                        vc: self)
     }
 }
 
@@ -38,7 +48,6 @@ extension TeamInfoRegistViewController {
     private func setupViewModel() {
         viewModel?.outputs.isNextBtnEnable.asObservable()
             .subscribe(onNext: { [weak self] isValid in
-                print(isValid)
                 self?.ui.nextBtn.isHidden = !isValid
             }).disposed(by: disposeBag)
 
@@ -46,6 +55,9 @@ extension TeamInfoRegistViewController {
             .throttle(0.5, scheduler: MainScheduler.instance)
             .bind(onNext: { [weak self] _ in
                 self?.ui.nextBtn.bounce(completion: {
+                    self?.saveToSingleton(team: self?.ui.teamNameField.text ?? "",
+                                          grade: self?.ui.gradeField.text ?? "",
+                                          sportsKind: self?.ui.sportsKindField.text ?? "")
                     self?.routing.RepresentMemberRegister()
                 })
             }).disposed(by: disposeBag)
@@ -66,15 +78,21 @@ extension TeamInfoRegistViewController {
                 }
             }.disposed(by: disposeBag)
         
-        ui.teamIdField.rx.controlEvent(.editingDidEndOnExit)
+        ui.teamNameField.rx.controlEvent(.editingDidEndOnExit)
             .bind { [weak self] _ in
-                self?.ui.teamIdField.resignFirstResponder()
+                self?.ui.teamNameField.resignFirstResponder()
             }.disposed(by: disposeBag)
         
         ui.viewTapGesture.rx.event
             .bind { [weak self] _ in
                 self?.view.endEditing(true)
             }.disposed(by: disposeBag)
+    }
+    
+    private func saveToSingleton(team: String, grade: String, sportsKind: String) {
+        TeamSignupSingleton.sharedInstance.team = team
+        TeamSignupSingleton.sharedInstance.grade = grade
+        TeamSignupSingleton.sharedInstance.sportsKind = sportsKind
     }
 }
 
