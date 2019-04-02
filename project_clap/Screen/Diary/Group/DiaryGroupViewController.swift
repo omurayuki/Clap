@@ -100,7 +100,7 @@ extension DiaryGroupViewController {
                 self?.timelineBtn.bounce(completion: {
                     self?.selectedTargetMenu()
                     guard let `self` = self?.navigationController else { return }
-                    `self`.pushViewController(TimelineViewController(), animated: true)
+//                    `self`.pushViewController(TimelineViewController(), animated: true)
                 })
             }).disposed(by: disposeBag)
         

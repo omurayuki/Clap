@@ -4,7 +4,7 @@ import UIKit
 class TabBarController: UITabBarController {
     
     var calendarVC: DisplayCalendarViewController
-    var diaryVC: DiaryGroupViewController
+    var timeLineVC: TimeLineViewController
     var mypageVC: MypageViewController
     
     override func viewDidLoad() {
@@ -12,15 +12,15 @@ class TabBarController: UITabBarController {
         setupTab()
     }
     
-    init(calendar: DisplayCalendarViewController, diary: DiaryGroupViewController, mypage: MypageViewController) {
+    init(calendar: DisplayCalendarViewController, timeLine: TimeLineViewController, mypage: MypageViewController) {
         calendarVC = calendar
-        diaryVC = diary
+        timeLineVC = timeLine
         mypageVC = mypage
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError()
     }
 }
 
@@ -31,7 +31,7 @@ extension TabBarController {
         navi.tabBarItem = UITabBarItem(title: R.string.locarizable.calendar(), image: nil, tag: TabBarResources.View.calendartag)
         viewControllers.append(navi)
         
-        navi = UINavigationController(rootViewController: diaryVC)
+        navi = UINavigationController(rootViewController: timeLineVC)
         navi.tabBarItem = UITabBarItem(title: R.string.locarizable.diary(), image: nil, tag: TabBarResources.View.diaryTag)
         viewControllers.append(navi)
         

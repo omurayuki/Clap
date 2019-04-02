@@ -9,6 +9,20 @@
 /* Begin PBXBuildFile section */
 		C908D2952223AB3D000344B0 /* Locarizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C908D2942223AB3D000344B0 /* Locarizable.strings */; };
 		C908D2982223AEE3000344B0 /* AppResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C908D2972223AEE3000344B0 /* AppResources.swift */; };
+		C91156182250A60100CB97E9 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156172250A60100CB97E9 /* UIView+Layout.swift */; };
+		C911561B2250A68C00CB97E9 /* Snapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911561A2250A68C00CB97E9 /* Snapping.swift */; };
+		C911561D2250A6AE00CB97E9 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911561C2250A6AE00CB97E9 /* VerticalStackView.swift */; };
+		C91156202250B5E000CB97E9 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911561F2250B5E000CB97E9 /* TimeLineViewController.swift */; };
+		C91156222250B61400CB97E9 /* BaseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156212250B61400CB97E9 /* BaseListController.swift */; };
+		C91156252250C47D00CB97E9 /* TimeLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156242250C47D00CB97E9 /* TimeLineCell.swift */; };
+		C91156272250CD3700CB97E9 /* TimeLineGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156262250CD3700CB97E9 /* TimeLineGroupCell.swift */; };
+		C91156292250CDA200CB97E9 /* TimeLineHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156282250CDA200CB97E9 /* TimeLineHorizontalController.swift */; };
+		C911562B2251B22400CB97E9 /* HorizontalSnappingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911562A2251B22400CB97E9 /* HorizontalSnappingController.swift */; };
+		C911562D22520B2900CB97E9 /* TimeLineHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911562C22520B2900CB97E9 /* TimeLineHeaderCell.swift */; };
+		C911562F22520B5C00CB97E9 /* TimeLineHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911562E22520B5C00CB97E9 /* TimeLineHeaderController.swift */; };
+		C913297E2252309B00514EDE /* TimeLineUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913297D2252309B00514EDE /* TimeLineUI.swift */; };
+		C91329802252360E00514EDE /* TimeLineRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913297F2252360E00514EDE /* TimeLineRouting.swift */; };
+		C913298222523D6B00514EDE /* TimeLineResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913298122523D6B00514EDE /* TimeLineResources.swift */; };
 		C92704222232C2E300B15B45 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92704212232C2E300B15B45 /* CustomView.swift */; };
 		C92716CC2244BD2700372B77 /* NSLayoutAnchor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92716CB2244BD2700372B77 /* NSLayoutAnchor+Extension.swift */; };
 		C937FD53222287B800F9624E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD52222287B800F9624E /* AppDelegate.swift */; };
@@ -54,7 +68,6 @@
 		C9705790222E8A43007F8B1C /* DisplayCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C970578F222E8A43007F8B1C /* DisplayCalendarViewController.swift */; };
 		C9705796222E8B29007F8B1C /* DiaryGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9705795222E8B29007F8B1C /* DiaryGroupViewController.swift */; };
 		C9705798222E8B6F007F8B1C /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9705797222E8B6F007F8B1C /* MypageViewController.swift */; };
-		C970579C222E8BF3007F8B1C /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C970579B222E8BF3007F8B1C /* TimelineViewController.swift */; };
 		C970579F222E8C76007F8B1C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C970579E222E8C76007F8B1C /* TabBarController.swift */; };
 		C97057A1222E9B0F007F8B1C /* TabBarResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97057A0222E9B0F007F8B1C /* TabBarResources.swift */; };
 		C98778FD22410A8B005AAEA5 /* TopRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98778FC22410A8B005AAEA5 /* TopRouting.swift */; };
@@ -72,7 +85,6 @@
 		C98A09372247384F00AFAEF2 /* DisplayCalendarRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A09362247384F00AFAEF2 /* DisplayCalendarRouting.swift */; };
 		C98A093922473B8400AFAEF2 /* RegistCalendarUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A093822473B8400AFAEF2 /* RegistCalendarUI.swift */; };
 		C98A093C2247454700AFAEF2 /* RegistCalendarEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A093B2247454700AFAEF2 /* RegistCalendarEnum.swift */; };
-		C98A093E22475B4000AFAEF2 /* TimeLineDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A093D22475B4000AFAEF2 /* TimeLineDataType.swift */; };
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
 		C9C6FE7D2240A2B6001FE7A5 /* TopUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE7C2240A2B6001FE7A5 /* TopUI.swift */; };
@@ -83,16 +95,11 @@
 		C9C6FE872240B5D5001FE7A5 /* TeamInfoRegistEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE862240B5D5001FE7A5 /* TeamInfoRegistEnum.swift */; };
 		C9C6FE8C2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE8B2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift */; };
 		C9C6FE902240B7C7001FE7A5 /* RepresentMemberRegisterUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE8F2240B7C7001FE7A5 /* RepresentMemberRegisterUI.swift */; };
-		C9CC6192223F45980093D37F /* TimeLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC6191223F45970093D37F /* TimeLineCell.swift */; };
-		C9CC6194223F5BDB0093D37F /* TimeLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC6193223F5BDB0093D37F /* TimeLineViewModel.swift */; };
-		C9CC6196223F62A50093D37F /* TimeLineResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC6195223F62A50093D37F /* TimeLineResources.swift */; };
 		C9CC6199223F7B8D0093D37F /* DiaryRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC6198223F7B8D0093D37F /* DiaryRegistViewController.swift */; };
 		C9CC619C223F963B0093D37F /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC619B223F963B0093D37F /* DiaryView.swift */; };
 		C9CC619E223F98AF0093D37F /* DiaryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9CC619D223F98AF0093D37F /* DiaryView.xib */; };
 		C9CC61A0223FBDAF0093D37F /* DiaryRegistResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CC619F223FBDAE0093D37F /* DiaryRegistResources.swift */; };
 		C9DBEE0F223E613800979664 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DBEE0E223E613800979664 /* DateFormatter+Extension.swift */; };
-		C9EA285C22426267003F40DD /* TimeLineUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA285B22426267003F40DD /* TimeLineUI.swift */; };
-		C9EA285E22426509003F40DD /* TimeLineRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA285D22426509003F40DD /* TimeLineRouting.swift */; };
 		C9EA2860224266E0003F40DD /* DiaryRegistUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA285F224266E0003F40DD /* DiaryRegistUI.swift */; };
 		C9EA286222433B48003F40DD /* RemindPassUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA286122433B48003F40DD /* RemindPassUI.swift */; };
 		C9EA28642243455F003F40DD /* MypageUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EA28632243455F003F40DD /* MypageUI.swift */; };
@@ -118,6 +125,20 @@
 		3897593163CD2F94D6D2FB55 /* Pods-project_clap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project_clap.release.xcconfig"; path = "Target Support Files/Pods-project_clap/Pods-project_clap.release.xcconfig"; sourceTree = "<group>"; };
 		C908D2942223AB3D000344B0 /* Locarizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Locarizable.strings; sourceTree = "<group>"; };
 		C908D2972223AEE3000344B0 /* AppResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppResources.swift; sourceTree = "<group>"; };
+		C91156172250A60100CB97E9 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		C911561A2250A68C00CB97E9 /* Snapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapping.swift; sourceTree = "<group>"; };
+		C911561C2250A6AE00CB97E9 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
+		C911561F2250B5E000CB97E9 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
+		C91156212250B61400CB97E9 /* BaseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListController.swift; sourceTree = "<group>"; };
+		C91156242250C47D00CB97E9 /* TimeLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCell.swift; sourceTree = "<group>"; };
+		C91156262250CD3700CB97E9 /* TimeLineGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineGroupCell.swift; sourceTree = "<group>"; };
+		C91156282250CDA200CB97E9 /* TimeLineHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineHorizontalController.swift; sourceTree = "<group>"; };
+		C911562A2251B22400CB97E9 /* HorizontalSnappingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnappingController.swift; sourceTree = "<group>"; };
+		C911562C22520B2900CB97E9 /* TimeLineHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineHeaderCell.swift; sourceTree = "<group>"; };
+		C911562E22520B5C00CB97E9 /* TimeLineHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineHeaderController.swift; sourceTree = "<group>"; };
+		C913297D2252309B00514EDE /* TimeLineUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUI.swift; sourceTree = "<group>"; };
+		C913297F2252360E00514EDE /* TimeLineRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineRouting.swift; sourceTree = "<group>"; };
+		C913298122523D6B00514EDE /* TimeLineResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineResources.swift; sourceTree = "<group>"; };
 		C92704212232C2E300B15B45 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		C92716CB2244BD2700372B77 /* NSLayoutAnchor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutAnchor+Extension.swift"; sourceTree = "<group>"; };
 		C937FD4F222287B800F9624E /* project_clap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project_clap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,7 +186,6 @@
 		C970578F222E8A43007F8B1C /* DisplayCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCalendarViewController.swift; sourceTree = "<group>"; };
 		C9705795222E8B29007F8B1C /* DiaryGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryGroupViewController.swift; sourceTree = "<group>"; };
 		C9705797222E8B6F007F8B1C /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
-		C970579B222E8BF3007F8B1C /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		C970579E222E8C76007F8B1C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C97057A0222E9B0F007F8B1C /* TabBarResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarResources.swift; sourceTree = "<group>"; };
 		C98778FC22410A8B005AAEA5 /* TopRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRouting.swift; sourceTree = "<group>"; };
@@ -183,7 +203,6 @@
 		C98A09362247384F00AFAEF2 /* DisplayCalendarRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCalendarRouting.swift; sourceTree = "<group>"; };
 		C98A093822473B8400AFAEF2 /* RegistCalendarUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarUI.swift; sourceTree = "<group>"; };
 		C98A093B2247454700AFAEF2 /* RegistCalendarEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarEnum.swift; sourceTree = "<group>"; };
-		C98A093D22475B4000AFAEF2 /* TimeLineDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineDataType.swift; sourceTree = "<group>"; };
 		C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterViewController.swift; sourceTree = "<group>"; };
 		C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewModel.swift; sourceTree = "<group>"; };
 		C9C6FE7C2240A2B6001FE7A5 /* TopUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUI.swift; sourceTree = "<group>"; };
@@ -196,16 +215,11 @@
 		C9C6FE8F2240B7C7001FE7A5 /* RepresentMemberRegisterUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterUI.swift; sourceTree = "<group>"; };
 		C9CA312A22265595003E600C /* RxBlocking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxBlocking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CA312C22265595003E600C /* RxTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RxTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9CC6191223F45970093D37F /* TimeLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCell.swift; sourceTree = "<group>"; };
-		C9CC6193223F5BDB0093D37F /* TimeLineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewModel.swift; sourceTree = "<group>"; };
-		C9CC6195223F62A50093D37F /* TimeLineResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineResources.swift; sourceTree = "<group>"; };
 		C9CC6198223F7B8D0093D37F /* DiaryRegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRegistViewController.swift; sourceTree = "<group>"; };
 		C9CC619B223F963B0093D37F /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
 		C9CC619D223F98AF0093D37F /* DiaryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaryView.xib; sourceTree = "<group>"; };
 		C9CC619F223FBDAE0093D37F /* DiaryRegistResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRegistResources.swift; sourceTree = "<group>"; };
 		C9DBEE0E223E613800979664 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
-		C9EA285B22426267003F40DD /* TimeLineUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUI.swift; sourceTree = "<group>"; };
-		C9EA285D22426509003F40DD /* TimeLineRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineRouting.swift; sourceTree = "<group>"; };
 		C9EA285F224266E0003F40DD /* DiaryRegistUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRegistUI.swift; sourceTree = "<group>"; };
 		C9EA286122433B48003F40DD /* RemindPassUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassUI.swift; sourceTree = "<group>"; };
 		C9EA28632243455F003F40DD /* MypageUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageUI.swift; sourceTree = "<group>"; };
@@ -261,6 +275,89 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		C91156192250A67B00CB97E9 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C911561A2250A68C00CB97E9 /* Snapping.swift */,
+				C911562A2251B22400CB97E9 /* HorizontalSnappingController.swift */,
+				C911561C2250A6AE00CB97E9 /* VerticalStackView.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		C911561E2250B5CE00CB97E9 /* TimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				C91329832252407E00514EDE /* Main */,
+				C913297822522F1300514EDE /* TimeLineHorizontal */,
+				C913297922522F2900514EDE /* TimeLineHeader */,
+				C9CC6197223F7B6C0093D37F /* DiaryRegist */,
+			);
+			path = TimeLine;
+			sourceTree = "<group>";
+		};
+		C91156232250B61F00CB97E9 /* BaseList */ = {
+			isa = PBXGroup;
+			children = (
+				C91156212250B61400CB97E9 /* BaseListController.swift */,
+			);
+			path = BaseList;
+			sourceTree = "<group>";
+		};
+		C913297822522F1300514EDE /* TimeLineHorizontal */ = {
+			isa = PBXGroup;
+			children = (
+				C91156282250CDA200CB97E9 /* TimeLineHorizontalController.swift */,
+				C913297B22522F5D00514EDE /* Cell */,
+			);
+			path = TimeLineHorizontal;
+			sourceTree = "<group>";
+		};
+		C913297922522F2900514EDE /* TimeLineHeader */ = {
+			isa = PBXGroup;
+			children = (
+				C911562E22520B5C00CB97E9 /* TimeLineHeaderController.swift */,
+				C913297C22522F6700514EDE /* Cell */,
+			);
+			path = TimeLineHeader;
+			sourceTree = "<group>";
+		};
+		C913297A22522F4F00514EDE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C91156242250C47D00CB97E9 /* TimeLineCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C913297B22522F5D00514EDE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C91156262250CD3700CB97E9 /* TimeLineGroupCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C913297C22522F6700514EDE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C911562C22520B2900CB97E9 /* TimeLineHeaderCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C91329832252407E00514EDE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C911561F2250B5E000CB97E9 /* TimeLineViewController.swift */,
+				C913297D2252309B00514EDE /* TimeLineUI.swift */,
+				C913297F2252360E00514EDE /* TimeLineRouting.swift */,
+				C913298122523D6B00514EDE /* TimeLineResources.swift */,
+				C913297A22522F4F00514EDE /* Cell */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		C937FD46222287B800F9624E = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +396,7 @@
 		C937FD662222889600F9624E /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				C91156232250B61F00CB97E9 /* BaseList */,
 				C98778FE22410E38005AAEA5 /* Routing */,
 				C9C6FE8D2240B729001FE7A5 /* UI */,
 				C937FD67222288AB00F9624E /* Top */,
@@ -332,6 +430,7 @@
 				C9F086D42232F8CC00F25E7A /* UIView+Extension.swift */,
 				C9DBEE0E223E613800979664 /* DateFormatter+Extension.swift */,
 				C92716CB2244BD2700372B77 /* NSLayoutAnchor+Extension.swift */,
+				C91156172250A60100CB97E9 /* UIView+Layout.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -472,7 +571,7 @@
 			isa = PBXGroup;
 			children = (
 				C9705793222E8AEF007F8B1C /* Group */,
-				C9705794222E8B05007F8B1C /* Timeline */,
+				C911561E2250B5CE00CB97E9 /* TimeLine */,
 			);
 			path = Diary;
 			sourceTree = "<group>";
@@ -521,21 +620,6 @@
 				C9705795222E8B29007F8B1C /* DiaryGroupViewController.swift */,
 			);
 			path = Group;
-			sourceTree = "<group>";
-		};
-		C9705794222E8B05007F8B1C /* Timeline */ = {
-			isa = PBXGroup;
-			children = (
-				C970579B222E8BF3007F8B1C /* TimelineViewController.swift */,
-				C9EA285B22426267003F40DD /* TimeLineUI.swift */,
-				C9EA285D22426509003F40DD /* TimeLineRouting.swift */,
-				C98A093D22475B4000AFAEF2 /* TimeLineDataType.swift */,
-				C9CC6193223F5BDB0093D37F /* TimeLineViewModel.swift */,
-				C9CC6195223F62A50093D37F /* TimeLineResources.swift */,
-				C9CC6190223F457E0093D37F /* Cell */,
-				C9CC6197223F7B6C0093D37F /* DiaryRegist */,
-			);
-			path = Timeline;
 			sourceTree = "<group>";
 		};
 		C970579D222E8C60007F8B1C /* MainTab */ = {
@@ -589,6 +673,7 @@
 				C9C6FE882240B5D8001FE7A5 /* Enumration */,
 				C908D2962223AECE000344B0 /* Common */,
 				C937FD702222D7DC00F9624E /* Extension */,
+				C91156192250A67B00CB97E9 /* Helper */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -625,14 +710,6 @@
 				C9C6FE7E2240A2EE001FE7A5 /* UI.swift */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		C9CC6190223F457E0093D37F /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				C9CC6191223F45970093D37F /* TimeLineCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		C9CC6197223F7B6C0093D37F /* DiaryRegist */ = {
@@ -852,7 +929,6 @@
 				C937FD7A2222E1B400F9624E /* LoginViewController.swift in Sources */,
 				C92716CC2244BD2700372B77 /* NSLayoutAnchor+Extension.swift in Sources */,
 				C9F086D92233C91000F25E7A /* DisplayCalendarResources.swift in Sources */,
-				C9EA285C22426267003F40DD /* TimeLineUI.swift in Sources */,
 				C98779022241117C005AAEA5 /* SelectRouting.swift in Sources */,
 				C9877910224123C2005AAEA5 /* ConfirmationTeamIdUI.swift in Sources */,
 				C9EA286822434ADF003F40DD /* MypageEditUI.swift in Sources */,
@@ -863,6 +939,7 @@
 				C970579F222E8C76007F8B1C /* TabBarController.swift in Sources */,
 				C959BF72222D4BA700207986 /* MemberInfoRegisterResources.swift in Sources */,
 				C9EA2860224266E0003F40DD /* DiaryRegistUI.swift in Sources */,
+				C91156252250C47D00CB97E9 /* TimeLineCell.swift in Sources */,
 				C9F086DD2233E92100F25E7A /* MypageResources.swift in Sources */,
 				C98778FD22410A8B005AAEA5 /* TopRouting.swift in Sources */,
 				C9557CC82236868F00D6F7A6 /* RegistCalendarResources.swift in Sources */,
@@ -873,6 +950,7 @@
 				C937FD53222287B800F9624E /* AppDelegate.swift in Sources */,
 				C937FD7E2222E22B00F9624E /* LoginViewModel.swift in Sources */,
 				C959BF66222D124300207986 /* MemberInfoRegisterViewModel.swift in Sources */,
+				C911561B2250A68C00CB97E9 /* Snapping.swift in Sources */,
 				C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */,
 				C959BF522227EA7F00207986 /* TeamInfoRegistValidation.swift in Sources */,
 				C9705796222E8B29007F8B1C /* DiaryGroupViewController.swift in Sources */,
@@ -885,51 +963,56 @@
 				C959BF74222D4BEE00207986 /* TeamInfoRegisterResources.swift in Sources */,
 				C9C6FE902240B7C7001FE7A5 /* RepresentMemberRegisterUI.swift in Sources */,
 				C9EA286622434978003F40DD /* MypageRouting.swift in Sources */,
+				C911561D2250A6AE00CB97E9 /* VerticalStackView.swift in Sources */,
 				C959BF7A222D4C8E00207986 /* TopResources.swift in Sources */,
 				C9EA286E22435109003F40DD /* DisplayCalendarUI.swift in Sources */,
 				C937FD722222D7F300F9624E /* UIColor+Extension.swift in Sources */,
 				C987790422411317005AAEA5 /* TeamInfoRegistRouting.swift in Sources */,
 				C959BF6E222D4B3500207986 /* TeamIdWriteResources.swift in Sources */,
-				C9CC6194223F5BDB0093D37F /* TimeLineViewModel.swift in Sources */,
 				C959BF5522290ADA00207986 /* RepresentMemberRegisterViewModel.swift in Sources */,
 				C970577E222E5E68007F8B1C /* CustomTextField.swift in Sources */,
 				C9705789222E6F21007F8B1C /* RemindPassValidation.swift in Sources */,
+				C91156272250CD3700CB97E9 /* TimeLineGroupCell.swift in Sources */,
 				C959BF70222D4B7400207986 /* ConfirmationTeamIdResources.swift in Sources */,
 				C959BF6A222D3A3700207986 /* LoginValidation.swift in Sources */,
 				C9EA286222433B48003F40DD /* RemindPassUI.swift in Sources */,
 				C9EA286C22434F00003F40DD /* MypageEditResources.swift in Sources */,
+				C91156182250A60100CB97E9 /* UIView+Layout.swift in Sources */,
+				C911562D22520B2900CB97E9 /* TimeLineHeaderCell.swift in Sources */,
 				C9557CC62236457000D6F7A6 /* RegistCalendarViewController.swift in Sources */,
 				C98A093C2247454700AFAEF2 /* RegistCalendarEnum.swift in Sources */,
 				C9EA28642243455F003F40DD /* MypageUI.swift in Sources */,
 				C92704222232C2E300B15B45 /* CustomView.swift in Sources */,
 				C9EA286A22434DB5003F40DD /* MypageEditRouting.swift in Sources */,
+				C91329802252360E00514EDE /* TimeLineRouting.swift in Sources */,
+				C91156202250B5E000CB97E9 /* TimeLineViewController.swift in Sources */,
 				C9705787222E6E1F007F8B1C /* RemindPassViewModel.swift in Sources */,
 				C9705783222E6680007F8B1C /* RemindPassViewController.swift in Sources */,
+				C911562F22520B5C00CB97E9 /* TimeLineHeaderController.swift in Sources */,
 				C959BF78222D4C6A00207986 /* SelectResources.swift in Sources */,
 				C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */,
 				C959BF59222CC05400207986 /* ConfirmationTeamIdViewController.swift in Sources */,
 				C9F086E82235DC6900F25E7A /* CalendarEvent.swift in Sources */,
+				C91156222250B61400CB97E9 /* BaseListController.swift in Sources */,
 				C9557CCC223689D500D6F7A6 /* RegistCalendarValidation.swift in Sources */,
-				C970579C222E8BF3007F8B1C /* TimelineViewController.swift in Sources */,
 				C9557CCA223689C300D6F7A6 /* RegistCalendarViewModel.swift in Sources */,
 				C9C6FE8C2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift in Sources */,
 				C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */,
+				C91156292250CDA200CB97E9 /* TimeLineHorizontalController.swift in Sources */,
 				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
 				C987790C22412021005AAEA5 /* TeamIdWriteUI.swift in Sources */,
-				C98A093E22475B4000AFAEF2 /* TimeLineDataType.swift in Sources */,
 				C959BF6C222D4AE500207986 /* LoginResources.swift in Sources */,
 				C9F086E622346ACC00F25E7A /* DisplayEventCell.swift in Sources */,
 				C98A093922473B8400AFAEF2 /* RegistCalendarUI.swift in Sources */,
-				C9CC6192223F45980093D37F /* TimeLineCell.swift in Sources */,
 				C9DBEE0F223E613800979664 /* DateFormatter+Extension.swift in Sources */,
 				C9C6FE852240ADB4001FE7A5 /* TeamInfoRegistUI.swift in Sources */,
 				C987791422412991005AAEA5 /* MemberInfoRegistUI.swift in Sources */,
 				C908D2982223AEE3000344B0 /* AppResources.swift in Sources */,
 				C98A09372247384F00AFAEF2 /* DisplayCalendarRouting.swift in Sources */,
 				C9C6FE872240B5D5001FE7A5 /* TeamInfoRegistEnum.swift in Sources */,
-				C9CC6196223F62A50093D37F /* TimeLineResources.swift in Sources */,
 				C9705790222E8A43007F8B1C /* DisplayCalendarViewController.swift in Sources */,
 				C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */,
+				C911562B2251B22400CB97E9 /* HorizontalSnappingController.swift in Sources */,
 				C9C6FE812240A59E001FE7A5 /* R.generated.swift in Sources */,
 				C987791622412D02005AAEA5 /* MemberInfoRegistRouting.swift in Sources */,
 				C9F086E22233F6A200F25E7A /* MypageEditViewModel.swift in Sources */,
@@ -939,9 +1022,10 @@
 				C97057A1222E9B0F007F8B1C /* TabBarResources.swift in Sources */,
 				C959BF572229100500207986 /* RepresentMemberRegisterValidation.swift in Sources */,
 				C9877908224117CB005AAEA5 /* LoginUI.swift in Sources */,
+				C913297E2252309B00514EDE /* TimeLineUI.swift in Sources */,
+				C913298222523D6B00514EDE /* TimeLineResources.swift in Sources */,
 				C9CC619C223F963B0093D37F /* DiaryView.swift in Sources */,
 				C9F086E02233ECD800F25E7A /* MypageEditViewController.swift in Sources */,
-				C9EA285E22426509003F40DD /* TimeLineRouting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -129,6 +129,7 @@ final class DisplayCalendarUIImpl: DisplayCalendarUI {
         calendar.translatesAutoresizingMaskIntoConstraints = false
         return calendar
     }()
+    
     var eventField: UITableView  = {
         let table = UITableView()
         table.separatorStyle = .none
@@ -138,6 +139,7 @@ final class DisplayCalendarUIImpl: DisplayCalendarUI {
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
+    
     var eventAddBtn: UIButton  = {
         let button = UIButton()
         button.backgroundColor = AppResources.ColorResources.deepBlueColor

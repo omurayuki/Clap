@@ -10,7 +10,7 @@ final class MemberInfoRegistRoutingImpl: MemberInfoRegistRouting {
     weak var viewController: UIViewController?
     
     func showTabBar() {
-        let vc = TabBarController(calendar: DisplayCalendarViewController(), diary: DiaryGroupViewController(), mypage: MypageViewController())
+        let vc = TabBarController(calendar: DisplayCalendarViewController(), timeLine: TimeLineViewController(), mypage: MypageViewController())
         viewController?.present(vc, animated: true)
     }
 }

@@ -1,12 +1,11 @@
-import Foundation
 import UIKit
 
 struct TimeLineResources {
     struct Constraint {
         static let diaryBtnBottomConstraint: CGFloat = -10
         static let diaryBtnRightConstrain: CGFloat = -10
-        static let diaryBtnWidthConstraint: CGFloat = 50
-        static let diaryBtnHeightConstraint: CGFloat = 50
+        static let BtnWidthConstraint: CGFloat = 50
+        static let BtnHeightConstraint: CGFloat = 50
         static let timeLineFieldWidthConstraint: CGFloat = 150
         static let wrapViewTopConstraint: CGFloat = 10
         static let wrapViewBottomConstraint: CGFloat = -10
