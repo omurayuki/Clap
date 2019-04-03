@@ -58,4 +58,10 @@ struct TeamInfoRegistViewModel: TeamInfoRegistViewModelType, TeamInfoRegistViewM
                 count.isValid
             }.asObservable()
     }
+    
+    func saveToSingleton(team: String, grade: String, sportsKind: String) {
+        TeamSignupSingleton.sharedInstance.team = team
+        TeamSignupSingleton.sharedInstance.grade = grade
+        TeamSignupSingleton.sharedInstance.sportsKind = sportsKind
+    }
 }

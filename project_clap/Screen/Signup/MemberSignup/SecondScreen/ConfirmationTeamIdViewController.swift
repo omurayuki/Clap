@@ -7,6 +7,7 @@ class ConfirmationTeamIdViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     var recievedTeamId: String
+    var recievedBelongTeam: String
     
     private lazy var ui: ConfirmationTeamIdUI = {
         let ui = ConfirmationTeamIdUIImpl()
@@ -20,8 +21,9 @@ class ConfirmationTeamIdViewController: UIViewController {
         return routing
     }()
     
-    init(teamId: String) {
-        self.recievedTeamId = teamId
+    init(teamId: String, belongTeam: String) {
+        recievedTeamId = teamId
+        recievedBelongTeam = belongTeam
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -47,8 +49,7 @@ extension ConfirmationTeamIdViewController {
             .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.ui.confirmBtn.bounce(completion: {
-                    //teamIDinitializeで送る
-                    self?.routing.showMemberInfoRegist()
+                    self?.routing.showMemberInfoRegist(teamId: self?.recievedTeamId ?? "")
                 })
             }).disposed(by: disposeBag)
         

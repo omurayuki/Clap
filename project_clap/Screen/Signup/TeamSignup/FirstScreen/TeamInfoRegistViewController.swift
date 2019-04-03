@@ -55,7 +55,7 @@ extension TeamInfoRegistViewController {
             .throttle(0.5, scheduler: MainScheduler.instance)
             .bind(onNext: { [weak self] _ in
                 self?.ui.nextBtn.bounce(completion: {
-                    self?.saveToSingleton(team: self?.ui.teamNameField.text ?? "",
+                    self?.viewModel?.saveToSingleton(team: self?.ui.teamNameField.text ?? "",
                                           grade: self?.ui.gradeField.text ?? "",
                                           sportsKind: self?.ui.sportsKindField.text ?? "")
                     self?.routing.RepresentMemberRegister()
@@ -87,12 +87,6 @@ extension TeamInfoRegistViewController {
             .bind { [weak self] _ in
                 self?.view.endEditing(true)
             }.disposed(by: disposeBag)
-    }
-    
-    private func saveToSingleton(team: String, grade: String, sportsKind: String) {
-        TeamSignupSingleton.sharedInstance.team = team
-        TeamSignupSingleton.sharedInstance.grade = grade
-        TeamSignupSingleton.sharedInstance.sportsKind = sportsKind
     }
 }
 

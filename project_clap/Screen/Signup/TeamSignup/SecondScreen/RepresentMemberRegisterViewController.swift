@@ -69,9 +69,14 @@ extension RepresentMemberRegisterViewController {
                                                           team: TeamSignupSingleton.sharedInstance.team,
                                                           grade: TeamSignupSingleton.sharedInstance.grade,
                                                           sportsKind: TeamSignupSingleton.sharedInstance.sportsKind)
-                        let realm = try! Realm()
-                        let results = realm.objects(User.self)
-                        SignupRepositoryImpl.whethreRegistUser(teamId: self?.teamId ?? "", uid: results.last?.uid ?? "")
+                        let realm = try? Realm()
+                        let results = realm?.objects(User.self)
+                        SignupRepositoryImpl.registUserWithTeam(teamId: self?.teamId ?? "",
+                                                                uid: results?.first?.uid ?? "")
+                        SignupRepositoryImpl.saveUserData(user: results?.last?.uid ?? "",
+                                                          teamId: self?.teamId ?? "",
+                                                          name: TeamSignupSingleton.sharedInstance.name,
+                                                          role: TeamSignupSingleton.sharedInstance.representMemberPosition)
                         self?.routing.showTabBar()
                     })
                 })

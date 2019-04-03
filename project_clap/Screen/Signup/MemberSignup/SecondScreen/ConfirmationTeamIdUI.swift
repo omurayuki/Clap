@@ -16,6 +16,8 @@ final class ConfirmationTeamIdUIImpl: ConfirmationTeamIdUI {
     
     private(set) var confirmationTeamTitle: UILabel = {
         let label = UILabel()
+        label.numberOfLines = 0
+        label.textAlignment = .center
         label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.numberOfLines = ConfirmationTeamIdResources.View.titleNumberOfLines
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -63,6 +65,7 @@ extension ConfirmationTeamIdUIImpl {
         confirmationTeamTitle.anchor()
             .centerXToSuperview()
             .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5)
+            .width(constant: vc.view.frame.width / 1.5)
             .activate()
         
         confirmationTeamId.anchor()

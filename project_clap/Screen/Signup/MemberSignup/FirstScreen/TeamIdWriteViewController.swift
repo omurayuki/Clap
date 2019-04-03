@@ -7,6 +7,7 @@ class TeamIdWriteViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     private var viewModel: TeamIdWriteViewModel?
+    let activityIndicator = UIActivityIndicatorView()
     
     private lazy var ui: TeamIdWriteUI = {
         let ui = TeamIdWriteUIImpl()
@@ -39,15 +40,20 @@ extension TeamIdWriteViewController {
             .subscribe(onNext: { [weak self] isValid in
                 self?.ui.confirmTeamIdBtn.isHidden = !isValid
             }).disposed(by: disposeBag)
-        
+        //ボタンを押せない処理実装必須(でないとindicatorが消えないerrorの時)
         ui.confirmTeamIdBtn.rx.tap.asObservable()
             .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.ui.confirmTeamIdBtn.bounce(completion: {
+                    self?.showIndicator()
                     guard let teamId = self?.ui.teamIdField.text else { return }
-                    //次のページでfetchしているが、ここでfetchしてからbelongデータを送る、そうしないと表示が遅い
-                    self?.routing.showConfirmationTeamId(teamId: teamId)
+                    SignupRepositoryImpl.fetchBelongData(teamId: teamId, completion: { belong in
+                        self?.hideIndicator()
+                        self?.routing.showConfirmationTeamId(teamId: teamId, belongTeam: belong)
+                    })
                 })
             }).disposed(by: disposeBag)
     }
 }
+
+extension TeamIdWriteViewController: IndicatorShowable {}

@@ -10,8 +10,8 @@ protocol SignupRepository {
                              team: String,
                              grade: String,
                              sportsKind: String)
-    static func whethreRegistUser(teamId: String, uid: String)
-    static func saveUserData()
+    static func registUserWithTeam(teamId: String, uid: String)
+    static func saveUserData(user: String, teamId: String, name: String, role: String, completion: (() -> Void)?)
     static func fetchBelongData(teamId: String, completion: @escaping (String) -> Void)
 }
 
@@ -43,7 +43,7 @@ struct SignupRepositoryImpl: SignupRepository {
             .setData(setData)
     }
     
-    static func whethreRegistUser(teamId: String, uid: String) {
+    static func registUserWithTeam(teamId: String, uid: String) {
         let setData = ["regist": true, "teamId": teamId] as [String : Any]
         Firebase.db
             .collection("team")
@@ -53,8 +53,14 @@ struct SignupRepositoryImpl: SignupRepository {
             .setData(setData)
     }
     
-    static func saveUserData() {
-        //realmに保存したデータを登録
+    static func saveUserData(user: String, teamId: String, name: String, role: String, completion: (() -> Void)? = nil) {
+        let setData = ["teamId": teamId, "name": name, "role": role]
+        Firebase.db
+            .collection("users")
+            .document(user)
+            .setData(setData) { _ in
+                completion?()
+        }
     }
     
     static func fetchBelongData(teamId: String, completion: @escaping (String) -> Void) {

@@ -72,4 +72,10 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
             }
             .share(replay: 1)
     }
+    
+    func saveToSingleton(name: String, mail: String, representMemberPosition: String) {
+        TeamSignupSingleton.sharedInstance.name = name
+        TeamSignupSingleton.sharedInstance.mail = mail
+        TeamSignupSingleton.sharedInstance.representMemberPosition = representMemberPosition
+    }
 }

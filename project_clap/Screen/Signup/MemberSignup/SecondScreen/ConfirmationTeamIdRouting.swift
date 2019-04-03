@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 protocol ConfirmationTeamIdRouting: Routing {
-    func showMemberInfoRegist()
+    func showMemberInfoRegist(teamId: String)
     func showTop()
 }
 
@@ -10,8 +10,8 @@ final class ConfirmationTeamIdRoutingImpl: ConfirmationTeamIdRouting {
     
     weak var viewController: UIViewController?
     
-    func showMemberInfoRegist() {
-        let vc = MemberInfoRegistViewController()
+    func showMemberInfoRegist(teamId: String) {
+        let vc = MemberInfoRegistViewController(teamId: teamId)
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
