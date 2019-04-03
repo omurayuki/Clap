@@ -4,7 +4,7 @@ enum TeamIdWriteValidationResult {
     case ok
     case lessThanText
     case empty
-    case notMatch
+    case notFetchBelongData
 }
 
 extension TeamIdWriteValidationResult {
@@ -33,10 +33,13 @@ class TeamIdWriteValidation {
         return .ok
     }
     
-    static func validMatch(teamId: String) -> TeamIdWriteValidationResult {
-        //DBにあるかチェック
-        guard "22222" == teamId else {
-            return .notMatch
+    static func validMatch(teamId: String?) -> TeamIdWriteValidationResult {
+        var descriptionString: String?
+        SignupRepositoryImpl.fetchBelongData(teamId: teamId ?? "") { description in
+            descriptionString = description
+        }
+        guard descriptionString != nil else {
+            return .notFetchBelongData
         }
         return .ok
     }

@@ -43,8 +43,15 @@ extension RemindPassViewController {
         
         ui.submitBtn.rx.tap
             .bind(onNext: { [weak self] _ in
-                self?.ui.submitBtn.bounce(completion: {
-                    print("firebaseにrequest")
+                guard let this = self else { return }
+                this.ui.submitBtn.bounce(completion: {
+                    Firebase.fireAuth.sendPasswordReset(withEmail: this.ui.emailField.text ?? "", completion: { (error) in
+                        if let _ = error {
+                            AlertController.showAlertMessage(alertType: .sendMailFailed, viewController: this)
+                            return
+                        }
+                        AlertController.showAlertMessage(alertType: .sendMailSuccess, viewController: this)
+                    })
                 })
             }).disposed(by: disposeBag)
     }

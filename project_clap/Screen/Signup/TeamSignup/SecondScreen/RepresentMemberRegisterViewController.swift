@@ -59,7 +59,7 @@ extension RepresentMemberRegisterViewController {
             .bind(onNext: { [weak self] _ in
                 self?.ui.teamRegistBtn.bounce(completion: {
                     self?.showIndicator()
-                    self?.saveToSingleton(name: self?.ui.nameField.text ?? "",
+                    self?.viewModel?.saveToSingleton(name: self?.ui.nameField.text ?? "",
                                           mail: self?.ui.mailField.text ?? "",
                                           representMemberPosition: self?.ui.representMemberPosition.text ?? "",
                                           representMemberYear: self?.ui.representMemberYear.text ?? "")
@@ -125,13 +125,6 @@ extension RepresentMemberRegisterViewController {
             .bind { [weak self] _ in
                 self?.view.endEditing(true)
             }.disposed(by: disposeBag)
-    }
-    
-    private func saveToSingleton(name: String, mail: String, representMemberPosition: String, representMemberYear: String) {
-        TeamSignupSingleton.sharedInstance.name = name
-        TeamSignupSingleton.sharedInstance.mail = mail
-        TeamSignupSingleton.sharedInstance.representMemberPosition = representMemberPosition
-        TeamSignupSingleton.sharedInstance.representMemberYear = representMemberYear
     }
 }
 

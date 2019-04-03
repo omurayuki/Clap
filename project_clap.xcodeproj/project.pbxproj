@@ -35,6 +35,7 @@
 		C91329AC2253937C00514EDE /* RandomString.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329AB2253937C00514EDE /* RandomString.swift */; };
 		C91329AE22539F8100514EDE /* memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329AD22539F8100514EDE /* memo.swift */; };
 		C91329B12253BC1800514EDE /* LoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329B02253BC1800514EDE /* LoginRepository.swift */; };
+		C91329B52254559700514EDE /* TeamIdWriteRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329B42254559700514EDE /* TeamIdWriteRouting.swift */; };
 		C92704222232C2E300B15B45 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92704212232C2E300B15B45 /* CustomView.swift */; };
 		C92716CC2244BD2700372B77 /* NSLayoutAnchor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92716CB2244BD2700372B77 /* NSLayoutAnchor+Extension.swift */; };
 		C937FD53222287B800F9624E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD52222287B800F9624E /* AppDelegate.swift */; };
@@ -162,6 +163,7 @@
 		C91329AB2253937C00514EDE /* RandomString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomString.swift; sourceTree = "<group>"; };
 		C91329AD22539F8100514EDE /* memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memo.swift; sourceTree = "<group>"; };
 		C91329B02253BC1800514EDE /* LoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepository.swift; sourceTree = "<group>"; };
+		C91329B42254559700514EDE /* TeamIdWriteRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamIdWriteRouting.swift; sourceTree = "<group>"; };
 		C92704212232C2E300B15B45 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		C92716CB2244BD2700372B77 /* NSLayoutAnchor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutAnchor+Extension.swift"; sourceTree = "<group>"; };
 		C937FD4F222287B800F9624E /* project_clap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project_clap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -582,6 +584,7 @@
 			children = (
 				C937FD8422237E5A00F9624E /* TeamIdWriteViewController.swift */,
 				C987790B22412021005AAEA5 /* TeamIdWriteUI.swift */,
+				C91329B42254559700514EDE /* TeamIdWriteRouting.swift */,
 				C959BF6D222D4B3500207986 /* TeamIdWriteResources.swift */,
 				C959BF61222CED8700207986 /* TeamIdWriteViewModel.swift */,
 				C959BF63222CEDD700207986 /* TeamIdWriteValidation.swift */,
@@ -1054,6 +1057,7 @@
 				C959BF59222CC05400207986 /* ConfirmationTeamIdViewController.swift in Sources */,
 				C9F086E82235DC6900F25E7A /* CalendarEvent.swift in Sources */,
 				C91156222250B61400CB97E9 /* BaseListController.swift in Sources */,
+				C91329B52254559700514EDE /* TeamIdWriteRouting.swift in Sources */,
 				C9557CCC223689D500D6F7A6 /* RegistCalendarValidation.swift in Sources */,
 				C9557CCA223689C300D6F7A6 /* RegistCalendarViewModel.swift in Sources */,
 				C9C6FE8C2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift in Sources */,

@@ -146,11 +146,16 @@ extension DisplayCalendarViewController {
         //年ごとにデータを取得してローカルDBにセット
         formatter.dateFormat = "yyyy MM dd"
         return [
-            formatter.date(from: "2019 03 06")!: ["aaaaa"],
-            formatter.date(from: "2019 03 05")!: ["bbbbb"],
-            formatter.date(from: "2019 03 01")!: ["ccccc"],
-            formatter.date(from: "2019 03 09")!: ["ddddd"],
-            formatter.date(from: "2019 03 18")!: ["eeeee", "fffff"],
+            formatter.date(from: "2019 04 06")!: ["aaaaa"],
+            formatter.date(from: "2019 04 05")!: ["bbbbb"],
+            formatter.date(from: "2019 04 01")!: ["ccccc"],
+            formatter.date(from: "2019 04 09")!: ["ddddd"],
+            formatter.date(from: "2019 04 18")!: ["eeeee", "fffff"],
+            formatter.date(from: "2019 04 21")!: ["eeeee", "fffff"],
+            formatter.date(from: "2019 04 24")!: ["eeeee", "fffff", "eeeee", "fffff"],
+            formatter.date(from: "2019 04 30")!: ["eeeee", "fffff"],
+            formatter.date(from: "2019 04 02")!: ["eeeee", "fffff", "eeeee", "fffff"],
+            formatter.date(from: "2019 04 23")!: ["eeeee", "fffff", "eeeee", "fffff", "eeeee", "fffff"],
         ]
     }
 }
@@ -161,7 +166,14 @@ extension DisplayCalendarViewController: JTAppleCalendarViewDataSource {
         guard let startDate = formatter.date(from: "2019 01 01"), let endDate = formatter.date(from: "2100 12 31") else {
             return ConfigurationParameters(startDate: Date(), endDate: Date())
         }
-        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: 6, calendar: Calendar.current, generateInDates: .forAllMonths, generateOutDates: .tillEndOfGrid, firstDayOfWeek: .sunday, hasStrictBoundaries: false)
+        let parameters = ConfigurationParameters(startDate: startDate,
+                                                 endDate: endDate,
+                                                 numberOfRows: 6,
+                                                 calendar: Calendar.current,
+                                                 generateInDates: .forAllMonths,
+                                                 generateOutDates: .tillEndOfGrid,
+                                                 firstDayOfWeek: .sunday,
+                                                 hasStrictBoundaries: false)
         return parameters
     }
 }
@@ -178,7 +190,10 @@ extension DisplayCalendarViewController: JTAppleCalendarViewDelegate {
     }
 
     func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-        ui.coloringCalendar(calendar: calendar, cell: cell, cellState: cellState, indexPath: indexPath)
+        ui.coloringCalendar(calendar: calendar,
+                            cell: cell,
+                            cellState: cellState,
+                            indexPath: indexPath)
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {

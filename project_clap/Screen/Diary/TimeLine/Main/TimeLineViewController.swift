@@ -66,12 +66,22 @@ extension TimeLineViewController {
     
     private func selectedTargetMenu() {
         if isSelected {
-            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.7,
+                           delay: 0,
+                           usingSpringWithDamping: 0.7,
+                           initialSpringVelocity: 0.7,
+                           options: .curveEaseOut,
+                           animations: {
                 self.ui.hiddenBtnPosition(vc: self)
                 self.hiddenBtn()
             })
         } else {
-            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.7,
+                           delay: 0,
+                           usingSpringWithDamping: 0.7,
+                           initialSpringVelocity: 0.7,
+                           options: .curveEaseOut,
+                           animations: {
                 self.ui.showBtnPosition(vc: self)
                 self.showBtn()
             })

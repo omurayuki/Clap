@@ -16,7 +16,6 @@ final class ConfirmationTeamIdUIImpl: ConfirmationTeamIdUI {
     
     private(set) var confirmationTeamTitle: UILabel = {
         let label = UILabel()
-        label.text = "あなたのチームはfarでお間違い無いですか？"
         label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.numberOfLines = ConfirmationTeamIdResources.View.titleNumberOfLines
         label.translatesAutoresizingMaskIntoConstraints = false

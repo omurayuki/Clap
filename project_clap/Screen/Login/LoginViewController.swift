@@ -26,7 +26,9 @@ class LoginViewCountroller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(vc: self)
-        viewModel = LoginViewModel(emailField: ui.mailField.rx.text.orEmpty.asDriver(), passField: ui.passField.rx.text.orEmpty.asDriver(), loginTapped: ui.logintBtn.rx.tap.asDriver())
+        viewModel = LoginViewModel(emailField: ui.mailField.rx.text.orEmpty.asDriver(),
+                                   passField: ui.passField.rx.text.orEmpty.asDriver(),
+                                   loginTapped: ui.logintBtn.rx.tap.asDriver())
         setupViewModel()
     }
 }
@@ -44,9 +46,14 @@ extension LoginViewCountroller {
                 guard let this = self else { return }
                 this.showIndicator()
                 this.ui.logintBtn.bounce(completion: {
-                    LoginRepositoryImpl.login(mail: this.ui.mailField.text ?? "", pass: this.ui.passField.text ?? "", vc: this, completion: {
-                        self?.hideIndicator()
-                        self?.routing.showTabBar()
+                    LoginRepositoryImpl.login(mail: this.ui.mailField.text ?? "",
+                                              pass: this.ui.passField.text ?? "",
+                                              completion: { error in
+                        if let _ = error {
+                            self?.hideIndicator()
+                            AlertController.showAlertMessage(alertType: .loginFailed, viewController: this)
+                        }
+                        self?.hideIndicator(completion: { this.routing.showTabBar() })
                     })
                 })
             }).disposed(by: disposeBag)

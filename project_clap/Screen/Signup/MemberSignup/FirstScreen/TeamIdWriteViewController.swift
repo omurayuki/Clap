@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
-//validationであれば遷移, なければアラート
+
 class TeamIdWriteViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
@@ -14,11 +14,21 @@ class TeamIdWriteViewController: UIViewController {
         return ui
     }()
     
+    private lazy var routing: TeamIdWriteRouting = {
+        let routing = TeamIdWriteRoutingImpl()
+        routing.viewController = self
+        return routing
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(vc: self)
-        viewModel = TeamIdWriteViewModel(teamIdField: ui.teamIdField.rx.text.orEmpty.asObservable())
         setupViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel = TeamIdWriteViewModel(teamIdField: ui.teamIdField.rx.text.orEmpty.asObservable())
     }
 }
 
@@ -34,9 +44,9 @@ extension TeamIdWriteViewController {
             .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.ui.confirmTeamIdBtn.bounce(completion: {
-                    guard let navi = self?.navigationController else { return }
                     guard let teamId = self?.ui.teamIdField.text else { return }
-                    navi.pushViewController(ConfirmationTeamIdViewController(teamId: teamId), animated: true)
+                    //次のページでfetchしているが、ここでfetchしてからbelongデータを送る、そうしないと表示が遅い
+                    self?.routing.showConfirmationTeamId(teamId: teamId)
                 })
             }).disposed(by: disposeBag)
     }

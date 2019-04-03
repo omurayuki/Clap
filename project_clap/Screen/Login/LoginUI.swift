@@ -14,9 +14,9 @@ protocol LoginUI: UI {
 
 final class LoginUIImpl: LoginUI {
     
-    var viewController: UIViewController?
+    weak var viewController: UIViewController?
     
-    var noticeUserLoginTitle: UILabel = {
+    private(set) var noticeUserLoginTitle: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.please_input_login_info()
         label.textColor = AppResources.ColorResources.subShallowBlueColor
@@ -24,7 +24,7 @@ final class LoginUIImpl: LoginUI {
         return label
     }()
     
-    var mailField: CustomTextField = {
+    private(set) var mailField: CustomTextField = {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.mail_address()
         field.clearButtonMode = .always
@@ -32,7 +32,7 @@ final class LoginUIImpl: LoginUI {
         return field
     }()
     
-    var passField: CustomTextField = {
+    private(set) var passField: CustomTextField = {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.password()
         field.clearButtonMode = .always
@@ -46,7 +46,7 @@ final class LoginUIImpl: LoginUI {
         return gesture
     }()
     
-    var logintBtn: UIButton = {
+    private(set) var logintBtn: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.log_in(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
@@ -55,7 +55,7 @@ final class LoginUIImpl: LoginUI {
         return button
     }()
     
-    var reissuePass: UIButton = {
+    private(set) var reissuePass: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.to_forgot_pass(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor

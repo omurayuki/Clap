@@ -12,12 +12,13 @@ protocol SignupRepository {
                              sportsKind: String)
     static func whethreRegistUser(teamId: String, uid: String)
     static func saveUserData()
+    static func fetchBelongData(teamId: String, completion: @escaping (String) -> Void)
 }
 
 struct SignupRepositoryImpl: SignupRepository {
     
     static func signup(email: String, pass: String, completion: (() -> Void)? = nil) {
-        Auth.auth().createUser(withEmail: email, password: pass) { (response, error) in
+        Firebase.fireAuth.createUser(withEmail: email, password: pass) { (response, error) in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -54,5 +55,16 @@ struct SignupRepositoryImpl: SignupRepository {
     
     static func saveUserData() {
         //realmに保存したデータを登録
+    }
+    
+    static func fetchBelongData(teamId: String, completion: @escaping (String) -> Void) {
+        Firebase.db.collection("team").document(teamId).getDocument(completion: { (response, error) in
+            if let response = response, response.exists {
+                let description = response.data()
+                completion(description?["belong"] as? String ?? "")
+            } else {
+                print(error as Any)
+            }
+        })
     }
 }

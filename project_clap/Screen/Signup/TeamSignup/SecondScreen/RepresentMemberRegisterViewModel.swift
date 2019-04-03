@@ -81,5 +81,10 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
         .share(replay: 1)
     }
     
-    
+    func saveToSingleton(name: String, mail: String, representMemberPosition: String, representMemberYear: String) {
+        TeamSignupSingleton.sharedInstance.name = name
+        TeamSignupSingleton.sharedInstance.mail = mail
+        TeamSignupSingleton.sharedInstance.representMemberPosition = representMemberPosition
+        TeamSignupSingleton.sharedInstance.representMemberYear = representMemberYear
+    }
 }

@@ -26,12 +26,15 @@ class ConfirmationTeamIdViewController: UIViewController {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(storeName: R.string.locarizable.confirmation(), vc: self)
+        SignupRepositoryImpl.fetchBelongData(teamId: recievedTeamId) { description in
+            self.ui.confirmationTeamTitle.text = "あなたのチームは\(description)でお間違いないですか？"
+        }
         ui.confirmationTeamId.text = recievedTeamId
         setupViewModel()
     }
@@ -41,15 +44,16 @@ extension ConfirmationTeamIdViewController {
     
     private func setupViewModel() {
         ui.confirmBtn.rx.tap.asObservable()
-            .throttle(1, scheduler: MainScheduler.instance)
+            .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.ui.confirmBtn.bounce(completion: {
+                    //teamIDinitializeで送る
                     self?.routing.showMemberInfoRegist()
                 })
             }).disposed(by: disposeBag)
         
         ui.cancelBtn.rx.tap.asObservable()
-            .throttle(1, scheduler: MainScheduler.instance)
+            .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.ui.cancelBtn.bounce(completion: {
                     self?.routing.showTop()

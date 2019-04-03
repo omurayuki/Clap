@@ -23,8 +23,16 @@ class MemberInfoRegistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(vc: self)
-        viewModel = MemberInfoRegisterViewModel(nameField: ui.nameField.rx.text.orEmpty.asObservable(), mailField: ui.mailField.rx.text.orEmpty.asObservable(), passField: ui.passField.rx.text.orEmpty.asObservable(), rePassField: ui.rePassField.rx.text.orEmpty.asObservable(), positionField: ui.memberPosition.rx.text.orEmpty.asObservable(), registBtn: ui.memberRegistBtn.rx.tap.asObservable())
-        ui.setupToolBar(ui.memberPosition, toolBar: ui.positionToolBar, content: viewModel?.outputs.positionArr ?? [R.string.locarizable.empty()], vc: self)
+        viewModel = MemberInfoRegisterViewModel(nameField: ui.nameField.rx.text.orEmpty.asObservable(),
+                                                mailField: ui.mailField.rx.text.orEmpty.asObservable(),
+                                                passField: ui.passField.rx.text.orEmpty.asObservable(),
+                                                rePassField: ui.rePassField.rx.text.orEmpty.asObservable(),
+                                                positionField: ui.memberPosition.rx.text.orEmpty.asObservable(),
+                                                registBtn: ui.memberRegistBtn.rx.tap.asObservable())
+        ui.setupToolBar(ui.memberPosition,
+                        toolBar: ui.positionToolBar,
+                        content: viewModel?.outputs.positionArr ?? [R.string.locarizable.empty()],
+                        vc: self)
         setupViewModel()
     }
 }
