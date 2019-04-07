@@ -33,7 +33,6 @@ final class TeamIdWriteUIImpl: TeamIdWriteUI {
     
     private(set) var teamIdField: CustomTextField = {
         let field = CustomTextField()
-//        field.text = "あ３ds"
         field.placeholder = R.string.locarizable.team_id()
         field.translatesAutoresizingMaskIntoConstraints = false
         return field

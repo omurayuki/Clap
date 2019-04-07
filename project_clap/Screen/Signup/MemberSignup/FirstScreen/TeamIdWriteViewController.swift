@@ -24,12 +24,8 @@ class TeamIdWriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(vc: self)
-        setupViewModel()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         viewModel = TeamIdWriteViewModel(teamIdField: ui.teamIdField.rx.text.orEmpty.asObservable())
+        setupViewModel()
     }
 }
 
@@ -47,9 +43,9 @@ extension TeamIdWriteViewController {
                 self?.ui.confirmTeamIdBtn.bounce(completion: {
                     self?.showIndicator()
                     guard let teamId = self?.ui.teamIdField.text else { return }
-                    SignupRepositoryImpl.fetchBelongData(teamId: teamId, completion: { belong in
+                    SignupRepositoryImpl().fetchBelongData(teamId: teamId, completion: { belong in
                         self?.hideIndicator()
-                        self?.routing.showConfirmationTeamId(teamId: teamId, belongTeam: belong)
+                        self?.routing.showConfirmationTeamId(teamId: teamId, belongTeam: belong ?? "")
                     })
                 })
             }).disposed(by: disposeBag)

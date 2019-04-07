@@ -34,8 +34,8 @@ class ConfirmationTeamIdViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(storeName: R.string.locarizable.confirmation(), vc: self)
-        SignupRepositoryImpl.fetchBelongData(teamId: recievedTeamId) { description in
-            self.ui.confirmationTeamTitle.text = "あなたのチームは\(description)でお間違いないですか？"
+        SignupRepositoryImpl().fetchBelongData(teamId: recievedTeamId) { description in
+            self.ui.confirmationTeamTitle.text = "あなたのチームは\(description ?? "")でお間違いないですか？"
         }
         ui.confirmationTeamId.text = recievedTeamId
         setupViewModel()

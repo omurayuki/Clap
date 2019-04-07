@@ -12,7 +12,7 @@ protocol SignupRepository {
                              sportsKind: String)
     static func registUserWithTeam(teamId: String, uid: String)
     static func saveUserData(user: String, teamId: String, name: String, role: String, completion: (() -> Void)?)
-    static func fetchBelongData(teamId: String, completion: @escaping (String) -> Void)
+    func fetchBelongData(teamId: String, completion: @escaping (String?) -> Void)
 }
 
 struct SignupRepositoryImpl: SignupRepository {
@@ -63,7 +63,7 @@ struct SignupRepositoryImpl: SignupRepository {
         }
     }
     
-    static func fetchBelongData(teamId: String, completion: @escaping (String) -> Void) {
+    func fetchBelongData(teamId: String, completion: @escaping (String?) -> Void) {
         Firebase.db.collection("team").document(teamId).getDocument(completion: { (response, error) in
             if let response = response, response.exists {
                 let description = response.data()

@@ -15,13 +15,14 @@ protocol TeamIdWriteViewModelType {
     var outputs: TeamIdWriteViewModelOutput { get }
 }
 
-struct TeamIdWriteViewModel: TeamIdWriteViewModelType, TeamIdWriteViewModelInput, TeamIdWriteViewModelOutput {
+final class TeamIdWriteViewModel: TeamIdWriteViewModelType, TeamIdWriteViewModelInput, TeamIdWriteViewModelOutput {
     var inputs: TeamIdWriteViewModelInput { return self }
     var outputs: TeamIdWriteViewModelOutput { return self }
     var teamIdText: Observable<String>
     var isConfirmBtnEnable: Observable<Bool>
     
     init(teamIdField: Observable<String>) {
+        var value: TeamIdWriteValidationResult?
         teamIdText = teamIdField
         
         let isEmpty = Observable.combineLatest([teamIdText]) { teamId -> TeamIdWriteValidationResult in
@@ -29,10 +30,15 @@ struct TeamIdWriteViewModel: TeamIdWriteViewModelType, TeamIdWriteViewModelInput
         }
         .share(replay: 1)
         
-        let isMatch = Observable.combineLatest([teamIdText]) { teamId -> TeamIdWriteValidationResult in
-            return TeamIdWriteValidation.validMatch(teamId: teamId[0])
-        }
-        .share(replay: 1)
+        let isMatch = teamIdText.filter { text in
+            text.count > 1
+            }.map { text -> TeamIdWriteValidationResult in
+                TeamIdWriteValidation().validMatch(teamId: text, completion: { result in
+                    value = result
+                })
+                return value ?? .ok
+                // なぜかvalueに値が入らない
+            }.share(replay: 1)
         
         let isCount = Observable.combineLatest([teamIdText]) { teamId -> TeamIdWriteValidationResult in
             return TeamIdWriteValidation.validCharCount(teamId: teamId[0])
@@ -40,7 +46,10 @@ struct TeamIdWriteViewModel: TeamIdWriteViewModelType, TeamIdWriteViewModelInput
         .share(replay: 1)
         
         isConfirmBtnEnable = Observable.combineLatest(isEmpty, isMatch, isCount) { (empty, match, count) in
-            empty.isValid &&
+            print("empty: \(empty)")
+            print("match: \(match)")
+            print("count: \(count)")
+            return empty.isValid &&
             match.isValid &&
             count.isValid
         }

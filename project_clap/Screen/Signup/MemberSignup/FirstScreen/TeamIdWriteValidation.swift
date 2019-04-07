@@ -19,6 +19,9 @@ extension TeamIdWriteValidationResult {
 }
 
 class TeamIdWriteValidation {
+    
+    var signupRepository = SignupRepositoryImpl()
+    
     static func validateEmpty(teamId: String) -> TeamIdWriteValidationResult {
         guard teamId.count != 0 else {
             return .empty
@@ -33,14 +36,17 @@ class TeamIdWriteValidation {
         return .ok
     }
     
-    static func validMatch(teamId: String?) -> TeamIdWriteValidationResult {
-        var descriptionString: String?
-        SignupRepositoryImpl.fetchBelongData(teamId: teamId ?? "") { description in
-            descriptionString = description
+    func validMatch(teamId: String, completion: ((TeamIdWriteValidationResult) -> Void)? = nil) {
+        signupRepository.fetchBelongData(teamId: teamId) { description in
+            print("1")
+            if description == nil {
+                print("nonononono")
+                guard let completion = completion else { return }
+                completion(.notFetchBelongData)
+                return
+            }
+            print("okokokokok")
+            completion?(.ok)
         }
-        guard descriptionString != nil else {
-            return .notFetchBelongData
-        }
-        return .ok
     }
 }
