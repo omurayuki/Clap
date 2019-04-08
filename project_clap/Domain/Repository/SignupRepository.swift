@@ -5,19 +5,19 @@ import FirebaseAuth
 import RealmSwift
 
 protocol SignupRepository {
-    static func signup(email: String, pass: String, completion: (() -> Void)?)
+    static func signup(email: String, pass: String, completion: ((String?) -> Void)?)
     static func saveTeamData(teamId: String,
                              team: String,
                              grade: String,
                              sportsKind: String)
     static func registUserWithTeam(teamId: String, uid: String)
-    static func saveUserData(user: String, teamId: String, name: String, role: String, completion: (() -> Void)?)
+    static func saveUserData(user: String, teamId: String, name: String, role: String, mail: String, team: String, completion: (() -> Void)?)
     func fetchBelongData(teamId: String, completion: @escaping (String?) -> Void)
 }
 
 struct SignupRepositoryImpl: SignupRepository {
     
-    static func signup(email: String, pass: String, completion: (() -> Void)? = nil) {
+    static func signup(email: String, pass: String, completion: ((String?) -> Void)? = nil) {
         Firebase.fireAuth.createUser(withEmail: email, password: pass) { (response, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -28,7 +28,9 @@ struct SignupRepositoryImpl: SignupRepository {
             user.uid = response.user.uid
             user.email = response.user.email ?? ""
             user.saveUserData(user: user)
-            completion?()
+            //error handling
+            guard let uid = Firebase.fireAuth.currentUser?.uid else { return }
+            completion?(uid)
         }
     }
     
@@ -53,8 +55,8 @@ struct SignupRepositoryImpl: SignupRepository {
             .setData(setData)
     }
     
-    static func saveUserData(user: String, teamId: String, name: String, role: String, completion: (() -> Void)? = nil) {
-        let setData = ["teamId": teamId, "name": name, "role": role]
+    static func saveUserData(user: String, teamId: String, name: String, role: String, mail: String, team: String, completion: (() -> Void)? = nil) {
+        let setData = ["teamId": teamId, "name": name, "role": role, "userId": user, "mail": mail, "team": team]
         Firebase.db
             .collection("users")
             .document(user)

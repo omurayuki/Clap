@@ -1,12 +1,6 @@
 import Foundation
 import RealmSwift
 
-//remoteからfetchする用のフォルダ
-//remoteの~~のデータを取得するとか
-//ログインしたときに、fetchしてきて保存
-//非同期的に保存
-//取得したデータをmainthhreadで保存
-
 class Player: Object {
     static let realm = try! Realm()
     

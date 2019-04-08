@@ -36,4 +36,9 @@ struct LoginViewModel: LoginViewModelType, LoginViewModelInput, LoginViewModelOu
             empty[0].isValid
         }).asDriver()
     }
+    
+    func saveToSingleton(uid: String, completion: @escaping () -> Void) {
+        UIDSingleton.sharedInstance.uid = uid
+        completion()
+    }
 }

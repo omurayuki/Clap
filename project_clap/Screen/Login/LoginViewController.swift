@@ -48,12 +48,14 @@ extension LoginViewCountroller {
                 this.ui.logintBtn.bounce(completion: {
                     LoginRepositoryImpl.login(mail: this.ui.mailField.text ?? "",
                                               pass: this.ui.passField.text ?? "",
-                                              completion: { error in
+                                              completion: { uid, error in
                         if let _ = error {
                             self?.hideIndicator()
                             AlertController.showAlertMessage(alertType: .loginFailed, viewController: this)
                         }
-                        self?.hideIndicator(completion: { this.routing.showTabBar() })
+                        self?.viewModel?.saveToSingleton(uid: uid ?? "", completion: {
+                            self?.hideIndicator(completion: { this.routing.showTabBar(uid: UIDSingleton.sharedInstance.uid) })
+                        })
                     })
                 })
             }).disposed(by: disposeBag)

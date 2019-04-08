@@ -78,4 +78,9 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
         TeamSignupSingleton.sharedInstance.mail = mail
         TeamSignupSingleton.sharedInstance.representMemberPosition = representMemberPosition
     }
+    
+    func saveToSingleton(uid: String, completion: @escaping () -> Void) {
+        UIDSingleton.sharedInstance.uid = uid
+        completion()
+    }
 }

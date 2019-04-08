@@ -7,7 +7,7 @@ class ConfirmationTeamIdViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     var recievedTeamId: String
-    var recievedBelongTeam: String
+    var recievedBelongTeam: String?
     
     private lazy var ui: ConfirmationTeamIdUI = {
         let ui = ConfirmationTeamIdUIImpl()
@@ -21,9 +21,8 @@ class ConfirmationTeamIdViewController: UIViewController {
         return routing
     }()
     
-    init(teamId: String, belongTeam: String) {
+    init(teamId: String) {
         recievedTeamId = teamId
-        recievedBelongTeam = belongTeam
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,8 +33,9 @@ class ConfirmationTeamIdViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(storeName: R.string.locarizable.confirmation(), vc: self)
-        SignupRepositoryImpl().fetchBelongData(teamId: recievedTeamId) { description in
-            self.ui.confirmationTeamTitle.text = "あなたのチームは\(description ?? "")でお間違いないですか？"
+        SignupRepositoryImpl().fetchBelongData(teamId: recievedTeamId) { [weak self] description in
+            self?.ui.confirmationTeamTitle.text = "あなたのチームは\(description ?? "")でお間違いないですか？"
+            self?.recievedBelongTeam = description ?? ""
         }
         ui.confirmationTeamId.text = recievedTeamId
         setupViewModel()
@@ -49,7 +49,7 @@ extension ConfirmationTeamIdViewController {
             .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.ui.confirmBtn.bounce(completion: {
-                    self?.routing.showMemberInfoRegist(teamId: self?.recievedTeamId ?? "")
+                    self?.routing.showMemberInfoRegist(teamId: self?.recievedTeamId ?? "", belongTeam: self?.recievedBelongTeam ?? "")
                 })
             }).disposed(by: disposeBag)
         

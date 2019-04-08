@@ -28,7 +28,7 @@
 		C9132990225306AB00514EDE /* AlertProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913298F225306AB00514EDE /* AlertProtocol.swift */; };
 		C9132992225310E000514EDE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9132991225310E000514EDE /* BaseViewController.swift */; };
 		C913299622532FA100514EDE /* TeamSignupSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913299522532FA100514EDE /* TeamSignupSingleton.swift */; };
-		C913299C2253480A00514EDE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913299B2253480A00514EDE /* Player.swift */; };
+		C913299C2253480A00514EDE /* DiaryWritter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913299B2253480A00514EDE /* DiaryWritter.swift */; };
 		C913299F2253485100514EDE /* SignupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913299E2253485100514EDE /* SignupRepository.swift */; };
 		C91329A7225365BF00514EDE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329A6225365BF00514EDE /* User.swift */; };
 		C91329A922538D9F00514EDE /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329A822538D9E00514EDE /* Firebase.swift */; };
@@ -36,6 +36,8 @@
 		C91329AE22539F8100514EDE /* memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329AD22539F8100514EDE /* memo.swift */; };
 		C91329B12253BC1800514EDE /* LoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329B02253BC1800514EDE /* LoginRepository.swift */; };
 		C91329B52254559700514EDE /* TeamIdWriteRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329B42254559700514EDE /* TeamIdWriteRouting.swift */; };
+		C91C1DBC225AF56C005BDA5F /* MypageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */; };
+		C91C1DBE225B0800005BDA5F /* UIDSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91C1DBD225B0800005BDA5F /* UIDSingleton.swift */; };
 		C92704222232C2E300B15B45 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92704212232C2E300B15B45 /* CustomView.swift */; };
 		C92716CC2244BD2700372B77 /* NSLayoutAnchor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92716CB2244BD2700372B77 /* NSLayoutAnchor+Extension.swift */; };
 		C937FD53222287B800F9624E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD52222287B800F9624E /* AppDelegate.swift */; };
@@ -72,6 +74,8 @@
 		C959BF78222D4C6A00207986 /* SelectResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF77222D4C6A00207986 /* SelectResources.swift */; };
 		C959BF7A222D4C8E00207986 /* TopResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF79222D4C8E00207986 /* TopResources.swift */; };
 		C95EBC54222F5DD200D24181 /* DisplayCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95EBC52222F5DD200D24181 /* DisplayCalendarCell.swift */; };
+		C96560E7225B4B0F00C22B24 /* Mypage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96560E6225B4B0F00C22B24 /* Mypage.swift */; };
+		C96560E9225B525100C22B24 /* MypageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96560E8225B525100C22B24 /* MypageViewModel.swift */; };
 		C970577E222E5E68007F8B1C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C970577D222E5E68007F8B1C /* CustomTextField.swift */; };
 		C9705783222E6680007F8B1C /* RemindPassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9705782222E6680007F8B1C /* RemindPassViewController.swift */; };
 		C9705785222E6BF5007F8B1C /* RemindPassResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9705784222E6BF5007F8B1C /* RemindPassResources.swift */; };
@@ -156,7 +160,7 @@
 		C913298F225306AB00514EDE /* AlertProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertProtocol.swift; sourceTree = "<group>"; };
 		C9132991225310E000514EDE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C913299522532FA100514EDE /* TeamSignupSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSignupSingleton.swift; sourceTree = "<group>"; };
-		C913299B2253480A00514EDE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		C913299B2253480A00514EDE /* DiaryWritter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryWritter.swift; sourceTree = "<group>"; };
 		C913299E2253485100514EDE /* SignupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRepository.swift; sourceTree = "<group>"; };
 		C91329A6225365BF00514EDE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C91329A822538D9E00514EDE /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
@@ -164,6 +168,8 @@
 		C91329AD22539F8100514EDE /* memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memo.swift; sourceTree = "<group>"; };
 		C91329B02253BC1800514EDE /* LoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepository.swift; sourceTree = "<group>"; };
 		C91329B42254559700514EDE /* TeamIdWriteRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamIdWriteRouting.swift; sourceTree = "<group>"; };
+		C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageRepository.swift; sourceTree = "<group>"; };
+		C91C1DBD225B0800005BDA5F /* UIDSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDSingleton.swift; sourceTree = "<group>"; };
 		C92704212232C2E300B15B45 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		C92716CB2244BD2700372B77 /* NSLayoutAnchor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutAnchor+Extension.swift"; sourceTree = "<group>"; };
 		C937FD4F222287B800F9624E /* project_clap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project_clap.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +208,8 @@
 		C959BF77222D4C6A00207986 /* SelectResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectResources.swift; sourceTree = "<group>"; };
 		C959BF79222D4C8E00207986 /* TopResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopResources.swift; sourceTree = "<group>"; };
 		C95EBC52222F5DD200D24181 /* DisplayCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCalendarCell.swift; sourceTree = "<group>"; };
+		C96560E6225B4B0F00C22B24 /* Mypage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mypage.swift; sourceTree = "<group>"; };
+		C96560E8225B525100C22B24 /* MypageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewModel.swift; sourceTree = "<group>"; };
 		C970577D222E5E68007F8B1C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		C9705782222E6680007F8B1C /* RemindPassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassViewController.swift; sourceTree = "<group>"; };
 		C9705784222E6BF5007F8B1C /* RemindPassResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassResources.swift; sourceTree = "<group>"; };
@@ -399,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				C913299522532FA100514EDE /* TeamSignupSingleton.swift */,
+				C91C1DBD225B0800005BDA5F /* UIDSingleton.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -406,17 +415,18 @@
 		C91329992253321200514EDE /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				C913299B2253480A00514EDE /* Player.swift */,
+				C913299B2253480A00514EDE /* DiaryWritter.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
 		};
-		C913299A2253327F00514EDE /* UserModel */ = {
+		C913299A2253327F00514EDE /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				C91329A6225365BF00514EDE /* User.swift */,
+				C96560E6225B4B0F00C22B24 /* Mypage.swift */,
 			);
-			path = UserModel;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C913299D2253483300514EDE /* Repository */ = {
@@ -424,6 +434,7 @@
 			children = (
 				C913299E2253485100514EDE /* SignupRepository.swift */,
 				C91329B02253BC1800514EDE /* LoginRepository.swift */,
+				C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -661,6 +672,7 @@
 				C9705797222E8B6F007F8B1C /* MypageViewController.swift */,
 				C9EA28632243455F003F40DD /* MypageUI.swift */,
 				C9EA286522434978003F40DD /* MypageRouting.swift */,
+				C96560E8225B525100C22B24 /* MypageViewModel.swift */,
 				C9F086DC2233E92100F25E7A /* MypageResources.swift */,
 				C9F086DE2233ECB000F25E7A /* Edit */,
 			);
@@ -721,7 +733,7 @@
 		C98A09352247357600AFAEF2 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				C913299A2253327F00514EDE /* UserModel */,
+				C913299A2253327F00514EDE /* Model */,
 				C913299D2253483300514EDE /* Repository */,
 				C9132997225331EB00514EDE /* DataStore */,
 			);
@@ -1013,6 +1025,7 @@
 				C9705796222E8B29007F8B1C /* DiaryGroupViewController.swift in Sources */,
 				C9CC6199223F7B8D0093D37F /* DiaryRegistViewController.swift in Sources */,
 				C9705798222E8B6F007F8B1C /* MypageViewController.swift in Sources */,
+				C91C1DBC225AF56C005BDA5F /* MypageRepository.swift in Sources */,
 				C937FD772222DF2600F9624E /* SelectViewController.swift in Sources */,
 				C9C6FE7D2240A2B6001FE7A5 /* TopUI.swift in Sources */,
 				C959BF5D222CC9E800207986 /* MemberInfoRegistViewController.swift in Sources */,
@@ -1026,7 +1039,7 @@
 				C9EA286E22435109003F40DD /* DisplayCalendarUI.swift in Sources */,
 				C937FD722222D7F300F9624E /* UIColor+Extension.swift in Sources */,
 				C987790422411317005AAEA5 /* TeamInfoRegistRouting.swift in Sources */,
-				C913299C2253480A00514EDE /* Player.swift in Sources */,
+				C913299C2253480A00514EDE /* DiaryWritter.swift in Sources */,
 				C959BF6E222D4B3500207986 /* TeamIdWriteResources.swift in Sources */,
 				C91329B12253BC1800514EDE /* LoginRepository.swift in Sources */,
 				C9132992225310E000514EDE /* BaseViewController.swift in Sources */,
@@ -1059,6 +1072,7 @@
 				C91156222250B61400CB97E9 /* BaseListController.swift in Sources */,
 				C91329B52254559700514EDE /* TeamIdWriteRouting.swift in Sources */,
 				C9557CCC223689D500D6F7A6 /* RegistCalendarValidation.swift in Sources */,
+				C91C1DBE225B0800005BDA5F /* UIDSingleton.swift in Sources */,
 				C9557CCA223689C300D6F7A6 /* RegistCalendarViewModel.swift in Sources */,
 				C9C6FE8C2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift in Sources */,
 				C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */,
@@ -1072,6 +1086,7 @@
 				C98A093922473B8400AFAEF2 /* RegistCalendarUI.swift in Sources */,
 				C9DBEE0F223E613800979664 /* DateFormatter+Extension.swift in Sources */,
 				C9C6FE852240ADB4001FE7A5 /* TeamInfoRegistUI.swift in Sources */,
+				C96560E9225B525100C22B24 /* MypageViewModel.swift in Sources */,
 				C987791422412991005AAEA5 /* MemberInfoRegistUI.swift in Sources */,
 				C908D2982223AEE3000344B0 /* AppResources.swift in Sources */,
 				C98A09372247384F00AFAEF2 /* DisplayCalendarRouting.swift in Sources */,
@@ -1084,6 +1099,7 @@
 				C987791622412D02005AAEA5 /* MemberInfoRegistRouting.swift in Sources */,
 				C9F086E22233F6A200F25E7A /* MypageEditViewModel.swift in Sources */,
 				C959BF68222D125B00207986 /* MemberInfoRegisterValidation.swift in Sources */,
+				C96560E7225B4B0F00C22B24 /* Mypage.swift in Sources */,
 				C959BF62222CED8700207986 /* TeamIdWriteViewModel.swift in Sources */,
 				C9F086DB2233D5EA00F25E7A /* CustomStackView.swift in Sources */,
 				C97057A1222E9B0F007F8B1C /* TabBarResources.swift in Sources */,

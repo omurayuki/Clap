@@ -45,7 +45,7 @@ extension TeamIdWriteViewController {
                     guard let teamId = self?.ui.teamIdField.text else { return }
                     SignupRepositoryImpl().fetchBelongData(teamId: teamId, completion: { belong in
                         self?.hideIndicator()
-                        self?.routing.showConfirmationTeamId(teamId: teamId, belongTeam: belong ?? "")
+                        self?.routing.showConfirmationTeamId(teamId: teamId)
                     })
                 })
             }).disposed(by: disposeBag)

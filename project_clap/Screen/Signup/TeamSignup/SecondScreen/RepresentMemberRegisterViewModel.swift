@@ -87,4 +87,9 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
         TeamSignupSingleton.sharedInstance.representMemberPosition = representMemberPosition
         TeamSignupSingleton.sharedInstance.representMemberYear = representMemberYear
     }
+    
+    func saveToSingleton(uid: String, completion: @escaping () -> Void) {
+        UIDSingleton.sharedInstance.uid = uid
+        completion()
+    }
 }

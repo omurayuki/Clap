@@ -10,6 +10,7 @@ class MemberInfoRegistViewController: UIViewController {
     private var viewModel: MemberInfoRegisterViewModel?
     let activityIndicator = UIActivityIndicatorView()
     var recievedTeamId: String
+    var recievedBelongTeam: String
     
     private lazy var ui: MemberInfoRegistUI = {
         let ui = MemberInfoRegistUIImpl()
@@ -23,8 +24,9 @@ class MemberInfoRegistViewController: UIViewController {
         return routing
     }()
     
-    init(teamId: String) {
+    init(teamId: String, belongTeam: String) {
         recievedTeamId = teamId
+        recievedBelongTeam = belongTeam
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -65,15 +67,23 @@ extension MemberInfoRegistViewController {
                     self?.viewModel?.saveToSingleton(name: self?.ui.nameField.text ?? "",
                                                      mail: self?.ui.mailField.text ?? "",
                                                      representMemberPosition: self?.ui.memberPosition.text ?? "")
-                    SignupRepositoryImpl.signup(email: self?.ui.mailField.text ?? "", pass: self?.ui.passField.text ?? "", completion: {
-                        self?.hideIndicator()
+                    SignupRepositoryImpl.signup(email: self?.ui.mailField.text ?? "",
+                                                pass: self?.ui.passField.text ?? "",
+                                                completion: { uid in
                         let realm = try? Realm()
                         let results = realm?.objects(User.self)
                         SignupRepositoryImpl.saveUserData(user: results?.last?.uid ?? "",
-                            teamId: self?.recievedTeamId ?? "",
-                            name: self?.ui.nameField.text ?? "",
-                            role: self?.ui.memberPosition.text ?? "",
-                            completion: { self?.routing.showTabBar() })
+                                                          teamId: self?.recievedTeamId ?? "",
+                                                          name: self?.ui.nameField.text ?? "",
+                                                          role: self?.ui.memberPosition.text ?? "",
+                                                          mail: self?.ui.mailField.text ?? "",
+                                                          team: self?.recievedBelongTeam ?? "",
+                                                          completion: {
+                                                            self?.viewModel?.saveToSingleton(uid: uid ?? "", completion: {
+                                                                self?.hideIndicator()
+                                                                self?.routing.showTabBar(uid: UIDSingleton.sharedInstance.uid)
+                                                            })
+                        })
                     })
                 })
             }).disposed(by: disposeBag)

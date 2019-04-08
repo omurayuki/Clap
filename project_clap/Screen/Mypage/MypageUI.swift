@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import PopupDialog
 
 protocol MypageUI: UI {
     var editBtn: UIBarButtonItem { get }
@@ -21,6 +22,7 @@ protocol MypageUI: UI {
     
     func setup(vc: UIViewController)
     func setupInsideStack(vc: UIViewController)
+    func createLogoutAlert(vc: UIViewController)
 }
 
 final class MypageUIImpl: MypageUI {
@@ -62,7 +64,7 @@ final class MypageUIImpl: MypageUI {
     var belongTeam: UILabel = {
         let label = UILabel()
         label.textColor = .gray
-        label.text = "京都産業大学ラグビー部"
+        label.text = "Loading.."
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -84,7 +86,7 @@ final class MypageUIImpl: MypageUI {
     var position: UILabel = {
         let label = UILabel()
         label.textColor = .gray
-        label.text = "プロップ"
+        label.text = "Loading.."
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -106,7 +108,7 @@ final class MypageUIImpl: MypageUI {
     var teamId: UILabel = {
         let label = UILabel()
         label.textColor = .gray
-        label.text = "fkerjf0fdiosfjw@10"
+        label.text = "Loading.."
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -128,7 +130,7 @@ final class MypageUIImpl: MypageUI {
     var mail: UILabel = {
         let label = UILabel()
         label.textColor = .gray
-        label.text = "2@2.com"
+        label.text = "Loading.."
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -187,8 +189,14 @@ extension MypageUIImpl {
             .height(constant: vc.view.bounds.size.height / 12)
             .activate()
         
+        teamIdStack.anchor()
+            .top(to: positionStack.bottomAnchor, constant: MypageResources.Constraint.teamIdStackTopConstraint)
+            .width(constant: vc.view.bounds.size.width)
+            .height(constant: vc.view.bounds.size.height / 12)
+            .activate()
+        
         mailStack.anchor()
-            .top(to: positionStack.bottomAnchor, constant: MypageResources.Constraint.mailStackTopConstraint)
+            .top(to: teamIdStack.bottomAnchor, constant: MypageResources.Constraint.mailStackTopConstraint)
             .width(constant: vc.view.bounds.size.width)
             .height(constant: vc.view.bounds.size.height / 12)
             .activate()
@@ -203,5 +211,13 @@ extension MypageUIImpl {
         position.leftAnchor.constraint(equalTo: positionTitle.rightAnchor, constant: MypageResources.Constraint.positionLeftConstraint).isActive = true
         teamId.leftAnchor.constraint(equalTo: teamIdTitle.rightAnchor, constant: MypageResources.Constraint.teamIdLeftConstraint).isActive = true
         mail.leftAnchor.constraint(equalTo: mailTitle.rightAnchor, constant: MypageResources.Constraint.mailLeftConstraint).isActive = true
+    }
+    
+    func createLogoutAlert(vc: UIViewController) {
+        let alert = PopupDialog(title: R.string.locarizable.message(), message: R.string.locarizable.do_you_wanto_logout())
+        let logout = DefaultButton(title: R.string.locarizable.yes()) { vc.present(UINavigationController(rootViewController: TopViewController()), animated: true) }
+        let cancel = CancelButton(title: R.string.locarizable.cancel()) {}
+        alert.addButtons([logout, cancel])
+        vc.present(alert, animated: true)
     }
 }

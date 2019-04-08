@@ -1,5 +1,6 @@
 import UIKit
 
+////signup時以外用途なし
 class TeamSignupSingleton: NSObject {
     var team: String!
     var grade: String!
