@@ -1,9 +1,14 @@
-//
-//  MypageRouting.swift
-//  project_clap
-//
-//  Created by オムラユウキ on 2019/03/21.
-//  Copyright © 2019 Swifter. All rights reserved.
-//
-
 import Foundation
+import UIKit
+
+protocol MypageRouting: Routing {
+    func showEditPage(vc: UIViewController, uid: String)
+}
+
+final class MypageRoutingImpl: MypageRouting {
+    var viewController: UIViewController?
+    
+    func showEditPage(vc: UIViewController, uid: String) {
+        vc.navigationController?.pushViewController(MypageEditViewController(uid: uid), animated: true)
+    }
+}

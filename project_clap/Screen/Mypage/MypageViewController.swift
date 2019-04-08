@@ -4,6 +4,7 @@ import RxSwift
 import RxCocoa
 
 class MypageViewController: UIViewController {
+    
     var recievedUid: String
     var viewModel: MypageViewModel?
     var disposeBag = DisposeBag()
@@ -12,6 +13,12 @@ class MypageViewController: UIViewController {
         let ui = MypageUIImpl()
         ui.viewController = self
         return ui
+    }()
+    
+    private lazy var routing: MypageRouting = {
+        let routing = MypageRoutingImpl()
+        routing.viewController = self
+        return routing
     }()
     
     init(uid: String) {
@@ -55,7 +62,7 @@ extension MypageViewController {
     private func setupViewModel() {
         ui.editBtn.rx.tap
             .bind { _ in
-                self.navigationController?.pushViewController(MypageEditViewController(), animated: true)
+                self.routing.showEditPage(vc: self, uid: self.recievedUid)
             }.disposed(by: disposeBag)
         
         ui.logoutBtn.rx.tap

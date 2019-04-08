@@ -27,19 +27,19 @@ protocol MypageUI: UI {
 
 final class MypageUIImpl: MypageUI {
     
-    var viewController: UIViewController?
+    weak var viewController: UIViewController?
     
-    var editBtn: UIBarButtonItem = {
+    private(set) var editBtn: UIBarButtonItem = {
         let button = UIBarButtonItem(title: R.string.locarizable.edit(), style: .plain, target: nil, action: nil)
         return button
     }()
     
-    var logoutBtn: UIBarButtonItem = {
+    private(set) var logoutBtn: UIBarButtonItem = {
         let button = UIBarButtonItem(title: R.string.locarizable.logout(), style: .plain, target: nil, action: nil)
         return button
     }()
     
-    var userPhoto: UIImageView = {
+    private(set) var userPhoto: UIImageView = {
         let image = UIImageView()
         image.backgroundColor = .gray
         image.clipsToBounds = true
@@ -48,20 +48,20 @@ final class MypageUIImpl: MypageUI {
         return image
     }()
     
-    var userPhotoWrapView: CustomView = {
+    private(set) var userPhotoWrapView: CustomView = {
         let view = CustomView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    var belongTitle: UILabel = {
+    private(set) var belongTitle: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.belong()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    var belongTeam: UILabel = {
+    private(set) var belongTeam: UILabel = {
         let label = UILabel()
         label.textColor = .gray
         label.text = "Loading.."
@@ -69,21 +69,21 @@ final class MypageUIImpl: MypageUI {
         return label
     }()
     
-    var belongStack: CustomStackView = {
+    private(set) var belongStack: CustomStackView = {
         let stack = CustomStackView()
         stack.axis = .horizontal
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
-    var positionTitle: UILabel = {
+    private(set) var positionTitle: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.position()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    var position: UILabel = {
+    private(set) var position: UILabel = {
         let label = UILabel()
         label.textColor = .gray
         label.text = "Loading.."
@@ -91,21 +91,21 @@ final class MypageUIImpl: MypageUI {
         return label
     }()
     
-    var positionStack: CustomStackView = {
+    private(set) var positionStack: CustomStackView = {
         let stack = CustomStackView()
         stack.axis = .horizontal
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
-    var teamIdTitle: UILabel = {
+    private(set) var teamIdTitle: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.teamId()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    var teamId: UILabel = {
+    private(set) var teamId: UILabel = {
         let label = UILabel()
         label.textColor = .gray
         label.text = "Loading.."
@@ -113,21 +113,21 @@ final class MypageUIImpl: MypageUI {
         return label
     }()
     
-    var teamIdStack: CustomStackView = {
+    private(set) var teamIdStack: CustomStackView = {
         let stack = CustomStackView()
         stack.axis = .horizontal
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
-    var mailTitle: UILabel = {
+    private(set) var mailTitle: UILabel = {
         let label = UILabel()
         label.text = R.string.locarizable.mail()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    var mail: UILabel = {
+    private(set) var mail: UILabel = {
         let label = UILabel()
         label.textColor = .gray
         label.text = "Loading.."
@@ -135,7 +135,7 @@ final class MypageUIImpl: MypageUI {
         return label
     }()
     
-    var mailStack: CustomStackView = {
+    private(set) var mailStack: CustomStackView = {
         let stack = CustomStackView()
         stack.axis = .horizontal
         stack.translatesAutoresizingMaskIntoConstraints = false

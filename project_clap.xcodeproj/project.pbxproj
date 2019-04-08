@@ -103,6 +103,7 @@
 		C98A093C2247454700AFAEF2 /* RegistCalendarEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A093B2247454700AFAEF2 /* RegistCalendarEnum.swift */; };
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
+		C9B67DC8225B99B500F82AE7 /* RemindPassRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */; };
 		C9C6FE7D2240A2B6001FE7A5 /* TopUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE7C2240A2B6001FE7A5 /* TopUI.swift */; };
 		C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE7E2240A2EE001FE7A5 /* UI.swift */; };
 		C9C6FE812240A59E001FE7A5 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE802240A59D001FE7A5 /* R.generated.swift */; };
@@ -237,6 +238,7 @@
 		C98A093B2247454700AFAEF2 /* RegistCalendarEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarEnum.swift; sourceTree = "<group>"; };
 		C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterViewController.swift; sourceTree = "<group>"; };
 		C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewModel.swift; sourceTree = "<group>"; };
+		C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassRepository.swift; sourceTree = "<group>"; };
 		C9C6FE7C2240A2B6001FE7A5 /* TopUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUI.swift; sourceTree = "<group>"; };
 		C9C6FE7E2240A2EE001FE7A5 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		C9C6FE802240A59D001FE7A5 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -435,6 +437,7 @@
 				C913299E2253485100514EDE /* SignupRepository.swift */,
 				C91329B02253BC1800514EDE /* LoginRepository.swift */,
 				C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */,
+				C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -1061,6 +1064,7 @@
 				C913299622532FA100514EDE /* TeamSignupSingleton.swift in Sources */,
 				C91329802252360E00514EDE /* TimeLineRouting.swift in Sources */,
 				C91156202250B5E000CB97E9 /* TimeLineViewController.swift in Sources */,
+				C9B67DC8225B99B500F82AE7 /* RemindPassRepository.swift in Sources */,
 				C9705787222E6E1F007F8B1C /* RemindPassViewModel.swift in Sources */,
 				C9705783222E6680007F8B1C /* RemindPassViewController.swift in Sources */,
 				C911562F22520B5C00CB97E9 /* TimeLineHeaderController.swift in Sources */,

@@ -9,15 +9,19 @@ protocol MypageEditUI: UI {
     var belongStack: CustomStackView { get }
     var positionTitle: UILabel { get }
     var positionField: UITextField { get }
+    var positionToolBar: UIToolbar { get }
     var positionStack: CustomStackView { get }
     var mailTitle: UILabel { get }
     var mailField: UITextField { get }
     var mailStack: CustomStackView { get }
     var viewTapGesture: UITapGestureRecognizer { get }
+    var doneBtn: UIBarButtonItem { get }
     var saveBtn: UIButton { get }
     
     func setup(vc: UIViewController)
     func setupInsideStack(vc: UIViewController)
+    func getPickerView(vc: UIViewController) -> UIPickerView
+    func setupToolBar(_ textField: UITextField, toolBar: UIToolbar, content: Array<String>, vc: UIViewController)
 }
 
 final class MypageEditUIImple: MypageEditUI {
@@ -74,6 +78,15 @@ final class MypageEditUIImple: MypageEditUI {
         return field
     }()
     
+    private(set) var positionToolBar: UIToolbar = {
+        let toolbarFrame = CGRect(x: 0, y: 0, width: UIViewController().view.frame.width, height: MemberInfoRegisterResources.View.toolBarHeight)
+        let accessoryToolbar = UIToolbar(frame: toolbarFrame)
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        accessoryToolbar.items = [flexibleSpace]
+        accessoryToolbar.barTintColor = UIColor.white
+        return accessoryToolbar
+    }()
+    
     private(set) var positionStack: CustomStackView = {
         let stack = CustomStackView()
         stack.axis = .horizontal
@@ -108,6 +121,11 @@ final class MypageEditUIImple: MypageEditUI {
         return gesture
     }()
     
+    private(set) var doneBtn: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+        return button
+    }()
+    
     private(set) var saveBtn: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = MypageEditResources.View.saveBtnLayerCornerRadius
@@ -121,6 +139,7 @@ final class MypageEditUIImple: MypageEditUI {
 extension MypageEditUIImple {
     
     func setup(vc: UIViewController) {
+        positionToolBar.items = [doneBtn]
         vc.view.backgroundColor = .white
         vc.navigationItem.title = R.string.locarizable.edit()
         vc.view.addGestureRecognizer(viewTapGesture)
@@ -182,5 +201,19 @@ extension MypageEditUIImple {
         belongTeamField.leftAnchor.constraint(equalTo: belongTitle.rightAnchor, constant: MypageResources.Constraint.belongTeamLeftConstraint).isActive = true
         positionField.leftAnchor.constraint(equalTo: positionTitle.rightAnchor, constant: MypageResources.Constraint.positionLeftConstraint).isActive = true
         mailField.leftAnchor.constraint(equalTo: mailTitle.rightAnchor, constant: MypageResources.Constraint.mailLeftConstraint).isActive = true
+    }
+    
+    func getPickerView(vc: UIViewController) -> UIPickerView {
+        let pickerView = UIPickerView()
+        pickerView.dataSource = vc as? UIPickerViewDataSource
+        pickerView.delegate = vc as? UIPickerViewDelegate
+        pickerView.backgroundColor = .white
+        return pickerView
+    }
+    
+    func setupToolBar(_ textField: UITextField, toolBar: UIToolbar, content: Array<String>, vc: UIViewController) {
+        textField.inputView = getPickerView(vc: vc)
+        textField.inputAccessoryView = toolBar
+        textField.text = content[0]
     }
 }

@@ -20,7 +20,6 @@ protocol MemberInfoRegistUI: UI {
 
 final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
     
-    
     weak var viewController: UIViewController?
     
     private(set) var noticeUserRegistTitle: UILabel = {

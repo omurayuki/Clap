@@ -31,4 +31,12 @@ struct MypageEditValidation {
         }
         return .ok
     }
+    
+    static func validateEmail(email: String) -> MemberInfoRegisterValidationResult {
+        let emailCheck = NSPredicate(format:"SELF MATCHES %@", "[A-Z0-9a-z._+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
+        guard emailCheck.evaluate(with: email) else {
+            return .notMatchEmail
+        }
+        return .ok
+    }
 }

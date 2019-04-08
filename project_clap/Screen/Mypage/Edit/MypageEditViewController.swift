@@ -4,7 +4,9 @@ import RxCocoa
 
 class MypageEditViewController: UIViewController {
     
+    var recievedUid: String
     private let disposeBag = DisposeBag()
+    let activityIndicator = UIActivityIndicatorView()
     private var viewModel: MypageEditViewModel?
     
     private lazy var ui: MypageEditUI = {
@@ -19,11 +21,26 @@ class MypageEditViewController: UIViewController {
         return routing
     }()
     
+    init(uid: String) {
+        recievedUid = uid
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(vc: self)
         ui.setupInsideStack(vc: self)
-        viewModel = MypageEditViewModel(belongField: ui.belongTeamField.rx.text.orEmpty.asObservable(), positionField: ui.positionField.rx.text.orEmpty.asObservable(), mailField: ui.mailField.rx.text.orEmpty.asObservable())
+        viewModel = MypageEditViewModel(belongField: ui.belongTeamField.rx.text.orEmpty.asObservable(),
+                                        positionField: ui.positionField.rx.text.orEmpty.asObservable(),
+                                        mailField: ui.mailField.rx.text.orEmpty.asObservable())
+        ui.setupToolBar(ui.positionField,
+                        toolBar: ui.positionToolBar,
+                        content: viewModel?.outputs.positionArr ?? [R.string.locarizable.empty()],
+                        vc: self)
         setupViewModel()
     }
 }
@@ -31,15 +48,39 @@ class MypageEditViewController: UIViewController {
 extension MypageEditViewController {
     
     private func setupViewModel() {
+        
         viewModel?.outputs.isSaveBtnEnable.asObservable()
             .subscribe(onNext: { [weak self] isValid in
                 self?.ui.saveBtn.isHidden = !isValid
             }).disposed(by: disposeBag)
         
+        ui.doneBtn.rx.tap
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .bind { [weak self] _ in
+                if let _ = self?.ui.positionField.isFirstResponder {
+                    self?.ui.positionField.resignFirstResponder()
+                }
+            }.disposed(by: disposeBag)
+        
         ui.saveBtn.rx.tap
             .bind(onNext: { [weak self] _ in
+                self?.ui.saveBtn.bounce(completion: {
                 guard let this = self else { return }
-                self?.routing.showPrev(vc: this)
+                this.showIndicator()
+                // subscribeの中にsubscribe + updateDataをcontrollerにベタ書きしてしまっている
+                MypageRepositoryImpl.updateEmail(email: this.ui.mailField.text ?? "")
+                MypageRepositoryImpl().updateMypageData(uid: self?.recievedUid ?? "", updateData: ["team": this.ui.belongTeamField.text ?? "",
+                                                                                                   "role": this.ui.positionField.text ?? "",
+                                                                                                   "mail": this.ui.mailField.text ?? ""])
+                    .subscribe { single in
+                        switch single {
+                        case .success(_):
+                            this.hideIndicator(completion: { this.routing.showPrev(vc: this) })
+                        case .error(let error):
+                            this.hideIndicator(completion: { print(error.localizedDescription) })
+                        }
+                    }.disposed(by: this.disposeBag)
+                })
             }).disposed(by: disposeBag)
         
         ui.belongTeamField.rx.controlEvent(.editingDidEndOnExit)
@@ -69,3 +110,25 @@ extension MypageEditViewController {
             }.disposed(by: disposeBag)
     }
 }
+
+extension MypageEditViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return MemberInfoRegisterResources.View.pickerNumberOfComponents
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return viewModel?.outputs.positionArr.count ?? 0
+    }
+}
+
+extension MypageEditViewController: UIPickerViewDelegate {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return viewModel?.outputs.positionArr[row] ?? R.string.locarizable.empty()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        ui.positionField.text = viewModel?.outputs.positionArr[row] ?? R.string.locarizable.empty()
+    }
+}
+
+extension MypageEditViewController: IndicatorShowable {}
