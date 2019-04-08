@@ -28,7 +28,7 @@
 		C9132990225306AB00514EDE /* AlertProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913298F225306AB00514EDE /* AlertProtocol.swift */; };
 		C9132992225310E000514EDE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9132991225310E000514EDE /* BaseViewController.swift */; };
 		C913299622532FA100514EDE /* TeamSignupSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913299522532FA100514EDE /* TeamSignupSingleton.swift */; };
-		C913299C2253480A00514EDE /* sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913299B2253480A00514EDE /* sample.swift */; };
+		C913299C2253480A00514EDE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913299B2253480A00514EDE /* Player.swift */; };
 		C913299F2253485100514EDE /* SignupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913299E2253485100514EDE /* SignupRepository.swift */; };
 		C91329A7225365BF00514EDE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329A6225365BF00514EDE /* User.swift */; };
 		C91329A922538D9F00514EDE /* Firebase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329A822538D9E00514EDE /* Firebase.swift */; };
@@ -156,7 +156,7 @@
 		C913298F225306AB00514EDE /* AlertProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertProtocol.swift; sourceTree = "<group>"; };
 		C9132991225310E000514EDE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C913299522532FA100514EDE /* TeamSignupSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSignupSingleton.swift; sourceTree = "<group>"; };
-		C913299B2253480A00514EDE /* sample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sample.swift; sourceTree = "<group>"; };
+		C913299B2253480A00514EDE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		C913299E2253485100514EDE /* SignupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRepository.swift; sourceTree = "<group>"; };
 		C91329A6225365BF00514EDE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C91329A822538D9E00514EDE /* Firebase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Firebase.swift; sourceTree = "<group>"; };
@@ -390,7 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				C9132998225331F400514EDE /* Local */,
-				C91329992253321200514EDE /* Remote */,
+				C91329992253321200514EDE /* Realm */,
 			);
 			path = DataStore;
 			sourceTree = "<group>";
@@ -403,20 +403,20 @@
 			path = Local;
 			sourceTree = "<group>";
 		};
-		C91329992253321200514EDE /* Remote */ = {
+		C91329992253321200514EDE /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				C913299B2253480A00514EDE /* sample.swift */,
+				C913299B2253480A00514EDE /* Player.swift */,
 			);
-			path = Remote;
+			path = Realm;
 			sourceTree = "<group>";
 		};
-		C913299A2253327F00514EDE /* RealmModel */ = {
+		C913299A2253327F00514EDE /* UserModel */ = {
 			isa = PBXGroup;
 			children = (
 				C91329A6225365BF00514EDE /* User.swift */,
 			);
-			path = RealmModel;
+			path = UserModel;
 			sourceTree = "<group>";
 		};
 		C913299D2253483300514EDE /* Repository */ = {
@@ -721,7 +721,7 @@
 		C98A09352247357600AFAEF2 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				C913299A2253327F00514EDE /* RealmModel */,
+				C913299A2253327F00514EDE /* UserModel */,
 				C913299D2253483300514EDE /* Repository */,
 				C9132997225331EB00514EDE /* DataStore */,
 			);
@@ -1026,7 +1026,7 @@
 				C9EA286E22435109003F40DD /* DisplayCalendarUI.swift in Sources */,
 				C937FD722222D7F300F9624E /* UIColor+Extension.swift in Sources */,
 				C987790422411317005AAEA5 /* TeamInfoRegistRouting.swift in Sources */,
-				C913299C2253480A00514EDE /* sample.swift in Sources */,
+				C913299C2253480A00514EDE /* Player.swift in Sources */,
 				C959BF6E222D4B3500207986 /* TeamIdWriteResources.swift in Sources */,
 				C91329B12253BC1800514EDE /* LoginRepository.swift in Sources */,
 				C9132992225310E000514EDE /* BaseViewController.swift in Sources */,
