@@ -10,6 +10,7 @@ protocol MypageEditViewModelInput {
 protocol MypageEditViewModelOutput {
     var isSaveBtnEnable: Observable<Bool> { get }
     var positionArr: Array<String> { get }
+    var isOverBelong: Observable<Bool> { get }
 }
 
 protocol MypageEditViewModelType {
@@ -25,6 +26,7 @@ class MypageEditViewModel: MypageEditViewModelType, MypageEditViewModelInput, My
     var positionText: Observable<String>
     var mailText: Observable<String>
     var positionArr: Array<String>
+    var isOverBelong: Observable<Bool>
     let disposeBag = DisposeBag()
     
     init(belongField: Observable<String>, positionField: Observable<String>, mailField: Observable<String>) {
@@ -36,21 +38,21 @@ class MypageEditViewModel: MypageEditViewModelType, MypageEditViewModelInput, My
         positionText = positionField
         mailText = mailField
         
+        isOverBelong = belongText
+            .map({ text -> Bool in
+                return MypageEditValidation.validateIsOverBelong(name: text)
+            }).asObservable()
+        
         let isEmpty = Observable.combineLatest(belongText, positionText, mailText) { (belong, position, mail) -> MypageEditValidationResult in
             MypageEditValidation.validationEmpty(belong: belong, position: position, email: mail)
         }.share(replay: 1)
         
-        let isMore = Observable.combineLatest(belongText, positionText, mailText) { (belong, position, mail) -> MypageEditValidationResult in
-            MypageEditValidation.validationIsMore(belong: belong, position: position, email: mail)
-        }.share(replay: 1)
-        
         let emailFieldWhetherMatch = Observable.combineLatest([mailText], { mail -> MemberInfoRegisterValidationResult in
-            return MemberInfoRegisterValidation.validateEmail(email: mail[0])
+            return MypageEditValidation.validateEmail(email: mail[0])
         }).share(replay: 1)
         
-        isSaveBtnEnable = Observable.combineLatest(isEmpty, isMore, emailFieldWhetherMatch) { empty, more, email in
+        isSaveBtnEnable = Observable.combineLatest(isEmpty, emailFieldWhetherMatch) { empty, email in
             empty.isValid &&
-                more.isValid &&
                 email.isValid
         }.share(replay: 1)
     }

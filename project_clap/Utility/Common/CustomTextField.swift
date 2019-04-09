@@ -12,7 +12,7 @@ class CustomTextField: UITextField {
     }
     
     private func composeUnderline() {
-        underline.frame = CGRect(x: 0, y: self.frame.height, width: frame.width, height: 2.5)
+        underline.frame = CGRect(x: 0, y: frame.height, width: frame.width, height: 2.5)
         underline.backgroundColor = AppResources.ColorResources.shallowBlueColor
         addSubview(underline)
         bringSubviewToFront(underline)

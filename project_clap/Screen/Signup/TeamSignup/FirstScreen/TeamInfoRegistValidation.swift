@@ -3,7 +3,8 @@ import Foundation
 enum TeamInfoRegistValidationResult {
     case ok
     case empty
-    case lessThanText
+    case underText
+    case overText
 }
 
 extension TeamInfoRegistValidationResult {
@@ -18,11 +19,19 @@ extension TeamInfoRegistValidationResult {
 }
 
 struct TeamInfoRegistValidation {
-    static func validate(team: String) -> TeamInfoRegistValidationResult {
+    static func validateIsUnder(team: String) -> TeamInfoRegistValidationResult {
         guard team.count >= 3 else {
-            return .lessThanText
+            return .underText
         }
         return .ok
+    }
+    
+    static func validateIsOver(team: String) -> Bool {
+        if team.count <= 20 {
+            return TeamInfoRegistValidationResult.overText.isValid
+        } else {
+            return TeamInfoRegistValidationResult.ok.isValid
+        }
     }
     
     static func validatePicker(position: String, year: String) -> TeamInfoRegistValidationResult {

@@ -14,6 +14,9 @@ protocol MemberInfoRegisterViewModelInput {
 protocol MemberInfoRegisterViewModelOutput {
     var isRegistBtnEnable: Observable<Bool> { get }
     var positionArr: Array<String> { get }
+    var isOverName: Observable<Bool> { get }
+    var isOverPass: Observable<Bool> { get }
+    var isOverRepass: Observable<Bool> { get }
 }
 
 protocol MemberInfoRegisterViewModelType {
@@ -32,6 +35,9 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
     var memberPosition: Observable<String>
     var isRegistBtnEnable: Observable<Bool>
     var positionArr: Array<String>
+    var isOverName: Observable<Bool>
+    var isOverPass: Observable<Bool>
+    var isOverRepass: Observable<Bool>
     let disposeBag = DisposeBag()
     
     init(nameField: Observable<String>, mailField: Observable<String>, passField: Observable<String>, rePassField: Observable<String>, positionField: Observable<String>, registBtn: Observable<()>) {
@@ -45,6 +51,21 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
             R.string.locarizable.empty(), R.string.locarizable.player(), R.string.locarizable.manager(),
             R.string.locarizable.boss(), R.string.locarizable.department(), R.string.locarizable.staff()
         ]
+        
+        isOverName = nameText
+            .map{ text -> Bool in
+                return MemberInfoRegisterValidation.validateIsOverName(name: text)
+            }.asObservable()
+        
+        isOverPass = passText
+            .map { text -> Bool in
+                return MemberInfoRegisterValidation.validateIsOverPass(pass: text)
+            }.asObservable()
+        
+        isOverRepass = rePassText
+            .map{ text -> Bool in
+                return MemberInfoRegisterValidation.validateIsOverPass(pass: text)
+            }.asObservable()
         
         let isEmptyField = Observable.combineLatest(nameText, mailText, passText, rePassText) { name, mail, pass, rePass -> MemberInfoRegisterValidationResult in
             return MemberInfoRegisterValidation.validateEmpty(name: name, mail: mail, pass: pass, rePass: rePass)

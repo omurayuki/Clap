@@ -4,7 +4,7 @@ import UIKit
 protocol TeamInfoRegistUI: UI {
     var noticeTeamInfoRegistTitle: UILabel { get }
     var viewTapGesture: UITapGestureRecognizer { get }
-    var teamNameField: CustomTextField { get }
+    var teamNameField: CustomTextField { get set }
     var gradeField: CustomTextField { get }
     var sportsKindField: CustomTextField { get }
     var nextBtn: UIButton { get }
@@ -35,7 +35,7 @@ final class TeamInfoRegistUIImpl: TeamInfoRegistUI {
         return gesture
     }()
     
-    private(set) var teamNameField: CustomTextField = {
+    var teamNameField: CustomTextField = {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.place_holder_team_id()
         field.clearButtonMode = .always

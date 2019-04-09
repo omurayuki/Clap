@@ -3,7 +3,7 @@ import RxSwift
 import RxCocoa
 
 protocol TeamInfoRegistViewModelInput {
-    var teamIdText: Driver<String> { get }
+    var teamText: Driver<String> { get }
     var representGrade: Driver<String> { get }
     var representSportsKind: Driver<String> { get }
 }
@@ -12,6 +12,7 @@ protocol TeamInfoRegistViewModelOutput {
     var isNextBtnEnable: Observable<Bool> { get }
     var gradeArr: Array<String> { get }
     var sportsKindArr: Array<String> { get }
+    var isOverTeamField: Observable<Bool> { get }
 }
 
 protocol TeamInfoRegistViewModelType {
@@ -22,16 +23,17 @@ protocol TeamInfoRegistViewModelType {
 struct TeamInfoRegistViewModel: TeamInfoRegistViewModelType, TeamInfoRegistViewModelInput, TeamInfoRegistViewModelOutput {
     var inputs: TeamInfoRegistViewModelInput { return self }
     var outputs: TeamInfoRegistViewModelOutput { return self }
-    var teamIdText: Driver<String>
+    var teamText: Driver<String>
     var representGrade: Driver<String>
     var representSportsKind: Driver<String>
     var isNextBtnEnable: Observable<Bool>
     var gradeArr: Array<String>
     var sportsKindArr: Array<String>
+    var isOverTeamField: Observable<Bool>
     let disposeBag = DisposeBag()
     
-    init(teamIdField: Driver<String>, gradeField: Driver<String>, sportsKindField: Driver<String>) {
-        teamIdText = teamIdField
+    init(teamField: Driver<String>, gradeField: Driver<String>, sportsKindField: Driver<String>) {
+        teamText = teamField
         representGrade = gradeField
         representSportsKind = sportsKindField
         gradeArr = [
@@ -44,18 +46,26 @@ struct TeamInfoRegistViewModel: TeamInfoRegistViewModelType, TeamInfoRegistViewM
             R.string.locarizable.basket_ball(), R.string.locarizable.kendo(), R.string.locarizable.judo()
         ]
         
-        let isEmptyPicker = Driver.combineLatest(representGrade, representSportsKind) { position, year -> TeamInfoRegistValidationResult in
+        isOverTeamField = teamText
+            .map { text -> Bool in
+                return TeamInfoRegistValidation.validateIsOver(team: text)
+            }.asObservable()
+        
+        let isEmptyPicker = Driver
+            .combineLatest(representGrade, representSportsKind) { position, year -> TeamInfoRegistValidationResult in
                 return TeamInfoRegistValidation.validatePicker(position: position, year: year)
             }.asDriver()
         
-        let isCount = teamIdText.asDriver()
+        let isCount = teamText
+            .asDriver()
             .map({ text -> TeamInfoRegistValidationResult in
-                return TeamInfoRegistValidation.validate(team: text)
+                return TeamInfoRegistValidation.validateIsUnder(team: text)
             }).asDriver()
         
-        isNextBtnEnable = Driver.combineLatest(isEmptyPicker, isCount) { (picker, count) in
+        isNextBtnEnable = Driver
+            .combineLatest(isEmptyPicker, isCount) { (picker, count) in
                 picker.isValid &&
-                count.isValid
+                    count.isValid
             }.asObservable()
     }
     

@@ -21,7 +21,7 @@ class  TeamInfoRegistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(storeName: R.string.locarizable.team_info_title())
-        viewModel = TeamInfoRegistViewModel(teamIdField: ui.teamNameField.rx.text.orEmpty.asDriver(),
+        viewModel = TeamInfoRegistViewModel(teamField: ui.teamNameField.rx.text.orEmpty.asDriver(),
                                             gradeField: ui.gradeField.rx.text.orEmpty.asDriver(),
                                             sportsKindField: ui.sportsKindField.rx.text.orEmpty.asDriver())
         setupViewModel()
@@ -45,9 +45,21 @@ class  TeamInfoRegistViewController: UIViewController {
 extension TeamInfoRegistViewController {
     
     private func setupViewModel() {
-        viewModel?.outputs.isNextBtnEnable.asObservable()
+        viewModel?.outputs.isNextBtnEnable
+            .asObservable()
             .subscribe(onNext: { [weak self] isValid in
                 self?.ui.nextBtn.isHidden = !isValid
+            }).disposed(by: viewModel.disposeBag)
+        
+        viewModel.outputs.isOverTeamField
+            .distinctUntilChanged() 
+            .subscribe(onNext: { bool in
+                if bool {
+                    self.ui.teamNameField.backgroundColor = AppResources.ColorResources.appCommonClearOrangeColor
+                    AlertController.showAlertMessage(alertType: .overChar, viewController: self)
+                } else {
+                    self.ui.teamNameField.backgroundColor = .white
+                }
             }).disposed(by: viewModel.disposeBag)
 
         ui.nextBtn.rx.tap

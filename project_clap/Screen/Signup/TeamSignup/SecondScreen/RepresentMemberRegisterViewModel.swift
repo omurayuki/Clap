@@ -16,6 +16,9 @@ protocol RepresentMemberRegisterViewModelOutput {
     var isRegistBtnEnable: Observable<Bool> { get }
     var positionArr: Array<String> { get }
     var yearArr: Array<String> { get }
+    var isOverName: Observable<Bool> { get }
+    var isOverPass: Observable<Bool> { get }
+    var isOverRepass: Observable<Bool> { get }
 }
 
 protocol RepresentMemberRegisterViewModelType {
@@ -36,6 +39,9 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
     var isRegistBtnEnable: Observable<Bool>
     var positionArr: Array<String>
     var yearArr: Array<String>
+    var isOverName: Observable<Bool>
+    var isOverPass: Observable<Bool>
+    var isOverRepass: Observable<Bool>
     let disposeBag = DisposeBag()
     
     init(nameField: Observable<String>, mailField: Observable<String>, passField: Observable<String>, rePassField: Observable<String>, positionField: Observable<String>, yearField: Observable<String>, registBtn: Observable<()>) {
@@ -53,6 +59,21 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
             R.string.locarizable.empty(), R.string.locarizable.first_year_student(),
             R.string.locarizable.second_year_student(), R.string.locarizable.third_year_student(), R.string.locarizable.fourth_year_student()
         ]
+        
+        isOverName = nameText
+            .map{ text -> Bool in
+                return RepresentMemberRegisterValidation.validateIsOverName(name: text)
+            }.asObservable()
+        
+        isOverPass = passText
+            .map { text -> Bool in
+                return RepresentMemberRegisterValidation.validateIsOverPass(pass: text)
+            }.asObservable()
+        
+        isOverRepass = rePassText
+            .map{ text -> Bool in
+                return RepresentMemberRegisterValidation.validateIsOverPass(pass: text)
+            }.asObservable()
         
         let isEmptyField = Observable.combineLatest(nameText, mailText, passText, rePassText) { name, mail, pass, rePass -> RepresentMemberRegisterValidationResult in
             return RepresentMemberRegisterValidation.validateEmpty(name: name, mail: mail, pass: pass, rePass: rePass)

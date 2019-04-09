@@ -5,6 +5,7 @@ enum RepresentMemberRegisterValidationResult {
     case empty
     case notMatchEmail
     case notMatchPass
+    case overText
 }
 
 extension RepresentMemberRegisterValidationResult {
@@ -46,5 +47,21 @@ struct RepresentMemberRegisterValidation {
             return .empty
         }
         return .ok
+    }
+    
+    static func validateIsOverName(name: String) -> Bool {
+        if name.count <= 20 {
+            return RepresentMemberRegisterValidationResult.overText.isValid
+        } else {
+            return RepresentMemberRegisterValidationResult.ok.isValid
+        }
+    }
+    
+    static func validateIsOverPass(pass: String) -> Bool {
+        if pass.count <= 35 {
+            return RepresentMemberRegisterValidationResult.overText.isValid
+        } else {
+            return RepresentMemberRegisterValidationResult.ok.isValid
+        }
     }
 }

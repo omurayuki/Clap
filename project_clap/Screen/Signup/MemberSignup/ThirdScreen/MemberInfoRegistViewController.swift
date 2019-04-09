@@ -58,6 +58,39 @@ extension MemberInfoRegistViewController {
                 self?.ui.memberRegistBtn.isHidden = !isValid
             }).disposed(by: viewModel.disposeBag)
         
+        viewModel.outputs.isOverName
+            .distinctUntilChanged()
+            .subscribe(onNext: { bool in
+                if bool {
+                    self.ui.nameField.backgroundColor = AppResources.ColorResources.appCommonClearOrangeColor
+                    AlertController.showAlertMessage(alertType: .overChar, viewController: self)
+                } else {
+                    self.ui.nameField.backgroundColor = .white
+                }
+            }).disposed(by: viewModel.disposeBag)
+        
+        viewModel.outputs.isOverPass
+            .distinctUntilChanged()
+            .subscribe(onNext: { bool in
+                if bool {
+                    self.ui.passField.backgroundColor = AppResources.ColorResources.appCommonClearOrangeColor
+                    AlertController.showAlertMessage(alertType: .overChar, viewController: self)
+                } else {
+                    self.ui.passField.backgroundColor = .white
+                }
+            }).disposed(by: viewModel.disposeBag)
+        
+        viewModel.outputs.isOverRepass
+            .distinctUntilChanged()
+            .subscribe(onNext: { bool in
+                if bool {
+                    self.ui.rePassField.backgroundColor = AppResources.ColorResources.appCommonClearOrangeColor
+                    AlertController.showAlertMessage(alertType: .overChar, viewController: self)
+                } else {
+                    self.ui.rePassField.backgroundColor = .white
+                }
+            }).disposed(by: viewModel.disposeBag)
+        
         ui.memberRegistBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
             .bind(onNext: { [weak self] _ in

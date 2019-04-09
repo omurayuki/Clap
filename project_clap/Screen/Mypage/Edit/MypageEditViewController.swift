@@ -48,9 +48,20 @@ extension MypageEditViewController {
     
     private func setupViewModel() {
         
-        viewModel?.outputs.isSaveBtnEnable.asObservable()
+        viewModel?.outputs.isSaveBtnEnable
             .subscribe(onNext: { [weak self] isValid in
                 self?.ui.saveBtn.isHidden = !isValid
+            }).disposed(by: viewModel.disposeBag)
+        
+        viewModel.outputs.isOverBelong
+            .distinctUntilChanged()
+            .subscribe(onNext: { bool in
+                if bool {
+                    self.ui.belongTeamField.backgroundColor = AppResources.ColorResources.appCommonClearOrangeColor
+                    AlertController.showAlertMessage(alertType: .overChar, viewController: self)
+                } else {
+                    self.ui.belongTeamField.backgroundColor = .white
+                }
             }).disposed(by: viewModel.disposeBag)
         
         ui.doneBtn.rx.tap

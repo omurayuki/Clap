@@ -3,7 +3,7 @@ import Foundation
 enum MypageEditValidationResult {
     case ok
     case empty
-    case moreThan
+    case overText
 }
 
 extension MypageEditValidationResult {
@@ -25,18 +25,19 @@ struct MypageEditValidation {
         return .ok
     }
     
-    static func validationIsMore(belong: String, position: String, email: String) -> MypageEditValidationResult {
-        guard belong.count < 15 && position.count < 10 && email.count < 40 else {
-            return .moreThan
-        }
-        return .ok
-    }
-    
     static func validateEmail(email: String) -> MemberInfoRegisterValidationResult {
         let emailCheck = NSPredicate(format:"SELF MATCHES %@", "[A-Z0-9a-z._+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
         guard emailCheck.evaluate(with: email) else {
             return .notMatchEmail
         }
         return .ok
+    }
+    
+    static func validateIsOverBelong(name: String) -> Bool {
+        if name.count <= 20 {
+            return MypageEditValidationResult.overText.isValid
+        } else {
+            return MypageEditValidationResult.ok.isValid
+        }
     }
 }
