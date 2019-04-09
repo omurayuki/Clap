@@ -25,6 +25,7 @@ class MypageEditViewModel: MypageEditViewModelType, MypageEditViewModelInput, My
     var positionText: Observable<String>
     var mailText: Observable<String>
     var positionArr: Array<String>
+    let disposeBag = DisposeBag()
     
     init(belongField: Observable<String>, positionField: Observable<String>, mailField: Observable<String>) {
         positionArr = [
@@ -52,5 +53,18 @@ class MypageEditViewModel: MypageEditViewModelType, MypageEditViewModelInput, My
                 more.isValid &&
                 email.isValid
         }.share(replay: 1)
+    }
+    
+    func updateMypage(uid: String, team: String, role: String, mail: String, completion: @escaping (String?, Error?) -> Void) {
+        let updateData = ["team": team, "role": role, "mail": mail]
+        MypageRepositoryImpl().updateMypageData(uid: uid, updateData: updateData)
+            .subscribe { single in
+                switch single {
+                case .success(let data):
+                    completion(data, nil)
+                case .error(let error):
+                    completion(nil, error)
+                }
+            }.disposed(by: disposeBag)
     }
 }

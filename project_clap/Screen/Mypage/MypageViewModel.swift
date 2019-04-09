@@ -15,4 +15,19 @@ protocol MypageViewModeType {
 class MypageViewModel: MypageViewModeType, MypageViewModelInput, MypageViewModelOutput {
     var inputs: MypageViewModelInput { return self }
     var outputs: MypageViewModelOutput { return self }
+    var disposeBag = DisposeBag()
+    
+    func fetchMypageData(uid: String, completion: @escaping (Mypage) -> Void) {
+        MypageRepositoryImpl().fetchMypageData(uid: uid)
+            .subscribe { single in
+                switch single {
+                case .success(let data):
+                    completion(data)
+                    return
+                case .error(let error):
+                    print(error.localizedDescription)
+                    return
+                }
+            }.disposed(by: disposeBag)
+    }
 }

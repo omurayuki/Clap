@@ -7,7 +7,7 @@ import RealmSwift
 protocol MypageRepository {
     func fetchMypageData(uid: String) -> Single<Mypage>
     func updateMypageData(uid: String, updateData: [String: Any]) -> Single<String>
-    static func updateEmail(email: String)
+    func updateEmail(email: String)
 }
 
 class MypageRepositoryImpl: MypageRepository {
@@ -38,7 +38,7 @@ class MypageRepositoryImpl: MypageRepository {
         })
     }
     
-    static func updateEmail(email: String) {
+    func updateEmail(email: String) {
         Firebase.fireAuth.currentUser?.updateEmail(to: email, completion: { error in
             if let error = error {
                 print(error.localizedDescription)

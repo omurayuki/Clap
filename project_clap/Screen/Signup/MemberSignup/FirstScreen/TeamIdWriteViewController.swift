@@ -5,8 +5,7 @@ import RxCocoa
 
 class TeamIdWriteViewController: UIViewController {
     
-    private let disposeBag = DisposeBag()
-    private var viewModel: TeamIdWriteViewModel?
+    private var viewModel: TeamIdWriteViewModel!
     let activityIndicator = UIActivityIndicatorView()
     
     private lazy var ui: TeamIdWriteUI = {
@@ -35,7 +34,7 @@ extension TeamIdWriteViewController {
         viewModel?.outputs.isConfirmBtnEnable
             .subscribe(onNext: { [weak self] isValid in
                 self?.ui.confirmTeamIdBtn.isHidden = !isValid
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         //ボタンを押せない処理実装必須(でないとindicatorが消えないerrorの時)
         ui.confirmTeamIdBtn.rx.tap.asObservable()
             .throttle(0.5, scheduler: MainScheduler.instance)
@@ -43,12 +42,12 @@ extension TeamIdWriteViewController {
                 self?.ui.confirmTeamIdBtn.bounce(completion: {
                     self?.showIndicator()
                     guard let teamId = self?.ui.teamIdField.text else { return }
-                    SignupRepositoryImpl().fetchBelongData(teamId: teamId, completion: { belong in
+                    self?.viewModel.fetchBelongData(teamId: teamId, completion: { belong in
                         self?.hideIndicator()
                         self?.routing.showConfirmationTeamId(teamId: teamId)
                     })
                 })
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
     }
 }
 

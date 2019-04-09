@@ -6,8 +6,7 @@ import RealmSwift
 
 class MemberInfoRegistViewController: UIViewController {
     
-    private let disposeBag = DisposeBag()
-    private var viewModel: MemberInfoRegisterViewModel?
+    private var viewModel: MemberInfoRegisterViewModel!
     let activityIndicator = UIActivityIndicatorView()
     var recievedTeamId: String
     var recievedBelongTeam: String
@@ -57,7 +56,7 @@ extension MemberInfoRegistViewController {
         viewModel?.outputs.isRegistBtnEnable.asObservable()
             .subscribe(onNext: { [weak self] isValid in
                 self?.ui.memberRegistBtn.isHidden = !isValid
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         ui.memberRegistBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
@@ -67,26 +66,24 @@ extension MemberInfoRegistViewController {
                     self?.viewModel?.saveToSingleton(name: self?.ui.nameField.text ?? "",
                                                      mail: self?.ui.mailField.text ?? "",
                                                      representMemberPosition: self?.ui.memberPosition.text ?? "")
-                    SignupRepositoryImpl.signup(email: self?.ui.mailField.text ?? "",
-                                                pass: self?.ui.passField.text ?? "",
-                                                completion: { uid in
+                    self?.viewModel?.signup(email: self?.ui.mailField.text ?? "", pass: self?.ui.passField.text ?? "", completion: { uid in
                         let realm = try? Realm()
                         let results = realm?.objects(User.self)
-                        SignupRepositoryImpl.saveUserData(user: results?.last?.uid ?? "",
-                                                          teamId: self?.recievedTeamId ?? "",
-                                                          name: self?.ui.nameField.text ?? "",
-                                                          role: self?.ui.memberPosition.text ?? "",
-                                                          mail: self?.ui.mailField.text ?? "",
-                                                          team: self?.recievedBelongTeam ?? "",
-                                                          completion: {
-                                                            self?.viewModel?.saveToSingleton(uid: uid ?? "", completion: {
-                                                                self?.hideIndicator()
-                                                                self?.routing.showTabBar(uid: UIDSingleton.sharedInstance.uid)
-                                                            })
+                        self?.viewModel?.saveUserData(uid: results?.last?.uid ?? "",
+                                                      teamId: self?.recievedTeamId ?? "",
+                                                      name: self?.ui.nameField.text ?? "",
+                                                      role: self?.ui.memberPosition.text ?? "",
+                                                      mail: self?.ui.mailField.text ?? "",
+                                                      team: self?.recievedBelongTeam ?? "",
+                                                      completion: {
+                            self?.viewModel?.saveToSingleton(uid: uid , completion: {
+                                self?.hideIndicator()
+                                self?.routing.showTabBar(uid: UIDSingleton.sharedInstance.uid)
+                            })
                         })
                     })
                 })
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         ui.doneBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
@@ -94,40 +91,40 @@ extension MemberInfoRegistViewController {
                 if let _ = self?.ui.memberPosition.isFirstResponder {
                     self?.ui.memberPosition.resignFirstResponder()
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.nameField.rx.controlEvent(.editingDidEndOnExit)
             .bind { [weak self] _ in
                 if let _ = self?.ui.nameField.isFirstResponder {
                     self?.ui.mailField.becomeFirstResponder()
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.mailField.rx.controlEvent(.editingDidEndOnExit)
             .bind { [weak self] _ in
                 if let _ = self?.ui.mailField.isFirstResponder {
                     self?.ui.passField.becomeFirstResponder()
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.passField.rx.controlEvent(.editingDidEndOnExit)
             .bind { [weak self] _ in
                 if let _ = self?.ui.passField.isFirstResponder {
                     self?.ui.rePassField.becomeFirstResponder()
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.rePassField.rx.controlEvent(.editingDidEndOnExit)
             .bind { [weak self] _ in
                 if let _ = self?.ui.rePassField.isFirstResponder {
                     self?.ui.rePassField.resignFirstResponder()
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.viewTapGesture.rx.event
             .bind { [weak self] _ in
                 self?.view.endEditing(true)
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
     }
 }
 

@@ -41,4 +41,12 @@ struct LoginViewModel: LoginViewModelType, LoginViewModelInput, LoginViewModelOu
         UIDSingleton.sharedInstance.uid = uid
         completion()
     }
+    
+    func login(mail: String, pass: String, completion: @escaping (String?, Error?) -> Void) {
+        LoginRepositoryImpl.login(mail: mail,
+                                  pass: pass,
+                                  completion: { uid, error in
+            completion(uid, error)
+        })
+    }
 }

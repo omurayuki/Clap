@@ -4,8 +4,7 @@ import RxCocoa
 
 class  TeamInfoRegistViewController: UIViewController {
     
-    private var viewModel: TeamInfoRegistViewModel?
-    private let disposeBag = DisposeBag()
+    private var viewModel: TeamInfoRegistViewModel!
     
     private lazy var ui: TeamInfoRegistUI = {
         let ui = TeamInfoRegistUIImpl()
@@ -49,7 +48,7 @@ extension TeamInfoRegistViewController {
         viewModel?.outputs.isNextBtnEnable.asObservable()
             .subscribe(onNext: { [weak self] isValid in
                 self?.ui.nextBtn.isHidden = !isValid
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
 
         ui.nextBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
@@ -60,7 +59,7 @@ extension TeamInfoRegistViewController {
                                           sportsKind: self?.ui.sportsKindField.text ?? "")
                     self?.routing.RepresentMemberRegister()
                 })
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         ui.gradeDoneBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
@@ -68,7 +67,7 @@ extension TeamInfoRegistViewController {
                 if let _ = self?.ui.gradeField.isFirstResponder {
                     self?.ui.gradeField.resignFirstResponder()
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.sportsKindDoneBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
@@ -76,17 +75,17 @@ extension TeamInfoRegistViewController {
                 if let _ = self?.ui.sportsKindField.isFirstResponder {
                     self?.ui.sportsKindField.resignFirstResponder()
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.teamNameField.rx.controlEvent(.editingDidEndOnExit)
             .bind { [weak self] _ in
                 self?.ui.teamNameField.resignFirstResponder()
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.viewTapGesture.rx.event
             .bind { [weak self] _ in
                 self?.view.endEditing(true)
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
     }
 }
 

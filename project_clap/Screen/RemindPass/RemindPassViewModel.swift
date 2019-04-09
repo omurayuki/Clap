@@ -20,6 +20,7 @@ struct RemindPassViewModel: RemindPassViewModelType, RemindPassViewModelInput, R
     var outputs: RemindPassViewModelOutput { return self }
     var emailText: Observable<String>
     var isSubmitBtnEnable: Observable<Bool>
+    let disposeBag = DisposeBag()
     
     init(emailField: Observable<String>) {
         emailText = emailField
@@ -36,5 +37,17 @@ struct RemindPassViewModel: RemindPassViewModelType, RemindPassViewModelInput, R
             empty.isValid &&
             formatedEmail.isValid
         }.share(replay: 1)
+    }
+    
+    func resettingPassword(email: String, completion: @escaping (String?, Error?) -> Void) {
+        RemindPassRepositoryImpl().resettingPassword(mail: email)
+            .subscribe{ single in
+                switch single {
+                case .success(let data):
+                    completion(data, nil)
+                case .error(let error):
+                    completion(nil, error)
+                }
+            }.disposed(by: disposeBag)
     }
 }

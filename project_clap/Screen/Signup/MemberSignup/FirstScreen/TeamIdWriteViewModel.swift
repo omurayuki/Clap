@@ -20,6 +20,7 @@ final class TeamIdWriteViewModel: TeamIdWriteViewModelType, TeamIdWriteViewModel
     var outputs: TeamIdWriteViewModelOutput { return self }
     var teamIdText: Observable<String>
     var isConfirmBtnEnable: Observable<Bool>
+    let disposeBag = DisposeBag()
     
     init(teamIdField: Observable<String>) {
         var value: TeamIdWriteValidationResult?
@@ -54,5 +55,11 @@ final class TeamIdWriteViewModel: TeamIdWriteViewModelType, TeamIdWriteViewModel
             count.isValid
         }
         .share(replay: 1)
+    }
+    
+    func fetchBelongData(teamId: String, completion: @escaping (String) -> Void) {
+        SignupRepositoryImpl().fetchBelongData(teamId: teamId, completion: { belong in
+            completion(belong ?? "")
+        })
     }
 }

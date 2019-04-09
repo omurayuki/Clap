@@ -6,8 +6,7 @@ import RxCocoa
 class MypageViewController: UIViewController {
     
     var recievedUid: String
-    var viewModel: MypageViewModel?
-    var disposeBag = DisposeBag()
+    var viewModel: MypageViewModel!
     
     private lazy var ui: MypageUI = {
         let ui = MypageUIImpl()
@@ -34,8 +33,9 @@ class MypageViewController: UIViewController {
         super.viewDidLoad()
         ui.setup(vc: self)
         ui.setupInsideStack(vc:self)
-        fetchMypageData()
+        viewModel = MypageViewModel()
         setupViewModel()
+        fetchMypageData()
     }
 }
 
@@ -43,31 +43,23 @@ extension MypageViewController {
     
     private func fetchMypageData() {
         //初期化のタイミングでfetch viewdidload以前
-        MypageRepositoryImpl().fetchMypageData(uid: recievedUid)
-            .subscribe { [weak self] single in
-                switch single {
-                case .success(let data):
-                    self?.ui.belongTeam.text = data.team
-                    self?.ui.teamId.text = data.teamId
-                    self?.ui.position.text = data.role
-                    self?.ui.mail.text = data.mail
-                    return
-                case .error(let error):
-                    print(error.localizedDescription)
-                    return
-                }
-            }.disposed(by: disposeBag)
+        viewModel.fetchMypageData(uid: recievedUid) { [weak self] data in
+            self?.ui.belongTeam.text = data.team
+            self?.ui.teamId.text = data.teamId
+            self?.ui.position.text = data.role
+            self?.ui.mail.text = data.mail
+        }
     }
     
     private func setupViewModel() {
         ui.editBtn.rx.tap
             .bind { _ in
                 self.routing.showEditPage(vc: self, uid: self.recievedUid)
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.logoutBtn.rx.tap
             .bind { _ in
                 self.ui.createLogoutAlert(vc: self)
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
     }
 }

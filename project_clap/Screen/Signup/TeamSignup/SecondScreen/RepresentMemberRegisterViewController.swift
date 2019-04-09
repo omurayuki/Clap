@@ -5,8 +5,7 @@ import RealmSwift
 
 class RepresentMemberRegisterViewController: UIViewController {
     
-    private var viewModel: RepresentMemberRegisterViewModel?
-    private let disposeBag = DisposeBag()
+    private var viewModel: RepresentMemberRegisterViewModel!
     let activityIndicator = UIActivityIndicatorView()
     let teamId = RandomString.generateRandomString()
     
@@ -52,7 +51,7 @@ extension RepresentMemberRegisterViewController {
         viewModel?.outputs.isRegistBtnEnable.asObservable()
             .subscribe(onNext: { [weak self] isValid in
                 self?.ui.teamRegistBtn.isHidden = !isValid
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         ui.teamRegistBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
@@ -63,31 +62,25 @@ extension RepresentMemberRegisterViewController {
                                           mail: self?.ui.mailField.text ?? "",
                                           representMemberPosition: self?.ui.representMemberPosition.text ?? "",
                                           representMemberYear: self?.ui.representMemberYear.text ?? "")
-                    SignupRepositoryImpl.signup(email: self?.ui.mailField.text ?? "", pass: self?.ui.passField.text ?? "", completion: { uid in
-                        SignupRepositoryImpl.saveTeamData(teamId: self?.teamId ?? "",
-                                                          team: TeamSignupSingleton.sharedInstance.team,
-                                                          grade: TeamSignupSingleton.sharedInstance.grade,
-                                                          sportsKind: TeamSignupSingleton.sharedInstance.sportsKind)
+                    self?.viewModel?.signup(email: self?.ui.mailField.text ?? "", pass: self?.ui.passField.text ?? "", completion: { uid in
+                        self?.viewModel?.saveTeamData(teamId: self?.teamId ?? "",
+                                                      team: TeamSignupSingleton.sharedInstance.team,
+                                                      grade: TeamSignupSingleton.sharedInstance.grade,
+                                                      sportsKind: TeamSignupSingleton.sharedInstance.sportsKind)
                         let realm = try? Realm()
                         let results = realm?.objects(User.self)
-                        SignupRepositoryImpl.registUserWithTeam(teamId: self?.teamId ?? "",
-                                                                uid: results?.first?.uid ?? "")
-                        SignupRepositoryImpl.saveUserData(user: results?.last?.uid ?? "",
-                                                          teamId: self?.teamId ?? "",
-                                                          name: TeamSignupSingleton.sharedInstance.name,
-                                                          role: TeamSignupSingleton.sharedInstance.representMemberPosition,
-                                                          mail: self?.ui.mailField.text ?? "",
-                                                          team: TeamSignupSingleton.sharedInstance.team,
-                                                          completion: {
-                                                            //saveToSingletonを３カ所で書いている
-                                                            self?.viewModel?.saveToSingleton(uid: uid ?? "", completion: {
-                                                                self?.hideIndicator()
-                                                                self?.routing.showTabBar(uid: UIDSingleton.sharedInstance.uid)
-                                                            })
+                        self?.viewModel?.registUserWithTeam(teamId: self?.teamId ?? "", uid: results?.first?.uid ?? "")
+                        self?.viewModel?.saveUserData(uid: results?.last?.uid ?? "", teamId: self?.teamId ?? "",
+                                                      name: TeamSignupSingleton.sharedInstance.name, role: TeamSignupSingleton.sharedInstance.representMemberPosition,
+                                                      mail: self?.ui.mailField.text ?? "", team: TeamSignupSingleton.sharedInstance.team, completion: {
+                            self?.viewModel?.saveToSingleton(uid: uid, completion: {
+                                self?.hideIndicator()
+                                self?.routing.showTabBar(uid: UIDSingleton.sharedInstance.uid)
+                            })
                         })
                     })
                 })
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         ui.positionDoneBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
@@ -95,7 +88,7 @@ extension RepresentMemberRegisterViewController {
                 if let _ = self?.ui.representMemberPosition.isFirstResponder {
                     self?.ui.representMemberPosition.resignFirstResponder()
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.yearDoneBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
@@ -103,40 +96,40 @@ extension RepresentMemberRegisterViewController {
                 if let _ = self?.ui.representMemberYear.isFirstResponder {
                     self?.ui.representMemberYear.resignFirstResponder()
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.nameField.rx.controlEvent(.editingDidEndOnExit)
             .bind { [weak self] _ in
                 if let _ = self?.ui.nameField.isFirstResponder {
                     self?.ui.mailField.becomeFirstResponder()
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.mailField.rx.controlEvent(.editingDidEndOnExit)
             .bind { [weak self] _ in
                 if let _ = self?.ui.mailField.isFirstResponder {
                     self?.ui.passField.becomeFirstResponder()
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.passField.rx.controlEvent(.editingDidEndOnExit)
             .bind { [weak self] _ in
                 if let _ = self?.ui.passField.isFirstResponder {
                     self?.ui.rePassField.becomeFirstResponder()
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.rePassField.rx.controlEvent(.editingDidEndOnExit)
             .bind { [weak self] _ in
                 if let _ = self?.ui.rePassField.isFirstResponder {
                     self?.ui.rePassField.resignFirstResponder()
                 }
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.viewTapGesture.rx.event
             .bind { [weak self] _ in
                 self?.view.endEditing(true)
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
     }
 }
 

@@ -32,6 +32,7 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
     var memberPosition: Observable<String>
     var isRegistBtnEnable: Observable<Bool>
     var positionArr: Array<String>
+    let disposeBag = DisposeBag()
     
     init(nameField: Observable<String>, mailField: Observable<String>, passField: Observable<String>, rePassField: Observable<String>, positionField: Observable<String>, registBtn: Observable<()>) {
         nameText = nameField
@@ -82,5 +83,25 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
     func saveToSingleton(uid: String, completion: @escaping () -> Void) {
         UIDSingleton.sharedInstance.uid = uid
         completion()
+    }
+    
+    func signup(email: String, pass: String, completion: @escaping(String) -> Void) {
+        SignupRepositoryImpl.signup(email: email,
+                                    pass: pass,
+                                    completion: { uid in
+            completion(uid ?? "")
+        })
+    }
+    
+    func saveUserData(uid: String, teamId: String, name: String, role: String, mail: String, team: String, completion: @escaping () -> Void) {
+        SignupRepositoryImpl.saveUserData(user: uid,
+                                          teamId: teamId,
+                                          name: name,
+                                          role: role,
+                                          mail: mail,
+                                          team: team,
+                                          completion: {
+            completion()
+        })
     }
 }

@@ -39,6 +39,7 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
     private(set) var userPhotoRegistBtn: UIButton = {
         let button = UIButton()
         button.backgroundColor = .gray
+        button.layer.cornerRadius = RepresentMemberRegisterResources.View.photoCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -109,7 +110,7 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         let button = UIButton()
         button.setTitle(R.string.locarizable.regist(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
-        button.layer.cornerRadius = RepresentMemberRegisterResources.View.BtnCornerRadius
+        button.layer.cornerRadius = RepresentMemberRegisterResources.View.btnCornerRadius
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -170,8 +171,8 @@ extension RepresentMemberRegisterUIImpl {
         userPhotoRegistBtn.anchor()
             .centerXToSuperview()
             .top(to: noticeUserRegistTitle.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.userPhotoRegistBtnTopConstraint)
-            .width(constant: vc.view.bounds.size.width / 7)
-            .height(constant: vc.view.bounds.size.width / 7)
+            .width(constant: RepresentMemberRegisterResources.Constraint.btnHeightConstraint)
+            .height(constant: RepresentMemberRegisterResources.Constraint.btnWidthConstraint)
             .activate()
         
         nameField.anchor()
@@ -205,7 +206,7 @@ extension RepresentMemberRegisterUIImpl {
         
         teamRegistBtn.anchor()
             .centerXToSuperview()
-            .top(to: stack.bottomAnchor, constant: vc.view.bounds.size.width / 3)
+            .top(to: stack.bottomAnchor, constant: vc.view.bounds.size.width / 5)
             .width(constant: vc.view.bounds.size.width / 1.5)
             .activate()
         
@@ -217,12 +218,12 @@ extension RepresentMemberRegisterUIImpl {
             .width(constant: vc.view.bounds.size.width / 6)
             .height(constant: RepresentMemberRegisterResources.Constraint.representMemberPositionHeightConstraint)
             .activate()
-        
+
         representMemberYear.anchor()
             .width(constant: vc.view.bounds.size.width / 6)
             .height(constant: RepresentMemberRegisterResources.Constraint.representMemberYearHeightConstraint)
             .activate()
-        
+
         representMemberYear.leftAnchor.constraint(equalTo: representMemberPosition.rightAnchor, constant: vc.view.bounds.size.width / 3).isActive = true
     }
     
