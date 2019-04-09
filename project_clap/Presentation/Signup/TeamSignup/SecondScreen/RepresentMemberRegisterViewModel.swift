@@ -116,24 +116,24 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
     }
     
     func signup(email: String, pass: String, completion: @escaping (String) -> Void) {
-        SignupRepositoryImpl.signup(email: email, pass: pass, completion: { uid in
+        SignupRepositoryImpl().signup(email: email, pass: pass, completion: { uid in
             completion(uid ?? "")
         })
     }
     
     func saveTeamData(teamId: String, team: String, grade: String, sportsKind: String) {
-        SignupRepositoryImpl.saveTeamData(teamId: teamId,
+        SignupRepositoryImpl().saveTeamData(teamId: teamId,
                                           team: team,
                                           grade: grade,
                                           sportsKind: sportsKind)
     }
     
     func registUserWithTeam(teamId: String, uid: String) {
-        SignupRepositoryImpl.registUserWithTeam(teamId: teamId, uid: uid)
+        SignupRepositoryImpl().registUserWithTeam(teamId: teamId, uid: uid)
     }
     
     func saveUserData(uid: String, teamId: String, name: String, role: String, mail: String, team: String, completion: @escaping () -> Void) {
-        SignupRepositoryImpl.saveUserData(user: uid, teamId: teamId,
+        SignupRepositoryImpl().saveUserData(user: uid, teamId: teamId,
                                           name: name, role: role,
                                           mail: mail, team: team, completion: {
             completion()

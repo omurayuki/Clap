@@ -37,19 +37,14 @@ class MypageViewController: UIViewController {
         setupViewModel()
         fetchMypageData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchMypageData()
+    }
 }
 
 extension MypageViewController {
-    
-    private func fetchMypageData() {
-        //初期化のタイミングでfetch viewdidload以前
-        viewModel.fetchMypageData(uid: recievedUid) { [weak self] data in
-            self?.ui.belongTeam.text = data.team
-            self?.ui.teamId.text = data.teamId
-            self?.ui.position.text = data.role
-            self?.ui.mail.text = data.mail
-        }
-    }
     
     private func setupViewModel() {
         ui.editBtn.rx.tap
@@ -61,5 +56,15 @@ extension MypageViewController {
             .bind { _ in
                 self.ui.createLogoutAlert(vc: self)
             }.disposed(by: viewModel.disposeBag)
+    }
+    
+    private func fetchMypageData() {
+        //初期化のタイミングでfetch viewdidload以前
+        viewModel.fetchMypageData(uid: recievedUid) { [weak self] data in
+            self?.ui.belongTeam.text = data.team
+            self?.ui.teamId.text = data.teamId
+            self?.ui.position.text = data.role
+            self?.ui.mail.text = data.mail
+        }
     }
 }

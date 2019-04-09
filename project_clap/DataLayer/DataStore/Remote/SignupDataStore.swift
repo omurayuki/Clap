@@ -4,20 +4,17 @@ import Firebase
 import FirebaseAuth
 import RealmSwift
 
-protocol SignupRepository {
-    static func signup(email: String, pass: String, completion: ((String?) -> Void)?)
-    static func saveTeamData(teamId: String,
-                             team: String,
-                             grade: String,
-                             sportsKind: String)
-    static func registUserWithTeam(teamId: String, uid: String)
-    static func saveUserData(user: String, teamId: String, name: String, role: String, mail: String, team: String, completion: (() -> Void)?)
+protocol SignupDataStore {
+    func signup(email: String, pass: String, completion: ((String?) -> Void)?)
+    func saveTeamData(teamId: String, team: String, grade: String, sportsKind: String)
+    func registUserWithTeam(teamId: String, uid: String)
+    func saveUserData(user: String, teamId: String, name: String, role: String, mail: String, team: String, completion: (() -> Void)?)
     func fetchBelongData(teamId: String, completion: @escaping (String?) -> Void)
 }
 
-struct SignupRepositoryImpl: SignupRepository {
+struct SignupDataStoreImpl: SignupDataStore {
     
-    static func signup(email: String, pass: String, completion: ((String?) -> Void)? = nil) {
+    func signup(email: String, pass: String, completion: ((String?) -> Void)? = nil) {
         Firebase.fireAuth.createUser(withEmail: email, password: pass) { (response, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -34,10 +31,7 @@ struct SignupRepositoryImpl: SignupRepository {
         }
     }
     
-    static func saveTeamData(teamId: String,
-                             team: String,
-                             grade: String,
-                             sportsKind: String) {
+    func saveTeamData(teamId: String, team: String, grade: String, sportsKind: String) {
         let setData = ["belong": team, "grade": grade, "sportsKind": sportsKind]
         Firebase.db
             .collection("team")
@@ -45,7 +39,7 @@ struct SignupRepositoryImpl: SignupRepository {
             .setData(setData)
     }
     
-    static func registUserWithTeam(teamId: String, uid: String) {
+    func registUserWithTeam(teamId: String, uid: String) {
         let setData = ["regist": true, "teamId": teamId] as [String : Any]
         Firebase.db
             .collection("team")
@@ -55,7 +49,7 @@ struct SignupRepositoryImpl: SignupRepository {
             .setData(setData)
     }
     
-    static func saveUserData(user: String, teamId: String, name: String, role: String, mail: String, team: String, completion: (() -> Void)? = nil) {
+    func saveUserData(user: String, teamId: String, name: String, role: String, mail: String, team: String, completion: (() -> Void)? = nil) {
         let setData = ["teamId": teamId, "name": name, "role": role, "userId": user, "mail": mail, "team": team]
         Firebase.db
             .collection("users")

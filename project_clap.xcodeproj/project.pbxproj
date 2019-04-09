@@ -104,6 +104,10 @@
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
 		C9B67DC8225B99B500F82AE7 /* RemindPassRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */; };
+		C9B67DCB225C994C00F82AE7 /* RemindPassDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DCA225C994C00F82AE7 /* RemindPassDataStore.swift */; };
+		C9B67DCD225C995A00F82AE7 /* LoginDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DCC225C995A00F82AE7 /* LoginDataStore.swift */; };
+		C9B67DCF225C996A00F82AE7 /* SignupDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DCE225C996A00F82AE7 /* SignupDataStore.swift */; };
+		C9B67DD1225C997700F82AE7 /* MypageDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DD0225C997700F82AE7 /* MypageDataStore.swift */; };
 		C9C6FE7D2240A2B6001FE7A5 /* TopUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE7C2240A2B6001FE7A5 /* TopUI.swift */; };
 		C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE7E2240A2EE001FE7A5 /* UI.swift */; };
 		C9C6FE812240A59E001FE7A5 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE802240A59D001FE7A5 /* R.generated.swift */; };
@@ -239,6 +243,10 @@
 		C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterViewController.swift; sourceTree = "<group>"; };
 		C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewModel.swift; sourceTree = "<group>"; };
 		C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassRepository.swift; sourceTree = "<group>"; };
+		C9B67DCA225C994C00F82AE7 /* RemindPassDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassDataStore.swift; sourceTree = "<group>"; };
+		C9B67DCC225C995A00F82AE7 /* LoginDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataStore.swift; sourceTree = "<group>"; };
+		C9B67DCE225C996A00F82AE7 /* SignupDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupDataStore.swift; sourceTree = "<group>"; };
+		C9B67DD0225C997700F82AE7 /* MypageDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageDataStore.swift; sourceTree = "<group>"; };
 		C9C6FE7C2240A2B6001FE7A5 /* TopUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUI.swift; sourceTree = "<group>"; };
 		C9C6FE7E2240A2EE001FE7A5 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		C9C6FE802240A59D001FE7A5 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -400,7 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				C9132998225331F400514EDE /* Local */,
-				C91329992253321200514EDE /* Realm */,
+				C9B67DC9225C96AF00F82AE7 /* Remote */,
 			);
 			path = DataStore;
 			sourceTree = "<group>";
@@ -414,21 +422,14 @@
 			path = Local;
 			sourceTree = "<group>";
 		};
-		C91329992253321200514EDE /* Realm */ = {
-			isa = PBXGroup;
-			children = (
-				C913299B2253480A00514EDE /* DiaryWritter.swift */,
-			);
-			path = Realm;
-			sourceTree = "<group>";
-		};
-		C913299A2253327F00514EDE /* Model */ = {
+		C913299A2253327F00514EDE /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 				C91329A6225365BF00514EDE /* User.swift */,
 				C96560E6225B4B0F00C22B24 /* Mypage.swift */,
+				C913299B2253480A00514EDE /* DiaryWritter.swift */,
 			);
-			path = Model;
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		C913299D2253483300514EDE /* Repository */ = {
@@ -436,8 +437,8 @@
 			children = (
 				C913299E2253485100514EDE /* SignupRepository.swift */,
 				C91329B02253BC1800514EDE /* LoginRepository.swift */,
-				C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */,
 				C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */,
+				C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -480,13 +481,13 @@
 				C9C6FE802240A59D001FE7A5 /* R.generated.swift */,
 				C91329AD22539F8100514EDE /* memo.swift */,
 				C9C6FE7A2240A1DE001FE7A5 /* Utility */,
-				C98A09352247357600AFAEF2 /* Domain */,
-				C937FD662222889600F9624E /* Screen */,
+				C98A09352247357600AFAEF2 /* DataLayer */,
+				C937FD662222889600F9624E /* Presentation */,
 			);
 			path = project_clap;
 			sourceTree = "<group>";
 		};
-		C937FD662222889600F9624E /* Screen */ = {
+		C937FD662222889600F9624E /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				C98778FE22410E38005AAEA5 /* Routing */,
@@ -500,7 +501,7 @@
 				C970578B222E86FC007F8B1C /* Diary */,
 				C970578C222E8708007F8B1C /* Mypage */,
 			);
-			path = Screen;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		C937FD67222288AB00F9624E /* Top */ = {
@@ -733,14 +734,14 @@
 			path = Routing;
 			sourceTree = "<group>";
 		};
-		C98A09352247357600AFAEF2 /* Domain */ = {
+		C98A09352247357600AFAEF2 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
-				C913299A2253327F00514EDE /* Model */,
+				C913299A2253327F00514EDE /* Utility */,
 				C913299D2253483300514EDE /* Repository */,
 				C9132997225331EB00514EDE /* DataStore */,
 			);
-			path = Domain;
+			path = DataLayer;
 			sourceTree = "<group>";
 		};
 		C98A093A224744CB00AFAEF2 /* RegistCalendar */ = {
@@ -762,6 +763,17 @@
 				C959BF512227EA7F00207986 /* TeamInfoRegistValidation.swift */,
 			);
 			path = FirstScreen;
+			sourceTree = "<group>";
+		};
+		C9B67DC9225C96AF00F82AE7 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				C9B67DCE225C996A00F82AE7 /* SignupDataStore.swift */,
+				C9B67DCC225C995A00F82AE7 /* LoginDataStore.swift */,
+				C9B67DCA225C994C00F82AE7 /* RemindPassDataStore.swift */,
+				C9B67DD0225C997700F82AE7 /* MypageDataStore.swift */,
+			);
+			path = Remote;
 			sourceTree = "<group>";
 		};
 		C9C6FE7A2240A1DE001FE7A5 /* Utility */ = {
@@ -1059,6 +1071,7 @@
 				C9557CC62236457000D6F7A6 /* RegistCalendarViewController.swift in Sources */,
 				C98A093C2247454700AFAEF2 /* RegistCalendarEnum.swift in Sources */,
 				C9EA28642243455F003F40DD /* MypageUI.swift in Sources */,
+				C9B67DCB225C994C00F82AE7 /* RemindPassDataStore.swift in Sources */,
 				C92704222232C2E300B15B45 /* CustomView.swift in Sources */,
 				C9EA286A22434DB5003F40DD /* MypageEditRouting.swift in Sources */,
 				C913299622532FA100514EDE /* TeamSignupSingleton.swift in Sources */,
@@ -1072,11 +1085,14 @@
 				C91329A7225365BF00514EDE /* User.swift in Sources */,
 				C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */,
 				C959BF59222CC05400207986 /* ConfirmationTeamIdViewController.swift in Sources */,
+				C9B67DCF225C996A00F82AE7 /* SignupDataStore.swift in Sources */,
 				C9F086E82235DC6900F25E7A /* CalendarEvent.swift in Sources */,
+				C9B67DCD225C995A00F82AE7 /* LoginDataStore.swift in Sources */,
 				C91156222250B61400CB97E9 /* BaseListController.swift in Sources */,
 				C91329B52254559700514EDE /* TeamIdWriteRouting.swift in Sources */,
 				C9557CCC223689D500D6F7A6 /* RegistCalendarValidation.swift in Sources */,
 				C91C1DBE225B0800005BDA5F /* UIDSingleton.swift in Sources */,
+				C9B67DD1225C997700F82AE7 /* MypageDataStore.swift in Sources */,
 				C9557CCA223689C300D6F7A6 /* RegistCalendarViewModel.swift in Sources */,
 				C9C6FE8C2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift in Sources */,
 				C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */,

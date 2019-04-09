@@ -102,7 +102,7 @@ extension RepresentMemberRegisterViewController {
                                                       sportsKind: TeamSignupSingleton.sharedInstance.sportsKind)
                         let realm = try? Realm()
                         let results = realm?.objects(User.self)
-                        self?.viewModel?.registUserWithTeam(teamId: self?.teamId ?? "", uid: results?.first?.uid ?? "")
+                        self?.viewModel?.registUserWithTeam(teamId: self?.teamId ?? "", uid: results?.last?.uid ?? "")
                         self?.viewModel?.saveUserData(uid: results?.last?.uid ?? "", teamId: self?.teamId ?? "",
                                                       name: TeamSignupSingleton.sharedInstance.name, role: TeamSignupSingleton.sharedInstance.representMemberPosition,
                                                       mail: self?.ui.mailField.text ?? "", team: TeamSignupSingleton.sharedInstance.team, completion: {

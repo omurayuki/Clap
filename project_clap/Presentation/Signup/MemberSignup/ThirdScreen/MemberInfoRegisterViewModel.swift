@@ -107,7 +107,7 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
     }
     
     func signup(email: String, pass: String, completion: @escaping(String) -> Void) {
-        SignupRepositoryImpl.signup(email: email,
+        SignupRepositoryImpl().signup(email: email,
                                     pass: pass,
                                     completion: { uid in
             completion(uid ?? "")
@@ -115,7 +115,7 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
     }
     
     func saveUserData(uid: String, teamId: String, name: String, role: String, mail: String, team: String, completion: @escaping () -> Void) {
-        SignupRepositoryImpl.saveUserData(user: uid,
+        SignupRepositoryImpl().saveUserData(user: uid,
                                           teamId: teamId,
                                           name: name,
                                           role: role,

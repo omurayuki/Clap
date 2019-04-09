@@ -43,7 +43,7 @@ struct LoginViewModel: LoginViewModelType, LoginViewModelInput, LoginViewModelOu
     }
     
     func login(mail: String, pass: String, completion: @escaping (String?, Error?) -> Void) {
-        LoginRepositoryImpl.login(mail: mail,
+        LoginRepositoryImpl().login(mail: mail,
                                   pass: pass,
                                   completion: { uid, error in
             completion(uid, error)

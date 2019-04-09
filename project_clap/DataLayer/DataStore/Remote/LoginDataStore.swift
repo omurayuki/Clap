@@ -4,12 +4,12 @@ import Firebase
 import FirebaseAuth
 import RealmSwift
 
-protocol LoginRepository {
-    static func login(mail: String, pass: String, completion: ((String?, Error?) -> Void)?)
+protocol LoginDataStore {
+    func login(mail: String, pass: String, completion: ((String?, Error?) -> Void)?)
 }
 
-struct LoginRepositoryImpl: LoginRepository {
-    static func login(mail: String, pass: String, completion: ((String?, Error?) -> Void)? = nil) {
+struct LoginDataStoreImpl: LoginDataStore {
+    func login(mail: String, pass: String, completion: ((String?, Error?) -> Void)? = nil) {
         Firebase.fireAuth.signIn(withEmail: mail, password: pass, completion: { (response, error) in
             if let error = error {
                 completion?(nil, error)

@@ -4,13 +4,13 @@ import Firebase
 import FirebaseAuth
 import RealmSwift
 
-protocol MypageRepository {
+protocol MypageDataStore {
     func fetchMypageData(uid: String) -> Single<Mypage>
     func updateMypageData(uid: String, updateData: [String: Any]) -> Single<String>
     func updateEmail(email: String)
 }
 
-class MypageRepositoryImpl: MypageRepository {
+class MypageDataStoreImpl: MypageDataStore {
     func fetchMypageData(uid: String) -> Single<Mypage> {
         return Single.create(subscribe: { single -> Disposable in
             Firebase.db.collection("users").document(uid).getDocument(completion: { (response, error) in

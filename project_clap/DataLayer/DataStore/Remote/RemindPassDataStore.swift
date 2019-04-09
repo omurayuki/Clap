@@ -4,11 +4,11 @@ import Firebase
 import FirebaseAuth
 import RealmSwift
 
-protocol RemindPassRepository {
+protocol RemindPassDataStore {
     func resettingPassword(mail: String) -> Single<String>
 }
 
-struct RemindPassRepositoryImpl: RemindPassRepository {
+struct RemindPassDataStoreImpl: RemindPassDataStore {
     func resettingPassword(mail: String) -> Single<String> {
         return Single.create(subscribe: { single -> Disposable in
             Firebase.fireAuth.languageCode = "ja"
@@ -22,4 +22,3 @@ struct RemindPassRepositoryImpl: RemindPassRepository {
         })
     }
 }
-
