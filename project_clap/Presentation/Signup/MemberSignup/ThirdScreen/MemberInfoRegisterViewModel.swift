@@ -40,7 +40,9 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
     var isOverRepass: Observable<Bool>
     let disposeBag = DisposeBag()
     
-    init(nameField: Observable<String>, mailField: Observable<String>, passField: Observable<String>, rePassField: Observable<String>, positionField: Observable<String>, registBtn: Observable<()>) {
+    init(nameField: Observable<String>, mailField: Observable<String>,
+         passField: Observable<String>, rePassField: Observable<String>,
+         positionField: Observable<String>, registBtn: Observable<()>) {
         nameText = nameField
         mailText = mailField
         passText = passField
@@ -67,32 +69,32 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
                 return MemberInfoRegisterValidation.validateIsOverPass(pass: text)
             }.asObservable()
         
-        let isEmptyField = Observable.combineLatest(nameText, mailText, passText, rePassText) { name, mail, pass, rePass -> MemberInfoRegisterValidationResult in
-            return MemberInfoRegisterValidation.validateEmpty(name: name, mail: mail, pass: pass, rePass: rePass)
-        }
-        .share(replay: 1)
+        let isEmptyField = Observable
+            .combineLatest(nameText, mailText, passText, rePassText) { name, mail, pass, rePass -> MemberInfoRegisterValidationResult in
+                return MemberInfoRegisterValidation.validateEmpty(name: name, mail: mail, pass: pass, rePass: rePass)
+            }
         
-        let passFieldWhetherMatch = Observable.combineLatest(passText, rePassText) { pass, repass -> MemberInfoRegisterValidationResult in
-            return MemberInfoRegisterValidation.validatePass(pass: pass, rePass: repass)
-        }
-        .share(replay: 1)
+        let passFieldWhetherMatch = Observable
+            .combineLatest(passText, rePassText) { pass, repass -> MemberInfoRegisterValidationResult in
+                return MemberInfoRegisterValidation.validatePass(pass: pass, rePass: repass)
+            }
         
-        let emailFieldWhetherMatch = Observable.combineLatest([mailText], { mail -> MemberInfoRegisterValidationResult in
-            return MemberInfoRegisterValidation.validateEmail(email: mail[0])
-        })
-        .share(replay: 1)
+        let emailFieldWhetherMatch = Observable
+            .combineLatest([mailText]) { mail -> MemberInfoRegisterValidationResult in
+                return MemberInfoRegisterValidation.validateEmail(email: mail[0])
+            }
         
-        let isEmptyPicker = Observable.combineLatest([memberPosition]) { position -> MemberInfoRegisterValidationResult in
-            return MemberInfoRegisterValidation.validatePicker(position: position[0])
-        }
+        let isEmptyPicker = Observable
+            .combineLatest([memberPosition]) { position -> MemberInfoRegisterValidationResult in
+                return MemberInfoRegisterValidation.validatePicker(position: position[0])
+            }
         
         isRegistBtnEnable = Observable.combineLatest(isEmptyField, passFieldWhetherMatch, emailFieldWhetherMatch, isEmptyPicker) { (empty, pass, mail, picker) in
             empty.isValid &&
                 pass.isValid &&
                 mail.isValid &&
                 picker.isValid
-            }
-            .share(replay: 1)
+            }.share(replay: 1)
     }
     
     func saveToSingleton(name: String, mail: String, representMemberPosition: String) {
@@ -107,21 +109,26 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
     }
     
     func signup(email: String, pass: String, completion: @escaping(String) -> Void) {
-        SignupRepositoryImpl().signup(email: email,
-                                    pass: pass,
-                                    completion: { uid in
-            completion(uid ?? "")
-        })
+        SignupRepositoryImpl().signup(email: email, pass: pass, completion: { uid in
+                completion(uid ?? "")
+            })
+            .subscribe { response in
+                switch response {
+                case .success(let data):
+                    let user = User()
+                    user.uid = data.user.uid
+                    user.email = data.user.email ?? ""
+                    user.saveUserData(user: user)
+                case .error(_):
+                    return
+                }
+            }.disposed(by: disposeBag)
     }
     
     func saveUserData(uid: String, teamId: String, name: String, role: String, mail: String, team: String, completion: @escaping () -> Void) {
-        SignupRepositoryImpl().saveUserData(user: uid,
-                                          teamId: teamId,
-                                          name: name,
-                                          role: role,
-                                          mail: mail,
-                                          team: team,
-                                          completion: {
+        SignupRepositoryImpl().saveUserData(user: uid, teamId: teamId,
+                                            name: name, role: role,
+                                            mail: mail, team: team, completion: {
             completion()
         })
     }

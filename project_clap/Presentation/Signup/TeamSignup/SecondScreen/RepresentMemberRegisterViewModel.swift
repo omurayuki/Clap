@@ -1,5 +1,6 @@
 import Foundation
 import RxSwift
+import Firebase
 import RxCocoa
 
 protocol RepresentMemberRegisterViewModelInput {
@@ -44,7 +45,9 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
     var isOverRepass: Observable<Bool>
     let disposeBag = DisposeBag()
     
-    init(nameField: Observable<String>, mailField: Observable<String>, passField: Observable<String>, rePassField: Observable<String>, positionField: Observable<String>, yearField: Observable<String>, registBtn: Observable<()>) {
+    init(nameField: Observable<String>, mailField: Observable<String>,
+         passField: Observable<String>, rePassField: Observable<String>,
+         positionField: Observable<String>, yearField: Observable<String>, registBtn: Observable<()>) {
         nameText = nameField
         mailText = mailField
         passText = passField
@@ -117,8 +120,19 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
     
     func signup(email: String, pass: String, completion: @escaping (String) -> Void) {
         SignupRepositoryImpl().signup(email: email, pass: pass, completion: { uid in
-            completion(uid ?? "")
-        })
+                completion(uid ?? "")
+            })
+            .subscribe { response in
+                switch response {
+                case .success(let data):
+                    let user = User()
+                    user.uid = data.user.uid
+                    user.email = data.user.email ?? ""
+                    user.saveUserData(user: user)
+                case .error(_):
+                    return
+                }
+            }.disposed(by: disposeBag)
     }
     
     func saveTeamData(teamId: String, team: String, grade: String, sportsKind: String) {
@@ -126,10 +140,26 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
                                           team: team,
                                           grade: grade,
                                           sportsKind: sportsKind)
+            .subscribe { string in
+                switch string {
+                case .success(_):
+                    return
+                case .error(_):
+                    return
+                }
+            }.disposed(by: disposeBag)
     }
     
     func registUserWithTeam(teamId: String, uid: String) {
         SignupRepositoryImpl().registUserWithTeam(teamId: teamId, uid: uid)
+            .subscribe { string in
+                switch string {
+                case .success(_):
+                    return
+                case .error(_):
+                    return
+                }
+            }.disposed(by: disposeBag)
     }
     
     func saveUserData(uid: String, teamId: String, name: String, role: String, mail: String, team: String, completion: @escaping () -> Void) {

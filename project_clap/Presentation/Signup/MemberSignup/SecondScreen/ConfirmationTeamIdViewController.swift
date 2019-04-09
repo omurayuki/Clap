@@ -5,7 +5,7 @@ import RxCocoa
 
 class ConfirmationTeamIdViewController: UIViewController {
     
-    private let disposeBag = DisposeBag()
+    var viewModel: ConfirmationTeamIdViewModel!
     var recievedTeamId: String
     var recievedBelongTeam: String?
     
@@ -33,12 +33,10 @@ class ConfirmationTeamIdViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(storeName: R.string.locarizable.confirmation(), vc: self)
-        SignupRepositoryImpl().fetchBelongData(teamId: recievedTeamId) { [weak self] description in
-            self?.ui.confirmationTeamTitle.text = "あなたのチームは\(description ?? "")でお間違いないですか？"
-            self?.recievedBelongTeam = description ?? ""
-        }
-        ui.confirmationTeamId.text = recievedTeamId
+        viewModel = ConfirmationTeamIdViewModel()
         setupViewModel()
+        fetchBelongData(teamId: recievedTeamId)
+        ui.confirmationTeamId.text = recievedTeamId
     }
 }
 
@@ -51,7 +49,7 @@ extension ConfirmationTeamIdViewController {
                 self?.ui.confirmBtn.bounce(completion: {
                     self?.routing.showMemberInfoRegist(teamId: self?.recievedTeamId ?? "", belongTeam: self?.recievedBelongTeam ?? "")
                 })
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         ui.cancelBtn.rx.tap.asObservable()
             .throttle(0.5, scheduler: MainScheduler.instance)
@@ -59,6 +57,13 @@ extension ConfirmationTeamIdViewController {
                 self?.ui.cancelBtn.bounce(completion: {
                     self?.routing.showTop()
                 })
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
+    }
+    
+    private func fetchBelongData(teamId: String) {
+        viewModel.fetchBelongData(teamId: recievedTeamId) { [weak self] description in
+            self?.ui.confirmationTeamTitle.text = "あなたのチームは\(description ?? "")でお間違いないですか？"
+            self?.recievedBelongTeam = description ?? ""
+        }
     }
 }

@@ -108,6 +108,7 @@
 		C9B67DCD225C995A00F82AE7 /* LoginDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DCC225C995A00F82AE7 /* LoginDataStore.swift */; };
 		C9B67DCF225C996A00F82AE7 /* SignupDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DCE225C996A00F82AE7 /* SignupDataStore.swift */; };
 		C9B67DD1225C997700F82AE7 /* MypageDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DD0225C997700F82AE7 /* MypageDataStore.swift */; };
+		C9B67DD5225CC1BB00F82AE7 /* ConfirmationTeamIdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DD4225CC1BB00F82AE7 /* ConfirmationTeamIdViewModel.swift */; };
 		C9C6FE7D2240A2B6001FE7A5 /* TopUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE7C2240A2B6001FE7A5 /* TopUI.swift */; };
 		C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE7E2240A2EE001FE7A5 /* UI.swift */; };
 		C9C6FE812240A59E001FE7A5 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C6FE802240A59D001FE7A5 /* R.generated.swift */; };
@@ -247,6 +248,7 @@
 		C9B67DCC225C995A00F82AE7 /* LoginDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataStore.swift; sourceTree = "<group>"; };
 		C9B67DCE225C996A00F82AE7 /* SignupDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupDataStore.swift; sourceTree = "<group>"; };
 		C9B67DD0225C997700F82AE7 /* MypageDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageDataStore.swift; sourceTree = "<group>"; };
+		C9B67DD4225CC1BB00F82AE7 /* ConfirmationTeamIdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationTeamIdViewModel.swift; sourceTree = "<group>"; };
 		C9C6FE7C2240A2B6001FE7A5 /* TopUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUI.swift; sourceTree = "<group>"; };
 		C9C6FE7E2240A2EE001FE7A5 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		C9C6FE802240A59D001FE7A5 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -613,6 +615,7 @@
 				C959BF58222CC05400207986 /* ConfirmationTeamIdViewController.swift */,
 				C987790F224123C2005AAEA5 /* ConfirmationTeamIdUI.swift */,
 				C98779112241256D005AAEA5 /* ConfirmationTeamIdRouting.swift */,
+				C9B67DD4225CC1BB00F82AE7 /* ConfirmationTeamIdViewModel.swift */,
 				C959BF6F222D4B7400207986 /* ConfirmationTeamIdResources.swift */,
 			);
 			path = SecondScreen;
@@ -1113,6 +1116,7 @@
 				C9C6FE872240B5D5001FE7A5 /* TeamInfoRegistEnum.swift in Sources */,
 				C91329AE22539F8100514EDE /* memo.swift in Sources */,
 				C9705790222E8A43007F8B1C /* DisplayCalendarViewController.swift in Sources */,
+				C9B67DD5225CC1BB00F82AE7 /* ConfirmationTeamIdViewModel.swift in Sources */,
 				C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */,
 				C911562B2251B22400CB97E9 /* HorizontalSnappingController.swift in Sources */,
 				C9C6FE812240A59E001FE7A5 /* R.generated.swift in Sources */,

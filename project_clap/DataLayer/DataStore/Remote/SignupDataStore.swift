@@ -5,48 +5,65 @@ import FirebaseAuth
 import RealmSwift
 
 protocol SignupDataStore {
-    func signup(email: String, pass: String, completion: ((String?) -> Void)?)
-    func saveTeamData(teamId: String, team: String, grade: String, sportsKind: String)
-    func registUserWithTeam(teamId: String, uid: String)
+    func signup(email: String, pass: String, completion: ((String?) -> Void)?) -> Single<AuthDataResult>
+    func saveTeamData(teamId: String, team: String, grade: String, sportsKind: String) -> Single<String>
+    func registUserWithTeam(teamId: String, uid: String) -> Single<String>
     func saveUserData(user: String, teamId: String, name: String, role: String, mail: String, team: String, completion: (() -> Void)?)
     func fetchBelongData(teamId: String, completion: @escaping (String?) -> Void)
 }
 
 struct SignupDataStoreImpl: SignupDataStore {
     
-    func signup(email: String, pass: String, completion: ((String?) -> Void)? = nil) {
-        Firebase.fireAuth.createUser(withEmail: email, password: pass) { (response, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
+    func signup(email: String, pass: String, completion: ((String?) -> Void)?) -> Single<AuthDataResult> {
+        return Single.create(subscribe: { single -> Disposable in
+            Firebase.fireAuth.createUser(withEmail: email, password: pass) { (response, error) in
+                if let error = error {
+                    single(.error(error))
+                    return
+                }
+                guard let response = response else { return }
+                single(.success(response))
+                guard let uid = Firebase.fireAuth.currentUser?.uid else { return }
+                completion?(uid)
             }
-            guard let response = response else { return }
-            let user = User()
-            user.uid = response.user.uid
-            user.email = response.user.email ?? ""
-            user.saveUserData(user: user)
-            //error handling
-            guard let uid = Firebase.fireAuth.currentUser?.uid else { return }
-            completion?(uid)
-        }
+            return Disposables.create()
+        })
     }
     
-    func saveTeamData(teamId: String, team: String, grade: String, sportsKind: String) {
+    func saveTeamData(teamId: String, team: String, grade: String, sportsKind: String) -> Single<String> {
         let setData = ["belong": team, "grade": grade, "sportsKind": sportsKind]
-        Firebase.db
-            .collection("team")
-            .document(teamId)
-            .setData(setData)
+        return Single<String>.create(subscribe: { single -> Disposable in
+            Firebase.db
+                .collection("team")
+                .document(teamId)
+                .setData(setData) { error in
+                    if let error = error {
+                        single(.error(error))
+                        return
+                    }
+                    single(.success("successful"))
+            }
+            return Disposables.create()
+        })
     }
     
-    func registUserWithTeam(teamId: String, uid: String) {
+    func registUserWithTeam(teamId: String, uid: String) -> Single<String> {
         let setData = ["regist": true, "teamId": teamId] as [String : Any]
-        Firebase.db
-            .collection("team")
-            .document(teamId)
-            .collection("users")
-            .document(uid)
-            .setData(setData)
+        return Single<String>.create(subscribe: { single -> Disposable in
+            Firebase.db
+                .collection("team")
+                .document(teamId)
+                .collection("users")
+                .document(uid)
+                .setData(setData) { error in
+                    if let error = error {
+                        single(.error(error))
+                        return
+                    }
+                    single(.success("successful"))
+            }
+            return Disposables.create()
+        })
     }
     
     func saveUserData(user: String, teamId: String, name: String, role: String, mail: String, team: String, completion: (() -> Void)? = nil) {
