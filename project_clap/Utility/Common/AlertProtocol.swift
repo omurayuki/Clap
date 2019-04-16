@@ -7,6 +7,7 @@ final class AlertController {
         case sendMailFailed
         case sendMailSuccess
         case overChar
+        case logoutFailure
         
         var title: String {
             switch self {
@@ -14,6 +15,7 @@ final class AlertController {
             case .sendMailFailed: return "失敗"
             case .sendMailSuccess: return "成功"
             case .overChar: return "メッセージ"
+            case .logoutFailure: return "失敗"
             }
         }
         
@@ -23,6 +25,7 @@ final class AlertController {
             case .sendMailFailed: return "メールの送信に失敗しました"
             case .sendMailSuccess: return "メールを送信しました"
             case .overChar: return "制限文字数を超過しています"
+            case .logoutFailure: return "ログアウトに失敗しました"
             }
         }
     }

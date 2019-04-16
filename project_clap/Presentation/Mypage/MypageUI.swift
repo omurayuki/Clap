@@ -22,7 +22,7 @@ protocol MypageUI: UI {
     
     func setup(vc: UIViewController)
     func setupInsideStack(vc: UIViewController)
-    func createLogoutAlert(vc: UIViewController)
+    func createLogoutAlert(vc: UIViewController, completion: @escaping () -> Void)
 }
 
 final class MypageUIImpl: MypageUI {
@@ -213,9 +213,13 @@ extension MypageUIImpl {
         mail.leftAnchor.constraint(equalTo: mailTitle.rightAnchor, constant: MypageResources.Constraint.mailLeftConstraint).isActive = true
     }
     
-    func createLogoutAlert(vc: UIViewController) {
+    func createLogoutAlert(vc: UIViewController, completion: @escaping () -> Void) {
         let alert = PopupDialog(title: R.string.locarizable.message(), message: R.string.locarizable.do_you_wanto_logout())
-        let logout = DefaultButton(title: R.string.locarizable.yes()) { vc.present(UINavigationController(rootViewController: TopViewController()), animated: true) }
+        let logout = DefaultButton(title: R.string.locarizable.yes()) {
+            vc.present(UINavigationController(rootViewController: TopViewController()), animated: true, completion: {
+                completion()
+            })
+        }
         let cancel = CancelButton(title: R.string.locarizable.cancel()) {}
         alert.addButtons([logout, cancel])
         vc.present(alert, animated: true)

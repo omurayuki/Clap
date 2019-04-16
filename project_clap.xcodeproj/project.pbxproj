@@ -424,14 +424,14 @@
 			path = Local;
 			sourceTree = "<group>";
 		};
-		C913299A2253327F00514EDE /* Utility */ = {
+		C913299A2253327F00514EDE /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				C91329A6225365BF00514EDE /* User.swift */,
 				C96560E6225B4B0F00C22B24 /* Mypage.swift */,
 				C913299B2253480A00514EDE /* DiaryWritter.swift */,
 			);
-			path = Utility;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		C913299D2253483300514EDE /* Repository */ = {
@@ -740,7 +740,7 @@
 		C98A09352247357600AFAEF2 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
-				C913299A2253327F00514EDE /* Utility */,
+				C913299A2253327F00514EDE /* Entity */,
 				C913299D2253483300514EDE /* Repository */,
 				C9132997225331EB00514EDE /* DataStore */,
 			);

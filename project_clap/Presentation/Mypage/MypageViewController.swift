@@ -2,11 +2,13 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import FirebaseAuth
 
 class MypageViewController: UIViewController {
     
     var recievedUid: String
     var viewModel: MypageViewModel!
+    let activityIndicator = UIActivityIndicatorView()
     
     private lazy var ui: MypageUI = {
         let ui = MypageUIImpl()
@@ -29,18 +31,18 @@ class MypageViewController: UIViewController {
         fatalError()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchMypageData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(vc: self)
         ui.setupInsideStack(vc:self)
         viewModel = MypageViewModel()
+        self.showIndicator()
         setupViewModel()
-        fetchMypageData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        fetchMypageData()
     }
 }
 
@@ -54,13 +56,19 @@ extension MypageViewController {
         
         ui.logoutBtn.rx.tap
             .bind { _ in
-                self.ui.createLogoutAlert(vc: self)
+                self.ui.createLogoutAlert(vc: self, completion: {
+                    do {
+                        try Firebase.fireAuth.signOut()
+                    } catch {
+                        AlertController.showAlertMessage(alertType: .logoutFailure, viewController: self)
+                    }
+                })
             }.disposed(by: viewModel.disposeBag)
     }
     
     private func fetchMypageData() {
-        //初期化のタイミングでfetch viewdidload以前
         viewModel.fetchMypageData(uid: recievedUid) { [weak self] data in
+            self?.hideIndicator()
             self?.ui.belongTeam.text = data.team
             self?.ui.teamId.text = data.teamId
             self?.ui.position.text = data.role
@@ -68,3 +76,5 @@ extension MypageViewController {
         }
     }
 }
+
+extension MypageViewController: IndicatorShowable {}

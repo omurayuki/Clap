@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = firstScreen
         window?.makeKeyAndVisible()
         FirebaseApp.configure()
+        
+        let config = Realm.Configuration(
+            schemaVersion: 1,
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 1) {}
+        })
+        Realm.Configuration.defaultConfiguration = config
         return true
     }
 

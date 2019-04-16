@@ -4,25 +4,13 @@
 //rx周りがめちゃくちゃ
 //同じ関数, 同じUI処理を書いてる pickerとか
 //callback 地獄
-
-//tabbarにmypageをセットしてるときに、そこで初期化
-////remoteからfetchする用のフォルダ
-//remoteの~~のデータを取得するとか
-//ログインしたときに、fetchしてきて保存
-//非同期的に保存
-//取得したデータをmainthhreadで保存
-
-
-
-
+//mypage編集画面で編集したbelongデータをusers個々人のdbで変更していた。そうじゃなくてteamの中のbelongを変更して、かつteamから毎回取得してこなければいけない。全体で共有するデータだから
+//編集の際に、realmにあるuserデータも更新
 
 
 ////今日の目標
-//フォルダ構成
-//datastore
-//パスワードの文字数超えたら色変える
-
-
+//https://fukatsu.tech/realm-reset
+//https://qiita.com/y-some/items/27a8e27c1e3901540831
 
 
 
