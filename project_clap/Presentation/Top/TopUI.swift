@@ -10,6 +10,7 @@ protocol TopUI: UI {
 }
 
 final class TopUIImpl: TopUI {
+    
     weak var viewController: UIViewController?
     
     private(set) var topTitle: UILabel = {
@@ -60,7 +61,7 @@ extension TopUIImpl {
             .top(to: topTitle.bottomAnchor, constant: vc.view.bounds.size.height / 4)
             .width(constant: vc.view.bounds.size.width / 1.5)
             .activate()
-        
+
         signupBtn.anchor()
             .centerXToSuperview()
             .top(to: loginBtn.bottomAnchor, constant: TopResources.Constraint.signupBtnTopConstraint)

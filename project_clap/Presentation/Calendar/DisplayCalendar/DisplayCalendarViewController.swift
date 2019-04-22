@@ -44,6 +44,17 @@ class DisplayCalendarViewController: UIViewController {
         getCurrentDay()
         loadEventData()
         setupViewModel()
+        //datastore移動
+        Firebase.db.collection("users").document(UIDSingleton.sharedInstance.uid).getDocument(completion: { (snapshot, error) in
+            if let e = error {
+                print(e.localizedDescription)
+                return
+            }
+            guard let snapshot = snapshot, snapshot.exists, let data = snapshot.data() else { return }
+            if let teamId = data["teamId"] as? String {
+                print(AppUserDefaults.setTeamId(value: teamId))
+            }
+        })
     }
 }
 

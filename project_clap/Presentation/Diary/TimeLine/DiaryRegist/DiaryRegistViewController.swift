@@ -1,6 +1,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Firebase
 
 class DiaryRegistViewController: UIViewController {
     
@@ -37,6 +38,26 @@ extension DiaryRegistViewController {
             .bind(onNext: { [weak self] _ in
                 guard let this = self else { return }
                 this.ui.createCancelAlert(vc: this)
+            }).disposed(by: disposeBag)
+        
+        ui.submitBtn.rx.tap
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                print(self!.ui.slides[0].text.text)
+                //diary teamID date diaries
+                //teamID
+                //userID
+                //diaryID 生成
+//                Firebase.db.collection("diary")
+//                    .document("teamID")
+//                    .collection("date")
+//                    .document("diaries")
+//                    .collection("diaryID")
+//                    .addDocument(data: <#T##[String : Any]#>, completion: { error in
+//                    if let _ = error {
+//                        return
+//                    }
+//                })
             }).disposed(by: disposeBag)
         
         ui.datePicker.rx.controlEvent(.allEvents)

@@ -67,6 +67,11 @@
                 <constraint firstItem="dr3-Hk-1af" firstAttribute="top" secondItem="V1r-iU-R5Z" secondAttribute="bottom" constant="10.5" id="ziQ-ax-KJO"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="text" destination="MxN-Sw-3qa" id="Q7t-GF-dOJ"/>
+                <outlet property="textCount" destination="V1r-iU-R5Z" id="0hi-OR-tWz"/>
+                <outlet property="title" destination="z9s-IQ-VbQ" id="qAS-P0-eWY"/>
+            </connections>
             <point key="canvasLocation" x="55.200000000000003" y="48.125937031484263"/>
         </view>
     </objects>

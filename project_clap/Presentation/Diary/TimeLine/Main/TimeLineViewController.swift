@@ -32,8 +32,11 @@ extension TimeLineViewController {
     
     private func setupCollectionView() {
         collectionView.backgroundColor = UIColor(white: 0.98, alpha: 1)
-        collectionView.register(TimeLineGroupCell.self, forCellWithReuseIdentifier: String(describing: TimeLineGroupCell.self))
-        collectionView.register(TimeLineHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: String(describing: TimeLineHeaderCell.self))
+        collectionView.register(TimeLineGroupCell.self,
+                                forCellWithReuseIdentifier: String(describing: TimeLineGroupCell.self))
+        collectionView.register(TimeLineHeaderCell.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: String(describing: TimeLineHeaderCell.self))
         collectionView.contentInset = .init(top: 10, left: 0, bottom: -10, right: 0)
     }
     
@@ -74,6 +77,7 @@ extension TimeLineViewController {
                            animations: {
                 self.ui.hiddenBtnPosition(vc: self)
                 self.hiddenBtn()
+                self.view.layoutIfNeeded()
             })
         } else {
             UIView.animate(withDuration: 0.7,
@@ -84,6 +88,7 @@ extension TimeLineViewController {
                            animations: {
                 self.ui.showBtnPosition(vc: self)
                 self.showBtn()
+                self.view.layoutIfNeeded()
             })
         }
         isSelected = !isSelected

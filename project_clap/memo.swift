@@ -24,3 +24,9 @@
 //realm使う場面
 //calendar private(realm) public
 //timeline
+
+
+//クライアントに打ち込んでもらったデータをsingletonに入れてる
+//mypageでのみuidを使うので遷移のタイミングで渡してる
+//teamIDを全体で使うため、userdefaultに入れる
+//singletonである必要性がないので、普通にstaticかuserdefaultsで管理してもいい

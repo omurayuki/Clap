@@ -13,6 +13,7 @@ class LoginViewCountroller: UIViewController {
     private lazy var ui: LoginUI = {
         let ui = LoginUIImpl()
         ui.viewController = self
+        
         return ui
     }()
     
@@ -46,7 +47,8 @@ extension LoginViewCountroller {
                 this.showIndicator()
                 this.ui.logintBtn.bounce(completion: {
                     this.viewModel?.login(mail: this.ui.mailField.text ?? "", pass: this.ui.passField.text ?? "", completion: { (uid, error) in
-                        if let _ = error {
+                        if let e = error {
+                            print(e.localizedDescription)
                             self?.hideIndicator()
                             AlertController.showAlertMessage(alertType: .loginFailed, viewController: this)
                         }

@@ -39,7 +39,7 @@ class MypageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(vc: self)
-        ui.setupInsideStack(vc:self)
+        ui.setupInsideStack(vc: self)
         viewModel = MypageViewModel()
         self.showIndicator()
         setupViewModel()

@@ -96,6 +96,7 @@ PODS:
   - gRPC-Core/Interface (1.17.0)
   - GTMSessionFetcher/Core (1.2.1)
   - JTAppleCalendar (7.1.7)
+  - KeychainAccess (3.1.2)
   - Kingfisher (5.1.1)
   - leveldb-library (1.20)
   - nanopb (0.3.901):
@@ -126,6 +127,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Firestore
   - JTAppleCalendar (~> 7.0)
+  - KeychainAccess
   - Kingfisher (~> 5.0)
   - PopupDialog (~> 0.9)
   - R.swift
@@ -151,6 +153,7 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - JTAppleCalendar
+    - KeychainAccess
     - Kingfisher
     - leveldb-library
     - nanopb
@@ -181,6 +184,7 @@ SPEC CHECKSUMS:
   gRPC-Core: 4028031ed2c5267cca0d846c876d8046b1ecb9b6
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   JTAppleCalendar: 96da4d8388fa6dc82d6a60d41ef36a015e167e2f
+  KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
   Kingfisher: 2558186963e5be42d98c5b110ccb3130148b77e4
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
@@ -194,6 +198,6 @@ SPEC CHECKSUMS:
   RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
   RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
 
-PODFILE CHECKSUM: c298b03ba83bc8049f4ec3c646071bd5310fe4c8
+PODFILE CHECKSUM: 8430e0c10a1ebe12fd7b0280674928204fcd241f
 
 COCOAPODS: 1.7.0.beta.2

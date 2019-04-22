@@ -101,6 +101,7 @@
 		C98A09372247384F00AFAEF2 /* DisplayCalendarRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A09362247384F00AFAEF2 /* DisplayCalendarRouting.swift */; };
 		C98A093922473B8400AFAEF2 /* RegistCalendarUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A093822473B8400AFAEF2 /* RegistCalendarUI.swift */; };
 		C98A093C2247454700AFAEF2 /* RegistCalendarEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A093B2247454700AFAEF2 /* RegistCalendarEnum.swift */; };
+		C98D64BD226D609900A1D7F9 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D64BC226D609900A1D7F9 /* AppUserDefaults.swift */; };
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
 		C9B67DC8225B99B500F82AE7 /* RemindPassRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */; };
@@ -241,6 +242,7 @@
 		C98A09362247384F00AFAEF2 /* DisplayCalendarRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCalendarRouting.swift; sourceTree = "<group>"; };
 		C98A093822473B8400AFAEF2 /* RegistCalendarUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarUI.swift; sourceTree = "<group>"; };
 		C98A093B2247454700AFAEF2 /* RegistCalendarEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarEnum.swift; sourceTree = "<group>"; };
+		C98D64BC226D609900A1D7F9 /* AppUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserDefaults.swift; sourceTree = "<group>"; };
 		C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterViewController.swift; sourceTree = "<group>"; };
 		C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewModel.swift; sourceTree = "<group>"; };
 		C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassRepository.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				C9F086DA2233D5EA00F25E7A /* CustomStackView.swift */,
 				C913298F225306AB00514EDE /* AlertProtocol.swift */,
 				C91329A822538D9E00514EDE /* Firebase.swift */,
+				C98D64BC226D609900A1D7F9 /* AppUserDefaults.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -741,8 +744,8 @@
 			isa = PBXGroup;
 			children = (
 				C913299A2253327F00514EDE /* Entity */,
-				C913299D2253483300514EDE /* Repository */,
 				C9132997225331EB00514EDE /* DataStore */,
+				C913299D2253483300514EDE /* Repository */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
@@ -1049,6 +1052,7 @@
 				C959BF5D222CC9E800207986 /* MemberInfoRegistViewController.swift in Sources */,
 				C987790622411477005AAEA5 /* RepresentMemberRegisterRouting.swift in Sources */,
 				C959BF74222D4BEE00207986 /* TeamInfoRegisterResources.swift in Sources */,
+				C98D64BD226D609900A1D7F9 /* AppUserDefaults.swift in Sources */,
 				C91329A922538D9F00514EDE /* Firebase.swift in Sources */,
 				C9C6FE902240B7C7001FE7A5 /* RepresentMemberRegisterUI.swift in Sources */,
 				C9EA286622434978003F40DD /* MypageRouting.swift in Sources */,

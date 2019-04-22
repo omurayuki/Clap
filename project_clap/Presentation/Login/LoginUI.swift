@@ -74,6 +74,7 @@ extension LoginUIImpl {
         vc.view.addSubview(passField)
         vc.view.addSubview(logintBtn)
         vc.view.addSubview(reissuePass)
+        
         noticeUserLoginTitle.anchor()
             .centerXToSuperview()
             .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5)
