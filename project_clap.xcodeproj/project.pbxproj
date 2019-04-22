@@ -102,6 +102,10 @@
 		C98A093922473B8400AFAEF2 /* RegistCalendarUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A093822473B8400AFAEF2 /* RegistCalendarUI.swift */; };
 		C98A093C2247454700AFAEF2 /* RegistCalendarEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98A093B2247454700AFAEF2 /* RegistCalendarEnum.swift */; };
 		C98D64BD226D609900A1D7F9 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D64BC226D609900A1D7F9 /* AppUserDefaults.swift */; };
+		C98D64BF226D6D1B00A1D7F9 /* DiaryRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D64BE226D6D1B00A1D7F9 /* DiaryRegistViewModel.swift */; };
+		C98D64C1226D7DDA00A1D7F9 /* DiaryRegistValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D64C0226D7DDA00A1D7F9 /* DiaryRegistValidation.swift */; };
+		C98D64C7226DB2AF00A1D7F9 /* DiaryRegistDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D64C6226DB2AF00A1D7F9 /* DiaryRegistDataStore.swift */; };
+		C98D64C9226DB72A00A1D7F9 /* DiaryRegistRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D64C8226DB72A00A1D7F9 /* DiaryRegistRepository.swift */; };
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
 		C9B67DC8225B99B500F82AE7 /* RemindPassRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */; };
@@ -243,6 +247,10 @@
 		C98A093822473B8400AFAEF2 /* RegistCalendarUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarUI.swift; sourceTree = "<group>"; };
 		C98A093B2247454700AFAEF2 /* RegistCalendarEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarEnum.swift; sourceTree = "<group>"; };
 		C98D64BC226D609900A1D7F9 /* AppUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUserDefaults.swift; sourceTree = "<group>"; };
+		C98D64BE226D6D1B00A1D7F9 /* DiaryRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRegistViewModel.swift; sourceTree = "<group>"; };
+		C98D64C0226D7DDA00A1D7F9 /* DiaryRegistValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRegistValidation.swift; sourceTree = "<group>"; };
+		C98D64C6226DB2AF00A1D7F9 /* DiaryRegistDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRegistDataStore.swift; sourceTree = "<group>"; };
+		C98D64C8226DB72A00A1D7F9 /* DiaryRegistRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryRegistRepository.swift; sourceTree = "<group>"; };
 		C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterViewController.swift; sourceTree = "<group>"; };
 		C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewModel.swift; sourceTree = "<group>"; };
 		C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassRepository.swift; sourceTree = "<group>"; };
@@ -444,6 +452,7 @@
 				C91329B02253BC1800514EDE /* LoginRepository.swift */,
 				C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */,
 				C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */,
+				C98D64C8226DB72A00A1D7F9 /* DiaryRegistRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -778,6 +787,7 @@
 				C9B67DCC225C995A00F82AE7 /* LoginDataStore.swift */,
 				C9B67DCA225C994C00F82AE7 /* RemindPassDataStore.swift */,
 				C9B67DD0225C997700F82AE7 /* MypageDataStore.swift */,
+				C98D64C6226DB2AF00A1D7F9 /* DiaryRegistDataStore.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -834,7 +844,9 @@
 			children = (
 				C9CC6198223F7B8D0093D37F /* DiaryRegistViewController.swift */,
 				C9EA285F224266E0003F40DD /* DiaryRegistUI.swift */,
+				C98D64BE226D6D1B00A1D7F9 /* DiaryRegistViewModel.swift */,
 				C9CC619F223FBDAE0093D37F /* DiaryRegistResources.swift */,
+				C98D64C0226D7DDA00A1D7F9 /* DiaryRegistValidation.swift */,
 				C9CC619A223F96200093D37F /* View */,
 			);
 			path = DiaryRegist;
@@ -1040,6 +1052,7 @@
 				C937FD7E2222E22B00F9624E /* LoginViewModel.swift in Sources */,
 				C959BF66222D124300207986 /* MemberInfoRegisterViewModel.swift in Sources */,
 				C91329AC2253937C00514EDE /* RandomString.swift in Sources */,
+				C98D64C9226DB72A00A1D7F9 /* DiaryRegistRepository.swift in Sources */,
 				C911561B2250A68C00CB97E9 /* Snapping.swift in Sources */,
 				C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */,
 				C959BF522227EA7F00207986 /* TeamInfoRegistValidation.swift in Sources */,
@@ -1104,6 +1117,7 @@
 				C9C6FE8C2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift in Sources */,
 				C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */,
 				C913298E2252FBC000514EDE /* IndicatorShowable.swift in Sources */,
+				C98D64C1226D7DDA00A1D7F9 /* DiaryRegistValidation.swift in Sources */,
 				C91156292250CDA200CB97E9 /* TimeLineHorizontalController.swift in Sources */,
 				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
 				C987790C22412021005AAEA5 /* TeamIdWriteUI.swift in Sources */,
@@ -1122,6 +1136,7 @@
 				C9705790222E8A43007F8B1C /* DisplayCalendarViewController.swift in Sources */,
 				C9B67DD5225CC1BB00F82AE7 /* ConfirmationTeamIdViewModel.swift in Sources */,
 				C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */,
+				C98D64C7226DB2AF00A1D7F9 /* DiaryRegistDataStore.swift in Sources */,
 				C911562B2251B22400CB97E9 /* HorizontalSnappingController.swift in Sources */,
 				C9C6FE812240A59E001FE7A5 /* R.generated.swift in Sources */,
 				C987791622412D02005AAEA5 /* MemberInfoRegistRouting.swift in Sources */,
@@ -1130,6 +1145,7 @@
 				C96560E7225B4B0F00C22B24 /* Mypage.swift in Sources */,
 				C959BF62222CED8700207986 /* TeamIdWriteViewModel.swift in Sources */,
 				C9F086DB2233D5EA00F25E7A /* CustomStackView.swift in Sources */,
+				C98D64BF226D6D1B00A1D7F9 /* DiaryRegistViewModel.swift in Sources */,
 				C97057A1222E9B0F007F8B1C /* TabBarResources.swift in Sources */,
 				C959BF572229100500207986 /* RepresentMemberRegisterValidation.swift in Sources */,
 				C9877908224117CB005AAEA5 /* LoginUI.swift in Sources */,

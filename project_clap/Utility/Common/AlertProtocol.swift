@@ -8,6 +8,8 @@ final class AlertController {
         case sendMailSuccess
         case overChar
         case logoutFailure
+        case registDiarySuccess
+        case registDiaryFailure
         
         var title: String {
             switch self {
@@ -16,6 +18,8 @@ final class AlertController {
             case .sendMailSuccess: return "成功"
             case .overChar: return "メッセージ"
             case .logoutFailure: return "失敗"
+            case .registDiarySuccess: return "成功"
+            case .registDiaryFailure: return "失敗"
             }
         }
         
@@ -26,6 +30,8 @@ final class AlertController {
             case .sendMailSuccess: return "メールを送信しました"
             case .overChar: return "制限文字数を超過しています"
             case .logoutFailure: return "ログアウトに失敗しました"
+            case .registDiarySuccess: return "保存しました"
+            case .registDiaryFailure: return "保存に失敗しました"
             }
         }
     }

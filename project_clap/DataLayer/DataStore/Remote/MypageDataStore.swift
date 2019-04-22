@@ -13,7 +13,10 @@ protocol MypageDataStore {
 class MypageDataStoreImpl: MypageDataStore {
     func fetchMypageData(uid: String) -> Single<Mypage> {
         return Single.create(subscribe: { single -> Disposable in
-            Firebase.db.collection("users").document(uid).getDocument(completion: { (response, error) in
+            Firebase.db
+                .collection("users")
+                .document(uid)
+                .getDocument(completion: { (response, error) in
                 if let error = error {
                     single(.error(error))
                 }
@@ -28,7 +31,10 @@ class MypageDataStoreImpl: MypageDataStore {
     
     func updateMypageData(uid: String, updateData: [String: Any]) -> Single<String> {
         return Single.create(subscribe: { single -> Disposable in
-            Firebase.db.collection("users").document(uid).updateData(updateData, completion: { error in
+            Firebase.db
+                .collection("users")
+                .document(uid)
+                .updateData(updateData, completion: { error in
                 if let error = error {
                     single(.error(error))
                 }
