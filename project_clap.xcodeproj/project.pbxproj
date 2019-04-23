@@ -10,14 +10,11 @@
 		C908D2952223AB3D000344B0 /* Locarizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C908D2942223AB3D000344B0 /* Locarizable.strings */; };
 		C908D2982223AEE3000344B0 /* AppResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C908D2972223AEE3000344B0 /* AppResources.swift */; };
 		C91156182250A60100CB97E9 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156172250A60100CB97E9 /* UIView+Layout.swift */; };
-		C911561B2250A68C00CB97E9 /* Snapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911561A2250A68C00CB97E9 /* Snapping.swift */; };
 		C911561D2250A6AE00CB97E9 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911561C2250A6AE00CB97E9 /* VerticalStackView.swift */; };
 		C91156202250B5E000CB97E9 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911561F2250B5E000CB97E9 /* TimeLineViewController.swift */; };
-		C91156222250B61400CB97E9 /* BaseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156212250B61400CB97E9 /* BaseListController.swift */; };
 		C91156252250C47D00CB97E9 /* TimeLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156242250C47D00CB97E9 /* TimeLineCell.swift */; };
 		C91156272250CD3700CB97E9 /* TimeLineGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156262250CD3700CB97E9 /* TimeLineGroupCell.swift */; };
 		C91156292250CDA200CB97E9 /* TimeLineHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156282250CDA200CB97E9 /* TimeLineHorizontalController.swift */; };
-		C911562B2251B22400CB97E9 /* HorizontalSnappingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911562A2251B22400CB97E9 /* HorizontalSnappingController.swift */; };
 		C911562D22520B2900CB97E9 /* TimeLineHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911562C22520B2900CB97E9 /* TimeLineHeaderCell.swift */; };
 		C911562F22520B5C00CB97E9 /* TimeLineHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911562E22520B5C00CB97E9 /* TimeLineHeaderController.swift */; };
 		C913297E2252309B00514EDE /* TimeLineUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913297D2252309B00514EDE /* TimeLineUI.swift */; };
@@ -26,7 +23,6 @@
 		C913298B2252F89000514EDE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C913298A2252F88F00514EDE /* GoogleService-Info.plist */; };
 		C913298E2252FBC000514EDE /* IndicatorShowable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913298D2252FBC000514EDE /* IndicatorShowable.swift */; };
 		C9132990225306AB00514EDE /* AlertProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913298F225306AB00514EDE /* AlertProtocol.swift */; };
-		C9132992225310E000514EDE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9132991225310E000514EDE /* BaseViewController.swift */; };
 		C913299622532FA100514EDE /* TeamSignupSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913299522532FA100514EDE /* TeamSignupSingleton.swift */; };
 		C913299C2253480A00514EDE /* DiaryWritter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913299B2253480A00514EDE /* DiaryWritter.swift */; };
 		C913299F2253485100514EDE /* SignupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913299E2253485100514EDE /* SignupRepository.swift */; };
@@ -157,14 +153,11 @@
 		C908D2942223AB3D000344B0 /* Locarizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Locarizable.strings; sourceTree = "<group>"; };
 		C908D2972223AEE3000344B0 /* AppResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppResources.swift; sourceTree = "<group>"; };
 		C91156172250A60100CB97E9 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
-		C911561A2250A68C00CB97E9 /* Snapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapping.swift; sourceTree = "<group>"; };
 		C911561C2250A6AE00CB97E9 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		C911561F2250B5E000CB97E9 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
-		C91156212250B61400CB97E9 /* BaseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListController.swift; sourceTree = "<group>"; };
 		C91156242250C47D00CB97E9 /* TimeLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCell.swift; sourceTree = "<group>"; };
 		C91156262250CD3700CB97E9 /* TimeLineGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineGroupCell.swift; sourceTree = "<group>"; };
 		C91156282250CDA200CB97E9 /* TimeLineHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineHorizontalController.swift; sourceTree = "<group>"; };
-		C911562A2251B22400CB97E9 /* HorizontalSnappingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSnappingController.swift; sourceTree = "<group>"; };
 		C911562C22520B2900CB97E9 /* TimeLineHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineHeaderCell.swift; sourceTree = "<group>"; };
 		C911562E22520B5C00CB97E9 /* TimeLineHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineHeaderController.swift; sourceTree = "<group>"; };
 		C913297D2252309B00514EDE /* TimeLineUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUI.swift; sourceTree = "<group>"; };
@@ -173,7 +166,6 @@
 		C913298A2252F88F00514EDE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C913298D2252FBC000514EDE /* IndicatorShowable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorShowable.swift; sourceTree = "<group>"; };
 		C913298F225306AB00514EDE /* AlertProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertProtocol.swift; sourceTree = "<group>"; };
-		C9132991225310E000514EDE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C913299522532FA100514EDE /* TeamSignupSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSignupSingleton.swift; sourceTree = "<group>"; };
 		C913299B2253480A00514EDE /* DiaryWritter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryWritter.swift; sourceTree = "<group>"; };
 		C913299E2253485100514EDE /* SignupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRepository.swift; sourceTree = "<group>"; };
@@ -343,11 +335,7 @@
 		C91156192250A67B00CB97E9 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				C911561A2250A68C00CB97E9 /* Snapping.swift */,
-				C911562A2251B22400CB97E9 /* HorizontalSnappingController.swift */,
 				C911561C2250A6AE00CB97E9 /* VerticalStackView.swift */,
-				C91156212250B61400CB97E9 /* BaseListController.swift */,
-				C9132991225310E000514EDE /* BaseViewController.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1076,7 +1064,6 @@
 				C959BF66222D124300207986 /* MemberInfoRegisterViewModel.swift in Sources */,
 				C91329AC2253937C00514EDE /* RandomString.swift in Sources */,
 				C98D64C9226DB72A00A1D7F9 /* DiaryRegistRepository.swift in Sources */,
-				C911561B2250A68C00CB97E9 /* Snapping.swift in Sources */,
 				C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */,
 				C959BF522227EA7F00207986 /* TeamInfoRegistValidation.swift in Sources */,
 				C9705796222E8B29007F8B1C /* DiaryGroupViewController.swift in Sources */,
@@ -1101,7 +1088,6 @@
 				C913299C2253480A00514EDE /* DiaryWritter.swift in Sources */,
 				C959BF6E222D4B3500207986 /* TeamIdWriteResources.swift in Sources */,
 				C91329B12253BC1800514EDE /* LoginRepository.swift in Sources */,
-				C9132992225310E000514EDE /* BaseViewController.swift in Sources */,
 				C959BF5522290ADA00207986 /* RepresentMemberRegisterViewModel.swift in Sources */,
 				C970577E222E5E68007F8B1C /* CustomTextField.swift in Sources */,
 				C9705789222E6F21007F8B1C /* RemindPassValidation.swift in Sources */,
@@ -1132,7 +1118,6 @@
 				C9B67DCF225C996A00F82AE7 /* SignupDataStore.swift in Sources */,
 				C9F086E82235DC6900F25E7A /* CalendarEvent.swift in Sources */,
 				C9B67DCD225C995A00F82AE7 /* LoginDataStore.swift in Sources */,
-				C91156222250B61400CB97E9 /* BaseListController.swift in Sources */,
 				C91329B52254559700514EDE /* TeamIdWriteRouting.swift in Sources */,
 				C9557CCC223689D500D6F7A6 /* RegistCalendarValidation.swift in Sources */,
 				C91C1DBE225B0800005BDA5F /* UIDSingleton.swift in Sources */,
@@ -1161,7 +1146,6 @@
 				C9B67DD5225CC1BB00F82AE7 /* ConfirmationTeamIdViewModel.swift in Sources */,
 				C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */,
 				C98D64C7226DB2AF00A1D7F9 /* DiaryRegistDataStore.swift in Sources */,
-				C911562B2251B22400CB97E9 /* HorizontalSnappingController.swift in Sources */,
 				C9C6FE812240A59E001FE7A5 /* R.generated.swift in Sources */,
 				C987791622412D02005AAEA5 /* MemberInfoRegistRouting.swift in Sources */,
 				C9F086E22233F6A200F25E7A /* MypageEditViewModel.swift in Sources */,

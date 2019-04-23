@@ -14,6 +14,9 @@ class TimeLineViewController: UIViewController {
     private lazy var ui: TimeLineUI = {
         let ui = TimeLineUIImpl()
         ui.viewController = self
+        ui.timelineTableView.register(TimelineCell.self, forCellReuseIdentifier: String(describing: TimelineCell.self))
+        ui.timelineTableView.dataSource = self
+        ui.timelineTableView.delegate = self
         return ui
     }()
     
@@ -52,6 +55,7 @@ class TimeLineViewController: UIViewController {
                     DateOperator.firstDayOfMonth(date: headline.date ?? Date())
                 })
             }
+               self?.ui.timelineTableView.reloadData()
         }
     }
 }
@@ -121,4 +125,34 @@ extension TimeLineViewController {
         ui.memberBtn.alpha = 0
         ui.diaryBtn.alpha = 0
     }
+}
+
+extension TimeLineViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return TimelineSingleton.sharedInstance.sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let date = TimelineSingleton.sharedInstance.sections[section].sectionItem
+        return DateFormatter().convertToMonthAndYears(date)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return TimelineSingleton.sharedInstance.sections[section].rowItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TimelineCell.self), for: indexPath) as? TimelineCell else { return UITableViewCell() }
+        let cellDetail = TimelineSingleton.sharedInstance.sections[indexPath.section].rowItems[indexPath.row]
+        cell.configureInit(image: "cellDetail.image", title: cellDetail.title ?? "", name: cellDetail.name ?? "", time: cellDetail.time ?? "")
+        return cell
+    }
+}
+
+extension TimeLineViewController: UITableViewDelegate {
+    
 }

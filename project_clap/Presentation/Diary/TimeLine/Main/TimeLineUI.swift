@@ -1,6 +1,7 @@
 import UIKit
 
 protocol TimeLineUI: UI {
+    var timelineTableView: UITableView { get }
     var menuBtn: UIButton { get }
     var memberBtn: UIButton { get }
     var diaryBtn: UIButton { get }
@@ -13,6 +14,11 @@ protocol TimeLineUI: UI {
 class TimeLineUIImpl: TimeLineUI {
     
     weak var viewController: UIViewController?
+    
+    private(set) var timelineTableView: UITableView = {
+        let table = UITableView()
+        return table
+    }()
     
     private(set) var menuBtn: UIButton = {
         let button = UIButton()
@@ -45,6 +51,15 @@ class TimeLineUIImpl: TimeLineUI {
 extension TimeLineUIImpl {
     func setup(vc: UIViewController) {
         vc.navigationItem.title = R.string.locarizable.time_line()
+        
+        vc.view.addSubview(timelineTableView)
+        timelineTableView.anchor()
+            .centerXToSuperview()
+            .centerYToSuperview()
+            .width(to: vc.view.widthAnchor)
+            .top(to: vc.view.safeAreaLayoutGuide.topAnchor)
+            .bottom(to: vc.view.safeAreaLayoutGuide.bottomAnchor)
+            .activate()
         
         vc.view.addSubview(menuBtn)
         menuBtn.anchor(top: nil,
