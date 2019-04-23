@@ -1,6 +1,7 @@
+import Foundation
 import UIKit
 
-class TimeLineCell: UICollectionViewCell {
+class TimelineCell: UITableViewCell {
     
     private lazy var userImage: UIImageView = {
         let imageView = UIImageView()
@@ -8,14 +9,14 @@ class TimeLineCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 22.5
         return imageView
     }()
-    
+
     private lazy var diaryTitle: UILabel = {
         let label = UILabel()
         label.text = "hoeghogehogehoge"
         label.font = .systemFont(ofSize: 20)
         return label
     }()
-    
+
     private lazy var userName: UILabel = {
         let label = UILabel()
         label.text = "小村 祐輝"
@@ -23,7 +24,7 @@ class TimeLineCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 12)
         return label
     }()
-    
+
     private lazy var submittedTime: UILabel = {
         let label = UILabel()
         label.text = "12月12日"
@@ -31,25 +32,44 @@ class TimeLineCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var separatorView: UIView = {
+    private lazy var wrapView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.layer.cornerRadius = DisplayCalendarResources.View.wrapViewLayerCornerRadius
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError()
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
-extension TimeLineCell {
+extension TimelineCell {
     private func setupUI() {
+        contentView.backgroundColor = AppResources.ColorResources.appCommonClearColor
+        contentView.addSubview(wrapView)
+        wrapView.anchor()
+            .top(to: contentView.topAnchor, constant: DisplayCalendarResources.Constraint.wrapViewTopConstraint)
+            .left(to: contentView.leftAnchor, constant: DisplayCalendarResources.Constraint.wrapViewLeftConstraint)
+            .bottom(to: contentView.bottomAnchor, constant: DisplayCalendarResources.Constraint.wrapViewBottomConstraint)
+            .right(to: contentView.rightAnchor, constant: DisplayCalendarResources.Constraint.wrapViewRightConstraint)
+            .activate()
+        
+        setupInsideWrapView()
+    }
+    
+    private func setupInsideWrapView() {
+        wrapView.addSubview(userImage)
+        wrapView.addSubview(diaryTitle)
+        wrapView.addSubview(userName)
+        wrapView.addSubview(submittedTime)
+        
         let stackView = UIStackView(arrangedSubviews: [
             userImage,
             diaryTitle,
@@ -58,18 +78,18 @@ extension TimeLineCell {
                 submittedTime
                 ], spacing: 10)
             ])
-        addSubview(stackView)
+        wrapView.addSubview(stackView)
         stackView.spacing = 16
         stackView.alignment = .center
         stackView.fillSuperview()
         userImage.constrainWidth(constant: 45)
         userImage.constrainHeight(constant: 45)
-        
-        addSubview(separatorView)
-        separatorView.anchor(top: nil,
-                             leading: diaryTitle.leadingAnchor,
-                             bottom: bottomAnchor, trailing: trailingAnchor,
-                             padding: .init(top: 0, left: 0, bottom: -4, right: 0),
-                             size: .init(width: 0, height: 0.5))
+    }
+    
+    func configureInit(image: String, title: String, name: String, time: String) {
+        userImage.image = UIImage(named: image)
+        diaryTitle.text = title
+        userName.text = name
+        submittedTime.text = time
     }
 }
