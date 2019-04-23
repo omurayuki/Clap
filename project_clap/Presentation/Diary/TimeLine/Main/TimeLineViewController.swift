@@ -1,11 +1,15 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Firebase
 
 class TimeLineViewController: BaseListController {
     
     private let disposeBag = DisposeBag()
     private var isSelected = false
+    var timelineCellArray = [TimelineCellData]()
+    var dataTitleFromFireStore = [String]()
+    var dataDateFromFiewstore = [String]()
     
     private lazy var ui: TimeLineUI = {
         let ui = TimeLineUIImpl()
@@ -25,6 +29,35 @@ class TimeLineViewController: BaseListController {
         ui.setup(vc: self)
         hiddenBtn()
         setupViewModel()
+        Firebase.db
+            .collection("diary")
+            .document(AppUserDefaults.getValue(keyName: "teamId"))
+            .collection("diaries")
+            .whereField("submit", isEqualTo: true)
+            .getDocuments { [weak self] (snapshot, error) in
+            if let _ = error { return }
+            guard let snapshot = snapshot else { return }
+            var i = 0
+            for document in snapshot.documents {
+                var data = document.data()
+                self?.dataTitleFromFireStore.append(data["text_1"] as? String ?? "")
+                self?.dataDateFromFiewstore.append(data["date"] as? String ?? "")
+                self?.timelineCellArray.append(TimelineCellData(date: DateOperator.parseDate(self?.dataDateFromFiewstore[i] ?? ""),
+                                                                time: "21:00",
+                                                                title: self?.dataTitleFromFireStore[i],
+                                                                name: "亀太郎",
+                                                                image: URL(string: ""),
+                                                                diaryID: ""))
+                i += 1
+                TimelineSingleton.sharedInstance.sections = TableSection.group(rowItems: self?.timelineCellArray ?? [TimelineCellData](), by: { headline in
+                    DateOperator.firstDayOfMonth(date: headline.date ?? Date())
+                })
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.collectionView.reloadData()
+        }
     }
 }
 
@@ -106,6 +139,7 @@ extension TimeLineViewController {
 }
 
 extension TimeLineViewController {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return .init(width: view.frame.width, height: 70)
     }
@@ -116,7 +150,7 @@ extension TimeLineViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return TimelineSingleton.sharedInstance.sections.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

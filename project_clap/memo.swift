@@ -26,7 +26,8 @@
 //timeline
 
 
-//クライアントに打ち込んでもらったデータをsingletonに入れてる
-//mypageでのみuidを使うので遷移のタイミングで渡してる
-//teamIDを全体で使うため、userdefaultに入れる
-//singletonである必要性がないので、普通にstaticかuserdefaultsで管理してもいい
+
+//diaryのデータをどこかに持っておく必要がある　ローカルで瞬時に読み込むため しかし、データが更新された時のローカルへの反映をどうするか サブスレッドで通信処理ますと？　それをviewwillappearで都度やるか、twitterみたいに上にスクロールした時にやるか
+//表示するためのdiaryのデータを別クラスかstructに保存するか、ローカルのDBに保持しておく必要がある　そしてcollectionViewのdateHeaderとcellに渡す必要がある
+//明日はデータ構造を整理するために紙に書く、そしてベストプラクティスを考える
+//timelineVCで色々処理(dateを~~)しているが、それも見直し

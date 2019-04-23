@@ -1,0 +1,10 @@
+import Foundation
+
+struct TimelineCellData {
+    var date: Date?
+    var time: String?
+    var title: String?
+    var name: String?
+    var image: URL?
+    var diaryID: String?
+}

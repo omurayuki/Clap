@@ -1,7 +1,6 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import Firebase
 
 class DiaryRegistViewController: UIViewController {
     
@@ -108,7 +107,7 @@ extension DiaryRegistViewController {
                     this.viewModel.registDiary(text1: this.ui.slides[0].text.text ?? "", text2: this.ui.slides[1].text.text ?? "",
                                                text3: this.ui.slides[2].text.text ?? "", text4: this.ui.slides[3].text.text ?? "",
                                                text5: this.ui.slides[4].text.text ?? "", text6: this.ui.slides[5].text.text ?? "",
-                                               stringDate: this.ui.submitDateField.text ?? "", completion: { (_, error) in
+                                               stringDate: this.ui.submitDateField.text ?? "", submitted: true, completion: { (_, error) in
                         if let _ = error {
                             AlertController.showAlertMessage(alertType: .registDiaryFailure, viewController: this)
                             this.hideIndicator()

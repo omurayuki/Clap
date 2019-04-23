@@ -75,8 +75,11 @@ struct DiaryRegistViewModel: DiaryRegistViewModelType, DiaryRegistViewModelInput
         }.asDriver()
     }
     
-    func registDiary(text1: String, text2: String, text3: String, text4: String, text5: String, text6: String, stringDate: String, completion: @escaping (String?, Error?) -> Void) {
-        DiaryRegistRepositoryImpl().registDiary(text1: text1, text2: text2, text3: text3, text4: text4, text5: text5, text6: text6, stringDate: stringDate)
+    func registDiary(text1: String, text2: String, text3: String, text4: String, text5: String, text6: String, stringDate: String, submitted: Bool, completion: @escaping (String?, Error?) -> Void) {
+        DiaryRegistRepositoryImpl().registDiary(text1: text1, text2: text2,
+                                                text3: text3, text4: text4,
+                                                text5: text5, text6: text6,
+                                                stringDate: stringDate, submitted: submitted)
             .subscribe { single in
                 switch single {
                 case .success(let data):

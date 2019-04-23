@@ -25,3 +25,5 @@ class TeamSignupSingleton: NSObject {
         representMemberYear = ""
     }
 }
+
+//寸スタンス開放すべき

@@ -14,8 +14,9 @@ class TimeLineHorizontalController: HorizontalSnappingController {
 
 extension TimeLineHorizontalController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 32
+        return TimelineSingleton.sharedInstance.sections[section].rowItems.count
     }
+    //sectionはどこを参照してsectionがあるかないかを判定しているのか
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TimeLineCell.self), for: indexPath) as? TimeLineCell else { return UICollectionViewCell() }
