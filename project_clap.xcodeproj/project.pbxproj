@@ -13,8 +13,6 @@
 		C911561D2250A6AE00CB97E9 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911561C2250A6AE00CB97E9 /* VerticalStackView.swift */; };
 		C91156202250B5E000CB97E9 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911561F2250B5E000CB97E9 /* TimeLineViewController.swift */; };
 		C91156252250C47D00CB97E9 /* TimeLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156242250C47D00CB97E9 /* TimeLineCell.swift */; };
-		C91156272250CD3700CB97E9 /* TimeLineGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156262250CD3700CB97E9 /* TimeLineGroupCell.swift */; };
-		C91156292250CDA200CB97E9 /* TimeLineHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156282250CDA200CB97E9 /* TimeLineHorizontalController.swift */; };
 		C911562D22520B2900CB97E9 /* TimeLineHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911562C22520B2900CB97E9 /* TimeLineHeaderCell.swift */; };
 		C911562F22520B5C00CB97E9 /* TimeLineHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911562E22520B5C00CB97E9 /* TimeLineHeaderController.swift */; };
 		C913297E2252309B00514EDE /* TimeLineUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913297D2252309B00514EDE /* TimeLineUI.swift */; };
@@ -106,6 +104,13 @@
 		C98D64CE226E210D00A1D7F9 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D64CD226E210D00A1D7F9 /* Timeline.swift */; };
 		C98D64D0226E268A00A1D7F9 /* FirstdayOfMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D64CF226E268A00A1D7F9 /* FirstdayOfMonth.swift */; };
 		C98D64D2226EB02500A1D7F9 /* TimelineSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98D64D1226EB02500A1D7F9 /* TimelineSingleton.swift */; };
+		C9A28AD0226EFB1900F4AF2B /* TimeLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A28ACF226EFB1900F4AF2B /* TimeLineViewModel.swift */; };
+		C9A28AD2226F02CD00F4AF2B /* TimelineDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A28AD1226F02CD00F4AF2B /* TimelineDataStore.swift */; };
+		C9A28AD4226F08B700F4AF2B /* TimelineRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A28AD3226F08B700F4AF2B /* TimelineRepository.swift */; };
+		C9A28AD6226F33A200F4AF2B /* TimelineHeaderUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A28AD5226F33A100F4AF2B /* TimelineHeaderUI.swift */; };
+		C9A28AD8226F33B200F4AF2B /* TimelineHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A28AD7226F33B200F4AF2B /* TimelineHeaderViewModel.swift */; };
+		C9A28ADB226F3D8C00F4AF2B /* SegmentEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A28ADA226F3D8C00F4AF2B /* SegmentEnum.swift */; };
+		C9A28ADE226F66D800F4AF2B /* TimelineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A28ADD226F66D800F4AF2B /* TimelineDelegate.swift */; };
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
 		C9B67DC8225B99B500F82AE7 /* RemindPassRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */; };
@@ -156,8 +161,6 @@
 		C911561C2250A6AE00CB97E9 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		C911561F2250B5E000CB97E9 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		C91156242250C47D00CB97E9 /* TimeLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCell.swift; sourceTree = "<group>"; };
-		C91156262250CD3700CB97E9 /* TimeLineGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineGroupCell.swift; sourceTree = "<group>"; };
-		C91156282250CDA200CB97E9 /* TimeLineHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineHorizontalController.swift; sourceTree = "<group>"; };
 		C911562C22520B2900CB97E9 /* TimeLineHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineHeaderCell.swift; sourceTree = "<group>"; };
 		C911562E22520B5C00CB97E9 /* TimeLineHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineHeaderController.swift; sourceTree = "<group>"; };
 		C913297D2252309B00514EDE /* TimeLineUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUI.swift; sourceTree = "<group>"; };
@@ -251,6 +254,13 @@
 		C98D64CD226E210D00A1D7F9 /* Timeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
 		C98D64CF226E268A00A1D7F9 /* FirstdayOfMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstdayOfMonth.swift; sourceTree = "<group>"; };
 		C98D64D1226EB02500A1D7F9 /* TimelineSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineSingleton.swift; sourceTree = "<group>"; };
+		C9A28ACF226EFB1900F4AF2B /* TimeLineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewModel.swift; sourceTree = "<group>"; };
+		C9A28AD1226F02CD00F4AF2B /* TimelineDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineDataStore.swift; sourceTree = "<group>"; };
+		C9A28AD3226F08B700F4AF2B /* TimelineRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineRepository.swift; sourceTree = "<group>"; };
+		C9A28AD5226F33A100F4AF2B /* TimelineHeaderUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineHeaderUI.swift; sourceTree = "<group>"; };
+		C9A28AD7226F33B200F4AF2B /* TimelineHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineHeaderViewModel.swift; sourceTree = "<group>"; };
+		C9A28ADA226F3D8C00F4AF2B /* SegmentEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentEnum.swift; sourceTree = "<group>"; };
+		C9A28ADD226F66D800F4AF2B /* TimelineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineDelegate.swift; sourceTree = "<group>"; };
 		C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterViewController.swift; sourceTree = "<group>"; };
 		C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewModel.swift; sourceTree = "<group>"; };
 		C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassRepository.swift; sourceTree = "<group>"; };
@@ -321,7 +331,6 @@
 		C908D2962223AECE000344B0 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				C908D2972223AEE3000344B0 /* AppResources.swift */,
 				C970577D222E5E68007F8B1C /* CustomTextField.swift */,
 				C92704212232C2E300B15B45 /* CustomView.swift */,
 				C9F086DA2233D5EA00F25E7A /* CustomStackView.swift */,
@@ -344,26 +353,18 @@
 			isa = PBXGroup;
 			children = (
 				C91329832252407E00514EDE /* Main */,
-				C913297822522F1300514EDE /* TimeLineHorizontal */,
 				C913297922522F2900514EDE /* TimeLineHeader */,
 				C9CC6197223F7B6C0093D37F /* DiaryRegist */,
 			);
 			path = TimeLine;
 			sourceTree = "<group>";
 		};
-		C913297822522F1300514EDE /* TimeLineHorizontal */ = {
-			isa = PBXGroup;
-			children = (
-				C91156282250CDA200CB97E9 /* TimeLineHorizontalController.swift */,
-				C913297B22522F5D00514EDE /* Cell */,
-			);
-			path = TimeLineHorizontal;
-			sourceTree = "<group>";
-		};
 		C913297922522F2900514EDE /* TimeLineHeader */ = {
 			isa = PBXGroup;
 			children = (
 				C911562E22520B5C00CB97E9 /* TimeLineHeaderController.swift */,
+				C9A28AD5226F33A100F4AF2B /* TimelineHeaderUI.swift */,
+				C9A28AD7226F33B200F4AF2B /* TimelineHeaderViewModel.swift */,
 				C913297C22522F6700514EDE /* Cell */,
 			);
 			path = TimeLineHeader;
@@ -373,14 +374,6 @@
 			isa = PBXGroup;
 			children = (
 				C91156242250C47D00CB97E9 /* TimeLineCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		C913297B22522F5D00514EDE /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				C91156262250CD3700CB97E9 /* TimeLineGroupCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -399,6 +392,7 @@
 				C911561F2250B5E000CB97E9 /* TimeLineViewController.swift */,
 				C913297D2252309B00514EDE /* TimeLineUI.swift */,
 				C913297F2252360E00514EDE /* TimeLineRouting.swift */,
+				C9A28ACF226EFB1900F4AF2B /* TimeLineViewModel.swift */,
 				C913298122523D6B00514EDE /* TimeLineResources.swift */,
 				C913297A22522F4F00514EDE /* Cell */,
 			);
@@ -450,6 +444,7 @@
 				C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */,
 				C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */,
 				C98D64C8226DB72A00A1D7F9 /* DiaryRegistRepository.swift */,
+				C9A28AD3226F08B700F4AF2B /* TimelineRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -774,6 +769,30 @@
 			path = Struct;
 			sourceTree = "<group>";
 		};
+		C9A28ACE226EF4B000F4AF2B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C908D2972223AEE3000344B0 /* AppResources.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C9A28AD9226F3D7400F4AF2B /* TimelineHeader */ = {
+			isa = PBXGroup;
+			children = (
+				C9A28ADA226F3D8C00F4AF2B /* SegmentEnum.swift */,
+			);
+			path = TimelineHeader;
+			sourceTree = "<group>";
+		};
+		C9A28ADC226F66C300F4AF2B /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				C9A28ADD226F66D800F4AF2B /* TimelineDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		C9A5C24D2224243A00BF1EBC /* FirstScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -795,6 +814,7 @@
 				C9B67DCA225C994C00F82AE7 /* RemindPassDataStore.swift */,
 				C9B67DD0225C997700F82AE7 /* MypageDataStore.swift */,
 				C98D64C6226DB2AF00A1D7F9 /* DiaryRegistDataStore.swift */,
+				C9A28AD1226F02CD00F4AF2B /* TimelineDataStore.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -802,6 +822,8 @@
 		C9C6FE7A2240A1DE001FE7A5 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				C9A28ADC226F66C300F4AF2B /* Delegate */,
+				C9A28ACE226EF4B000F4AF2B /* Resources */,
 				C913298C2252FBA300514EDE /* Protocol */,
 				C98D64CC226E20F300A1D7F9 /* Struct */,
 				C9C6FE882240B5D8001FE7A5 /* Enumration */,
@@ -819,6 +841,7 @@
 				C9C6FE892240B5F5001FE7A5 /* TeamInfoRegist */,
 				C9C6FE8A2240B6DC001FE7A5 /* RepresentMemberRegister */,
 				C98A093A224744CB00AFAEF2 /* RegistCalendar */,
+				C9A28AD9226F3D7400F4AF2B /* TimelineHeader */,
 			);
 			path = Enumration;
 			sourceTree = "<group>";
@@ -1036,8 +1059,10 @@
 				C9C6FE832240A8B4001FE7A5 /* SelectUI.swift in Sources */,
 				C987790A22411B23005AAEA5 /* LoginRouting.swift in Sources */,
 				C98779122241256D005AAEA5 /* ConfirmationTeamIdRouting.swift in Sources */,
+				C9A28AD6226F33A200F4AF2B /* TimelineHeaderUI.swift in Sources */,
 				C937FD7A2222E1B400F9624E /* LoginViewController.swift in Sources */,
 				C92716CC2244BD2700372B77 /* NSLayoutAnchor+Extension.swift in Sources */,
+				C9A28AD4226F08B700F4AF2B /* TimelineRepository.swift in Sources */,
 				C9F086D92233C91000F25E7A /* DisplayCalendarResources.swift in Sources */,
 				C98779022241117C005AAEA5 /* SelectRouting.swift in Sources */,
 				C9877910224123C2005AAEA5 /* ConfirmationTeamIdUI.swift in Sources */,
@@ -1075,6 +1100,7 @@
 				C959BF5D222CC9E800207986 /* MemberInfoRegistViewController.swift in Sources */,
 				C987790622411477005AAEA5 /* RepresentMemberRegisterRouting.swift in Sources */,
 				C98D64CB226E204200A1D7F9 /* TableSection.swift in Sources */,
+				C9A28ADB226F3D8C00F4AF2B /* SegmentEnum.swift in Sources */,
 				C959BF74222D4BEE00207986 /* TeamInfoRegisterResources.swift in Sources */,
 				C98D64BD226D609900A1D7F9 /* AppUserDefaults.swift in Sources */,
 				C91329A922538D9F00514EDE /* Firebase.swift in Sources */,
@@ -1091,7 +1117,6 @@
 				C959BF5522290ADA00207986 /* RepresentMemberRegisterViewModel.swift in Sources */,
 				C970577E222E5E68007F8B1C /* CustomTextField.swift in Sources */,
 				C9705789222E6F21007F8B1C /* RemindPassValidation.swift in Sources */,
-				C91156272250CD3700CB97E9 /* TimeLineGroupCell.swift in Sources */,
 				C959BF70222D4B7400207986 /* ConfirmationTeamIdResources.swift in Sources */,
 				C959BF6A222D3A3700207986 /* LoginValidation.swift in Sources */,
 				C9EA286222433B48003F40DD /* RemindPassUI.swift in Sources */,
@@ -1127,7 +1152,6 @@
 				C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */,
 				C913298E2252FBC000514EDE /* IndicatorShowable.swift in Sources */,
 				C98D64C1226D7DDA00A1D7F9 /* DiaryRegistValidation.swift in Sources */,
-				C91156292250CDA200CB97E9 /* TimeLineHorizontalController.swift in Sources */,
 				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
 				C987790C22412021005AAEA5 /* TeamIdWriteUI.swift in Sources */,
 				C959BF6C222D4AE500207986 /* LoginResources.swift in Sources */,
@@ -1137,12 +1161,14 @@
 				C9DBEE0F223E613800979664 /* DateFormatter+Extension.swift in Sources */,
 				C9C6FE852240ADB4001FE7A5 /* TeamInfoRegistUI.swift in Sources */,
 				C96560E9225B525100C22B24 /* MypageViewModel.swift in Sources */,
+				C9A28AD0226EFB1900F4AF2B /* TimeLineViewModel.swift in Sources */,
 				C987791422412991005AAEA5 /* MemberInfoRegistUI.swift in Sources */,
 				C908D2982223AEE3000344B0 /* AppResources.swift in Sources */,
 				C98A09372247384F00AFAEF2 /* DisplayCalendarRouting.swift in Sources */,
 				C9C6FE872240B5D5001FE7A5 /* TeamInfoRegistEnum.swift in Sources */,
 				C91329AE22539F8100514EDE /* memo.swift in Sources */,
 				C9705790222E8A43007F8B1C /* DisplayCalendarViewController.swift in Sources */,
+				C9A28ADE226F66D800F4AF2B /* TimelineDelegate.swift in Sources */,
 				C9B67DD5225CC1BB00F82AE7 /* ConfirmationTeamIdViewModel.swift in Sources */,
 				C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */,
 				C98D64C7226DB2AF00A1D7F9 /* DiaryRegistDataStore.swift in Sources */,
@@ -1151,10 +1177,12 @@
 				C9F086E22233F6A200F25E7A /* MypageEditViewModel.swift in Sources */,
 				C959BF68222D125B00207986 /* MemberInfoRegisterValidation.swift in Sources */,
 				C96560E7225B4B0F00C22B24 /* Mypage.swift in Sources */,
+				C9A28AD8226F33B200F4AF2B /* TimelineHeaderViewModel.swift in Sources */,
 				C959BF62222CED8700207986 /* TeamIdWriteViewModel.swift in Sources */,
 				C9F086DB2233D5EA00F25E7A /* CustomStackView.swift in Sources */,
 				C98D64BF226D6D1B00A1D7F9 /* DiaryRegistViewModel.swift in Sources */,
 				C97057A1222E9B0F007F8B1C /* TabBarResources.swift in Sources */,
+				C9A28AD2226F02CD00F4AF2B /* TimelineDataStore.swift in Sources */,
 				C959BF572229100500207986 /* RepresentMemberRegisterValidation.swift in Sources */,
 				C9877908224117CB005AAEA5 /* LoginUI.swift in Sources */,
 				C913297E2252309B00514EDE /* TimeLineUI.swift in Sources */,

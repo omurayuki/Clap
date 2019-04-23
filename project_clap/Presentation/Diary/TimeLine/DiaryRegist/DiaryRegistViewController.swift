@@ -88,7 +88,22 @@ extension DiaryRegistViewController {
             .throttle(0.5, scheduler: MainScheduler.instance)
             .bind(onNext: { [weak self] _ in
                 guard let this = self else { return }
-                this.ui.createCancelAlert(vc: this)
+                this.showIndicator()
+                this.viewModel.registDiary(text1: this.ui.slides[0].text.text ?? "", text2: this.ui.slides[1].text.text ?? "",
+                                           text3: this.ui.slides[2].text.text ?? "", text4: this.ui.slides[3].text.text ?? "",
+                                           text5: this.ui.slides[4].text.text ?? "", text6: this.ui.slides[5].text.text ?? "",
+                                           stringDate: this.ui.submitDateField.text ?? "", submitted: false, completion: { (_, error) in
+                                            if let _ = error {
+                                                AlertController.showAlertMessage(alertType: .registDiaryFailure, viewController: this)
+                                                this.hideIndicator()
+                                                return
+                                            }
+                                            AlertController.showAlertMessage(alertType: .registDiarySuccess, viewController: this)
+                                            this.hideIndicator()
+                                            this.viewModel.emptyField(text1: this.ui.slides[0].text, text2: this.ui.slides[1].text,
+                                                                      text3: this.ui.slides[2].text, text4: this.ui.slides[3].text,
+                                                                      text5: this.ui.slides[4].text, text6: this.ui.slides[5].text)
+                })
             }).disposed(by: viewModel.disposeBag)
         
         ui.cancelBtn.rx.tap

@@ -3,6 +3,7 @@
 "regist_user" = "ユーザー登録";
 "yes" = "はい";
 "cancel" = "キャンセル";
+"draft" = "下書き";
 /* for TopVC */
 "clap" = "Clap";
 "log_in" = "ログイン";
@@ -109,7 +110,6 @@
 /* for time line VC */
 "diary_title" = "日記一覧";
 "time_line" = "タイムライン";
-"draft" = "下書き";
 "submitted" = "提出済み";
 /* for diary regist VC */
 "diary_submit" = "提出";

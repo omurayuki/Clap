@@ -3,25 +3,28 @@ import RxSwift
 import RxCocoa
 import Firebase
 
-class TimeLineViewController: UIViewController {
+class TimeLineViewController: UIViewController, TimelineDelegate {
     
-    private let disposeBag = DisposeBag()
-    private var isSelected = false
-    var timelineCellArray = [TimelineCellData]()
-    var dataTitleFromFireStore = [String]()
-    var dataDateFromFiewstore = [String]()
+    //下書き　提出ずみapi -> timelineHeaderVCのUIとViewmodelを作る　A Bでreloadできる？
+    //詳細
+    //下書き修正(提出or再下書き) 提出するとsubmitをtrue
+    //コメント(提出済み日記にのみ)
+    //リプライ
+    //マイページで自分の日記一覧見れる機能
     
-    private lazy var ui: TimeLineUI = {
+    private var viewModel: TimelineViewModel!
+    let activityIndicator = UIActivityIndicatorView()
+    
+    lazy var ui: TimeLineUI = {
         let ui = TimeLineUIImpl()
         ui.viewController = self
-        ui.timelineTableView.register(TimelineCell.self, forCellReuseIdentifier: String(describing: TimelineCell.self))
         ui.timelineTableView.dataSource = self
         ui.timelineTableView.delegate = self
         return ui
     }()
     
     private lazy var routing: TimeLineRouting = {
-        let routing = TimeLineRoutingImpl2()
+        let routing = TimeLineRoutingImpl()
         routing.viewController = self
         return routing
     }()
@@ -29,34 +32,11 @@ class TimeLineViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(vc: self)
-        hiddenBtn()
+        ui.timelineHeaderView.timelineHeaderController.delegate = self
+        ui.hiddenBtn()
+        viewModel = TimelineViewModel()
         setupViewModel()
-        Firebase.db
-            .collection("diary")
-            .document(AppUserDefaults.getValue(keyName: "teamId"))
-            .collection("diaries")
-            .whereField("submit", isEqualTo: true)
-            .getDocuments { [weak self] (snapshot, error) in
-            if let _ = error { return }
-            guard let snapshot = snapshot else { return }
-            var i = 0
-            for document in snapshot.documents {
-                var data = document.data()
-                self?.dataTitleFromFireStore.append(data["text_1"] as? String ?? "")
-                self?.dataDateFromFiewstore.append(data["date"] as? String ?? "")
-                self?.timelineCellArray.append(TimelineCellData(date: DateOperator.parseDate(self?.dataDateFromFiewstore[i] ?? ""),
-                                                                time: "21:00",
-                                                                title: self?.dataTitleFromFireStore[i],
-                                                                name: "亀太郎",
-                                                                image: URL(string: ""),
-                                                                diaryID: ""))
-                i += 1
-                TimelineSingleton.sharedInstance.sections = TableSection.group(rowItems: self?.timelineCellArray ?? [TimelineCellData](), by: { headline in
-                    DateOperator.firstDayOfMonth(date: headline.date ?? Date())
-                })
-            }
-               self?.ui.timelineTableView.reloadData()
-        }
+        fetchDiaries()
     }
 }
 
@@ -66,68 +46,63 @@ extension TimeLineViewController {
         ui.menuBtn.rx.tap
             .bind(onNext: { [weak self] _ in
                 self?.ui.menuBtn.bounce(completion: {
-                    self?.selectedTargetMenu()
+                    guard let this = self else { return }
+                    this.ui.selectedTargetMenu(vc: this)
                 })
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         ui.memberBtn.rx.tap
             .bind(onNext: { [weak self] _ in
                 self?.ui.memberBtn.bounce(completion: {
                     guard let this = self else { return }
-                    this.selectedTargetMenu()
+                    this.ui.selectedTargetMenu(vc: this)
                     this.routing.showDiaryGroup()
                 })
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         ui.diaryBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
                 self?.ui.diaryBtn.bounce(completion: {
                     guard let this = self else { return }
-                    this.selectedTargetMenu()
+                    this.ui.selectedTargetMenu(vc: this)
                     this.routing.showDiaryRegist()
                 })
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
     }
     
-    private func selectedTargetMenu() {
-        if isSelected {
-            UIView.animate(withDuration: 0.7,
-                           delay: 0,
-                           usingSpringWithDamping: 0.7,
-                           initialSpringVelocity: 0.7,
-                           options: .curveEaseOut,
-                           animations: {
-                self.ui.hiddenBtnPosition(vc: self)
-                self.hiddenBtn()
-                self.view.layoutIfNeeded()
+    private func fetchDiaries() {
+        showIndicator()
+        viewModel.fetchDiaries { [weak self] (data, error) in
+            if let _ = error {
+                self?.hideIndicator()
+                AlertController.showAlertMessage(alertType: .logoutFailure, viewController: self ?? UIViewController())
+            }
+            TimelineSingleton.sharedInstance.sections = TableSection.group(rowItems: data ?? [TimelineCellData](), by: { headline in
+                DateOperator.firstDayOfMonth(date: headline.date ?? Date())
             })
-        } else {
-            UIView.animate(withDuration: 0.7,
-                           delay: 0,
-                           usingSpringWithDamping: 0.7,
-                           initialSpringVelocity: 0.7,
-                           options: .curveEaseOut,
-                           animations: {
-                self.ui.showBtnPosition(vc: self)
-                self.showBtn()
-                self.view.layoutIfNeeded()
-            })
+            self?.hideIndicator()
+            self?.ui.timelineTableView.reloadData()
         }
-        isSelected = !isSelected
+    }
+}
+
+//// MARK:- Delegate
+extension TimeLineViewController {
+    func reloadData() {
+        ui.timelineTableView.reloadData()
     }
     
-    private func showBtn() {
-        ui.memberBtn.alpha = 1
-        ui.diaryBtn.alpha = 1
+    func showTimelineIndicator() {
+        showIndicator()
     }
     
-    private func hiddenBtn() {
-        ui.memberBtn.alpha = 0
-        ui.diaryBtn.alpha = 0
+    func hideTimelineIndicator() {
+        hideIndicator()
     }
 }
 
 extension TimeLineViewController: UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return TimelineSingleton.sharedInstance.sections.count
     }
@@ -154,5 +129,9 @@ extension TimeLineViewController: UITableViewDataSource {
 }
 
 extension TimeLineViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
+
+extension TimeLineViewController: IndicatorShowable {}
