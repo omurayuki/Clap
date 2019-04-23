@@ -4,10 +4,18 @@ import RxCocoa
 
 protocol TimelineRepository {
     func fetchDiaries() -> Single<[TimelineCellData]>
+    func fetchIndividualDiaries(submit: Bool, uid: String) -> Single<[TimelineCellData]>
 }
 
-class TimelineRepositoryImpl: TimelineRepository {
+struct TimelineRepositoryImpl: TimelineRepository {
+    
+    private let dataStore: TimelineDataStore = TimelineDataStoreImpl()
+    
     func fetchDiaries() -> Single<[TimelineCellData]> {
-        return TimelineDataStoreImpl().fetchDiaries()
+        return dataStore.fetchDiaries()
+    }
+    
+    func fetchIndividualDiaries(submit: Bool, uid: String) -> Single<[TimelineCellData]> {
+        return dataStore.fetchIndividualDiaries(submit: submit, uid: uid)
     }
 }

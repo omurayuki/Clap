@@ -2,7 +2,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
 class TimeLineHeaderController: UIViewController {
     
     private var viewModel: TimelineHeaderViewModel!
@@ -27,27 +26,62 @@ extension TimeLineHeaderController {
     private func setupViewModel() {
         ui.timeLineSegment.rx.value.asObservable()
             .skip(1)
+            .distinctUntilChanged()
             .subscribe(onNext: { num in
                 switch num {
                 case Segment.timeline.rawValue:
-                    self.delegate?.showTimelineIndicator()
-                    self.viewModel.fetchDiaries { [weak self] (data, error) in
-                        if let _ = error {
-                            self?.delegate?.hideTimelineIndicator()
-                            AlertController.showAlertMessage(alertType: .logoutFailure, viewController: self ?? UIViewController())
-                        }
-                        TimelineSingleton.sharedInstance.sections = TableSection.group(rowItems: data ?? [TimelineCellData](), by: { headline in
-                            DateOperator.firstDayOfMonth(date: headline.date ?? Date())
-                        })
-                        self?.delegate?.hideTimelineIndicator()
-                        self?.delegate?.reloadData()
-                    }
+                    self.fetchDiaries()
                 case Segment.submitted.rawValue:
-                    self.viewModel.fetchSubmittedDiaries()
+                    self.fetchSubmittedDiaries(submit: true, uid: UIDSingleton.sharedInstance.uid)
                 case Segment.draft.rawValue:
-                    self.viewModel.fetchDraftDiaries()
+                    self.fetchDraftDiaries(submit: false, uid: UIDSingleton.sharedInstance.uid)
                 default: break
                 }
             }).disposed(by: viewModel.disposeBag)
+    }
+    
+    func fetchDiaries() {
+        self.delegate?.showTimelineIndicator()
+        self.viewModel.fetchDiaries { [weak self] (data, error) in
+            if let _ = error {
+                self?.delegate?.hideTimelineIndicator()
+                AlertController.showAlertMessage(alertType: .logoutFailure, viewController: self ?? UIViewController())
+            }
+            TimelineSingleton.sharedInstance.sections = TableSection.group(rowItems: data ?? [TimelineCellData](), by: { headline in
+                DateOperator.firstDayOfMonth(date: headline.date ?? Date())
+            })
+            self?.delegate?.hideTimelineIndicator()
+            self?.delegate?.reloadData()
+        }
+    }
+    
+    func fetchSubmittedDiaries(submit: Bool, uid: String) {
+        self.delegate?.showTimelineIndicator()
+        viewModel.fetchSubmittedDiaries(submit: submit, uid: uid) { [weak self] (data, error) in
+            if let _ = error {
+                self?.delegate?.hideTimelineIndicator()
+                AlertController.showAlertMessage(alertType: .logoutFailure, viewController: self ?? UIViewController())
+            }
+            TimelineSingleton.sharedInstance.sections = TableSection.group(rowItems: data ?? [TimelineCellData](), by: { headline in
+                DateOperator.firstDayOfMonth(date: headline.date ?? Date())
+            })
+            self?.delegate?.hideTimelineIndicator()
+            self?.delegate?.reloadData()
+        }
+    }
+    
+    func fetchDraftDiaries(submit: Bool, uid: String) {
+        self.delegate?.showTimelineIndicator()
+        viewModel.fetchSubmittedDiaries(submit: submit, uid: uid) { [weak self] (data, error) in
+            if let _ = error {
+                self?.delegate?.hideTimelineIndicator()
+                AlertController.showAlertMessage(alertType: .logoutFailure, viewController: self ?? UIViewController())
+            }
+            TimelineSingleton.sharedInstance.sections = TableSection.group(rowItems: data ?? [TimelineCellData](), by: { headline in
+                DateOperator.firstDayOfMonth(date: headline.date ?? Date())
+            })
+            self?.delegate?.hideTimelineIndicator()
+            self?.delegate?.reloadData()
+        }
     }
 }

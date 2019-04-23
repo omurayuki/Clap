@@ -2,13 +2,9 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol TimelineViewModelInput {
-    
-}
+protocol TimelineViewModelInput {}
 
-protocol TimelineViewModelOutput {
-    
-}
+protocol TimelineViewModelOutput {}
 
 protocol TimelineViewModelType {
     var inputs: TimelineViewModelInput { get }

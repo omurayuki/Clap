@@ -6,29 +6,29 @@ class TimelineCell: UITableViewCell {
     private lazy var userImage: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray
-        imageView.layer.cornerRadius = 22.5
+        imageView.layer.cornerRadius = TimeLineResources.View.imageCornerRadius
         return imageView
     }()
 
     private lazy var diaryTitle: UILabel = {
         let label = UILabel()
-        label.text = "hoeghogehogehoge"
-        label.font = .systemFont(ofSize: 20)
+        label.text = ""
+        label.font = TimeLineResources.Font.diaryTitleFont
         return label
     }()
 
     private lazy var userName: UILabel = {
         let label = UILabel()
-        label.text = "小村 祐輝"
+        label.text = ""
         label.textColor = .gray
-        label.font = .systemFont(ofSize: 12)
+        label.font = TimeLineResources.Font.userNameFont
         return label
     }()
 
     private lazy var submittedTime: UILabel = {
         let label = UILabel()
-        label.text = "12月12日"
-        label.font = .systemFont(ofSize: 12)
+        label.text = ""
+        label.font = TimeLineResources.Font.submittedTimeFont
         return label
     }()
     
@@ -46,44 +46,38 @@ class TimelineCell: UITableViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError()
     }
 }
 
 extension TimelineCell {
     private func setupUI() {
         contentView.backgroundColor = AppResources.ColorResources.appCommonClearColor
-        contentView.addSubview(wrapView)
-        wrapView.anchor()
-            .top(to: contentView.topAnchor, constant: DisplayCalendarResources.Constraint.wrapViewTopConstraint)
-            .left(to: contentView.leftAnchor, constant: DisplayCalendarResources.Constraint.wrapViewLeftConstraint)
-            .bottom(to: contentView.bottomAnchor, constant: DisplayCalendarResources.Constraint.wrapViewBottomConstraint)
-            .right(to: contentView.rightAnchor, constant: DisplayCalendarResources.Constraint.wrapViewRightConstraint)
+        contentView.addSubview(userImage)
+        userImage.anchor()
+            .centerYToSuperview()
+            .left(to: contentView.leftAnchor, constant: TimeLineResources.Constraint.userImageLeftConstraint)
+            .activate()
+        userImage.constrainWidth(constant: TimeLineResources.Constraint.userImageWidthConstraint)
+        userImage.constrainHeight(constant: TimeLineResources.Constraint.userImageHeightConstraint)
+        
+        contentView.addSubview(diaryTitle)
+        diaryTitle.anchor()
+            .top(to: contentView.topAnchor, constant: TimeLineResources.Constraint.diaryTitleTopConstraint)
+            .left(to: userImage.rightAnchor, constant: TimeLineResources.Constraint.diaryTitleLeftConstraint)
             .activate()
         
-        setupInsideWrapView()
-    }
-    
-    private func setupInsideWrapView() {
-        wrapView.addSubview(userImage)
-        wrapView.addSubview(diaryTitle)
-        wrapView.addSubview(userName)
-        wrapView.addSubview(submittedTime)
+        contentView.addSubview(userName)
+        userName.anchor()
+            .top(to: diaryTitle.bottomAnchor, constant: TimeLineResources.Constraint.userNameTopConstraint)
+            .left(to: userImage.rightAnchor, constant: TimeLineResources.Constraint.userNameLeftConstraint)
+            .activate()
         
-        let stackView = UIStackView(arrangedSubviews: [
-            userImage,
-            diaryTitle,
-            VerticalStackView(arrangeSubViews: [
-                userName,
-                submittedTime
-                ], spacing: 10)
-            ])
-        wrapView.addSubview(stackView)
-        stackView.spacing = 16
-        stackView.alignment = .center
-        stackView.fillSuperview()
-        userImage.constrainWidth(constant: 45)
-        userImage.constrainHeight(constant: 45)
+        contentView.addSubview(submittedTime)
+        submittedTime.anchor()
+            .top(to: diaryTitle.bottomAnchor, constant: TimeLineResources.Constraint.submitTimeTopConstraint)
+            .right(to: contentView.rightAnchor, constant: TimeLineResources.Constraint.submitTimeRightConstraint)
+            .activate()
     }
     
     func configureInit(image: String, title: String, name: String, time: String) {

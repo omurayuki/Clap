@@ -6,7 +6,7 @@ protocol DiaryRegistRepository {
     func registDiary(text1: String, text2: String, text3: String, text4: String, text5: String, text6: String, stringDate: String, submitted: Bool) -> Single<String>
 }
 
-class DiaryRegistRepositoryImpl: DiaryRegistRepository {
+struct DiaryRegistRepositoryImpl: DiaryRegistRepository {
     
     private let dataSrore: DiaryRegistDataStore = DiaryRegistDataStoreImpl()
     

@@ -14,10 +14,11 @@ protocol TimelineHeaderViewModelType {
 class TimelineHeaderViewModel: TimelineHeaderViewModelType, TimelineHeaderViewModelInput, TimelineHeaderViewModelOutput {
     var inputs: TimelineHeaderViewModelInput { return self }
     var outputs: TimelineHeaderViewModelOutput { return self }
+    private let repository: TimelineRepository = TimelineRepositoryImpl()
     let disposeBag = DisposeBag()
     
     func fetchDiaries(completion: @escaping ([TimelineCellData]?, Error?) -> Void) {
-        TimelineRepositoryImpl().fetchDiaries()
+        repository.fetchDiaries()
             .subscribe { response in
                 switch response {
                 case .success(let data):
@@ -28,11 +29,27 @@ class TimelineHeaderViewModel: TimelineHeaderViewModelType, TimelineHeaderViewMo
             }.disposed(by: disposeBag)
     }
     
-    func fetchDraftDiaries() {
-        
+    func fetchDraftDiaries(submit: Bool, uid: String, completion: @escaping ([TimelineCellData]?, Error?) -> Void) {
+        repository.fetchIndividualDiaries(submit: submit, uid: uid)
+            .subscribe { response in
+                switch response {
+                case .success(let data):
+                    completion(data, nil)
+                case .error(let error):
+                    completion(nil, error)
+                }
+            }.disposed(by: disposeBag)
     }
     
-    func fetchSubmittedDiaries() {
-        
+    func fetchSubmittedDiaries(submit: Bool, uid: String, completion: @escaping ([TimelineCellData]?, Error?) -> Void) {
+        repository.fetchIndividualDiaries(submit: submit, uid: uid)
+            .subscribe { response in
+                switch response {
+                case .success(let data):
+                    completion(data, nil)
+                case .error(let error):
+                    completion(nil, error)
+                }
+            }.disposed(by: disposeBag)
     }
 }

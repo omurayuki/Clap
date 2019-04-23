@@ -51,7 +51,7 @@ extension DiaryRegistViewController {
         ui.slides[0].text.rx.text.asDriver()
             .drive(onNext: { [weak self] text in
                 guard let this = self else { return }
-                this.ui.slides[0].textCount.text = "200/\(String(describing: text?.count ?? 0))"
+                this.ui.slides[0].textCount.text = "15/\(String(describing: text?.count ?? 0))"
             }).disposed(by: viewModel.disposeBag)
         
         ui.slides[1].text.rx.text.asDriver()

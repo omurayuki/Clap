@@ -5,12 +5,12 @@ import Firebase
 
 class TimeLineViewController: UIViewController, TimelineDelegate {
     
-    //下書き　提出ずみapi -> timelineHeaderVCのUIとViewmodelを作る　A Bでreloadできる？
     //詳細
     //下書き修正(提出or再下書き) 提出するとsubmitをtrue
     //コメント(提出済み日記にのみ)
     //リプライ
     //マイページで自分の日記一覧見れる機能
+    //カレンダーで提出した自分の最新日記表示and詳細見れる
     
     private var viewModel: TimelineViewModel!
     let activityIndicator = UIActivityIndicatorView()
@@ -117,7 +117,7 @@ extension TimeLineViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return TimeLineResources.View.tableRowHeight
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

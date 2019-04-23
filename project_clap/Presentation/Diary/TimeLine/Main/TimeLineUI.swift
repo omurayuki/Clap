@@ -28,9 +28,9 @@ class TimeLineUIImpl: TimeLineUI {
     
     private(set) var timelineTableView: UITableView = {
         let table = UITableView()
-        table.separatorStyle = .none
+        table.separatorStyle = .singleLine
         table.backgroundColor = AppResources.ColorResources.appCommonClearColor
-        table.rowHeight = 70
+        table.rowHeight = TimeLineResources.View.tableRowHeight
         table.tableHeaderView = TimeLineHeaderCell()
         table.register(TimelineCell.self, forCellReuseIdentifier: String(describing: TimelineCell.self))
         return table
