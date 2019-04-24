@@ -3,7 +3,7 @@ import UIKit
 
 //// Is it use for component?
 //// comment is section, reply is row
-protocol DiaryDetailUI: UI {
+protocol SubmittedDetailUI: UI {
     var diaryScrollView: UIScrollView { get }
     var userInfo: UserInfo { get set }
     var title1: UILabel { get }
@@ -24,7 +24,7 @@ protocol DiaryDetailUI: UI {
     func setup(vc: UIViewController)
 }
 
-final class DiaryDetailUIImpl: DiaryDetailUI {
+final class SubmittedDetailUIImpl: SubmittedDetailUI {
     
     var viewController: UIViewController?
     
@@ -124,7 +124,7 @@ final class DiaryDetailUIImpl: DiaryDetailUI {
     }()
 }
 
-extension DiaryDetailUIImpl {
+extension SubmittedDetailUIImpl {
     
     func setup(vc: UIViewController) {
         vc.view.backgroundColor = AppResources.ColorResources.appCommonClearColor

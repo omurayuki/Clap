@@ -2,10 +2,10 @@ import Foundation
 import Rswift
 import RxCocoa
 
-class DiaryDetailViewController: UIViewController {
+class SubmittedDetailViewController: UIViewController {
     
-    private lazy var ui: DiaryDetailUI = {
-        let ui = DiaryDetailUIImpl()
+    private lazy var ui: SubmittedDetailUI = {
+        let ui = SubmittedDetailUIImpl()
         ui.viewController = self
         ui.commentWriteField.delegate = self
         ui.commentTable.register(TimelineCell.self, forCellReuseIdentifier: String(describing: TimelineCell.self))
@@ -20,7 +20,7 @@ class DiaryDetailViewController: UIViewController {
     }
 }
 
-extension DiaryDetailViewController: UITableViewDataSource {
+extension SubmittedDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
     }
@@ -32,10 +32,10 @@ extension DiaryDetailViewController: UITableViewDataSource {
     }
 }
 
-extension DiaryDetailViewController: UITableViewDelegate {
+extension SubmittedDetailViewController: UITableViewDelegate {
     
 }
 
-extension DiaryDetailViewController: UITextFieldDelegate {
+extension SubmittedDetailViewController: UITextFieldDelegate {
     
 }
