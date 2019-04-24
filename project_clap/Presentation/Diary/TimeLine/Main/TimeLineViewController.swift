@@ -4,10 +4,10 @@ import RxCocoa
 import Firebase
 
 class TimeLineViewController: UIViewController, TimelineDelegate {
+    //このclassのdidselectでsubmitを見てどの詳細画面を出すか決定
     
-    //詳細
     //下書き修正(提出or再下書き) 提出するとsubmitをtrue
-    //コメント(提出済み日記にのみ)
+    //コメント(提出済み日記にのみ) 広くスペースとって、編集機能やリプライ何件を表示 コメントを残すとき、ローカルにも保存してローカルから送信したデータを呼び出すと早い
     //リプライ
     //マイページで自分の日記一覧見れる機能
     //カレンダーで提出した自分の最新日記表示and詳細見れる
@@ -132,6 +132,16 @@ extension TimeLineViewController: UITableViewDataSource {
 extension TimeLineViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let timelineCellData = TimelineSingleton.sharedInstance.sections[indexPath.row].rowItems[0]
+        let submit = TimelineSingleton.sharedInstance.sections[indexPath.row].rowItems[0].submit
+        switch submit {
+        case true:
+            navigationController?.pushViewController(SubmittedDetailViewController(timelineCellData: timelineCellData), animated: true)
+        case false:
+            navigationController?.pushViewController(DraftDetailViewController(timelineCellData: timelineCellData), animated: true)
+        default:
+            break
+        }
     }
 }
 

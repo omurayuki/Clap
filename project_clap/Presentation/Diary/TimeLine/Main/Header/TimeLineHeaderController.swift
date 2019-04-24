@@ -32,9 +32,9 @@ extension TimeLineHeaderController {
                 case Segment.timeline.rawValue:
                     self.fetchDiaries()
                 case Segment.submitted.rawValue:
-                    self.fetchSubmittedDiaries(submit: true, uid: UIDSingleton.sharedInstance.uid)
+                    self.fetchSubmittedDiaries(submit: true, uid: UserSingleton.sharedInstance.uid)
                 case Segment.draft.rawValue:
-                    self.fetchDraftDiaries(submit: false, uid: UIDSingleton.sharedInstance.uid)
+                    self.fetchDraftDiaries(submit: false, uid: UserSingleton.sharedInstance.uid)
                 default: break
                 }
             }).disposed(by: viewModel.disposeBag)

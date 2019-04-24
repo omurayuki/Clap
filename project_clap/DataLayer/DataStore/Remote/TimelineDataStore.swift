@@ -23,19 +23,31 @@ class TimelineDataStoreImpl: TimelineDataStore {
                 }
                 guard let snapshot = snapshot else { return }
                 var array = [TimelineCellData]()
-                var dataTitleFromFireStore = [String]()
-                var dataDateFromFiewstore = [String]()
+                var title = [String]()
+                var date = [String]()
+                var time = [String]()
+                var name = [String]()
+                var diaryId = [String]()
+                    var submit = [Bool]()
+                var userId = [String]()
                 var i = 0
                 for document in snapshot.documents {
                     var data = document.data()
-                    dataTitleFromFireStore.append(data["text_1"] as? String ?? "")
-                    dataDateFromFiewstore.append(data["date"] as? String ?? "")
-                    array.append(TimelineCellData(date: DateOperator.parseDate(dataDateFromFiewstore[i]),
-                                                                    time: "21:00",
-                                                                    title: dataTitleFromFireStore[i],
-                                                                    name: "亀太郎",
+                    title.append(data["text_1"] as? String ?? "")
+                    date.append(data["date"] as? String ?? "")
+                    time.append(data["time"] as? String ?? "")
+                    name.append(data["name"] as? String ?? "")
+                    userId.append(data["userId"] as? String ?? "")
+                    submit.append(data["submit"] as? Bool ?? Bool())
+                    diaryId.append(data["diaryId"] as? String ?? "")
+                    array.append(TimelineCellData(date: DateOperator.parseDate(date[i]),
+                                                                    time: time[i],
+                                                                    title: title[i],
+                                                                    name: name[i],
                                                                     image: URL(string: ""),
-                                                                    diaryID: ""))
+                                                                    userId: userId[i],
+                                                                    submit: submit[i],
+                                                                    diaryID: diaryId[i]))
                     i += 1
                 }
                 single(.success(array))
@@ -59,19 +71,31 @@ class TimelineDataStoreImpl: TimelineDataStore {
                     }
                     guard let snapshot = snapshot else { return }
                     var array = [TimelineCellData]()
-                    var dataTitleFromFireStore = [String]()
-                    var dataDateFromFiewstore = [String]()
+                    var title = [String]()
+                    var date = [String]()
+                    var time = [String]()
+                    var name = [String]()
+                    var diaryId = [String]()
+                    var submit = [Bool]()
+                    var userId = [String]()
                     var i = 0
                     for document in snapshot.documents {
                         var data = document.data()
-                        dataTitleFromFireStore.append(data["text_1"] as? String ?? "")
-                        dataDateFromFiewstore.append(data["date"] as? String ?? "")
-                        array.append(TimelineCellData(date: DateOperator.parseDate(dataDateFromFiewstore[i]),
-                                                      time: "21:00",
-                                                      title: dataTitleFromFireStore[i],
-                                                      name: "亀太郎",
+                        title.append(data["text_1"] as? String ?? "")
+                        date.append(data["date"] as? String ?? "")
+                        time.append(data["time"] as? String ?? "")
+                        name.append(data["name"] as? String ?? "")
+                        userId.append(data["userId"] as? String ?? "")
+                        submit.append(data["submit"] as? Bool ?? Bool())
+                        diaryId.append(data["diaryId"] as? String ?? "")
+                        array.append(TimelineCellData(date: DateOperator.parseDate(date[i]),
+                                                      time: time[i],
+                                                      title: title[i],
+                                                      name: name[i],
                                                       image: URL(string: ""),
-                                                      diaryID: ""))
+                                                      userId: userId[i],
+                                                      submit: submit[i],
+                                                      diaryID: diaryId[i]))
                         i += 1
                     }
                     single(.success(array))

@@ -108,7 +108,7 @@ extension RepresentMemberRegisterViewController {
                                                       mail: self?.ui.mailField.text ?? "", team: TeamSignupSingleton.sharedInstance.team, completion: {
                             self?.viewModel?.saveToSingleton(uid: uid, completion: {
                                 self?.hideIndicator()
-                                self?.routing.showTabBar(uid: UIDSingleton.sharedInstance.uid)
+                                self?.routing.showTabBar(uid: UserSingleton.sharedInstance.uid)
                             })
                         })
                     })

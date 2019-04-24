@@ -16,7 +16,7 @@ struct LoginDataStoreImpl: LoginDataStore {
                 return
             }
             //error handling
-            guard let uid = Firebase.fireAuth.currentUser?.uid else { return }
+            guard let uid = response?.user.uid else { return }
             completion?(uid, nil)
         })
     }

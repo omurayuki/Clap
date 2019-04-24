@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 
 extension DateFormatter {
+    //// can change static func
     func convertToMonthAndYears(_ date: Date?) -> String {
         guard let date = date else { return "" }
         let formatter = DateFormatter()
@@ -15,5 +16,13 @@ extension DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "hh:mm"
         return formatter.string(from: calcDate as Date)
+    }
+    
+    static func acquireCurrentTime() -> String {
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        let time = formatter.string(from: now)
+        return time
     }
 }

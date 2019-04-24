@@ -38,7 +38,7 @@ struct LoginViewModel: LoginViewModelType, LoginViewModelInput, LoginViewModelOu
     }
     
     func saveToSingleton(uid: String, completion: @escaping () -> Void) {
-        UIDSingleton.sharedInstance.uid = uid
+        UserSingleton.sharedInstance.uid = uid
         completion()
     }
     

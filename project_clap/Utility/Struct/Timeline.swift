@@ -6,5 +6,7 @@ struct TimelineCellData {
     var title: String?
     var name: String?
     var image: URL?
+    var userId: String?
+    var submit: Bool?
     var diaryID: String?
 }

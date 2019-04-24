@@ -1,11 +1,7 @@
-import Foundation
 import UIKit
 
-//// Is it use for component?
-//// comment is section, reply is row
-protocol SubmittedDetailUI: UI {
+protocol DraftDetailUI: UI {
     var diaryScrollView: UIScrollView { get }
-    var userInfo: UserInfo { get set }
     var title1: UILabel { get }
     var text1: UITextView { get }
     var title2: UILabel { get }
@@ -18,13 +14,11 @@ protocol SubmittedDetailUI: UI {
     var text5: UITextView { get }
     var title6: UILabel { get }
     var text6: UITextView { get }
-    var commentWriteField: CustomTextField { get }
-    var commentTable: UITableView { get }
     
     func setup(vc: UIViewController)
 }
 
-final class SubmittedDetailUIImpl: SubmittedDetailUI {
+final class DraftDetailUIImpl: DraftDetailUI {
     
     var viewController: UIViewController?
     
@@ -36,12 +30,6 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
         scroll.showsVerticalScrollIndicator = false
         scroll.backgroundColor = AppResources.ColorResources.appCommonClearColor
         return scroll
-    }()
-    
-    var userInfo: UserInfo = {
-        let view = UserInfo()
-        view.backgroundColor = AppResources.ColorResources.appCommonClearColor
-        return view
     }()
     
     private(set) var title1: UILabel = {
@@ -109,22 +97,9 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
         let text = UITextView()
         return text
     }()
-    
-    var commentWriteField: CustomTextField = {
-        let field = CustomTextField()
-        field.backgroundColor = .white
-        field.placeholder = R.string.locarizable.enter_comment()
-        return field
-    }()
-    
-    private(set) var commentTable: UITableView = {
-        let table = UITableView()
-        table.rowHeight = SubmittedDetailResources.View.tableRowHeight
-        return table
-    }()
 }
 
-extension SubmittedDetailUIImpl {
+extension DraftDetailUIImpl {
     
     func setup(vc: UIViewController) {
         vc.view.backgroundColor = AppResources.ColorResources.appCommonClearColor
@@ -136,68 +111,45 @@ extension SubmittedDetailUIImpl {
             .width(constant: vc.view.frame.width)
             .activate()
         
-        diaryScrollView.addSubview(userInfo)
-        userInfo.anchor()
-            .top(to: diaryScrollView.topAnchor)
-            .width(constant: vc.view.frame.width)
-            .height(constant: SubmittedDetailResources.Constraint.userInfoHeightConstraint)
-            .activate()
-        
         let stack = createDiaryContent()
         diaryScrollView.addSubview(stack)
         stack.anchor()
             .centerXToSuperview()
-            .top(to: userInfo.bottomAnchor, constant: SubmittedDetailResources.Constraint.stackTopConstraint)
+            .top(to: diaryScrollView.topAnchor, constant: SubmittedDetailResources.Constraint.stackTopConstraint)
             .width(constant: vc.view.frame.width)
             .activate()
         
         setupDiariesComp(stack: stack)
-        
-        diaryScrollView.addSubview(commentWriteField)
-        commentWriteField.anchor()
-            .top(to: stack.bottomAnchor, constant: SubmittedDetailResources.Constraint.commentWriteFieldTopConstraint)
-            .left(to: diaryScrollView.leftAnchor, constant: SubmittedDetailResources.Constraint.commentWriteFieldLeftConstraint)
-            .right(to: diaryScrollView.rightAnchor, constant: SubmittedDetailResources.Constraint.commentWriteFieldRightConstraint)
-            .height(constant: SubmittedDetailResources.Constraint.commentWriteFieldHeightConstraint)
-            .activate()
-        
-        diaryScrollView.addSubview(commentTable)
-        commentTable.anchor()
-            .top(to: commentWriteField.bottomAnchor, constant: SubmittedDetailResources.Constraint.commentTableTopConstraint)
-            .width(constant: vc.view.frame.width)
-            .bottom(to: diaryScrollView.bottomAnchor)
-            .height(constant: SubmittedDetailResources.Constraint.commentTableHeightConstraint)
-            .activate()
     }
     
     private func createDiaryContent() -> UIStackView {
         
         let stack = VerticalStackView(arrangeSubViews: [
-                        VerticalStackView(arrangeSubViews: [
-                            title1,
-                            text1
-                        ], spacing: SubmittedDetailResources.Constraint.stackContentsSpacing),
-                        VerticalStackView(arrangeSubViews: [
-                            title2,
-                            text2
-                        ], spacing: SubmittedDetailResources.Constraint.stackContentsSpacing),
-                        VerticalStackView(arrangeSubViews: [
-                            title3,
-                            text3
-                        ], spacing: SubmittedDetailResources.Constraint.stackContentsSpacing),
-                        VerticalStackView(arrangeSubViews: [
-                            title4,
-                            text4
-                        ], spacing: SubmittedDetailResources.Constraint.stackContentsSpacing),
-                        VerticalStackView(arrangeSubViews: [
-                            title5,
-                            text5
-                        ], spacing: SubmittedDetailResources.Constraint.stackContentsSpacing),
-                        VerticalStackView(arrangeSubViews: [
-                            title6,
-                            text6
-                        ], spacing: SubmittedDetailResources.Constraint.stackContentsSpacing)
-                    ], spacing: SubmittedDetailResources.Constraint.stackSpacing)
+            VerticalStackView(arrangeSubViews: [
+                title1,
+                text1
+                ], spacing: SubmittedDetailResources.Constraint.stackContentsSpacing),
+            VerticalStackView(arrangeSubViews: [
+                title2,
+                text2
+                ], spacing: SubmittedDetailResources.Constraint.stackContentsSpacing),
+            VerticalStackView(arrangeSubViews: [
+                title3,
+                text3
+                ], spacing: SubmittedDetailResources.Constraint.stackContentsSpacing),
+            VerticalStackView(arrangeSubViews: [
+                title4,
+                text4
+                ], spacing: SubmittedDetailResources.Constraint.stackContentsSpacing),
+            VerticalStackView(arrangeSubViews: [
+                title5,
+                text5
+                ], spacing: SubmittedDetailResources.Constraint.stackContentsSpacing),
+            VerticalStackView(arrangeSubViews: [
+                title6,
+                text6
+                ], spacing: SubmittedDetailResources.Constraint.stackContentsSpacing)
+            ], spacing: SubmittedDetailResources.Constraint.stackSpacing)
         
         return stack
     }

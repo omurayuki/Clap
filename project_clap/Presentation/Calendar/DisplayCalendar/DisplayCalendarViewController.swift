@@ -44,8 +44,9 @@ class DisplayCalendarViewController: UIViewController {
         getCurrentDay()
         loadEventData()
         setupViewModel()
+        //以下のapiはcalendar作業の時に移動させる
         //datastore移動
-        Firebase.db.collection("users").document(UIDSingleton.sharedInstance.uid).getDocument(completion: { (snapshot, error) in
+        Firebase.db.collection("users").document(UserSingleton.sharedInstance.uid).getDocument(completion: { (snapshot, error) in
             if let e = error {
                 print(e.localizedDescription)
                 return
@@ -56,6 +57,17 @@ class DisplayCalendarViewController: UIViewController {
                 print(AppUserDefaults.setTeamId(value: teamId))
             }
         })
+        
+        //tababarの処理移動　ここだと落ちない
+        Firebase.db.collection("users").document(UserSingleton.sharedInstance.uid).getDocument { snapshot, error in
+            if let _ = error {
+                return
+            }
+            ////imageも取得
+            guard let data = snapshot?.data() else { return }
+            guard let name = data["name"] as? String else { return }
+            UserSingleton.sharedInstance.name = name
+        }
     }
 }
 

@@ -113,3 +113,5 @@
 "submitted" = "提出済み";
 /* for diary regist VC */
 "diary_submit" = "提出";
+/* for detail VC */
+"enter_comment" = "コメントを入力";

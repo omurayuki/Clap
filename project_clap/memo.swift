@@ -31,3 +31,23 @@
 //表示するためのdiaryのデータを別クラスかstructに保存するか、ローカルのDBに保持しておく必要がある　そしてcollectionViewのdateHeaderとcellに渡す必要がある
 //明日はデータ構造を整理するために紙に書く、そしてベストプラクティスを考える
 //timelineVCで色々処理(dateを~~)しているが、それも見直し
+
+//ui.logintBtn.rx.tap
+//    .bind(onNext: { [weak self] _ in
+//        guard let this = self else { return }
+//        this.showIndicator()
+//        this.ui.logintBtn.bounce(completion: {
+//            this.viewModel?.login(mail: this.ui.mailField.text ?? "", pass: this.ui.passField.text ?? "", completion: { (uid, error) in
+//                if let _ = error {
+//                    self?.hideIndicator()
+//                    AlertController.showAlertMessage(alertType: .loginFailed, viewController: this)
+//                }
+//                self?.viewModel?.saveToSingleton(uid: uid ?? "", completion: {
+//                    self?.hideIndicator(completion: {
+//                        print("Why move!!")
+//                        this.routing.showTabBar(uid: UserSingleton.sharedInstance.uid)
+//                    })
+//                })
+//            })
+//        })
+//    }).disposed(by: viewModel.disposeBag)

@@ -4,6 +4,8 @@ import RxCocoa
 
 class SubmittedDetailViewController: UIViewController {
     
+    private let recievedTimelineCellData: TimelineCellData
+    
     private lazy var ui: SubmittedDetailUI = {
         let ui = SubmittedDetailUIImpl()
         ui.viewController = self
@@ -14,9 +16,20 @@ class SubmittedDetailViewController: UIViewController {
         return ui
     }()
     
+    init(timelineCellData: TimelineCellData) {
+        recievedTimelineCellData = timelineCellData
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(vc: self)
+        print("LLLLLLLLLLLLLLLLLLLLLLLLLLLL")
+        print(recievedTimelineCellData)
     }
 }
 
