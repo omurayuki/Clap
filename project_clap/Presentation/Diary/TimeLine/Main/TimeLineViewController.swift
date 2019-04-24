@@ -11,6 +11,7 @@ class TimeLineViewController: UIViewController, TimelineDelegate {
     //リプライ
     //マイページで自分の日記一覧見れる機能
     //カレンダーで提出した自分の最新日記表示and詳細見れる
+    //rxに全て置き換える calendarの前に
     
     private var viewModel: TimelineViewModel!
     let activityIndicator = UIActivityIndicatorView()
