@@ -122,6 +122,7 @@
 		C9A28AFA22706B7F00F4AF2B /* DraftDetailUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A28AF922706B7F00F4AF2B /* DraftDetailUI.swift */; };
 		C9A28AFC22706B8800F4AF2B /* DraftDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A28AFB22706B8800F4AF2B /* DraftDetailViewModel.swift */; };
 		C9A28AFE22706B9200F4AF2B /* DraftDetailResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A28AFD22706B9200F4AF2B /* DraftDetailResources.swift */; };
+		C9A28B002270DB7A00F4AF2B /* DiarySingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A28AFF2270DB7A00F4AF2B /* DiarySingleton.swift */; };
 		C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */; };
 		C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */; };
 		C9B67DC8225B99B500F82AE7 /* RemindPassRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */; };
@@ -283,6 +284,7 @@
 		C9A28AF922706B7F00F4AF2B /* DraftDetailUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftDetailUI.swift; sourceTree = "<group>"; };
 		C9A28AFB22706B8800F4AF2B /* DraftDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftDetailViewModel.swift; sourceTree = "<group>"; };
 		C9A28AFD22706B9200F4AF2B /* DraftDetailResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftDetailResources.swift; sourceTree = "<group>"; };
+		C9A28AFF2270DB7A00F4AF2B /* DiarySingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySingleton.swift; sourceTree = "<group>"; };
 		C9A5C2432223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentMemberRegisterViewController.swift; sourceTree = "<group>"; };
 		C9A5C2492224170B00BF1EBC /* TeamInfoRegistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewModel.swift; sourceTree = "<group>"; };
 		C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindPassRepository.swift; sourceTree = "<group>"; };
@@ -446,6 +448,7 @@
 				C913299522532FA100514EDE /* TeamSignupSingleton.swift */,
 				C91C1DBD225B0800005BDA5F /* UserSingleton.swift */,
 				C98D64D1226EB02500A1D7F9 /* TimelineSingleton.swift */,
+				C9A28AFF2270DB7A00F4AF2B /* DiarySingleton.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -1157,6 +1160,7 @@
 				C959BF66222D124300207986 /* MemberInfoRegisterViewModel.swift in Sources */,
 				C91329AC2253937C00514EDE /* RandomString.swift in Sources */,
 				C98D64C9226DB72A00A1D7F9 /* DiaryRegistRepository.swift in Sources */,
+				C9A28B002270DB7A00F4AF2B /* DiarySingleton.swift in Sources */,
 				C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */,
 				C959BF522227EA7F00207986 /* TeamInfoRegistValidation.swift in Sources */,
 				C9705796222E8B29007F8B1C /* DiaryGroupViewController.swift in Sources */,

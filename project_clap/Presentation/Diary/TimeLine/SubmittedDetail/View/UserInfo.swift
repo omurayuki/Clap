@@ -11,14 +11,14 @@ class UserInfo: UIView {
     
     private lazy var name: UILabel = {
         let label = UILabel()
-        label.text = "OOOOOOOOOOOOOOOOOO"
+        label.text = ""
         label.font = UIFont.systemFont(ofSize: 13)
         return label
     }()
     
     private lazy var date: UILabel = {
         let label = UILabel()
-        label.text = "sssss"
+        label.text = ""
         label.font = UIFont.systemFont(ofSize: 10)
         return label
     }()
@@ -59,9 +59,9 @@ extension UserInfo {
         return stack
     }
     
-    func configureInit(image: String, name: String, date: String) {
+    func configureInit(image: String, name: String, date: Date) {
         self.image.image = UIImage(named: image)
         self.name.text = name
-        self.date.text = date
+        self.date.text = DateFormatter().convertToMonthAndYears(date)
     }
 }

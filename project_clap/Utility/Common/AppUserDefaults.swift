@@ -2,9 +2,9 @@ import Foundation
 import KeychainAccess
 
 struct AppUserDefaults {
-    static func setTeamId(value: String) {
+    static func setValue(value: String, keyName: String) {
         let userDefaults: UserDefaults = UserDefaults.standard
-        userDefaults.set(value, forKey: "teamId")
+        userDefaults.set(value, forKey: keyName)
         userDefaults.synchronize()
     }
     

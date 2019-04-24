@@ -10,6 +10,7 @@ final class AlertController {
         case logoutFailure
         case registDiarySuccess
         case registDiaryFailure
+        case diaryFetchFailure
         
         var title: String {
             switch self {
@@ -20,6 +21,7 @@ final class AlertController {
             case .logoutFailure: return "失敗"
             case .registDiarySuccess: return "成功"
             case .registDiaryFailure: return "失敗"
+            case .diaryFetchFailure: return "失敗"
             }
         }
         
@@ -32,6 +34,7 @@ final class AlertController {
             case .logoutFailure: return "ログアウトに失敗しました"
             case .registDiarySuccess: return "保存しました"
             case .registDiaryFailure: return "保存に失敗しました"
+            case .diaryFetchFailure: return "日記取得に失敗しました"
             }
         }
     }

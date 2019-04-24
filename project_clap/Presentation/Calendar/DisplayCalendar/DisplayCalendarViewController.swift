@@ -54,7 +54,8 @@ class DisplayCalendarViewController: UIViewController {
             guard let snapshot = snapshot, snapshot.exists, let data = snapshot.data() else { return }
             if let teamId = data["teamId"] as? String {
                 //view.isUserInteractionEnabled必要　fetch中にdiaryページに行かせないため
-                print(AppUserDefaults.setTeamId(value: teamId))
+                
+                AppUserDefaults.setValue(value: teamId, keyName: "teamId")
             }
         })
         

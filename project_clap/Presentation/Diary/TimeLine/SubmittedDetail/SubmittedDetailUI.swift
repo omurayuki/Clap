@@ -7,17 +7,17 @@ protocol SubmittedDetailUI: UI {
     var diaryScrollView: UIScrollView { get }
     var userInfo: UserInfo { get set }
     var title1: UILabel { get }
-    var text1: UITextView { get }
+    var text1: UITextView { get set }
     var title2: UILabel { get }
-    var text2: UITextView { get }
+    var text2: UITextView { get set }
     var title3: UILabel { get }
-    var text3: UITextView { get }
+    var text3: UITextView { get set }
     var title4: UILabel { get }
-    var text4: UITextView { get }
+    var text4: UITextView { get set }
     var title5: UILabel { get }
-    var text5: UITextView { get }
+    var text5: UITextView { get set }
     var title6: UILabel { get }
-    var text6: UITextView { get }
+    var text6: UITextView { get set }
     var commentWriteField: CustomTextField { get }
     var commentTable: UITableView { get }
     
@@ -50,7 +50,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
         return label
     }()
     
-    private(set) var text1: UITextView = {
+    var text1: UITextView = {
         let text = UITextView()
         return text
     }()
@@ -61,7 +61,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
         return label
     }()
     
-    private(set) var text2: UITextView = {
+    var text2: UITextView = {
         let text = UITextView()
         return text
     }()
@@ -72,7 +72,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
         return label
     }()
     
-    private(set) var text3: UITextView = {
+    var text3: UITextView = {
         let text = UITextView()
         return text
     }()
@@ -83,7 +83,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
         return label
     }()
     
-    private(set) var text4: UITextView = {
+    var text4: UITextView = {
         let text = UITextView()
         return text
     }()
@@ -94,7 +94,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
         return label
     }()
     
-    private(set) var text5: UITextView = {
+    var text5: UITextView = {
         let text = UITextView()
         return text
     }()
@@ -105,7 +105,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
         return label
     }()
     
-    private(set) var text6: UITextView = {
+    var text6: UITextView = {
         let text = UITextView()
         return text
     }()
