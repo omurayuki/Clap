@@ -367,7 +367,8 @@
 			isa = PBXGroup;
 			children = (
 				C91329832252407E00514EDE /* Main */,
-				C9A28AE322700F5400F4AF2B /* Detail */,
+				C9A28AE322700F5400F4AF2B /* SubmittedDetail */,
+				C9A28AF622706A6800F4AF2B /* DraftDetail */,
 				C9CC6197223F7B6C0093D37F /* DiaryRegist */,
 			);
 			path = TimeLine;
@@ -808,7 +809,7 @@
 			path = Delegate;
 			sourceTree = "<group>";
 		};
-		C9A28AE322700F5400F4AF2B /* Detail */ = {
+		C9A28AE322700F5400F4AF2B /* SubmittedDetail */ = {
 			isa = PBXGroup;
 			children = (
 				C9A28AE42270100800F4AF2B /* DiaryDetailViewController.swift */,
@@ -818,7 +819,7 @@
 				C9A28AF122701B8500F4AF2B /* View */,
 				C9A28AEC227010E700F4AF2B /* Cell */,
 			);
-			path = Detail;
+			path = SubmittedDetail;
 			sourceTree = "<group>";
 		};
 		C9A28AEC227010E700F4AF2B /* Cell */ = {
@@ -836,6 +837,13 @@
 				C9A28AF222701B9400F4AF2B /* UserInfo.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C9A28AF622706A6800F4AF2B /* DraftDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DraftDetail;
 			sourceTree = "<group>";
 		};
 		C9A5C24D2224243A00BF1EBC /* FirstScreen */ = {
