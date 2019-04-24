@@ -42,7 +42,7 @@ final class DiaryRegistUIImpl: DiaryRegistUI {
     
     var eventAddBtn: UIBarButtonItem = {
         let button = UIBarButtonItem()
-        button.title = R.string.locarizable.check()
+        button.title = R.string.locarizable.draft()
         button.style = .plain
         return button
     }()

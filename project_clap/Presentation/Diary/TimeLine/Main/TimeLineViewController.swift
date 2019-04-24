@@ -3,168 +3,146 @@ import RxSwift
 import RxCocoa
 import Firebase
 
-class TimeLineViewController: BaseListController {
+class TimeLineViewController: UIViewController, TimelineDelegate {
     
-    private let disposeBag = DisposeBag()
-    private var isSelected = false
-    var timelineCellArray = [TimelineCellData]()
-    var dataTitleFromFireStore = [String]()
-    var dataDateFromFiewstore = [String]()
+    //下書き修正(提出or再下書き) 提出するとsubmitをtrue
+    //コメント(提出済み日記にのみ) 広くスペースとって、編集機能やリプライ何件を表示 コメントを残すとき、ローカルにも保存してローカルから送信したデータを呼び出すと早い
+    //リプライ
+    //画像
+    //マイページで自分の日記一覧見れる機能
+    //カレンダーで提出した自分の最新日記表示and詳細見れる
+    //rxに全て置き換える calendarの前に
     
-    private lazy var ui: TimeLineUI = {
+    private var viewModel: TimelineViewModel!
+    let activityIndicator = UIActivityIndicatorView()
+    
+    lazy var ui: TimeLineUI = {
         let ui = TimeLineUIImpl()
         ui.viewController = self
+        ui.timelineTableView.dataSource = self
+        ui.timelineTableView.delegate = self
         return ui
     }()
     
     private lazy var routing: TimeLineRouting = {
-        let routing = TimeLineRoutingImpl2()
+        let routing = TimeLineRoutingImpl()
         routing.viewController = self
         return routing
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollectionView()
         ui.setup(vc: self)
-        hiddenBtn()
+        ui.timelineHeaderView.timelineHeaderController.delegate = self
+        ui.hiddenBtn()
+        viewModel = TimelineViewModel()
         setupViewModel()
-        Firebase.db
-            .collection("diary")
-            .document(AppUserDefaults.getValue(keyName: "teamId"))
-            .collection("diaries")
-            .whereField("submit", isEqualTo: true)
-            .getDocuments { [weak self] (snapshot, error) in
-            if let _ = error { return }
-            guard let snapshot = snapshot else { return }
-            var i = 0
-            for document in snapshot.documents {
-                var data = document.data()
-                self?.dataTitleFromFireStore.append(data["text_1"] as? String ?? "")
-                self?.dataDateFromFiewstore.append(data["date"] as? String ?? "")
-                self?.timelineCellArray.append(TimelineCellData(date: DateOperator.parseDate(self?.dataDateFromFiewstore[i] ?? ""),
-                                                                time: "21:00",
-                                                                title: self?.dataTitleFromFireStore[i],
-                                                                name: "亀太郎",
-                                                                image: URL(string: ""),
-                                                                diaryID: ""))
-                i += 1
-                TimelineSingleton.sharedInstance.sections = TableSection.group(rowItems: self?.timelineCellArray ?? [TimelineCellData](), by: { headline in
-                    DateOperator.firstDayOfMonth(date: headline.date ?? Date())
-                })
-            }
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            self.collectionView.reloadData()
-        }
+        fetchDiaries()
     }
 }
 
 extension TimeLineViewController {
-    
-    private func setupCollectionView() {
-        collectionView.backgroundColor = UIColor(white: 0.98, alpha: 1)
-        collectionView.register(TimeLineGroupCell.self,
-                                forCellWithReuseIdentifier: String(describing: TimeLineGroupCell.self))
-        collectionView.register(TimeLineHeaderCell.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: String(describing: TimeLineHeaderCell.self))
-        collectionView.contentInset = .init(top: 10, left: 0, bottom: -10, right: 0)
-    }
     
     private func setupViewModel() {
         ui.menuBtn.rx.tap
             .bind(onNext: { [weak self] _ in
                 self?.ui.menuBtn.bounce(completion: {
-                    self?.selectedTargetMenu()
+                    guard let this = self else { return }
+                    this.ui.selectedTargetMenu(vc: this)
                 })
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         ui.memberBtn.rx.tap
             .bind(onNext: { [weak self] _ in
                 self?.ui.memberBtn.bounce(completion: {
                     guard let this = self else { return }
-                    this.selectedTargetMenu()
+                    this.ui.selectedTargetMenu(vc: this)
                     this.routing.showDiaryGroup()
                 })
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
         
         ui.diaryBtn.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] _ in
                 self?.ui.diaryBtn.bounce(completion: {
                     guard let this = self else { return }
-                    this.selectedTargetMenu()
+                    this.ui.selectedTargetMenu(vc: this)
                     this.routing.showDiaryRegist()
                 })
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
     }
     
-    private func selectedTargetMenu() {
-        if isSelected {
-            UIView.animate(withDuration: 0.7,
-                           delay: 0,
-                           usingSpringWithDamping: 0.7,
-                           initialSpringVelocity: 0.7,
-                           options: .curveEaseOut,
-                           animations: {
-                self.ui.hiddenBtnPosition(vc: self)
-                self.hiddenBtn()
-                self.view.layoutIfNeeded()
+    private func fetchDiaries() {
+        showIndicator()
+        viewModel.fetchDiaries { [weak self] (data, error) in
+            if let _ = error {
+                self?.hideIndicator()
+                AlertController.showAlertMessage(alertType: .logoutFailure, viewController: self ?? UIViewController())
+            }
+            TimelineSingleton.sharedInstance.sections = TableSection.group(rowItems: data ?? [TimelineCellData](), by: { headline in
+                DateOperator.firstDayOfMonth(date: headline.date ?? Date())
             })
-        } else {
-            UIView.animate(withDuration: 0.7,
-                           delay: 0,
-                           usingSpringWithDamping: 0.7,
-                           initialSpringVelocity: 0.7,
-                           options: .curveEaseOut,
-                           animations: {
-                self.ui.showBtnPosition(vc: self)
-                self.showBtn()
-                self.view.layoutIfNeeded()
-            })
+            self?.hideIndicator()
+            self?.ui.timelineTableView.reloadData()
         }
-        isSelected = !isSelected
-    }
-    
-    private func showBtn() {
-        ui.memberBtn.alpha = 1
-        ui.diaryBtn.alpha = 1
-    }
-    
-    private func hiddenBtn() {
-        ui.memberBtn.alpha = 0
-        ui.diaryBtn.alpha = 0
     }
 }
 
+//// MARK:- Delegate
 extension TimeLineViewController {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 70)
+    func reloadData() {
+        ui.timelineTableView.reloadData()
     }
     
-    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: TimeLineHeaderCell.self), for: indexPath) as? TimeLineHeaderCell else { return UICollectionReusableView() }
-        return header
+    func showTimelineIndicator() {
+        showIndicator()
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func hideTimelineIndicator() {
+        hideIndicator()
+    }
+}
+
+extension TimeLineViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return TimelineSingleton.sharedInstance.sections.count
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: TimeLineGroupCell.self), for: indexPath) as? TimeLineGroupCell else { return UICollectionViewCell() }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let date = TimelineSingleton.sharedInstance.sections[section].sectionItem
+        return DateFormatter().convertToMonthAndYears(date)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return TimelineSingleton.sharedInstance.sections[section].rowItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return TimeLineResources.View.tableRowHeight
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TimelineCell.self), for: indexPath) as? TimelineCell else { return UITableViewCell() }
+        let cellDetail = TimelineSingleton.sharedInstance.sections[indexPath.section].rowItems[indexPath.row]
+        cell.configureInit(image: "cellDetail.image", title: cellDetail.title ?? "", name: cellDetail.name ?? "", time: cellDetail.time ?? "")
         return cell
     }
 }
 
-extension TimeLineViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width, height: view.frame.height / 4)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+extension TimeLineViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let timelineCellData = TimelineSingleton.sharedInstance.sections[indexPath.row].rowItems[0]
+        let submit = TimelineSingleton.sharedInstance.sections[indexPath.row].rowItems[0].submit
+        switch submit {
+        case true:
+            navigationController?.pushViewController(SubmittedDetailViewController(timelineCellData: timelineCellData), animated: true)
+        case false:
+            navigationController?.pushViewController(DraftDetailViewController(timelineCellData: timelineCellData), animated: true)
+        default:
+            break
+        }
     }
 }
+
+extension TimeLineViewController: IndicatorShowable {}

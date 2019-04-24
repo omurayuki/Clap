@@ -8,7 +8,7 @@ protocol MypageRepository {
     func updateEmail(email: String)
 }
 
-class MypageRepositoryImpl: MypageRepository {
+struct MypageRepositoryImpl: MypageRepository {
     
     private let dataSrore: MypageDataStore = MypageDataStoreImpl()
     

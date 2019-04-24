@@ -12,7 +12,7 @@ struct TableSection<SectionItem: Comparable&Hashable, RowItem>: Comparable {
         return lhs.sectionItem == rhs.sectionItem
     }
     
-    static func group(rowItems : [RowItem], by criteria : (RowItem) -> SectionItem ) -> [TableSection<SectionItem, RowItem>] {
+    static func group(rowItems: [RowItem], by criteria: (RowItem) -> SectionItem) -> [TableSection<SectionItem, RowItem>] {
         let groups = Dictionary(grouping: rowItems, by: criteria)
         return groups.map(TableSection.init(sectionItem:rowItems:)).sorted()
     }

@@ -114,7 +114,7 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
     }
     
     func saveToSingleton(uid: String, completion: @escaping () -> Void) {
-        UIDSingleton.sharedInstance.uid = uid
+        UserSingleton.sharedInstance.uid = uid
         completion()
     }
     

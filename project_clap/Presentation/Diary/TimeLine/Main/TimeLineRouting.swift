@@ -5,7 +5,7 @@ protocol TimeLineRouting: Routing {
     func showDiaryGroup()
 }
 
-final class TimeLineRoutingImpl2: TimeLineRouting {
+final class TimeLineRoutingImpl: TimeLineRouting {
     
     weak var viewController: UIViewController?
     

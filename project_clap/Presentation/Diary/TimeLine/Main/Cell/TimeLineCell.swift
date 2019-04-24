@@ -1,45 +1,47 @@
+import Foundation
 import UIKit
 
-class TimeLineCell: UICollectionViewCell {
+class TimelineCell: UITableViewCell {
     
     private lazy var userImage: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray
-        imageView.layer.cornerRadius = 22.5
+        imageView.layer.cornerRadius = TimeLineResources.View.imageCornerRadius
         return imageView
     }()
-    
+
     private lazy var diaryTitle: UILabel = {
         let label = UILabel()
-        label.text = "hoeghogehogehoge"
-        label.font = .systemFont(ofSize: 20)
+        label.text = ""
+        label.font = TimeLineResources.Font.diaryTitleFont
         return label
     }()
-    
+
     private lazy var userName: UILabel = {
         let label = UILabel()
-        label.text = "小村 祐輝"
+        label.text = ""
         label.textColor = .gray
-        label.font = .systemFont(ofSize: 12)
+        label.font = TimeLineResources.Font.userNameFont
         return label
     }()
-    
+
     private lazy var submittedTime: UILabel = {
         let label = UILabel()
-        label.text = "12月12日"
-        label.font = .systemFont(ofSize: 12)
+        label.text = ""
+        label.font = TimeLineResources.Font.submittedTimeFont
         return label
     }()
     
-    private lazy var separatorView: UIView = {
+    private lazy var wrapView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.layer.cornerRadius = DisplayCalendarResources.View.wrapViewLayerCornerRadius
+        view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
     
@@ -48,28 +50,40 @@ class TimeLineCell: UICollectionViewCell {
     }
 }
 
-extension TimeLineCell {
+extension TimelineCell {
     private func setupUI() {
-        let stackView = UIStackView(arrangedSubviews: [
-            userImage,
-            diaryTitle,
-            VerticalStackView(arrangeSubViews: [
-                userName,
-                submittedTime
-                ], spacing: 10)
-            ])
-        addSubview(stackView)
-        stackView.spacing = 16
-        stackView.alignment = .center
-        stackView.fillSuperview()
-        userImage.constrainWidth(constant: 45)
-        userImage.constrainHeight(constant: 45)
+        contentView.backgroundColor = AppResources.ColorResources.appCommonClearColor
+        contentView.addSubview(userImage)
+        userImage.anchor()
+            .centerYToSuperview()
+            .left(to: contentView.leftAnchor, constant: TimeLineResources.Constraint.userImageLeftConstraint)
+            .activate()
+        userImage.constrainWidth(constant: TimeLineResources.Constraint.userImageWidthConstraint)
+        userImage.constrainHeight(constant: TimeLineResources.Constraint.userImageHeightConstraint)
         
-        addSubview(separatorView)
-        separatorView.anchor(top: nil,
-                             leading: diaryTitle.leadingAnchor,
-                             bottom: bottomAnchor, trailing: trailingAnchor,
-                             padding: .init(top: 0, left: 0, bottom: -4, right: 0),
-                             size: .init(width: 0, height: 0.5))
+        contentView.addSubview(diaryTitle)
+        diaryTitle.anchor()
+            .top(to: contentView.topAnchor, constant: TimeLineResources.Constraint.diaryTitleTopConstraint)
+            .left(to: userImage.rightAnchor, constant: TimeLineResources.Constraint.diaryTitleLeftConstraint)
+            .activate()
+        
+        contentView.addSubview(userName)
+        userName.anchor()
+            .top(to: diaryTitle.bottomAnchor, constant: TimeLineResources.Constraint.userNameTopConstraint)
+            .left(to: userImage.rightAnchor, constant: TimeLineResources.Constraint.userNameLeftConstraint)
+            .activate()
+        
+        contentView.addSubview(submittedTime)
+        submittedTime.anchor()
+            .top(to: diaryTitle.bottomAnchor, constant: TimeLineResources.Constraint.submitTimeTopConstraint)
+            .right(to: contentView.rightAnchor, constant: TimeLineResources.Constraint.submitTimeRightConstraint)
+            .activate()
+    }
+    
+    func configureInit(image: String, title: String, name: String, time: String) {
+        userImage.image = UIImage(named: image)
+        diaryTitle.text = title
+        userName.text = name
+        submittedTime.text = time
     }
 }

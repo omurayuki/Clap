@@ -111,7 +111,7 @@ extension MemberInfoRegistViewController {
                                                       completion: {
                             self?.viewModel?.saveToSingleton(uid: uid , completion: {
                                 self?.hideIndicator()
-                                self?.routing.showTabBar(uid: UIDSingleton.sharedInstance.uid)
+                                self?.routing.showTabBar(uid: UserSingleton.sharedInstance.uid)
                             })
                         })
                     })

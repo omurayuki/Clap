@@ -68,7 +68,7 @@ struct DiaryRegistViewModel: DiaryRegistViewModelType, DiaryRegistViewModelInput
                                                      text3, text4,
                                                      text5, text6 in
                             return [
-                                text1.count > 200, text2.count > 200,
+                                text1.count > 15, text2.count > 200,
                                 text3.count > 200, text4.count > 200,
                                 text5.count > 200, text6.count > 200
                             ]

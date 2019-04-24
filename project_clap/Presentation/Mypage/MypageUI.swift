@@ -146,6 +146,9 @@ final class MypageUIImpl: MypageUI {
 extension MypageUIImpl {
     func setup(vc: UIViewController) {
         vc.view.backgroundColor = .white
+        vc.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        vc.navigationController?.navigationBar.shadowImage = UIImage()
+        vc.navigationController?.navigationBar.barTintColor = .white
         vc.navigationItem.title = R.string.locarizable.mypage_title()
         vc.navigationItem.leftBarButtonItem = logoutBtn
         vc.navigationItem.rightBarButtonItem = editBtn

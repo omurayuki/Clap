@@ -1,6 +1,6 @@
 import UIKit
 
-class TimeLineHeaderCell: UICollectionReusableView {
+class TimeLineHeaderCell: UIView {
     
     let timelineHeaderController = TimeLineHeaderController()
     
