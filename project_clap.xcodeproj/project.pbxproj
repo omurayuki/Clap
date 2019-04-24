@@ -373,7 +373,7 @@
 			path = TimeLine;
 			sourceTree = "<group>";
 		};
-		C913297922522F2900514EDE /* TimeLineHeader */ = {
+		C913297922522F2900514EDE /* Header */ = {
 			isa = PBXGroup;
 			children = (
 				C911562E22520B5C00CB97E9 /* TimeLineHeaderController.swift */,
@@ -381,7 +381,7 @@
 				C9A28AD7226F33B200F4AF2B /* TimelineHeaderViewModel.swift */,
 				C913297C22522F6700514EDE /* Cell */,
 			);
-			path = TimeLineHeader;
+			path = Header;
 			sourceTree = "<group>";
 		};
 		C913297A22522F4F00514EDE /* Cell */ = {
@@ -408,7 +408,7 @@
 				C913297F2252360E00514EDE /* TimeLineRouting.swift */,
 				C9A28ACF226EFB1900F4AF2B /* TimeLineViewModel.swift */,
 				C913298122523D6B00514EDE /* TimeLineResources.swift */,
-				C913297922522F2900514EDE /* TimeLineHeader */,
+				C913297922522F2900514EDE /* Header */,
 				C913297A22522F4F00514EDE /* Cell */,
 			);
 			path = Main;
