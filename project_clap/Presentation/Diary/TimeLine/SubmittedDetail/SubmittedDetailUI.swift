@@ -18,7 +18,7 @@ protocol SubmittedDetailUI: UI {
     var text5: UITextView { get set }
     var title6: UILabel { get }
     var text6: UITextView { get set }
-    var commentWriteField: CustomTextField { get }
+    var commentWriteField: UITextField { get }
     var commentTable: UITableView { get }
     
     func setup(vc: UIViewController)
@@ -110,8 +110,8 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
         return text
     }()
     
-    var commentWriteField: CustomTextField = {
-        let field = CustomTextField()
+    var commentWriteField: UITextField = {
+        let field = UITextField()
         field.backgroundColor = .white
         field.placeholder = R.string.locarizable.enter_comment()
         return field
@@ -119,6 +119,9 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
     
     private(set) var commentTable: UITableView = {
         let table = UITableView()
+        table.estimatedRowHeight = 20
+        table.rowHeight = UITableView.automaticDimension
+        table.register(commentCell.self, forCellReuseIdentifier: String(describing: commentCell.self))
         return table
     }()
 }

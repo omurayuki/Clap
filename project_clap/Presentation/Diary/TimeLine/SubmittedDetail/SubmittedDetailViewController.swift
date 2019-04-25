@@ -11,7 +11,6 @@ class SubmittedDetailViewController: UIViewController {
         let ui = SubmittedDetailUIImpl()
         ui.viewController = self
         ui.commentWriteField.delegate = self
-        ui.commentTable.register(TimelineCell.self, forCellReuseIdentifier: String(describing: TimelineCell.self))
         ui.commentTable.dataSource = self
         ui.commentTable.delegate = self
         return ui
@@ -75,13 +74,14 @@ class SubmittedDetailViewController: UIViewController {
 }
 
 extension SubmittedDetailViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TimelineCell.self), for: indexPath) as? TimelineCell else { return UITableViewCell() }
-        cell.configureInit(image: "hige", title: "hoge", name: "hoge", time: "hogw")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: commentCell.self), for: indexPath) as? commentCell else { return UITableViewCell() }
+        cell.configureInit(image: "image", name: "小村祐希", date: "21:20", comment: "hogehogehogehogehogeffffhfhfhfhfhhfhfhfhfhfhhffhhogehogehogehge")
         return cell
     }
 }
