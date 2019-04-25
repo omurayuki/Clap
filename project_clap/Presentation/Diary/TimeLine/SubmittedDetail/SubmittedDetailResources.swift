@@ -9,7 +9,6 @@ struct SubmittedDetailResources {
         static let commentWriteFieldRightConstraint: CGFloat = 15
         static let commentWriteFieldHeightConstraint: CGFloat = 35
         static let commentTableTopConstraint: CGFloat = 10
-        static let commentTableHeightConstraint: CGFloat = 500
         static let stackContentsSpacing: CGFloat = 5
         static let stackSpacing: CGFloat = 15
         static let stackLeftConstraint: CGFloat = 15

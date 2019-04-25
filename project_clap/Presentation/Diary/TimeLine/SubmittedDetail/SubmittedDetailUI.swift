@@ -52,6 +52,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
     
     var text1: UITextView = {
         let text = UITextView()
+        text.isEditable = false
         return text
     }()
     
@@ -63,6 +64,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
     
     var text2: UITextView = {
         let text = UITextView()
+        text.isEditable = false
         return text
     }()
     
@@ -74,6 +76,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
     
     var text3: UITextView = {
         let text = UITextView()
+        text.isEditable = false
         return text
     }()
     
@@ -85,6 +88,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
     
     var text4: UITextView = {
         let text = UITextView()
+        text.isEditable = false
         return text
     }()
     
@@ -96,6 +100,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
     
     var text5: UITextView = {
         let text = UITextView()
+        text.isEditable = false
         return text
     }()
     
@@ -107,6 +112,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
     
     var text6: UITextView = {
         let text = UITextView()
+        text.isEditable = false
         return text
     }()
     
@@ -129,7 +135,9 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
 extension SubmittedDetailUIImpl {
     
     func setup(vc: UIViewController) {
+        let topBottomHeight = vc.view.safeAreaInsets.top + vc.view.safeAreaInsets.bottom + 90
         vc.view.backgroundColor = AppResources.ColorResources.appCommonClearColor
+        vc.tabBarController?.tabBar.isHidden = true
         
         vc.view.addSubview(diaryScrollView)
         diaryScrollView.anchor()
@@ -168,7 +176,7 @@ extension SubmittedDetailUIImpl {
             .top(to: commentWriteField.bottomAnchor, constant: SubmittedDetailResources.Constraint.commentTableTopConstraint)
             .width(constant: vc.view.frame.width)
             .bottom(to: diaryScrollView.bottomAnchor)
-            .height(constant: SubmittedDetailResources.Constraint.commentTableHeightConstraint)
+            .height(constant: vc.view.frame.height - (SubmittedDetailResources.Constraint.commentWriteFieldHeightConstraint + 20 * 2 + topBottomHeight))
             .activate()
     }
     

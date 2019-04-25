@@ -115,3 +115,5 @@
 "diary_submit" = "提出";
 /* for detail VC */
 "enter_comment" = "コメントを入力";
+/* for comment cell */
+"display_reply" = "返信を表示する";

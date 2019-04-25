@@ -5,21 +5,21 @@ class UserInfo: UIView {
     
     private lazy var image: UIImageView = {
         let image = UIImageView()
-        image.layer.cornerRadius = 18
+        image.layer.cornerRadius = UserInfoResources.View.imageCornerLayerRadius
         return image
     }()
     
     private lazy var name: UILabel = {
         let label = UILabel()
         label.text = ""
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UserInfoResources.Font.nameFont
         return label
     }()
     
     private lazy var date: UILabel = {
         let label = UILabel()
         label.text = ""
-        label.font = UIFont.systemFont(ofSize: 10)
+        label.font = UserInfoResources.Font.dateFont
         return label
     }()
     
@@ -38,16 +38,16 @@ extension UserInfo {
         addSubview(image)
         image.anchor()
             .centerYToSuperview()
-            .left(to: leftAnchor, constant: 10)
-            .width(constant: 36)
-            .height(constant: 36)
+            .left(to: leftAnchor, constant: UserInfoResources.Constraint.imageLeftConstraint)
+            .width(constant: UserInfoResources.Constraint.imageWidthConstraint)
+            .height(constant: UserInfoResources.Constraint.imageHeightConstraint)
             .activate()
         
         let stack = createStack()
         addSubview(stack)
         stack.anchor()
             .centerYToSuperview()
-            .left(to: image.rightAnchor, constant: 10)
+            .left(to: image.rightAnchor, constant: UserInfoResources.Constraint.stackLeftConstraint)
             .activate()
     }
     
@@ -55,7 +55,7 @@ extension UserInfo {
         let stack = VerticalStackView(arrangeSubViews: [
             name,
             date
-        ], spacing: 10)
+        ], spacing: UserInfoResources.View.stackSpacing)
         return stack
     }
     

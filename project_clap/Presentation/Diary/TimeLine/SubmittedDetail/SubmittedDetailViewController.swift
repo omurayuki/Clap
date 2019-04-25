@@ -5,6 +5,7 @@ import RxCocoa
 class SubmittedDetailViewController: UIViewController {
     
     private let recievedTimelineCellData: TimelineCellData
+    private var viewModel: SubmittedDetailViewModel!
     let activityIndicator = UIActivityIndicatorView()
     
     private lazy var ui: SubmittedDetailUI = {
@@ -27,50 +28,50 @@ class SubmittedDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ui.userInfo.configureInit(image: "recievedTimelineCellData.image",
-                                  name: recievedTimelineCellData.name ?? "",
-                                  date: recievedTimelineCellData.date ?? Date())
-        
+        viewModel = SubmittedDetailViewModel()
+        configureInitUserData()
         if recievedTimelineCellData.diaryID == DiarySingleton.sharedInstance.diaryId {
-            ui.text1.text = DiarySingleton.sharedInstance.text1; ui.text2.text = DiarySingleton.sharedInstance.text2
-            ui.text3.text = DiarySingleton.sharedInstance.text3; ui.text4.text = DiarySingleton.sharedInstance.text4
-            ui.text5.text = DiarySingleton.sharedInstance.text5; ui.text6.text = DiarySingleton.sharedInstance.text6
+            setdiaryDataToSingleton()
         } else {
-            self.showIndicator()
-            Firebase.db
-                .collection("diary")
-                .document(AppUserDefaults.getValue(keyName: "teamId"))
-                .collection("diaries")
-                .document(recievedTimelineCellData.diaryID ?? "")
-                .getDocument { [weak self] (snapshot, error) in
-                    if let _ = error {
-                        self?.hideIndicator()
-                        AlertController.showAlertMessage(alertType: .diaryFetchFailure, viewController: self ?? UIViewController())
-                        return
-                    }
-                    self?.hideIndicator()
-                    guard let data = snapshot?.data() else { return }
-                    guard
-                        let text1 = data["text_1"] as? String, let text2 = data["text_2"] as? String,
-                        let text3 = data["text_3"] as? String, let text4 = data["text_4"] as? String,
-                        let text5 = data["text_5"] as? String, let text6 = data["text_6"] as? String
-                        else { return }
-                    
-                    self?.ui.text1.text = text1; self?.ui.text2.text = text2
-                    self?.ui.text3.text = text3; self?.ui.text4.text = text4
-                    self?.ui.text5.text = text5; self?.ui.text6.text = text6
-                    DiarySingleton.sharedInstance.diaryId = self?.recievedTimelineCellData.diaryID
-                    DiarySingleton.sharedInstance.text1 = text1; DiarySingleton.sharedInstance.text2 = text2
-                    DiarySingleton.sharedInstance.text3 = text3; DiarySingleton.sharedInstance.text4 = text4
-                    DiarySingleton.sharedInstance.text5 = text5; DiarySingleton.sharedInstance.text5 = text6
-            }
+            fetchDiaryDetail()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(vc: self)
-        tabBarController?.tabBar.isHidden = true
+    }
+}
+
+extension SubmittedDetailViewController {
+    private func configureInitUserData() {
+        ui.userInfo.configureInit(image: "recievedTimelineCellData.image",
+                                  name: recievedTimelineCellData.name ?? "",
+                                  date: recievedTimelineCellData.date ?? Date())
+    }
+    
+    private func setdiaryDataToSingleton() {
+        ui.text1.text = DiarySingleton.sharedInstance.text1; ui.text2.text = DiarySingleton.sharedInstance.text2
+        ui.text3.text = DiarySingleton.sharedInstance.text3; ui.text4.text = DiarySingleton.sharedInstance.text4
+        ui.text5.text = DiarySingleton.sharedInstance.text5; ui.text6.text = DiarySingleton.sharedInstance.text6
+    }
+    
+    private func fetchDiaryDetail() {
+        self.showIndicator()
+        viewModel.fetchDiaryDetail(
+            teamId: AppUserDefaults.getValue(keyName: "teamId"),
+            diaryId: recievedTimelineCellData.diaryID ?? "")
+            { [weak self] (data, error) in
+                if let _ = error {
+                    self?.hideIndicator()
+                    AlertController.showAlertMessage(alertType: .diaryFetchFailure, viewController: self ?? UIViewController())
+                    return
+                }
+                self?.hideIndicator()
+                self?.ui.text1.text = data?[0]; self?.ui.text2.text = data?[1]
+                self?.ui.text3.text = data?[2]; self?.ui.text4.text = data?[3]
+                self?.ui.text5.text = data?[4]; self?.ui.text6.text = data?[5]
+            }
     }
 }
 

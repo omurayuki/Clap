@@ -47,6 +47,10 @@
 		C950E2BB2271BBDC0074A5C4 /* TabBarDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2BA2271BBDC0074A5C4 /* TabBarDataStore.swift */; };
 		C950E2BD2271BDFF0074A5C4 /* TabBarRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2BC2271BDFF0074A5C4 /* TabBarRepository.swift */; };
 		C950E2BF2271BEA50074A5C4 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2BE2271BEA50074A5C4 /* TabBarViewModel.swift */; };
+		C950E2C32272160B0074A5C4 /* CommentCellResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2C22272160B0074A5C4 /* CommentCellResources.swift */; };
+		C950E2C5227219F10074A5C4 /* UserInfoResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2C4227219F10074A5C4 /* UserInfoResources.swift */; };
+		C950E2C722721E180074A5C4 /* SubmittedDetailDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2C622721E180074A5C4 /* SubmittedDetailDataStore.swift */; };
+		C950E2C922721F820074A5C4 /* SubmittedDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2C822721F820074A5C4 /* SubmittedDetailRepository.swift */; };
 		C9557CC62236457000D6F7A6 /* RegistCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9557CC52236457000D6F7A6 /* RegistCalendarViewController.swift */; };
 		C9557CC82236868F00D6F7A6 /* RegistCalendarResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9557CC72236868F00D6F7A6 /* RegistCalendarResources.swift */; };
 		C9557CCA223689C300D6F7A6 /* RegistCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9557CC9223689C300D6F7A6 /* RegistCalendarViewModel.swift */; };
@@ -212,6 +216,10 @@
 		C950E2BA2271BBDC0074A5C4 /* TabBarDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarDataStore.swift; sourceTree = "<group>"; };
 		C950E2BC2271BDFF0074A5C4 /* TabBarRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRepository.swift; sourceTree = "<group>"; };
 		C950E2BE2271BEA50074A5C4 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
+		C950E2C22272160B0074A5C4 /* CommentCellResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellResources.swift; sourceTree = "<group>"; };
+		C950E2C4227219F10074A5C4 /* UserInfoResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResources.swift; sourceTree = "<group>"; };
+		C950E2C622721E180074A5C4 /* SubmittedDetailDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittedDetailDataStore.swift; sourceTree = "<group>"; };
+		C950E2C822721F820074A5C4 /* SubmittedDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittedDetailRepository.swift; sourceTree = "<group>"; };
 		C9557CC52236457000D6F7A6 /* RegistCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarViewController.swift; sourceTree = "<group>"; };
 		C9557CC72236868F00D6F7A6 /* RegistCalendarResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarResources.swift; sourceTree = "<group>"; };
 		C9557CC9223689C300D6F7A6 /* RegistCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarViewModel.swift; sourceTree = "<group>"; };
@@ -479,6 +487,7 @@
 				C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */,
 				C98D64C8226DB72A00A1D7F9 /* DiaryRegistRepository.swift */,
 				C9A28AD3226F08B700F4AF2B /* TimelineRepository.swift */,
+				C950E2C822721F820074A5C4 /* SubmittedDetailRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -627,6 +636,7 @@
 			isa = PBXGroup;
 			children = (
 				C9A28AED227014B000F4AF2B /* CommentCell.swift */,
+				C950E2C22272160B0074A5C4 /* CommentCellResources.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -870,6 +880,7 @@
 			isa = PBXGroup;
 			children = (
 				C9A28AF222701B9400F4AF2B /* UserInfo.swift */,
+				C950E2C4227219F10074A5C4 /* UserInfoResources.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -908,6 +919,7 @@
 				C9B67DD0225C997700F82AE7 /* MypageDataStore.swift */,
 				C98D64C6226DB2AF00A1D7F9 /* DiaryRegistDataStore.swift */,
 				C9A28AD1226F02CD00F4AF2B /* TimelineDataStore.swift */,
+				C950E2C622721E180074A5C4 /* SubmittedDetailDataStore.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -1160,6 +1172,7 @@
 				C950E2BB2271BBDC0074A5C4 /* TabBarDataStore.swift in Sources */,
 				C9F086D92233C91000F25E7A /* DisplayCalendarResources.swift in Sources */,
 				C9A28AE52270100800F4AF2B /* SubmittedDetailViewController.swift in Sources */,
+				C950E2C722721E180074A5C4 /* SubmittedDetailDataStore.swift in Sources */,
 				C98779022241117C005AAEA5 /* SelectRouting.swift in Sources */,
 				C9877910224123C2005AAEA5 /* ConfirmationTeamIdUI.swift in Sources */,
 				C9EA286822434ADF003F40DD /* MypageEditUI.swift in Sources */,
@@ -1255,6 +1268,7 @@
 				C9557CCA223689C300D6F7A6 /* RegistCalendarViewModel.swift in Sources */,
 				C9C6FE8C2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift in Sources */,
 				C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */,
+				C950E2C32272160B0074A5C4 /* CommentCellResources.swift in Sources */,
 				C913298E2252FBC000514EDE /* IndicatorShowable.swift in Sources */,
 				C98D64C1226D7DDA00A1D7F9 /* DiaryRegistValidation.swift in Sources */,
 				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
@@ -1274,6 +1288,7 @@
 				C91329AE22539F8100514EDE /* memo.swift in Sources */,
 				C9705790222E8A43007F8B1C /* DisplayCalendarViewController.swift in Sources */,
 				C9A28ADE226F66D800F4AF2B /* TimelineDelegate.swift in Sources */,
+				C950E2C5227219F10074A5C4 /* UserInfoResources.swift in Sources */,
 				C9B67DD5225CC1BB00F82AE7 /* ConfirmationTeamIdViewModel.swift in Sources */,
 				C9A28AF322701B9400F4AF2B /* UserInfo.swift in Sources */,
 				C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */,
@@ -1297,6 +1312,7 @@
 				C913298222523D6B00514EDE /* TimeLineResources.swift in Sources */,
 				C9CC619C223F963B0093D37F /* DiaryView.swift in Sources */,
 				C9F086E02233ECD800F25E7A /* MypageEditViewController.swift in Sources */,
+				C950E2C922721F820074A5C4 /* SubmittedDetailRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
