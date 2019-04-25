@@ -70,18 +70,19 @@ class SubmittedDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setup(vc: self)
+        tabBarController?.tabBar.isHidden = true
     }
 }
 
 extension SubmittedDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: commentCell.self), for: indexPath) as? commentCell else { return UITableViewCell() }
-        cell.configureInit(image: "image", name: "小村祐希", date: "21:20", comment: "hogehogehogehogehogeffffhfhfhfhfhhfhfhfhfhfhhffhhogehogehogehge")
+        cell.configureInit(image: "image", name: "小村祐希", date: "21:20", comment: "hogehogehogehogehogeffffhfhfhfhfhhfhfhfhfhfhhffhhccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccogehogehogehge")
         return cell
     }
 }

@@ -119,7 +119,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
     
     private(set) var commentTable: UITableView = {
         let table = UITableView()
-        table.estimatedRowHeight = 20
+        table.estimatedRowHeight = SubmittedDetailResources.View.estimatedRowHeight
         table.rowHeight = UITableView.automaticDimension
         table.register(commentCell.self, forCellReuseIdentifier: String(describing: commentCell.self))
         return table

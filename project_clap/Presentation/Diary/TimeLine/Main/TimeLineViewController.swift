@@ -3,11 +3,12 @@ import RxSwift
 import RxCocoa
 import Firebase
 
-class TimeLineViewController: UIViewController, TimelineDelegate {
+class TimeLineViewController: UIViewController {
     
-    //下書き修正(提出or再下書き) 提出するとsubmitをtrue
-    //コメント(提出済み日記にのみ) 広くスペースとって、編集機能やリプライ何件を表示 コメントを残すとき、ローカルにも保存してローカルから送信したデータを呼び出すと早い
+    //整形
+    //コメントを残すとき、ローカルにも保存してローカルから送信したデータを呼び出すと早い
     //リプライ
+    //下書き修正(提出or再下書き) 提出するとsubmitをtrue
     //画像
     //マイページで自分の日記一覧見れる機能
     //カレンダーで提出した自分の最新日記表示and詳細見れる
@@ -29,6 +30,11 @@ class TimeLineViewController: UIViewController, TimelineDelegate {
         routing.viewController = self
         return routing
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +94,7 @@ extension TimeLineViewController {
 }
 
 //// MARK:- Delegate
-extension TimeLineViewController {
+extension TimeLineViewController: TimelineDelegate {
     func reloadData() {
         ui.timelineTableView.reloadData()
     }

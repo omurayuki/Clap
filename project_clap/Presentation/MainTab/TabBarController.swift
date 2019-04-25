@@ -8,11 +8,6 @@ class TabBarController: UITabBarController {
     var timeLineVC: TimeLineViewController
     var mypageVC: MypageViewController
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupTab()
-    }
-    
     init(calendar: DisplayCalendarViewController, timeLine: TimeLineViewController, mypage: MypageViewController) {
         calendarVC = calendar
         timeLineVC = timeLine
@@ -24,21 +19,28 @@ class TabBarController: UITabBarController {
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupTab()
+    }
 }
 
 extension TabBarController {
     private func setupTab() {
+        tabBar.barStyle = .default
+        tabBar.clipsToBounds = true
         var viewControllers: [UIViewController] = []
         var navi = UINavigationController(rootViewController: calendarVC)
-        navi.tabBarItem = UITabBarItem(title: R.string.locarizable.calendar(), image: nil, tag: TabBarResources.View.calendartag)
+        navi.tabBarItem = UITabBarItem(title: R.string.locarizable.calendar(), image: #imageLiteral(resourceName: "calendar-7"), tag: TabBarResources.View.calendartag)
         viewControllers.append(navi)
         
         navi = UINavigationController(rootViewController: timeLineVC)
-        navi.tabBarItem = UITabBarItem(title: R.string.locarizable.diary(), image: nil, tag: TabBarResources.View.diaryTag)
+        navi.tabBarItem = UITabBarItem(title: R.string.locarizable.diary(), image: #imageLiteral(resourceName: "note-write-7"), tag: TabBarResources.View.diaryTag)
         viewControllers.append(navi)
         
         navi = UINavigationController(rootViewController: mypageVC)
-        navi.tabBarItem = UITabBarItem(title: R.string.locarizable.mypage(), image: nil, tag: TabBarResources.View.mypageTag)
+        navi.tabBarItem = UITabBarItem(title: R.string.locarizable.mypage(), image: #imageLiteral(resourceName: "home-7"), tag: TabBarResources.View.mypageTag)
         viewControllers.append(navi)
         
         setViewControllers(viewControllers, animated: false)

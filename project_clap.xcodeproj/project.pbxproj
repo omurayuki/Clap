@@ -623,6 +623,22 @@
 			path = MemberSignup;
 			sourceTree = "<group>";
 		};
+		C950E2C02272159D0074A5C4 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				C9A28AED227014B000F4AF2B /* CommentCell.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		C950E2C1227215A60074A5C4 /* Reply */ = {
+			isa = PBXGroup;
+			children = (
+				C9A28AEF227014BC00F4AF2B /* ReplyCell.swift */,
+			);
+			path = Reply;
+			sourceTree = "<group>";
+		};
 		C959BF532229099000207986 /* SecondScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -844,8 +860,8 @@
 		C9A28AEC227010E700F4AF2B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				C9A28AED227014B000F4AF2B /* CommentCell.swift */,
-				C9A28AEF227014BC00F4AF2B /* ReplyCell.swift */,
+				C950E2C02272159D0074A5C4 /* Comment */,
+				C950E2C1227215A60074A5C4 /* Reply */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

@@ -81,7 +81,7 @@ extension commentCell {
         replyCountBtn.anchor()
             .top(to: comment.bottomAnchor, constant: 20)
             .left(to: userImage.rightAnchor, constant: 20)
-            .bottom(greaterOrEqual: bottomAnchor, constant: 20)
+            .bottom(to: bottomAnchor, constant: -20)
             .activate()
     }
     
