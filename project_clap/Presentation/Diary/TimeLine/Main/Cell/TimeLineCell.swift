@@ -65,6 +65,7 @@ extension TimelineCell {
         diaryTitle.anchor()
             .top(to: contentView.topAnchor, constant: TimeLineResources.Constraint.diaryTitleTopConstraint)
             .left(to: userImage.rightAnchor, constant: TimeLineResources.Constraint.diaryTitleLeftConstraint)
+            .width(constant: 250)
             .activate()
         
         contentView.addSubview(userName)

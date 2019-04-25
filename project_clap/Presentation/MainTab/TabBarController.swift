@@ -3,6 +3,7 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
+    private let viewModel = TabBarViewModel()
     var calendarVC: DisplayCalendarViewController
     var timeLineVC: TimeLineViewController
     var mypageVC: MypageViewController
@@ -17,6 +18,7 @@ class TabBarController: UITabBarController {
         timeLineVC = timeLine
         mypageVC = mypage
         super.init(nibName: nil, bundle: nil)
+        fetchUserData(uid: UserSingleton.sharedInstance.uid)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,5 +43,15 @@ extension TabBarController {
         
         setViewControllers(viewControllers, animated: false)
         selectedIndex = TabBarResources.View.selectedIndex
+    }
+    
+    func fetchUserData(uid: String) {
+        viewModel.fetchUserData(uid: uid) { (data, error) in
+            if let _ = error {
+                AlertController.showAlertMessage(alertType: .loginFailed, viewController: self)
+                return
+            }
+            UserSingleton.sharedInstance.name = data?[0] ?? ""
+        }
     }
 }

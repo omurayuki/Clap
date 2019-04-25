@@ -18,7 +18,7 @@ struct SubmittedDetailResources {
     }
     
     struct View {
-        static let tableRowHeight: CGFloat = 70
+        static let tableRowHeight: CGFloat = 100
     }
     
     struct Font {

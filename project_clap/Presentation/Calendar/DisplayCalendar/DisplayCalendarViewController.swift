@@ -58,17 +58,6 @@ class DisplayCalendarViewController: UIViewController {
                 AppUserDefaults.setValue(value: teamId, keyName: "teamId")
             }
         })
-        
-        //tababarの処理移動　ここだと落ちない
-        Firebase.db.collection("users").document(UserSingleton.sharedInstance.uid).getDocument { snapshot, error in
-            if let _ = error {
-                return
-            }
-            ////imageも取得
-            guard let data = snapshot?.data() else { return }
-            guard let name = data["name"] as? String else { return }
-            UserSingleton.sharedInstance.name = name
-        }
     }
 }
 

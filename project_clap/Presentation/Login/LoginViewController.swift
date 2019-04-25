@@ -50,10 +50,10 @@ extension LoginViewCountroller {
                         if let _ = error {
                             self?.hideIndicator()
                             AlertController.showAlertMessage(alertType: .loginFailed, viewController: this)
+                            return
                         }
                         self?.viewModel?.saveToSingleton(uid: uid ?? "", completion: {
                             self?.hideIndicator(completion: {
-                                print("Why move!!")
                                 this.routing.showTabBar(uid: UserSingleton.sharedInstance.uid)
                             })
                         })

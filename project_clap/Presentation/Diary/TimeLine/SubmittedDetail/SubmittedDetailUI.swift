@@ -119,7 +119,6 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
     
     private(set) var commentTable: UITableView = {
         let table = UITableView()
-        table.rowHeight = SubmittedDetailResources.View.tableRowHeight
         return table
     }()
 }
