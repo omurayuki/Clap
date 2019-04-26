@@ -15,7 +15,7 @@ class commentCell: UITableViewCell {
         return label
     }()
     
-    private lazy var date: UILabel = {
+    private lazy var time: UILabel = {
         let label = UILabel()
         label.font = CommentCellResources.Font.dateFont
         return label
@@ -63,8 +63,8 @@ extension commentCell {
             .left(to: userImage.rightAnchor, constant: CommentCellResources.Constraint.nameLeftConstraint)
             .activate()
         
-        addSubview(date)
-        date.anchor()
+        addSubview(time)
+        time.anchor()
             .top(to: topAnchor, constant: CommentCellResources.Constraint.dateTopConstraint)
             .left(to: name.rightAnchor)
             .activate()
@@ -85,10 +85,10 @@ extension commentCell {
             .activate()
     }
     
-    func configureInit(image: String, name: String, date: String, comment: String) {
+    func configureInit(image: String, name: String, time: String, comment: String) {
         userImage.image = UIImage(named: image)
         self.name.text = name
-        self.date.text = "・\(date)"
+        self.time.text = "・\(time)"
         self.comment.text = comment
     }
 }

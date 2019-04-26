@@ -4,8 +4,8 @@ import RxCocoa
 import Firebase
 
 class TimeLineViewController: UIViewController {
-    
-    //コメントを残すとき、ローカルにも保存してローカルから送信したデータを呼び出すと早い
+    //addsubviewの配列　鍋さん
+    //日記登録時のタイムスタンプ　ソートするため
     //リプライ
     //下書き修正(提出or再下書き) 提出するとsubmitをtrue
     //画像
@@ -137,7 +137,9 @@ extension TimeLineViewController: UITableViewDataSource {
 extension TimeLineViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let timelineCellData = TimelineSingleton.sharedInstance.sections[indexPath.row].rowItems[0]
+        print("============================")
+        let timelineCellData = TimelineSingleton.sharedInstance.sections[indexPath.section].rowItems[indexPath.row]
+        print(TimelineSingleton.sharedInstance.sections[indexPath.section])
         let submit = TimelineSingleton.sharedInstance.sections[indexPath.row].rowItems[0].submit
         switch submit {
         case true:

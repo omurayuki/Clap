@@ -1,10 +1,9 @@
 import Foundation
 import Rswift
 import RxCocoa
+import FirebaseFirestore
 
 class SubmittedDetailViewController: UIViewController {
-    //commentをセットするときにローカルにもセットしてローカルから書き込んだcommentを呼び出す
-    //初回投稿日記にはコメントがないので、commentCountを見にいって0ならapi叩かない, それ以外ならapi叩く
     
     private let recievedTimelineCellData: TimelineCellData
     private var viewModel: SubmittedDetailViewModel!
@@ -13,9 +12,7 @@ class SubmittedDetailViewController: UIViewController {
     private lazy var ui: SubmittedDetailUI = {
         let ui = SubmittedDetailUIImpl()
         ui.viewController = self
-        ui.commentWriteField.delegate = self
         ui.commentTable.dataSource = self
-        ui.commentTable.delegate = self
         return ui
     }()
     
@@ -31,14 +28,9 @@ class SubmittedDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel = SubmittedDetailViewModel()
-        
         setupViewModel()
         configureInitUserData()
-        if recievedTimelineCellData.diaryID == DiarySingleton.sharedInstance.diaryId {
-            setdiaryDataToSingleton()
-        } else {
-            fetchDiaryDetail()
-        }
+        recievedTimelineCellData.diaryID == DiarySingleton.sharedInstance.diaryId ? setdiaryDataToSingleton() : fetchDiaryDetail()
     }
     
     override func viewDidLoad() {
@@ -51,7 +43,7 @@ extension SubmittedDetailViewController {
     
     private func setupViewModel() {
         ui.commentWriteField.rx.controlEvent(.editingDidEndOnExit).asDriver()
-            .filter({ self.ui.commentWriteField.text?.count ?? 0 >= 0 })
+            .filter({ self.ui.commentWriteField.text?.count ?? 0 > 0 })
             .drive(onNext: { _ in
                 let commentId = RandomString.generateRandomString(length: 15)
                 let setData = [
@@ -60,7 +52,8 @@ extension SubmittedDetailViewController {
                     "name": UserSingleton.sharedInstance.name,
                     "userId": UserSingleton.sharedInstance.uid,
                     "comment": self.ui.commentWriteField.text ?? "",
-                    "time": DateFormatter.acquireCurrentTime()
+                    "time": DateFormatter.acquireCurrentTime(),
+                    "created_at": FieldValue.serverTimestamp(),
                     ] as [String : Any]
                 Firebase.db
                     .collection("diary")
@@ -81,8 +74,50 @@ extension SubmittedDetailViewController {
                             .document(DiarySingleton.sharedInstance.diaryId)
                             .updateData(["commented": true])
                     })
-                
                 self.ui.commentWriteField.text = ""
+                self.ui.commentTable.reloadData()
+            }).disposed(by: viewModel.disposeBag)
+        
+        ui.diaryScrollView.rx.contentOffset
+            .filter({ point in point.y >= 300 })
+            .take(1)
+            .subscribe(onNext: { point in
+                CommentSingleton.sharedInstance.commentId = [String](); CommentSingleton.sharedInstance.userId = [String]()
+                CommentSingleton.sharedInstance.image = [String](); CommentSingleton.sharedInstance.name = [String]()
+                CommentSingleton.sharedInstance.time = [String](); CommentSingleton.sharedInstance.comment = [String]()
+                Firebase.db
+                    .collection("diary")
+                    .document(AppUserDefaults.getValue(keyName: "teamId"))
+                    .collection("diaries")
+                    .document(DiarySingleton.sharedInstance.diaryId)
+                    .collection("comments")
+                    .order(by: "created_at", descending: true)
+                    .addSnapshotListener({ snapshot, error in
+                        if let _ = error {
+                            AlertController.showAlertMessage(alertType: .fetchCommentfailure, viewController: self)
+                            return
+                        }
+                        guard let snapshot = snapshot else { return }
+                        let documents = snapshot.documents
+                        var commentIdArr = [String](); var userIdArr = [String]()
+                        var imageArr = [String](); var nameArr = [String]()
+                        var timeArr = [String](); var commentArr = [String]()
+                        for tuple in documents.enumerated() {
+                            let data = tuple.element.data()
+                            guard
+                                let commentId = data["commentId"] as? String, let userId = data["userId"] as? String,
+                                let image = data["image"] as? String, let name = data["name"] as? String,
+                                let time = data["time"] as? String, let comment = data["comment"] as? String
+                            else { return }
+                            commentIdArr.append(commentId); userIdArr.append(userId)
+                            imageArr.append(image); nameArr.append(name)
+                            timeArr.append(time); commentArr.append(comment)
+                        }
+                        CommentSingleton.sharedInstance.commentId = commentIdArr; CommentSingleton.sharedInstance.userId = userIdArr
+                        CommentSingleton.sharedInstance.image = imageArr; CommentSingleton.sharedInstance.name = nameArr
+                        CommentSingleton.sharedInstance.time = timeArr; CommentSingleton.sharedInstance.comment = commentArr
+                        self.ui.commentTable.reloadData()
+                    })
             }).disposed(by: viewModel.disposeBag)
         
         ui.commentWriteField.rx.controlEvent(.editingDidEndOnExit)
@@ -132,22 +167,14 @@ extension SubmittedDetailViewController {
 extension SubmittedDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return CommentSingleton.sharedInstance.commentId.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: commentCell.self), for: indexPath) as? commentCell else { return UITableViewCell() }
-        cell.configureInit(image: "image", name: "小村祐希", date: "21:20", comment: "hogehogehogehogehogeffffhfhfhfhfhhfhfhfhfhfhhffhhccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccogehogehogehge")
+        cell.configureInit(image: CommentSingleton.sharedInstance.image[indexPath.row], name: CommentSingleton.sharedInstance.name[indexPath.row], time: CommentSingleton.sharedInstance.time[indexPath.row], comment: CommentSingleton.sharedInstance.comment[indexPath.row])
         return cell
     }
-}
-
-extension SubmittedDetailViewController: UITableViewDelegate {
-    
-}
-
-extension SubmittedDetailViewController: UITextFieldDelegate {
-    
 }
 
 extension SubmittedDetailViewController: IndicatorShowable {}

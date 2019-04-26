@@ -51,6 +51,7 @@
 		C950E2C5227219F10074A5C4 /* UserInfoResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2C4227219F10074A5C4 /* UserInfoResources.swift */; };
 		C950E2C722721E180074A5C4 /* SubmittedDetailDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2C622721E180074A5C4 /* SubmittedDetailDataStore.swift */; };
 		C950E2C922721F820074A5C4 /* SubmittedDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2C822721F820074A5C4 /* SubmittedDetailRepository.swift */; };
+		C950E2CB2273179D0074A5C4 /* CommentSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2CA2273179D0074A5C4 /* CommentSingleton.swift */; };
 		C9557CC62236457000D6F7A6 /* RegistCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9557CC52236457000D6F7A6 /* RegistCalendarViewController.swift */; };
 		C9557CC82236868F00D6F7A6 /* RegistCalendarResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9557CC72236868F00D6F7A6 /* RegistCalendarResources.swift */; };
 		C9557CCA223689C300D6F7A6 /* RegistCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9557CC9223689C300D6F7A6 /* RegistCalendarViewModel.swift */; };
@@ -220,6 +221,7 @@
 		C950E2C4227219F10074A5C4 /* UserInfoResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResources.swift; sourceTree = "<group>"; };
 		C950E2C622721E180074A5C4 /* SubmittedDetailDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittedDetailDataStore.swift; sourceTree = "<group>"; };
 		C950E2C822721F820074A5C4 /* SubmittedDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittedDetailRepository.swift; sourceTree = "<group>"; };
+		C950E2CA2273179D0074A5C4 /* CommentSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSingleton.swift; sourceTree = "<group>"; };
 		C9557CC52236457000D6F7A6 /* RegistCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarViewController.swift; sourceTree = "<group>"; };
 		C9557CC72236868F00D6F7A6 /* RegistCalendarResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarResources.swift; sourceTree = "<group>"; };
 		C9557CC9223689C300D6F7A6 /* RegistCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarViewModel.swift; sourceTree = "<group>"; };
@@ -463,6 +465,7 @@
 				C91C1DBD225B0800005BDA5F /* UserSingleton.swift */,
 				C98D64D1226EB02500A1D7F9 /* TimelineSingleton.swift */,
 				C9A28AFF2270DB7A00F4AF2B /* DiarySingleton.swift */,
+				C950E2CA2273179D0074A5C4 /* CommentSingleton.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -1209,6 +1212,7 @@
 				C91C1DBC225AF56C005BDA5F /* MypageRepository.swift in Sources */,
 				C937FD772222DF2600F9624E /* SelectViewController.swift in Sources */,
 				C9C6FE7D2240A2B6001FE7A5 /* TopUI.swift in Sources */,
+				C950E2CB2273179D0074A5C4 /* CommentSingleton.swift in Sources */,
 				C959BF5D222CC9E800207986 /* MemberInfoRegistViewController.swift in Sources */,
 				C987790622411477005AAEA5 /* RepresentMemberRegisterRouting.swift in Sources */,
 				C98D64CB226E204200A1D7F9 /* TableSection.swift in Sources */,
