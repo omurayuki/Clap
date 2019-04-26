@@ -4,8 +4,8 @@ import PopupDialog
 
 protocol DiaryRegistUI: UI {
     var slides: [DiaryView] { get set }
-    var formatter: DateFormatter { get }
     var viewTapGesture: UITapGestureRecognizer { get }
+    var formatter: DateFormatter { get }
     var eventAddBtn: UIBarButtonItem { get set }
     var cancelBtn: UIBarButtonItem { get set }
     var registDiaryNavItem: UINavigationItem { get }
@@ -28,16 +28,16 @@ final class DiaryRegistUIImpl: DiaryRegistUI {
     
     var slides: [DiaryView] = []
     
+    private(set) var viewTapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        return gesture
+    }()
+    
     private(set) var formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy年MM月dd日"
         formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
         return formatter
-    }()
-    
-    private(set) var viewTapGesture: UITapGestureRecognizer = {
-        let gesture = UITapGestureRecognizer()
-        return gesture
     }()
     
     var eventAddBtn: UIBarButtonItem = {

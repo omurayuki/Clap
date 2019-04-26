@@ -31,7 +31,6 @@ class TimeLineUIImpl: TimeLineUI {
         table.separatorStyle = .singleLine
         table.backgroundColor = AppResources.ColorResources.appCommonClearColor
         table.rowHeight = TimeLineResources.View.tableRowHeight
-        table.tableHeaderView = TimeLineHeaderCell()
         table.register(TimelineCell.self, forCellReuseIdentifier: String(describing: TimelineCell.self))
         return table
     }()

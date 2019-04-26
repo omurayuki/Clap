@@ -24,7 +24,7 @@ class DiaryRegistDataStoreImpl: DiaryRegistDataStore {
             "userId": UserSingleton.sharedInstance.uid,
             "name": UserSingleton.sharedInstance.name,
             "diaryId": diaryId,
-            "comment_count": 0
+            "commented": false
         ] as [String : Any]
         return Single.create(subscribe: { single -> Disposable in
             Firebase.db.collection("diary")

@@ -11,6 +11,7 @@ final class AlertController {
         case registDiarySuccess
         case registDiaryFailure
         case diaryFetchFailure
+        case sendCommentFailure
         
         var title: String {
             switch self {
@@ -22,6 +23,7 @@ final class AlertController {
             case .registDiarySuccess: return "成功"
             case .registDiaryFailure: return "失敗"
             case .diaryFetchFailure: return "失敗"
+            case .sendCommentFailure: return "失敗"
             }
         }
         
@@ -35,6 +37,7 @@ final class AlertController {
             case .registDiarySuccess: return "保存しました"
             case .registDiaryFailure: return "保存に失敗しました"
             case .diaryFetchFailure: return "日記取得に失敗しました"
+            case .sendCommentFailure: return "コメントの登録に失敗しました"
             }
         }
     }

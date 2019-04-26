@@ -18,6 +18,7 @@ protocol SubmittedDetailUI: UI {
     var text5: UITextView { get set }
     var title6: UILabel { get }
     var text6: UITextView { get set }
+    var viewTapGesture: UITapGestureRecognizer { get }
     var commentWriteField: UITextField { get }
     var commentTable: UITableView { get }
     
@@ -116,9 +117,15 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
         return text
     }()
     
+    private(set) var viewTapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        return gesture
+    }()
+    
     var commentWriteField: UITextField = {
         let field = UITextField()
         field.backgroundColor = .white
+        field.returnKeyType = .send
         field.placeholder = R.string.locarizable.enter_comment()
         return field
     }()
@@ -138,6 +145,7 @@ extension SubmittedDetailUIImpl {
         let topBottomHeight = vc.view.safeAreaInsets.top + vc.view.safeAreaInsets.bottom + 90
         vc.view.backgroundColor = AppResources.ColorResources.appCommonClearColor
         vc.tabBarController?.tabBar.isHidden = true
+        vc.view.addGestureRecognizer(viewTapGesture)
         
         vc.view.addSubview(diaryScrollView)
         diaryScrollView.anchor()

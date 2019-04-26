@@ -166,7 +166,11 @@ extension DiaryRegistViewController {
         
         ui.viewTapGesture.rx.event
             .bind { [weak self] _ in
-                self?.view.endEditing(true)
+                self?.ui.slides.forEach({ view in
+                    if view.text.isFirstResponder {
+                        view.text.resignFirstResponder()
+                    }
+                })
             }.disposed(by: viewModel.disposeBag)
     }
 }

@@ -3,6 +3,8 @@ import Rswift
 import RxCocoa
 
 class SubmittedDetailViewController: UIViewController {
+    //commentをセットするときにローカルにもセットしてローカルから書き込んだcommentを呼び出す
+    //初回投稿日記にはコメントがないので、commentCountを見にいって0ならapi叩かない, それ以外ならapi叩く
     
     private let recievedTimelineCellData: TimelineCellData
     private var viewModel: SubmittedDetailViewModel!
@@ -29,6 +31,8 @@ class SubmittedDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel = SubmittedDetailViewModel()
+        
+        setupViewModel()
         configureInitUserData()
         if recievedTimelineCellData.diaryID == DiarySingleton.sharedInstance.diaryId {
             setdiaryDataToSingleton()
@@ -44,6 +48,56 @@ class SubmittedDetailViewController: UIViewController {
 }
 
 extension SubmittedDetailViewController {
+    
+    private func setupViewModel() {
+        ui.commentWriteField.rx.controlEvent(.editingDidEndOnExit).asDriver()
+            .filter({ self.ui.commentWriteField.text?.count ?? 0 >= 0 })
+            .drive(onNext: { _ in
+                let commentId = RandomString.generateRandomString(length: 15)
+                let setData = [
+                    "commentId": commentId,
+                    "image": UserSingleton.sharedInstance.image,
+                    "name": UserSingleton.sharedInstance.name,
+                    "userId": UserSingleton.sharedInstance.uid,
+                    "comment": self.ui.commentWriteField.text ?? "",
+                    "time": DateFormatter.acquireCurrentTime()
+                    ] as [String : Any]
+                Firebase.db
+                    .collection("diary")
+                    .document(AppUserDefaults.getValue(keyName: "teamId"))
+                    .collection("diaries")
+                    .document(DiarySingleton.sharedInstance.diaryId)
+                    .collection("comments")
+                    .document(commentId)
+                    .setData(setData, completion: { error in
+                        if let _ = error {
+                            AlertController.showAlertMessage(alertType: .sendCommentFailure, viewController: self)
+                            return
+                        }
+                        Firebase.db
+                            .collection("diary")
+                            .document(AppUserDefaults.getValue(keyName: "teamId"))
+                            .collection("diaries")
+                            .document(DiarySingleton.sharedInstance.diaryId)
+                            .updateData(["commented": true])
+                    })
+                
+                self.ui.commentWriteField.text = ""
+            }).disposed(by: viewModel.disposeBag)
+        
+        ui.commentWriteField.rx.controlEvent(.editingDidEndOnExit)
+            .bind { [weak self] _ in
+                if let _ = self?.ui.commentWriteField.isFirstResponder {
+                    self?.ui.commentWriteField.resignFirstResponder()
+                }
+            }.disposed(by: viewModel.disposeBag)
+        
+        ui.viewTapGesture.rx.event
+            .bind { [weak self] _ in
+                self?.view.endEditing(true)
+            }.disposed(by: viewModel.disposeBag)
+    }
+    
     private func configureInitUserData() {
         ui.userInfo.configureInit(image: "recievedTimelineCellData.image",
                                   name: recievedTimelineCellData.name ?? "",

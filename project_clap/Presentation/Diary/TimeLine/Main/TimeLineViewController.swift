@@ -5,7 +5,6 @@ import Firebase
 
 class TimeLineViewController: UIViewController {
     
-    //整形
     //コメントを残すとき、ローカルにも保存してローカルから送信したデータを呼び出すと早い
     //リプライ
     //下書き修正(提出or再下書き) 提出するとsubmitをtrue

@@ -139,6 +139,7 @@ final class MypageEditUIImple: MypageEditUI {
 extension MypageEditUIImple {
     
     func setup(vc: UIViewController) {
+        vc.tabBarController?.tabBar.isHidden = true
         positionToolBar.items = [doneBtn]
         vc.view.backgroundColor = .white
         vc.navigationItem.title = R.string.locarizable.edit()
