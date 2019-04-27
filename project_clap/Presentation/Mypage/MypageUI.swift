@@ -153,19 +153,12 @@ extension MypageUIImpl {
         vc.navigationItem.leftBarButtonItem = logoutBtn
         vc.navigationItem.rightBarButtonItem = editBtn
         vc.view.addSubview(userPhotoWrapView)
-        belongStack.addArrangedSubview(belongTitle)
-        belongStack.addArrangedSubview(belongTeam)
-        positionStack.addArrangedSubview(positionTitle)
-        positionStack.addArrangedSubview(position)
-        teamIdStack.addArrangedSubview(teamIdTitle)
-        teamIdStack.addArrangedSubview(teamId)
-        mailStack.addArrangedSubview(mailTitle)
-        mailStack.addArrangedSubview(mail)
+        [belongTitle, belongTeam].forEach { belongStack.addArrangedSubview($0) }
+        [positionTitle, position].forEach { positionStack.addArrangedSubview($0) }
+        [teamIdTitle, teamId].forEach { teamIdStack.addArrangedSubview($0) }
+        [mailTitle, mail].forEach { mailStack.addArrangedSubview($0) }
         userPhotoWrapView.addSubview(userPhoto)
-        vc.view.addSubview(belongStack)
-        vc.view.addSubview(positionStack)
-        vc.view.addSubview(teamIdStack)
-        vc.view.addSubview(mailStack)
+        [belongStack, positionStack, teamIdStack, mailStack].forEach { vc.view.addSubview($0) }
         
         userPhotoWrapView.anchor()
             .top(to: vc.view.safeAreaLayoutGuide.topAnchor)

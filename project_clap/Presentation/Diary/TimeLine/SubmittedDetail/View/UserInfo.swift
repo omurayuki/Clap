@@ -35,7 +35,8 @@ class UserInfo: UIView {
 
 extension UserInfo {
     private func setupUI() {
-        addSubview(image)
+        let stack = createStack()
+        [image, stack].forEach { addSubview($0) }
         image.anchor()
             .centerYToSuperview()
             .left(to: leftAnchor, constant: UserInfoResources.Constraint.imageLeftConstraint)
@@ -43,8 +44,6 @@ extension UserInfo {
             .height(constant: UserInfoResources.Constraint.imageHeightConstraint)
             .activate()
         
-        let stack = createStack()
-        addSubview(stack)
         stack.anchor()
             .centerYToSuperview()
             .left(to: image.rightAnchor, constant: UserInfoResources.Constraint.stackLeftConstraint)

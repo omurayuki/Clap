@@ -20,7 +20,6 @@ final class ConfirmationTeamIdUIImpl: ConfirmationTeamIdUI {
         label.textAlignment = .center
         label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.numberOfLines = ConfirmationTeamIdResources.View.titleNumberOfLines
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -29,7 +28,6 @@ final class ConfirmationTeamIdUIImpl: ConfirmationTeamIdUI {
         label.font = AppResources.FontResources.confirmationTeamIdFont
         label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.addUnderLine(text: label.text)
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -38,7 +36,6 @@ final class ConfirmationTeamIdUIImpl: ConfirmationTeamIdUI {
         button.setTitle(R.string.locarizable.yes(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = ConfirmationTeamIdResources.View.confirmBtnCornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -47,7 +44,6 @@ final class ConfirmationTeamIdUIImpl: ConfirmationTeamIdUI {
         button.setTitle(R.string.locarizable.cancel(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = ConfirmationTeamIdResources.View.confirmBtnCornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 }
@@ -57,10 +53,7 @@ extension ConfirmationTeamIdUIImpl {
     func setup(storeName: String, vc: UIViewController) {
         vc.view.backgroundColor = .white
         vc.navigationItem.title = storeName
-        vc.view.addSubview(confirmationTeamTitle)
-        vc.view.addSubview(confirmationTeamId)
-        vc.view.addSubview(confirmBtn)
-        vc.view.addSubview(cancelBtn)
+        [confirmationTeamTitle, confirmationTeamId, confirmBtn, cancelBtn].forEach { vc.view.addSubview($0) }
         
         confirmationTeamTitle.anchor()
             .centerXToSuperview()

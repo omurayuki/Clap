@@ -153,13 +153,7 @@ final class DisplayCalendarUIImpl: DisplayCalendarUI {
 
 extension DisplayCalendarUIImpl {
     func setup(vc: UIViewController) {
-        monthOfDayStack.addArrangedSubview(sunday)
-        monthOfDayStack.addArrangedSubview(monday)
-        monthOfDayStack.addArrangedSubview(tuesday)
-        monthOfDayStack.addArrangedSubview(wednesday)
-        monthOfDayStack.addArrangedSubview(thursday)
-        monthOfDayStack.addArrangedSubview(friday)
-        monthOfDayStack.addArrangedSubview(saturday)
+        [sunday, monday, tuesday, wednesday, thursday, friday, saturday].forEach { monthOfDayStack.addArrangedSubview($0) }
         vc.view.backgroundColor = .white
         vc.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         vc.navigationController?.navigationBar.shadowImage = UIImage()

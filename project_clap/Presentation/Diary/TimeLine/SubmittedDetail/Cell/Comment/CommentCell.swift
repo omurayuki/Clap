@@ -56,8 +56,9 @@ class commentCell: UITableViewCell {
 
 extension commentCell {
     private func setupUI() {
+        let stack = createCommentStack()
         userImage.backgroundColor = .gray
-        addSubview(userImage)
+        [userImage, name, time, stack].forEach { addSubview($0) }
         userImage.anchor()
             .top(to: topAnchor, constant: CommentCellResources.Constraint.userImageLeftConstraint)
             .left(to: leftAnchor, constant: CommentCellResources.Constraint.userImageRightConstraint)
@@ -65,20 +66,16 @@ extension commentCell {
             .height(constant: CommentCellResources.Constraint.userImageHeightConstraint)
             .activate()
         
-        addSubview(name)
         name.anchor()
             .top(to: topAnchor, constant: CommentCellResources.Constraint.nameTopConstraint)
             .left(to: userImage.rightAnchor, constant: CommentCellResources.Constraint.nameLeftConstraint)
             .activate()
         
-        addSubview(time)
         time.anchor()
             .top(to: topAnchor, constant: CommentCellResources.Constraint.dateTopConstraint)
             .left(to: name.rightAnchor)
             .activate()
         
-        let stack = createCommentStack()
-        addSubview(stack)
         stack.anchor()
             .top(to: name.bottomAnchor, constant: CommentCellResources.Constraint.commentTopConstraint)
             .left(to: userImage.rightAnchor, constant: CommentCellResources.Constraint.commentLeftConstraint)

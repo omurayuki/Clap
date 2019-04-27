@@ -18,7 +18,6 @@ final class SelectUIImpl: SelectUI {
         let label = UILabel()
         label.text = R.string.locarizable.select_usage_type()
         label.textColor = AppResources.ColorResources.subShallowBlueColor
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -27,7 +26,6 @@ final class SelectUIImpl: SelectUI {
         button.layer.cornerRadius = SelectResources.View.btnCornerRadius
         button.backgroundColor = AppResources.ColorResources.shallowBlueColor
         button.setImage(R.image.regist_team(), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -43,7 +41,6 @@ final class SelectUIImpl: SelectUI {
     private(set) var btnStack: UIStackView = {
         let stack = UIStackView()
         stack.distribution = .fillEqually
-        stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
 }
@@ -53,10 +50,8 @@ extension SelectUIImpl {
         guard let vc = viewController else { return }
         vc.view.backgroundColor = .white
         vc.navigationItem.title = storeName
-        btnStack.addArrangedSubview(teamRegistBtn)
-        btnStack.addArrangedSubview(memberRegistBtn)
-        vc.view.addSubview(selectionTeamOrMemberTitle)
-        vc.view.addSubview(btnStack)
+        [teamRegistBtn, memberRegistBtn].forEach { btnStack.addArrangedSubview($0) }
+        [selectionTeamOrMemberTitle, btnStack].forEach {vc.view.addSubview($0) }
         selectionTeamOrMemberTitle.anchor()
             .centerXToSuperview()
             .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5)

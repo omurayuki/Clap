@@ -18,7 +18,6 @@ final class TeamIdWriteUIImpl: TeamIdWriteUI {
         let label = UILabel()
         label.text = R.string.locarizable.please_write_team_id()
         label.textColor = AppResources.ColorResources.subShallowBlueColor
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -27,20 +26,17 @@ final class TeamIdWriteUIImpl: TeamIdWriteUI {
         label.text = R.string.locarizable.please_confirm()
         label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.numberOfLines = TeamIdWriteResources.View.titleNumberOfLines
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private(set) var teamIdField: CustomTextField = {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.team_id()
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
     private(set) var confirmTeamIdBtn: UIButton = {
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(R.string.locarizable.confirm(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = TeamIdWriteResources.View.confirmBtnCornerRadius
@@ -53,10 +49,7 @@ extension TeamIdWriteUIImpl {
     func setup(vc: UIViewController) {
         vc.view.backgroundColor = .white
         vc.navigationItem.title = R.string.locarizable.team_id()
-        vc.view.addSubview(noticeTeamTitle)
-        vc.view.addSubview(noticeTeamText)
-        vc.view.addSubview(teamIdField)
-        vc.view.addSubview(confirmTeamIdBtn)
+        [noticeTeamTitle, noticeTeamText, teamIdField, confirmTeamIdBtn].forEach { vc.view.addSubview($0) }
         
         noticeTeamTitle.anchor()
             .centerXToSuperview()

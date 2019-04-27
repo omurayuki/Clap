@@ -26,7 +26,6 @@ final class TeamInfoRegistUIImpl: TeamInfoRegistUI {
         let label = UILabel()
         label.text = R.string.locarizable.regist_team_info()
         label.textColor = AppResources.ColorResources.subShallowBlueColor
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -39,7 +38,6 @@ final class TeamInfoRegistUIImpl: TeamInfoRegistUI {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.place_holder_team_id()
         field.clearButtonMode = .always
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -47,7 +45,6 @@ final class TeamInfoRegistUIImpl: TeamInfoRegistUI {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.select()
         field.tintColor = .clear
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -55,7 +52,6 @@ final class TeamInfoRegistUIImpl: TeamInfoRegistUI {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.select()
         field.tintColor = .clear
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -64,7 +60,6 @@ final class TeamInfoRegistUIImpl: TeamInfoRegistUI {
         button.setTitle(R.string.locarizable.next(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = TeamInfoRegisterResources.View.nextBtnCornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -102,11 +97,7 @@ extension TeamInfoRegistUIImpl {
         guard let vc = viewController else { return }
         vc.view.backgroundColor = .white
         vc.navigationItem.title = storeName
-        vc.view.addSubview(noticeTeamInfoRegistTitle)
-        vc.view.addSubview(teamNameField)
-        vc.view.addSubview(gradeField)
-        vc.view.addSubview(sportsKindField)
-        vc.view.addSubview(nextBtn)
+        [noticeTeamInfoRegistTitle, teamNameField, gradeField, sportsKindField, nextBtn].forEach { vc.view.addSubview($0) }
         vc.view.addGestureRecognizer(viewTapGesture)
         gradeToolBar.items = [gradeDoneBtn]
         sportsKindToolBar.items = [sportsKindDoneBtn]

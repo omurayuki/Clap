@@ -240,17 +240,11 @@ extension RegistCalendarUIImple {
         endDate.inputView = endDatePicker
         startTime.inputView = startTimePicker
         endTime.inputView = endTimePicker
-        startStack.addArrangedSubview(startDate)
-        startStack.addArrangedSubview(startTime)
-        endStack.addArrangedSubview(endDate)
-        endStack.addArrangedSubview(endTime)
-        totalTimeStack.addArrangedSubview(startStack)
-        totalTimeStack.addArrangedSubview(between)
-        totalTimeStack.addArrangedSubview(endStack)
-        longdayOrShortdayStack.addArrangedSubview(longdayOrShortdayTitle)
-        longdayOrShortdayStack.addArrangedSubview(switchLongdayOrShortday)
-        detailStack.addArrangedSubview(detailTitle)
-        detailStack.addArrangedSubview(detailField)
+        [startDate, startTime].forEach { startStack.addArrangedSubview($0) }
+        [endDate, endTime].forEach { endStack.addArrangedSubview($0) }
+        [startStack, between, endStack].forEach { totalTimeStack.addArrangedSubview($0) }
+        [longdayOrShortdayTitle, switchLongdayOrShortday].forEach { longdayOrShortdayStack.addArrangedSubview($0) }
+        [detailTitle, detailField].forEach { detailStack.addArrangedSubview($0) }
         vc.view.addGestureRecognizer(viewTapGesture)
         vc.view.backgroundColor = .white
         vc.view.addSubview(registEventBar)

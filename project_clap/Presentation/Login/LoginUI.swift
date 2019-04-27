@@ -20,7 +20,6 @@ final class LoginUIImpl: LoginUI {
         let label = UILabel()
         label.text = R.string.locarizable.please_input_login_info()
         label.textColor = AppResources.ColorResources.subShallowBlueColor
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -28,7 +27,6 @@ final class LoginUIImpl: LoginUI {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.mail_address()
         field.clearButtonMode = .always
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -37,7 +35,6 @@ final class LoginUIImpl: LoginUI {
         field.placeholder = R.string.locarizable.password()
         field.clearButtonMode = .always
         field.isSecureTextEntry = true
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -51,7 +48,6 @@ final class LoginUIImpl: LoginUI {
         button.setTitle(R.string.locarizable.log_in(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = LoginResources.View.BtnCornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -60,7 +56,6 @@ final class LoginUIImpl: LoginUI {
         button.setTitle(R.string.locarizable.to_forgot_pass(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = LoginResources.View.BtnCornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 }
@@ -69,11 +64,8 @@ extension LoginUIImpl {
     func setup(vc: UIViewController) {
         vc.view.backgroundColor = .white
         vc.navigationItem.title = R.string.locarizable.log_in()
-        vc.view.addSubview(noticeUserLoginTitle)
-        vc.view.addSubview(mailField)
-        vc.view.addSubview(passField)
-        vc.view.addSubview(logintBtn)
-        vc.view.addSubview(reissuePass)
+        vc.view.addGestureRecognizer(viewTapGesture)
+        [noticeUserLoginTitle, mailField, passField, logintBtn, reissuePass].forEach { vc.view.addSubview($0) }
         
         noticeUserLoginTitle.anchor()
             .centerXToSuperview()
@@ -103,7 +95,5 @@ extension LoginUIImpl {
             .top(to: logintBtn.bottomAnchor, constant: vc.view.bounds.size.width / 9.5)
             .width(constant: vc.view.bounds.size.width / 1.5)
             .activate()
-        
-        vc.view.addGestureRecognizer(viewTapGesture)
     }
 }

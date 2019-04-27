@@ -146,10 +146,7 @@ extension MypageEditUIImple {
         vc.view.addGestureRecognizer(viewTapGesture)
         vc.view.addSubview(userPhotoWrapView)
         userPhotoWrapView.addSubview(userPhoto)
-        vc.view.addSubview(belongStack)
-        vc.view.addSubview(positionStack)
-        vc.view.addSubview(mailStack)
-        vc.view.addSubview(saveBtn)
+        [belongStack, positionStack, mailStack, saveBtn].forEach { vc.view.addSubview($0) }
         
         userPhotoWrapView.anchor()
             .top(to: vc.view.safeAreaLayoutGuide.topAnchor)
@@ -190,12 +187,9 @@ extension MypageEditUIImple {
     }
     
     func setupInsideStack(vc: UIViewController) {
-        belongStack.addArrangedSubview(belongTitle)
-        belongStack.addArrangedSubview(belongTeamField)
-        positionStack.addArrangedSubview(positionTitle)
-        positionStack.addArrangedSubview(positionField)
-        mailStack.addArrangedSubview(mailTitle)
-        mailStack.addArrangedSubview(mailField)
+        [belongTitle, belongTeamField].forEach { belongStack.addArrangedSubview($0) }
+        [positionTitle, positionField].forEach { positionStack.addArrangedSubview($0) }
+        [mailTitle, mailField].forEach { mailStack.addArrangedSubview($0) }
         belongTitle.leftAnchor.constraint(equalTo: belongStack.leftAnchor, constant: vc.view.bounds.size.width / 8).isActive = true
         positionTitle.leftAnchor.constraint(equalTo: positionStack.leftAnchor, constant: vc.view.bounds.size.width / 8).isActive = true
         mailTitle.leftAnchor.constraint(equalTo: mailStack.leftAnchor, constant: vc.view.bounds.size.width / 8).isActive = true

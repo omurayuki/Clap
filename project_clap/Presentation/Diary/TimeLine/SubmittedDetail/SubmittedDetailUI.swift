@@ -142,27 +142,26 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
 extension SubmittedDetailUIImpl {
     
     func setup(vc: UIViewController) {
+        let stack = createDiaryContent()
         let topBottomHeight = vc.view.safeAreaInsets.top + vc.view.safeAreaInsets.bottom + 90
         vc.view.backgroundColor = AppResources.ColorResources.appCommonClearColor
         vc.tabBarController?.tabBar.isHidden = true
         vc.view.addGestureRecognizer(viewTapGesture)
         
         vc.view.addSubview(diaryScrollView)
+        [userInfo, stack, commentWriteField, commentTable].forEach { diaryScrollView.addSubview($0) }
         diaryScrollView.anchor()
             .top(to: vc.view.safeAreaLayoutGuide.topAnchor)
             .bottom(to: vc.view.safeAreaLayoutGuide.bottomAnchor)
             .width(constant: vc.view.frame.width)
             .activate()
         
-        diaryScrollView.addSubview(userInfo)
         userInfo.anchor()
             .top(to: diaryScrollView.topAnchor)
             .width(constant: vc.view.frame.width)
             .height(constant: SubmittedDetailResources.Constraint.userInfoHeightConstraint)
             .activate()
         
-        let stack = createDiaryContent()
-        diaryScrollView.addSubview(stack)
         stack.anchor()
             .centerXToSuperview()
             .top(to: userInfo.bottomAnchor, constant: SubmittedDetailResources.Constraint.stackTopConstraint)
@@ -171,7 +170,6 @@ extension SubmittedDetailUIImpl {
         
         setupDiariesComp(stack: stack)
         
-        diaryScrollView.addSubview(commentWriteField)
         commentWriteField.anchor()
             .top(to: stack.bottomAnchor, constant: SubmittedDetailResources.Constraint.commentWriteFieldTopConstraint)
             .left(to: diaryScrollView.leftAnchor, constant: SubmittedDetailResources.Constraint.commentWriteFieldLeftConstraint)
@@ -179,7 +177,6 @@ extension SubmittedDetailUIImpl {
             .height(constant: SubmittedDetailResources.Constraint.commentWriteFieldHeightConstraint)
             .activate()
         
-        diaryScrollView.addSubview(commentTable)
         commentTable.anchor()
             .top(to: commentWriteField.bottomAnchor, constant: SubmittedDetailResources.Constraint.commentTableTopConstraint)
             .width(constant: vc.view.frame.width)

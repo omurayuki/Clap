@@ -19,7 +19,6 @@ final class RemindPassUIImple: RemindPassUI {
         label.text = R.string.locarizable.notice_remind_label()
         label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.numberOfLines = RemindPassResources.View.titleNumberOfLines
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -27,7 +26,6 @@ final class RemindPassUIImple: RemindPassUI {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.mail_address()
         field.clearButtonMode = .always
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -41,7 +39,6 @@ final class RemindPassUIImple: RemindPassUI {
         button.setTitle(R.string.locarizable.submit(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = TeamInfoRegisterResources.View.nextBtnCornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 }
@@ -51,10 +48,8 @@ extension RemindPassUIImple {
     func setup(vc: UIViewController) {
         vc.view.backgroundColor = .white
         vc.navigationItem.title = R.string.locarizable.password_settings()
-        vc.view.addSubview(remindTitle)
-        vc.view.addSubview(emailField)
-        vc.view.addSubview(submitBtn)
         vc.view.addGestureRecognizer(viewTapGesture)
+        [remindTitle, emailField, submitBtn].forEach { vc.view.addSubview($0) }
         remindTitle.anchor()
             .centerXToSuperview()
             .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5)

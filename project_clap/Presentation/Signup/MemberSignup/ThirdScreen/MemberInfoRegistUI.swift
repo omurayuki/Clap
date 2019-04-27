@@ -26,7 +26,6 @@ final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
         let label = UILabel()
         label.text = R.string.locarizable.notice_user_regist()
         label.textColor = AppResources.ColorResources.subShallowBlueColor
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -34,7 +33,6 @@ final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.name()
         field.clearButtonMode = .always
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -42,7 +40,6 @@ final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.mail_address()
         field.clearButtonMode = .always
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -51,7 +48,6 @@ final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
         field.placeholder = R.string.locarizable.password()
         field.clearButtonMode = .always
         field.isSecureTextEntry = true
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -60,7 +56,6 @@ final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
         field.placeholder = R.string.locarizable.remain_password()
         field.clearButtonMode = .always
         field.isSecureTextEntry = true
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -73,7 +68,6 @@ final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.select()
         field.tintColor = .clear
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -96,7 +90,6 @@ final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
         button.setTitle(R.string.locarizable.regist(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = MemberInfoRegisterResources.View.BtnCornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 }
@@ -107,13 +100,8 @@ extension MemberInfoRegistUIImpl {
         vc.view.backgroundColor = .white
         vc.navigationItem.title = R.string.locarizable.regist_user()
         vc.view.addGestureRecognizer(viewTapGesture)
-        vc.view.addSubview(noticeUserRegistTitle)
-        vc.view.addSubview(nameField)
-        vc.view.addSubview(mailField)
-        vc.view.addSubview(passField)
-        vc.view.addSubview(rePassField)
-        vc.view.addSubview(memberPosition)
         vc.view.addSubview(memberRegistBtn)
+        [noticeUserRegistTitle, nameField, mailField, passField, rePassField, memberPosition, memberRegistBtn].forEach { vc.view.addSubview($0) }
         
         noticeUserRegistTitle.anchor()
             .centerXToSuperview()

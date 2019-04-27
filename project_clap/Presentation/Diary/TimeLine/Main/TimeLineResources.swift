@@ -16,6 +16,7 @@ struct TimeLineResources {
         static let userImageHeightConstraint: CGFloat = 45
         static let diaryTitleTopConstraint: CGFloat = 15
         static let diaryTitleLeftConstraint: CGFloat = 10
+        static let diaryTitleWidthConstraint: CGFloat = 250
         static let userNameTopConstraint: CGFloat = 10
         static let userNameLeftConstraint: CGFloat = 10
         static let submitTimeTopConstraint: CGFloat = 10

@@ -70,15 +70,14 @@ extension TimeLineUIImpl {
         vc.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         vc.navigationController?.navigationBar.shadowImage = UIImage()
         vc.navigationController?.navigationBar.barTintColor = AppResources.ColorResources.appCommonClearColor
+        [timelineHeaderView, timelineTableView, menuBtn, memberBtn, diaryBtn].forEach { vc.view.addSubview($0) }
         
-        vc.view.addSubview(timelineHeaderView)
         timelineHeaderView.anchor()
             .top(to: vc.view.safeAreaLayoutGuide.topAnchor)
             .width(constant: vc.view.frame.width)
             .height(constant: vc.view.frame.width / 5)
             .activate()
         
-        vc.view.addSubview(timelineTableView)
         timelineTableView.anchor()
             .centerXToSuperview()
             .centerYToSuperview()
@@ -87,7 +86,6 @@ extension TimeLineUIImpl {
             .bottom(to: vc.view.safeAreaLayoutGuide.bottomAnchor)
             .activate()
         
-        vc.view.addSubview(menuBtn)
         menuBtn.anchor(top: nil,
                        leading: nil,
                        bottom: vc.view.safeAreaLayoutGuide.bottomAnchor,
@@ -96,7 +94,6 @@ extension TimeLineUIImpl {
         menuBtn.constrainWidth(constant: TimeLineResources.Constraint.BtnWidthConstraint)
         menuBtn.constrainHeight(constant: TimeLineResources.Constraint.BtnHeightConstraint)
         
-        vc.view.addSubview(memberBtn)
         memberBtn.anchor(top: nil,
                          leading: nil,
                          bottom: vc.view.safeAreaLayoutGuide.bottomAnchor,
@@ -105,7 +102,6 @@ extension TimeLineUIImpl {
         memberBtn.constrainWidth(constant: TimeLineResources.Constraint.BtnWidthConstraint)
         memberBtn.constrainHeight(constant: TimeLineResources.Constraint.BtnHeightConstraint)
         
-        vc.view.addSubview(diaryBtn)
         diaryBtn.anchor(top: nil,
                         leading: nil,
                         bottom: menuBtn.topAnchor,

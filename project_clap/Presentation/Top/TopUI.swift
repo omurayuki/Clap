@@ -18,7 +18,6 @@ final class TopUIImpl: TopUI {
         label.text = R.string.locarizable.clap()
         label.textColor = AppResources.ColorResources.subShallowBlueColor
         label.font = AppResources.FontResources.topLabelFont
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -27,7 +26,6 @@ final class TopUIImpl: TopUI {
         button.setTitle(R.string.locarizable.log_in(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = TopResources.View.BtnCornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -36,7 +34,6 @@ final class TopUIImpl: TopUI {
         button.setTitle(R.string.locarizable.sign_up(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = TopResources.View.BtnCornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 }
@@ -48,9 +45,7 @@ extension TopUIImpl {
         vc.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         vc.navigationController?.navigationBar.shadowImage = UIImage()
         vc.navigationController?.navigationBar.barTintColor = .white
-        vc.view.addSubview(topTitle)
-        vc.view.addSubview(loginBtn)
-        vc.view.addSubview(signupBtn)
+        [topTitle, loginBtn, signupBtn].forEach { vc.view.addSubview($0) }
         topTitle.anchor()
             .centerXToSuperview()
             .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.height / 2.5)

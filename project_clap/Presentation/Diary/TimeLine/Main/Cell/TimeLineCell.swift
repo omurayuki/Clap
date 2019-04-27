@@ -32,14 +32,6 @@ class TimelineCell: UITableViewCell {
         return label
     }()
     
-    private lazy var wrapView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = DisplayCalendarResources.View.wrapViewLayerCornerRadius
-        view.backgroundColor = .white
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -53,7 +45,8 @@ class TimelineCell: UITableViewCell {
 extension TimelineCell {
     private func setupUI() {
         contentView.backgroundColor = AppResources.ColorResources.appCommonClearColor
-        contentView.addSubview(userImage)
+        [userImage, diaryTitle, userName, submittedTime].forEach { addSubview($0) }
+        
         userImage.anchor()
             .centerYToSuperview()
             .left(to: contentView.leftAnchor, constant: TimeLineResources.Constraint.userImageLeftConstraint)
@@ -61,20 +54,17 @@ extension TimelineCell {
         userImage.constrainWidth(constant: TimeLineResources.Constraint.userImageWidthConstraint)
         userImage.constrainHeight(constant: TimeLineResources.Constraint.userImageHeightConstraint)
         
-        contentView.addSubview(diaryTitle)
         diaryTitle.anchor()
             .top(to: contentView.topAnchor, constant: TimeLineResources.Constraint.diaryTitleTopConstraint)
             .left(to: userImage.rightAnchor, constant: TimeLineResources.Constraint.diaryTitleLeftConstraint)
-            .width(constant: 250)
+            .width(constant: TimeLineResources.Constraint.diaryTitleWidthConstraint)
             .activate()
         
-        contentView.addSubview(userName)
         userName.anchor()
             .top(to: diaryTitle.bottomAnchor, constant: TimeLineResources.Constraint.userNameTopConstraint)
             .left(to: userImage.rightAnchor, constant: TimeLineResources.Constraint.userNameLeftConstraint)
             .activate()
         
-        contentView.addSubview(submittedTime)
         submittedTime.anchor()
             .top(to: diaryTitle.bottomAnchor, constant: TimeLineResources.Constraint.submitTimeTopConstraint)
             .right(to: contentView.rightAnchor, constant: TimeLineResources.Constraint.submitTimeRightConstraint)

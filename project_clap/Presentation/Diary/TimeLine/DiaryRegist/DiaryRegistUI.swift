@@ -130,11 +130,7 @@ extension DiaryRegistUIImpl {
         submitDateField.inputView = datePicker
         vc.view.backgroundColor = .white
         vc.view.addGestureRecognizer(viewTapGesture)
-        vc.view.addSubview(registDiaryBar)
-        vc.view.addSubview(submitDateField)
-        vc.view.addSubview(diaryScrollView)
-        vc.view.addSubview(pageControl)
-        vc.view.addSubview(submitBtn)
+        [registDiaryBar, submitDateField, diaryScrollView, pageControl, submitBtn].forEach { vc.view.addSubview($0) }
         
         registDiaryBar.anchor()
             .top(to: vc.view.safeAreaLayoutGuide.topAnchor)

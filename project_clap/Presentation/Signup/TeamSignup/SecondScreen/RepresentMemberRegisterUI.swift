@@ -32,7 +32,6 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         let label = UILabel()
         label.text = R.string.locarizable.notice_user_regist()
         label.textColor = AppResources.ColorResources.subShallowBlueColor
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -40,7 +39,6 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         let button = UIButton()
         button.backgroundColor = .gray
         button.layer.cornerRadius = RepresentMemberRegisterResources.View.photoCornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -48,7 +46,6 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.name()
         field.clearButtonMode = .always
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -56,7 +53,6 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.mail_address()
         field.clearButtonMode = .always
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -65,7 +61,6 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         field.placeholder = R.string.locarizable.password()
         field.clearButtonMode = .always
         field.isSecureTextEntry = true
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -74,7 +69,6 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         field.placeholder = R.string.locarizable.remain_password()
         field.clearButtonMode = .always
         field.isSecureTextEntry = true
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -87,7 +81,6 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.select()
         field.tintColor = .clear
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -95,14 +88,12 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         let field = CustomTextField()
         field.placeholder = R.string.locarizable.select()
         field.tintColor = .clear
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
     private(set) var stack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
@@ -111,7 +102,6 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         button.setTitle(R.string.locarizable.regist(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = RepresentMemberRegisterResources.View.btnCornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -152,16 +142,9 @@ extension RepresentMemberRegisterUIImpl {
         vc.view.addGestureRecognizer(viewTapGesture)
         positionToolBar.items = [positionDoneBtn]
         yearToolBar.items = [yearDoneBtn]
-        stack.addArrangedSubview(representMemberPosition)
-        stack.addArrangedSubview(representMemberYear)
-        vc.view.addSubview(noticeUserRegistTitle)
-        vc.view.addSubview(userPhotoRegistBtn)
-        vc.view.addSubview(nameField)
-        vc.view.addSubview(mailField)
-        vc.view.addSubview(passField)
-        vc.view.addSubview(rePassField)
-        vc.view.addSubview(stack)
-        vc.view.addSubview(teamRegistBtn)
+        [representMemberPosition, representMemberYear].forEach { stack.addArrangedSubview($0) }
+        [noticeUserRegistTitle, userPhotoRegistBtn, nameField, mailField,
+        passField, rePassField, stack, teamRegistBtn].forEach { vc.view.addSubview($0) }
         
         noticeUserRegistTitle.anchor()
             .centerXToSuperview()
