@@ -12,6 +12,7 @@ class TimeLineViewController: UIViewController {
     //マイページで自分の日記一覧見れる機能
     //カレンダーで提出した自分の最新日記表示and詳細見れる
     //rxに全て置き換える calendarの前に
+    //ここまでとreplyが終わればカレンダーに行く前にissue消化
     
     private var viewModel: TimelineViewModel!
     let activityIndicator = UIActivityIndicatorView()
@@ -137,10 +138,8 @@ extension TimeLineViewController: UITableViewDataSource {
 extension TimeLineViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("============================")
         let timelineCellData = TimelineSingleton.sharedInstance.sections[indexPath.section].rowItems[indexPath.row]
-        print(TimelineSingleton.sharedInstance.sections[indexPath.section])
-        let submit = TimelineSingleton.sharedInstance.sections[indexPath.row].rowItems[0].submit
+        let submit = TimelineSingleton.sharedInstance.sections[indexPath.section].rowItems[indexPath.row].submit
         switch submit {
         case true:
             navigationController?.pushViewController(SubmittedDetailViewController(timelineCellData: timelineCellData), animated: true)

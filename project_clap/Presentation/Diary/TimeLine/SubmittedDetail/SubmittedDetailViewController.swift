@@ -5,6 +5,11 @@ import FirebaseFirestore
 
 class SubmittedDetailViewController: UIViewController {
     
+    //replyされたらcommentDocumentのrepliedをtrueにする　それを見てcellのボタンを表示するかどうか判定する できた！！！！！
+    //youtubeと同じreply画面　コメント画面に返信を表示するボタンを押せばmodalで単純に表示　コメントをするボタンを押せばmodalで同じ画面表示させて同時にtextfieldにフォーカス当てる
+    //次、delegateで返信を表示するボタンがタップされたときに、commentIdを渡してそのコメントの詳細を次の画面に表示する　そしてそのコメントに紐づいているreplyを全て表示する
+    
+    
     private let recievedTimelineCellData: TimelineCellData
     private var viewModel: SubmittedDetailViewModel!
     let activityIndicator = UIActivityIndicatorView()
@@ -53,6 +58,7 @@ extension SubmittedDetailViewController {
                     "userId": UserSingleton.sharedInstance.uid,
                     "comment": self.ui.commentWriteField.text ?? "",
                     "time": DateFormatter.acquireCurrentTime(),
+                    "replied": false,
                     "created_at": FieldValue.serverTimestamp(),
                     ] as [String : Any]
                 Firebase.db
@@ -102,20 +108,24 @@ extension SubmittedDetailViewController {
                         var commentIdArr = [String](); var userIdArr = [String]()
                         var imageArr = [String](); var nameArr = [String]()
                         var timeArr = [String](); var commentArr = [String]()
+                        var repliedArr = [Bool]()
                         for tuple in documents.enumerated() {
                             let data = tuple.element.data()
                             guard
                                 let commentId = data["commentId"] as? String, let userId = data["userId"] as? String,
                                 let image = data["image"] as? String, let name = data["name"] as? String,
-                                let time = data["time"] as? String, let comment = data["comment"] as? String
+                                let time = data["time"] as? String, let comment = data["comment"] as? String,
+                                let replied = data["replied"] as? Bool
                             else { return }
                             commentIdArr.append(commentId); userIdArr.append(userId)
                             imageArr.append(image); nameArr.append(name)
                             timeArr.append(time); commentArr.append(comment)
+                            repliedArr.append(replied)
                         }
                         CommentSingleton.sharedInstance.commentId = commentIdArr; CommentSingleton.sharedInstance.userId = userIdArr
                         CommentSingleton.sharedInstance.image = imageArr; CommentSingleton.sharedInstance.name = nameArr
                         CommentSingleton.sharedInstance.time = timeArr; CommentSingleton.sharedInstance.comment = commentArr
+                        CommentSingleton.sharedInstance.replied = repliedArr
                         self.ui.commentTable.reloadData()
                     })
             }).disposed(by: viewModel.disposeBag)
@@ -172,7 +182,12 @@ extension SubmittedDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: commentCell.self), for: indexPath) as? commentCell else { return UITableViewCell() }
-        cell.configureInit(image: CommentSingleton.sharedInstance.image[indexPath.row], name: CommentSingleton.sharedInstance.name[indexPath.row], time: CommentSingleton.sharedInstance.time[indexPath.row], comment: CommentSingleton.sharedInstance.comment[indexPath.row])
+        cell.configureInit(replied: CommentSingleton.sharedInstance.replied[indexPath.row],
+                           image: CommentSingleton.sharedInstance.image[indexPath.row],
+                           name: CommentSingleton.sharedInstance.name[indexPath.row],
+                           time: CommentSingleton.sharedInstance.time[indexPath.row],
+                           comment: CommentSingleton.sharedInstance.comment[indexPath.row],
+                           commentId: CommentSingleton.sharedInstance.commentId[indexPath.row])
         return cell
     }
 }

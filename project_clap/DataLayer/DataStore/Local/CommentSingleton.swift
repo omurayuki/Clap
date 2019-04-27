@@ -4,6 +4,7 @@ class CommentSingleton: NSObject {
     var commentId: [String]!; var userId: [String]!
     var image: [String]!; var name: [String]!
     var time: [String]!; var comment: [String]!
+    var replied: [Bool]!
     
     class var sharedInstance: CommentSingleton {
         struct Static {
@@ -17,5 +18,6 @@ class CommentSingleton: NSObject {
         commentId = [String](); userId = [String]()
         image = [String](); name = [String]()
         time = [String](); comment = [String]()
+        replied = [Bool]()
     }
 }

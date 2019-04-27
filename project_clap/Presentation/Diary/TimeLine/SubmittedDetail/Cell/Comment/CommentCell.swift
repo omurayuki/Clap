@@ -3,6 +3,10 @@ import UIKit
 
 class commentCell: UITableViewCell {
     
+    private var replied = Bool()
+    private var viewMovedOverRight = UIView()
+    private var commentId = String()
+    
     private lazy var userImage: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = CommentCellResources.View.userImageLayerCornerRadius
@@ -39,6 +43,10 @@ class commentCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
+        if replied == false {
+            replyCountBtn.isHidden = true
+            viewMovedOverRight.isHidden = true
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -69,26 +77,35 @@ extension commentCell {
             .left(to: name.rightAnchor)
             .activate()
         
-        addSubview(comment)
-        comment.anchor()
+        let stack = createCommentStack()
+        addSubview(stack)
+        stack.anchor()
             .top(to: name.bottomAnchor, constant: CommentCellResources.Constraint.commentTopConstraint)
             .left(to: userImage.rightAnchor, constant: CommentCellResources.Constraint.commentLeftConstraint)
-            .right(to: rightAnchor,constant: CommentCellResources.Constraint.commentBottomConstraint)
-            .width(constant: frame.width / 1.2)
-            .activate()
-        
-        addSubview(replyCountBtn)
-        replyCountBtn.anchor()
-            .top(to: comment.bottomAnchor, constant: CommentCellResources.Constraint.replyCountBtnTopConstraint)
-            .left(to: userImage.rightAnchor, constant: CommentCellResources.Constraint.replyCountBtnLeftConstraint)
+            .right(to: rightAnchor, constant: CommentCellResources.Constraint.commentBottomConstraint)
             .bottom(to: bottomAnchor, constant: CommentCellResources.Constraint.replyCountBtnBottomConstraint)
+            .width(constant: frame.width / 1.2)
             .activate()
     }
     
-    func configureInit(image: String, name: String, time: String, comment: String) {
+    func createCommentStack() -> UIStackView {
+        let stack = VerticalStackView(arrangeSubViews: [
+            comment,
+            UIStackView(arrangedSubviews: [
+                replyCountBtn,
+                viewMovedOverRight
+            ])
+        ], spacing: 10)
+        
+        return stack
+    }
+    
+    func configureInit(replied: Bool, image: String, name: String, time: String, comment: String, commentId: String) {
+        self.replied = replied
         userImage.image = UIImage(named: image)
         self.name.text = name
         self.time.text = "・\(time)"
         self.comment.text = comment
+        self.commentId = commentId
     }
 }
