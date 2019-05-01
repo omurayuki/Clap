@@ -32,6 +32,30 @@ class commentCell: UITableViewCell {
         return label
     }()
     
+    private lazy var goodBtn: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = CommentCellResources.Font.replyCountBtnFont
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle("good", for: .normal)
+        return button
+    }()
+    
+    private lazy var badBtn: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = CommentCellResources.Font.replyCountBtnFont
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle("bad", for: .normal)
+        return button
+    }()
+    
+    private lazy var replyBtn: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = CommentCellResources.Font.replyCountBtnFont
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle("reply", for: .normal)
+        return button
+    }()
+    
     private lazy var replyCountBtn: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = CommentCellResources.Font.replyCountBtnFont
@@ -59,6 +83,7 @@ extension commentCell {
         let stack = createCommentStack()
         userImage.backgroundColor = .gray
         [userImage, name, time, stack].forEach { addSubview($0) }
+        
         userImage.anchor()
             .top(to: topAnchor, constant: CommentCellResources.Constraint.userImageLeftConstraint)
             .left(to: leftAnchor, constant: CommentCellResources.Constraint.userImageRightConstraint)
@@ -88,6 +113,12 @@ extension commentCell {
     func createCommentStack() -> UIStackView {
         let stack = VerticalStackView(arrangeSubViews: [
             comment,
+            EqualingStackView(arrangeSubViews: [
+                goodBtn,
+                badBtn,
+                replyBtn,
+                UIView()
+            ]),
             UIStackView(arrangedSubviews: [
                 replyCountBtn,
                 viewMovedOverRight

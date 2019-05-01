@@ -170,6 +170,11 @@
 		C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086E32233F6AF00F25E7A /* MypageEditValidation.swift */; };
 		C9F086E622346ACC00F25E7A /* DisplayEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086E522346ACC00F25E7A /* DisplayEventCell.swift */; };
 		C9F086E82235DC6900F25E7A /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086E72235DC6900F25E7A /* CalendarEvent.swift */; };
+		C9FF9289227803A1005EF4F0 /* ReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF9288227803A1005EF4F0 /* ReplyViewController.swift */; };
+		C9FF928B227803AE005EF4F0 /* ReplyUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF928A227803AE005EF4F0 /* ReplyUI.swift */; };
+		C9FF928D227803B7005EF4F0 /* ReplyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF928C227803B7005EF4F0 /* ReplyViewModel.swift */; };
+		C9FF928F227803C2005EF4F0 /* ReplyResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF928E227803C2005EF4F0 /* ReplyResources.swift */; };
+		C9FF9291227976C0005EF4F0 /* EqualingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF9290227976C0005EF4F0 /* EqualingStackView.swift */; };
 		DFB5334197BF2263EBE8960C /* Pods_project_clap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
@@ -342,6 +347,11 @@
 		C9F086E32233F6AF00F25E7A /* MypageEditValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageEditValidation.swift; sourceTree = "<group>"; };
 		C9F086E522346ACC00F25E7A /* DisplayEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayEventCell.swift; sourceTree = "<group>"; };
 		C9F086E72235DC6900F25E7A /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
+		C9FF9288227803A1005EF4F0 /* ReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
+		C9FF928A227803AE005EF4F0 /* ReplyUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyUI.swift; sourceTree = "<group>"; };
+		C9FF928C227803B7005EF4F0 /* ReplyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyViewModel.swift; sourceTree = "<group>"; };
+		C9FF928E227803C2005EF4F0 /* ReplyResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyResources.swift; sourceTree = "<group>"; };
+		C9FF9290227976C0005EF4F0 /* EqualingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EqualingStackView.swift; sourceTree = "<group>"; };
 		E7FE8D4EDE255747AFF42437 /* Pods-project_clap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project_clap.debug.xcconfig"; path = "Target Support Files/Pods-project_clap/Pods-project_clap.debug.xcconfig"; sourceTree = "<group>"; };
 		E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_project_clap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -385,6 +395,7 @@
 			isa = PBXGroup;
 			children = (
 				C911561C2250A6AE00CB97E9 /* VerticalStackView.swift */,
+				C9FF9290227976C0005EF4F0 /* EqualingStackView.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -644,14 +655,6 @@
 			path = Comment;
 			sourceTree = "<group>";
 		};
-		C950E2C1227215A60074A5C4 /* Reply */ = {
-			isa = PBXGroup;
-			children = (
-				C9A28AEF227014BC00F4AF2B /* ReplyCell.swift */,
-			);
-			path = Reply;
-			sourceTree = "<group>";
-		};
 		C959BF532229099000207986 /* SecondScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -866,6 +869,7 @@
 				C9A28AEA227010AD00F4AF2B /* SubmittedDetailResources.swift */,
 				C9A28AF122701B8500F4AF2B /* View */,
 				C9A28AEC227010E700F4AF2B /* Cell */,
+				C9FF92862278037A005EF4F0 /* Reply */,
 			);
 			path = SubmittedDetail;
 			sourceTree = "<group>";
@@ -874,7 +878,6 @@
 			isa = PBXGroup;
 			children = (
 				C950E2C02272159D0074A5C4 /* Comment */,
-				C950E2C1227215A60074A5C4 /* Reply */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1011,6 +1014,26 @@
 				C9F086E32233F6AF00F25E7A /* MypageEditValidation.swift */,
 			);
 			path = Edit;
+			sourceTree = "<group>";
+		};
+		C9FF92862278037A005EF4F0 /* Reply */ = {
+			isa = PBXGroup;
+			children = (
+				C9FF9288227803A1005EF4F0 /* ReplyViewController.swift */,
+				C9FF928A227803AE005EF4F0 /* ReplyUI.swift */,
+				C9FF928C227803B7005EF4F0 /* ReplyViewModel.swift */,
+				C9FF928E227803C2005EF4F0 /* ReplyResources.swift */,
+				C9FF928722780388005EF4F0 /* Cell */,
+			);
+			path = Reply;
+			sourceTree = "<group>";
+		};
+		C9FF928722780388005EF4F0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C9A28AEF227014BC00F4AF2B /* ReplyCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		E1168D8F28D0957839E6D20B /* Pods */ = {
@@ -1177,10 +1200,12 @@
 				C9A28AE52270100800F4AF2B /* SubmittedDetailViewController.swift in Sources */,
 				C950E2C722721E180074A5C4 /* SubmittedDetailDataStore.swift in Sources */,
 				C98779022241117C005AAEA5 /* SelectRouting.swift in Sources */,
+				C9FF928B227803AE005EF4F0 /* ReplyUI.swift in Sources */,
 				C9877910224123C2005AAEA5 /* ConfirmationTeamIdUI.swift in Sources */,
 				C9EA286822434ADF003F40DD /* MypageEditUI.swift in Sources */,
 				C937FD8522237E5A00F9624E /* TeamIdWriteViewController.swift in Sources */,
 				C95EBC54222F5DD200D24181 /* DisplayCalendarCell.swift in Sources */,
+				C9FF9289227803A1005EF4F0 /* ReplyViewController.swift in Sources */,
 				C987790022410E44005AAEA5 /* Routing.swift in Sources */,
 				C937FD8322237E0000F9624E /* TeamInfoRegistViewController.swift in Sources */,
 				C970579F222E8C76007F8B1C /* TabBarController.swift in Sources */,
@@ -1232,6 +1257,7 @@
 				C913299C2253480A00514EDE /* DiaryWritter.swift in Sources */,
 				C959BF6E222D4B3500207986 /* TeamIdWriteResources.swift in Sources */,
 				C91329B12253BC1800514EDE /* LoginRepository.swift in Sources */,
+				C9FF928D227803B7005EF4F0 /* ReplyViewModel.swift in Sources */,
 				C959BF5522290ADA00207986 /* RepresentMemberRegisterViewModel.swift in Sources */,
 				C970577E222E5E68007F8B1C /* CustomTextField.swift in Sources */,
 				C950E2BF2271BEA50074A5C4 /* TabBarViewModel.swift in Sources */,
@@ -1253,6 +1279,7 @@
 				C913299622532FA100514EDE /* TeamSignupSingleton.swift in Sources */,
 				C91329802252360E00514EDE /* TimeLineRouting.swift in Sources */,
 				C91156202250B5E000CB97E9 /* TimeLineViewController.swift in Sources */,
+				C9FF9291227976C0005EF4F0 /* EqualingStackView.swift in Sources */,
 				C9B67DC8225B99B500F82AE7 /* RemindPassRepository.swift in Sources */,
 				C9705787222E6E1F007F8B1C /* RemindPassViewModel.swift in Sources */,
 				C9705783222E6680007F8B1C /* RemindPassViewController.swift in Sources */,
@@ -1296,6 +1323,7 @@
 				C9B67DD5225CC1BB00F82AE7 /* ConfirmationTeamIdViewModel.swift in Sources */,
 				C9A28AF322701B9400F4AF2B /* UserInfo.swift in Sources */,
 				C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */,
+				C9FF928F227803C2005EF4F0 /* ReplyResources.swift in Sources */,
 				C98D64C7226DB2AF00A1D7F9 /* DiaryRegistDataStore.swift in Sources */,
 				C9C6FE812240A59E001FE7A5 /* R.generated.swift in Sources */,
 				C987791622412D02005AAEA5 /* MemberInfoRegistRouting.swift in Sources */,

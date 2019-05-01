@@ -35,7 +35,7 @@ class SubmittedDetailViewController: UIViewController {
         viewModel = SubmittedDetailViewModel()
         setupViewModel()
         configureInitUserData()
-        recievedTimelineCellData.diaryID == DiarySingleton.sharedInstance.diaryId ? setdiaryDataToSingleton() : fetchDiaryDetail()
+        recievedTimelineCellData.diaryID == DiarySingleton.sharedInstance.diaryId ? setdiaryDataFromSingleton() : fetchDiaryDetail()
     }
     
     override func viewDidLoad() {
@@ -149,24 +149,27 @@ extension SubmittedDetailViewController {
                                   date: recievedTimelineCellData.date ?? Date())
     }
     
-    private func setdiaryDataToSingleton() {
+    private func setdiaryDataFromSingleton() {
         ui.text1.text = DiarySingleton.sharedInstance.text1; ui.text2.text = DiarySingleton.sharedInstance.text2
         ui.text3.text = DiarySingleton.sharedInstance.text3; ui.text4.text = DiarySingleton.sharedInstance.text4
         ui.text5.text = DiarySingleton.sharedInstance.text5; ui.text6.text = DiarySingleton.sharedInstance.text6
     }
     
     private func fetchDiaryDetail() {
-        self.showIndicator()
+        showIndicator()
+        view.isUserInteractionEnabled = false
         viewModel.fetchDiaryDetail(
             teamId: AppUserDefaults.getValue(keyName: "teamId"),
             diaryId: recievedTimelineCellData.diaryID ?? "")
             { [weak self] (data, error) in
                 if let _ = error {
                     self?.hideIndicator()
+                    self?.view.isUserInteractionEnabled = true
                     AlertController.showAlertMessage(alertType: .diaryFetchFailure, viewController: self ?? UIViewController())
                     return
                 }
                 self?.hideIndicator()
+                self?.view.isUserInteractionEnabled = true
                 self?.ui.text1.text = data?[0]; self?.ui.text2.text = data?[1]
                 self?.ui.text3.text = data?[2]; self?.ui.text4.text = data?[3]
                 self?.ui.text5.text = data?[4]; self?.ui.text6.text = data?[5]
