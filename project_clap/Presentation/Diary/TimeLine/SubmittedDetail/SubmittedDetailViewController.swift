@@ -5,11 +5,6 @@ import FirebaseFirestore
 
 class SubmittedDetailViewController: UIViewController {
     
-    //replyされたらcommentDocumentのrepliedをtrueにする　それを見てcellのボタンを表示するかどうか判定する できた！！！！！
-    //youtubeと同じreply画面　コメント画面に返信を表示するボタンを押せばmodalで単純に表示　コメントをするボタンを押せばmodalで同じ画面表示させて同時にtextfieldにフォーカス当てる
-    //次、delegateで返信を表示するボタンがタップされたときに、commentIdを渡してそのコメントの詳細を次の画面に表示する　そしてそのコメントに紐づいているreplyを全て表示する
-    
-    
     private let recievedTimelineCellData: TimelineCellData
     private var viewModel: SubmittedDetailViewModel!
     let activityIndicator = UIActivityIndicatorView()
@@ -88,9 +83,6 @@ extension SubmittedDetailViewController {
             .filter({ point in point.y >= 300 })
             .take(1)
             .subscribe(onNext: { point in
-                CommentSingleton.sharedInstance.commentId = [String](); CommentSingleton.sharedInstance.userId = [String]()
-                CommentSingleton.sharedInstance.image = [String](); CommentSingleton.sharedInstance.name = [String]()
-                CommentSingleton.sharedInstance.time = [String](); CommentSingleton.sharedInstance.comment = [String]()
                 Firebase.db
                     .collection("diary")
                     .document(AppUserDefaults.getValue(keyName: "teamId"))
@@ -184,14 +176,43 @@ extension SubmittedDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: commentCell.self), for: indexPath) as? commentCell else { return UITableViewCell() }
-        cell.configureInit(replied: CommentSingleton.sharedInstance.replied[indexPath.row],
-                           image: CommentSingleton.sharedInstance.image[indexPath.row],
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentCell.self), for: indexPath) as? CommentCell else { return UITableViewCell() }
+        cell.configureInit(image: CommentSingleton.sharedInstance.image[indexPath.row],
                            name: CommentSingleton.sharedInstance.name[indexPath.row],
                            time: CommentSingleton.sharedInstance.time[indexPath.row],
                            comment: CommentSingleton.sharedInstance.comment[indexPath.row],
-                           commentId: CommentSingleton.sharedInstance.commentId[indexPath.row])
+                           commentId: CommentSingleton.sharedInstance.commentId[indexPath.row],
+                           identificationId: indexPath.row)
+        cell.delegate = self
+        if CommentSingleton.sharedInstance.replied[indexPath.row] == false {
+            cell.replyCountBtn.isHidden = true
+            cell.viewMovedOverRight.isHidden = true
+        }
         return cell
+    }
+}
+
+extension SubmittedDetailViewController: CommentCellDelegate {
+    
+    func selectReplyBtn(index: Int) {
+        present(ReplyViewController(userImage: CommentSingleton.sharedInstance.image[index],
+                                    name: CommentSingleton.sharedInstance.name[index],
+                                    time: CommentSingleton.sharedInstance.time[index],
+                                    comment: CommentSingleton.sharedInstance.comment[index],
+                                    commentId: CommentSingleton.sharedInstance.commentId[index]),
+                animated: true)
+    }
+    
+    func selectDoingReplyBtn(index: Int) {
+        let vc = ReplyViewController(userImage: CommentSingleton.sharedInstance.image[index],
+                                     name: CommentSingleton.sharedInstance.name[index],
+                                     time: CommentSingleton.sharedInstance.time[index],
+                                     comment: CommentSingleton.sharedInstance.comment[index],
+                                     commentId: CommentSingleton.sharedInstance.commentId[index])
+        present(vc,
+                animated: true, completion: {
+                    vc.ui.replyWriteField.becomeFirstResponder()
+        })
     }
 }
 

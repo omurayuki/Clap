@@ -13,6 +13,8 @@ final class AlertController {
         case diaryFetchFailure
         case sendCommentFailure
         case fetchCommentfailure
+        case sendReplyFailure
+        case fetchReplyFailure
         
         var title: String {
             switch self {
@@ -26,6 +28,8 @@ final class AlertController {
             case .diaryFetchFailure: return "失敗"
             case .sendCommentFailure: return "失敗"
             case .fetchCommentfailure: return "失敗"
+            case .sendReplyFailure: return "失敗"
+            case .fetchReplyFailure: return "失敗"
             }
         }
         
@@ -41,6 +45,8 @@ final class AlertController {
             case .diaryFetchFailure: return "日記取得に失敗しました"
             case .sendCommentFailure: return "コメントの登録に失敗しました"
             case .fetchCommentfailure: return "コメントの取得に失敗しました"
+            case .sendReplyFailure: return "リプライの登録に失敗しました"
+            case .fetchReplyFailure: return "リプライの取得に失敗しました"
             }
         }
     }

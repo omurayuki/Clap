@@ -1,11 +1,15 @@
 import Foundation
 import UIKit
+import RxSwift
+import RxCocoa
 
-class commentCell: UITableViewCell {
+class CommentCell: UITableViewCell {
     
-    private var replied = Bool()
-    private var viewMovedOverRight = UIView()
+    var viewMovedOverRight = UIView()
+    weak var delegate: CommentCellDelegate?
+    private var identificationId = Int()
     private var commentId = String()
+    private let disposeBag = DisposeBag()
     
     private lazy var userImage: UIImageView = {
         let image = UIImageView()
@@ -34,7 +38,7 @@ class commentCell: UITableViewCell {
     
     private lazy var goodBtn: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = CommentCellResources.Font.replyCountBtnFont
+        button.titleLabel?.font = CommentCellResources.Font.goodBtnFont
         button.setTitleColor(.black, for: .normal)
         button.setTitle("good", for: .normal)
         return button
@@ -42,7 +46,7 @@ class commentCell: UITableViewCell {
     
     private lazy var badBtn: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = CommentCellResources.Font.replyCountBtnFont
+        button.titleLabel?.font = CommentCellResources.Font.badBtnFont
         button.setTitleColor(.black, for: .normal)
         button.setTitle("bad", for: .normal)
         return button
@@ -50,13 +54,13 @@ class commentCell: UITableViewCell {
     
     private lazy var replyBtn: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = CommentCellResources.Font.replyCountBtnFont
+        button.titleLabel?.font = CommentCellResources.Font.replyBtnFont
         button.setTitleColor(.black, for: .normal)
         button.setTitle("reply", for: .normal)
         return button
     }()
     
-    private lazy var replyCountBtn: UIButton = {
+    lazy var replyCountBtn: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = CommentCellResources.Font.replyCountBtnFont
         button.setTitleColor(.blue, for: .normal)
@@ -67,10 +71,7 @@ class commentCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
-        if replied == false {
-            replyCountBtn.isHidden = true
-            viewMovedOverRight.isHidden = true
-        }
+        setupRx()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -78,7 +79,7 @@ class commentCell: UITableViewCell {
     }
 }
 
-extension commentCell {
+extension CommentCell {
     private func setupUI() {
         let stack = createCommentStack()
         userImage.backgroundColor = .gray
@@ -105,12 +106,12 @@ extension commentCell {
             .top(to: name.bottomAnchor, constant: CommentCellResources.Constraint.commentTopConstraint)
             .left(to: userImage.rightAnchor, constant: CommentCellResources.Constraint.commentLeftConstraint)
             .right(to: rightAnchor, constant: CommentCellResources.Constraint.commentBottomConstraint)
-            .bottom(to: bottomAnchor, constant: CommentCellResources.Constraint.replyCountBtnBottomConstraint)
+            .bottom(to: bottomAnchor)
             .width(constant: frame.width / 1.2)
             .activate()
     }
     
-    func createCommentStack() -> UIStackView {
+    private func createCommentStack() -> UIStackView {
         let stack = VerticalStackView(arrangeSubViews: [
             comment,
             EqualingStackView(arrangeSubViews: [
@@ -123,17 +124,29 @@ extension commentCell {
                 replyCountBtn,
                 viewMovedOverRight
             ])
-        ], spacing: 10)
+        ], spacing: CommentCellResources.View.stackSpacing)
         
         return stack
     }
     
-    func configureInit(replied: Bool, image: String, name: String, time: String, comment: String, commentId: String) {
-        self.replied = replied
+    private func setupRx() {
+        replyBtn.rx.tap.asDriver()
+            .drive(onNext: {
+                self.delegate?.selectReplyBtn(index: self.identificationId)
+            }).disposed(by: disposeBag)
+        
+        replyCountBtn.rx.tap.asDriver()
+            .drive(onNext: {
+                self.delegate?.selectDoingReplyBtn(index: self.identificationId)
+            }).disposed(by: disposeBag)
+    }
+    
+    func configureInit(image: String, name: String, time: String, comment: String, commentId: String, identificationId: Int) {
         userImage.image = UIImage(named: image)
         self.name.text = name
         self.time.text = "・\(time)"
         self.comment.text = comment
         self.commentId = commentId
+        self.identificationId = identificationId
     }
 }

@@ -15,12 +15,12 @@ struct CommentCellResources {
         static let commentBottomConstraint: CGFloat = -20
         static let replyCountBtnTopConstraint: CGFloat = 20
         static let replyCountBtnLeftConstraint: CGFloat = 20
-        static let replyCountBtnBottomConstraint: CGFloat = -20
     }
     
     struct View {
         static let userImageLayerCornerRadius: CGFloat = 20
         static let commentNumberOfLines = 0
+        static let stackSpacing: CGFloat = 10
     }
     
     struct Font {
@@ -28,5 +28,8 @@ struct CommentCellResources {
         static let dateFont = UIFont.systemFont(ofSize: 12)
         static let commentFont = UIFont.systemFont(ofSize: 12)
         static let replyCountBtnFont = UIFont.systemFont(ofSize: 12)
+        static let goodBtnFont = UIFont.systemFont(ofSize: 12)
+        static let badBtnFont = UIFont.systemFont(ofSize: 12)
+        static let replyBtnFont = UIFont.systemFont(ofSize: 12)
     }
 }

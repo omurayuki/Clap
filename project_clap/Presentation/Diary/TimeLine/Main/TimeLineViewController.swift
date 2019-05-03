@@ -4,7 +4,6 @@ import RxCocoa
 import Firebase
 
 class TimeLineViewController: UIViewController {
-    //addsubviewの配列　鍋さん
     //日記登録時のタイムスタンプ　ソートするため
     //リプライ
     //下書き修正(提出or再下書き) 提出するとsubmitをtrue

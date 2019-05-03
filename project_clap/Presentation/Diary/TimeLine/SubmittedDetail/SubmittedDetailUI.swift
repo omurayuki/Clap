@@ -134,7 +134,7 @@ final class SubmittedDetailUIImpl: SubmittedDetailUI {
         let table = UITableView()
         table.estimatedRowHeight = SubmittedDetailResources.View.estimatedRowHeight
         table.rowHeight = UITableView.automaticDimension
-        table.register(commentCell.self, forCellReuseIdentifier: String(describing: commentCell.self))
+        table.register(CommentCell.self, forCellReuseIdentifier: String(describing: CommentCell.self))
         return table
     }()
 }
@@ -152,7 +152,7 @@ extension SubmittedDetailUIImpl {
         [userInfo, stack, commentWriteField, commentTable].forEach { diaryScrollView.addSubview($0) }
         diaryScrollView.anchor()
             .top(to: vc.view.safeAreaLayoutGuide.topAnchor)
-            .bottom(to: vc.view.safeAreaLayoutGuide.bottomAnchor)
+            .bottom(to: vc.view.bottomAnchor)
             .width(constant: vc.view.frame.width)
             .activate()
         

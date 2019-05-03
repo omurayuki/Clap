@@ -1,6 +1,6 @@
 import UIKit
 
-struct ReplyResources {
+struct ReplyCellResources {
     
     struct Constraint {
         static let userImageTopConstraint: CGFloat = 20
@@ -10,9 +10,10 @@ struct ReplyResources {
         static let nameTopConstraint: CGFloat = 20
         static let nameLeftConstraint: CGFloat = 20
         static let timeTopConstraint: CGFloat = 20
-        static let commentTopConstraint: CGFloat = 20
-        static let commentLeftConstraint: CGFloat = 20
-        static let commentRightConstraint: CGFloat = -20
+        static let replyTopConstraint: CGFloat = 20
+        static let replyLeftConstraint: CGFloat = 20
+        static let replyRightConstraint: CGFloat = -20
+        static let replyBottomConstraint: CGFloat = -20
         static let replyWriteFieldTopConstraint: CGFloat = 10
         static let replyWriteFieldLeftConstraint: CGFloat = 15
         static let replyWriteFieldRightConstraint: CGFloat = -15
@@ -24,7 +25,7 @@ struct ReplyResources {
         static let tableRowHeight: CGFloat = 100
         static let estimatedRowHeight: CGFloat = 200
         static let userImageLayerCornerRadius: CGFloat = 20
-        static let commentNumberOfLines = 0
+        static let replyNumberOfLines = 0
     }
     
     struct Font {
