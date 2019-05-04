@@ -14,6 +14,7 @@ struct SubmittedDetailResources {
         static let stackLeftConstraint: CGFloat = 15
         static let stackRightConstraint: CGFloat = 15
         static let textHeightConstraint: CGFloat = 150
+        static let submitBtnTopConstraint: CGFloat = 10
     }
     
     struct View {

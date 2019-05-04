@@ -16,7 +16,8 @@ class TimelineDataStoreImpl: TimelineDataStore {
                 .document(AppUserDefaults.getValue(keyName: "teamId"))
                 .collection("diaries")
                 .whereField("submit", isEqualTo: true)
-                .getDocuments { (snapshot, error) in
+                .order(by: "created_at", descending: true)
+                .addSnapshotListener { (snapshot, error) in
                 if let error = error {
                     single(.error(error))
                     return
@@ -64,7 +65,8 @@ class TimelineDataStoreImpl: TimelineDataStore {
                 .collection("diaries")
                 .whereField("submit", isEqualTo: submit)
                 .whereField("userId", isEqualTo: uid)
-                .getDocuments { (snapshot, error) in
+                .order(by: "created_at", descending: true)
+                .addSnapshotListener { (snapshot, error) in
                     if let error = error {
                         single(.error(error))
                         return

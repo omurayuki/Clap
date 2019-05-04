@@ -192,6 +192,7 @@ extension SubmittedDetailViewController: UITableViewDataSource {
     }
 }
 
+//// MARK:- Delegate
 extension SubmittedDetailViewController: CommentCellDelegate {
     
     func selectReplyBtn(index: Int) {

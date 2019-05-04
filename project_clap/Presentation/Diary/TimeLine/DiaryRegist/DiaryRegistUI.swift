@@ -64,7 +64,6 @@ final class DiaryRegistUIImpl: DiaryRegistUI {
         bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         bar.shadowImage = UIImage()
         bar.barTintColor = .white
-        bar.translatesAutoresizingMaskIntoConstraints = false
         return bar
     }()
     
@@ -85,7 +84,6 @@ final class DiaryRegistUIImpl: DiaryRegistUI {
         field.layer.borderColor = UIColor.gray.cgColor
         field.tintColor = .clear
         field.font = RegistCalendarResources.Font.defaultDateFont
-        field.translatesAutoresizingMaskIntoConstraints = false
         return field
     }()
     
@@ -97,7 +95,6 @@ final class DiaryRegistUIImpl: DiaryRegistUI {
         scroll.showsHorizontalScrollIndicator = false
         scroll.showsVerticalScrollIndicator = false
         scroll.isPagingEnabled = true
-        scroll.translatesAutoresizingMaskIntoConstraints = false
         return scroll
     }()
     
@@ -106,7 +103,6 @@ final class DiaryRegistUIImpl: DiaryRegistUI {
         control.pageIndicatorTintColor = .gray
         control.currentPageIndicatorTintColor = AppResources.ColorResources.shallowBlueColor
         control.currentPage = DiaryRegistResouces.View.currentPageNum
-        control.translatesAutoresizingMaskIntoConstraints = false
         return control
     }()
     
@@ -115,7 +111,6 @@ final class DiaryRegistUIImpl: DiaryRegistUI {
         button.setTitle(R.string.locarizable.diary_submit(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = DiaryRegistResouces.View.submitBtnLayerCornerRadius
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 }

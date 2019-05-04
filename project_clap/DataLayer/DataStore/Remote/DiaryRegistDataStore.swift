@@ -5,7 +5,10 @@ import FirebaseAuth
 import RealmSwift
 
 protocol DiaryRegistDataStore {
-    func registDiary(text1: String, text2: String, text3: String, text4: String, text5: String, text6: String, stringDate: String, submitted: Bool) -> Single<String>
+    func registDiary(text1: String, text2: String,
+                     text3: String, text4: String,
+                     text5: String, text6: String,
+                     stringDate: String, submitted: Bool) -> Single<String>
 }
 
 class DiaryRegistDataStoreImpl: DiaryRegistDataStore {
@@ -24,6 +27,7 @@ class DiaryRegistDataStoreImpl: DiaryRegistDataStore {
             "userId": UserSingleton.sharedInstance.uid,
             "name": UserSingleton.sharedInstance.name,
             "diaryId": diaryId,
+            "created_at": FieldValue.serverTimestamp(),
             "commented": false
         ] as [String : Any]
         return Single.create(subscribe: { single -> Disposable in

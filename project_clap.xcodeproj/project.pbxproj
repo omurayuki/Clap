@@ -49,8 +49,8 @@
 		C950E2BF2271BEA50074A5C4 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2BE2271BEA50074A5C4 /* TabBarViewModel.swift */; };
 		C950E2C32272160B0074A5C4 /* CommentCellResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2C22272160B0074A5C4 /* CommentCellResources.swift */; };
 		C950E2C5227219F10074A5C4 /* UserInfoResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2C4227219F10074A5C4 /* UserInfoResources.swift */; };
-		C950E2C722721E180074A5C4 /* SubmittedDetailDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2C622721E180074A5C4 /* SubmittedDetailDataStore.swift */; };
-		C950E2C922721F820074A5C4 /* SubmittedDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2C822721F820074A5C4 /* SubmittedDetailRepository.swift */; };
+		C950E2C722721E180074A5C4 /* DiaryDetailDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2C622721E180074A5C4 /* DiaryDetailDataStore.swift */; };
+		C950E2C922721F820074A5C4 /* DiaryDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2C822721F820074A5C4 /* DiaryDetailRepository.swift */; };
 		C950E2CB2273179D0074A5C4 /* CommentSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2CA2273179D0074A5C4 /* CommentSingleton.swift */; };
 		C9557CC62236457000D6F7A6 /* RegistCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9557CC52236457000D6F7A6 /* RegistCalendarViewController.swift */; };
 		C9557CC82236868F00D6F7A6 /* RegistCalendarResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9557CC72236868F00D6F7A6 /* RegistCalendarResources.swift */; };
@@ -178,6 +178,7 @@
 		C9FF9293227BF059005EF4F0 /* CommentCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF9292227BF059005EF4F0 /* CommentCellDelegate.swift */; };
 		C9FF9295227C0821005EF4F0 /* ReplySingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF9294227C0821005EF4F0 /* ReplySingleton.swift */; };
 		C9FF9297227C22BC005EF4F0 /* ReplyCellResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF9296227C22BC005EF4F0 /* ReplyCellResources.swift */; };
+		C9FF9299227DFAAC005EF4F0 /* DraftDiaryValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF9298227DFAAC005EF4F0 /* DraftDiaryValidation.swift */; };
 		DFB5334197BF2263EBE8960C /* Pods_project_clap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
@@ -227,8 +228,8 @@
 		C950E2BE2271BEA50074A5C4 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		C950E2C22272160B0074A5C4 /* CommentCellResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellResources.swift; sourceTree = "<group>"; };
 		C950E2C4227219F10074A5C4 /* UserInfoResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResources.swift; sourceTree = "<group>"; };
-		C950E2C622721E180074A5C4 /* SubmittedDetailDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittedDetailDataStore.swift; sourceTree = "<group>"; };
-		C950E2C822721F820074A5C4 /* SubmittedDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittedDetailRepository.swift; sourceTree = "<group>"; };
+		C950E2C622721E180074A5C4 /* DiaryDetailDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailDataStore.swift; sourceTree = "<group>"; };
+		C950E2C822721F820074A5C4 /* DiaryDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDetailRepository.swift; sourceTree = "<group>"; };
 		C950E2CA2273179D0074A5C4 /* CommentSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSingleton.swift; sourceTree = "<group>"; };
 		C9557CC52236457000D6F7A6 /* RegistCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarViewController.swift; sourceTree = "<group>"; };
 		C9557CC72236868F00D6F7A6 /* RegistCalendarResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistCalendarResources.swift; sourceTree = "<group>"; };
@@ -358,6 +359,7 @@
 		C9FF9292227BF059005EF4F0 /* CommentCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellDelegate.swift; sourceTree = "<group>"; };
 		C9FF9294227C0821005EF4F0 /* ReplySingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplySingleton.swift; sourceTree = "<group>"; };
 		C9FF9296227C22BC005EF4F0 /* ReplyCellResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyCellResources.swift; sourceTree = "<group>"; };
+		C9FF9298227DFAAC005EF4F0 /* DraftDiaryValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftDiaryValidation.swift; sourceTree = "<group>"; };
 		E7FE8D4EDE255747AFF42437 /* Pods-project_clap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project_clap.debug.xcconfig"; path = "Target Support Files/Pods-project_clap/Pods-project_clap.debug.xcconfig"; sourceTree = "<group>"; };
 		E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_project_clap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -508,7 +510,7 @@
 				C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */,
 				C98D64C8226DB72A00A1D7F9 /* DiaryRegistRepository.swift */,
 				C9A28AD3226F08B700F4AF2B /* TimelineRepository.swift */,
-				C950E2C822721F820074A5C4 /* SubmittedDetailRepository.swift */,
+				C950E2C822721F820074A5C4 /* DiaryDetailRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -906,6 +908,7 @@
 				C9A28AF922706B7F00F4AF2B /* DraftDetailUI.swift */,
 				C9A28AFB22706B8800F4AF2B /* DraftDetailViewModel.swift */,
 				C9A28AFD22706B9200F4AF2B /* DraftDetailResources.swift */,
+				C9FF9298227DFAAC005EF4F0 /* DraftDiaryValidation.swift */,
 			);
 			path = DraftDetail;
 			sourceTree = "<group>";
@@ -933,7 +936,7 @@
 				C9B67DD0225C997700F82AE7 /* MypageDataStore.swift */,
 				C98D64C6226DB2AF00A1D7F9 /* DiaryRegistDataStore.swift */,
 				C9A28AD1226F02CD00F4AF2B /* TimelineDataStore.swift */,
-				C950E2C622721E180074A5C4 /* SubmittedDetailDataStore.swift */,
+				C950E2C622721E180074A5C4 /* DiaryDetailDataStore.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -1207,7 +1210,7 @@
 				C950E2BB2271BBDC0074A5C4 /* TabBarDataStore.swift in Sources */,
 				C9F086D92233C91000F25E7A /* DisplayCalendarResources.swift in Sources */,
 				C9A28AE52270100800F4AF2B /* SubmittedDetailViewController.swift in Sources */,
-				C950E2C722721E180074A5C4 /* SubmittedDetailDataStore.swift in Sources */,
+				C950E2C722721E180074A5C4 /* DiaryDetailDataStore.swift in Sources */,
 				C98779022241117C005AAEA5 /* SelectRouting.swift in Sources */,
 				C9FF928B227803AE005EF4F0 /* ReplyUI.swift in Sources */,
 				C9877910224123C2005AAEA5 /* ConfirmationTeamIdUI.swift in Sources */,
@@ -1311,6 +1314,7 @@
 				C9C6FE8C2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift in Sources */,
 				C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */,
 				C950E2C32272160B0074A5C4 /* CommentCellResources.swift in Sources */,
+				C9FF9299227DFAAC005EF4F0 /* DraftDiaryValidation.swift in Sources */,
 				C913298E2252FBC000514EDE /* IndicatorShowable.swift in Sources */,
 				C98D64C1226D7DDA00A1D7F9 /* DiaryRegistValidation.swift in Sources */,
 				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
@@ -1356,7 +1360,7 @@
 				C913298222523D6B00514EDE /* TimeLineResources.swift in Sources */,
 				C9CC619C223F963B0093D37F /* DiaryView.swift in Sources */,
 				C9F086E02233ECD800F25E7A /* MypageEditViewController.swift in Sources */,
-				C950E2C922721F820074A5C4 /* SubmittedDetailRepository.swift in Sources */,
+				C950E2C922721F820074A5C4 /* DiaryDetailRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

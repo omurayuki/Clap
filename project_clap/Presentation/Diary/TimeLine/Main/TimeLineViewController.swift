@@ -4,14 +4,12 @@ import RxCocoa
 import Firebase
 
 class TimeLineViewController: UIViewController {
-    //日記登録時のタイムスタンプ　ソートするため
-    //リプライ
-    //下書き修正(提出or再下書き) 提出するとsubmitをtrue
+    //routingから
+    //rxに全て置き換える calendarの前に
+    //ここまでとreplyが終わればカレンダーに行く前にissue消化
     //画像
     //マイページで自分の日記一覧見れる機能
     //カレンダーで提出した自分の最新日記表示and詳細見れる
-    //rxに全て置き換える calendarの前に
-    //ここまでとreplyが終わればカレンダーに行く前にissue消化
     
     private var viewModel: TimelineViewModel!
     let activityIndicator = UIActivityIndicatorView()
@@ -141,9 +139,12 @@ extension TimeLineViewController: UITableViewDelegate {
         let submit = TimelineSingleton.sharedInstance.sections[indexPath.section].rowItems[indexPath.row].submit
         switch submit {
         case true:
-            navigationController?.pushViewController(SubmittedDetailViewController(timelineCellData: timelineCellData), animated: true)
+            let vc = SubmittedDetailViewController(timelineCellData: timelineCellData)
+            navigationController?.pushViewController(vc, animated: true)
         case false:
-            navigationController?.pushViewController(DraftDetailViewController(timelineCellData: timelineCellData), animated: true)
+            let vc = DraftDetailViewController(timelineCellData: timelineCellData)
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }

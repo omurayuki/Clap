@@ -17,7 +17,7 @@ class SubmittedDetailViewModel: SubmittedDetailViewModelType, SubmittedDetailVie
     let disposeBag = DisposeBag()
     
     func fetchDiaryDetail(teamId: String, diaryId: String, completion: @escaping ([String]?, Error?) -> Void) {
-        SubmittedDetailRepositoryImpl().fetchDiaryDetail(teamId: teamId, diaryId: diaryId)
+        DiaryDetailDataStoreImpl().fetchDiaryDetail(teamId: teamId, diaryId: diaryId)
             .subscribe { response in
                 switch response {
                 case .success(let data):

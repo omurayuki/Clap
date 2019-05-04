@@ -98,7 +98,7 @@ extension DiaryRegistViewController {
                                                 this.hideIndicator()
                                                 return
                                             }
-                                            AlertController.showAlertMessage(alertType: .registDiarySuccess, viewController: this)
+                                            this.dismiss(animated: true)
                                             this.hideIndicator()
                                             this.viewModel.emptyField(text1: this.ui.slides[0].text, text2: this.ui.slides[1].text,
                                                                       text3: this.ui.slides[2].text, text4: this.ui.slides[3].text,
@@ -128,7 +128,8 @@ extension DiaryRegistViewController {
                             this.hideIndicator()
                             return
                         }
-                        AlertController.showAlertMessage(alertType: .registDiarySuccess, viewController: this)
+                        
+                        this.dismiss(animated: true)
                         this.hideIndicator()
                         this.viewModel.emptyField(text1: this.ui.slides[0].text, text2: this.ui.slides[1].text,
                                                   text3: this.ui.slides[2].text, text4: this.ui.slides[3].text,
