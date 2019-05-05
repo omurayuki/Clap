@@ -27,14 +27,14 @@ extension TimeLineHeaderController {
         ui.timeLineSegment.rx.value.asObservable()
             .skip(1)
             .distinctUntilChanged()
-            .subscribe(onNext: { num in
+            .subscribe(onNext: { [weak self] num in
                 switch num {
                 case Segment.timeline.rawValue:
-                    self.fetchDiaries()
+                    self?.fetchDiaries()
                 case Segment.submitted.rawValue:
-                    self.fetchSubmittedDiaries(submit: true, uid: UserSingleton.sharedInstance.uid)
+                    self?.fetchSubmittedDiaries(submit: true, uid: UserSingleton.sharedInstance.uid)
                 case Segment.draft.rawValue:
-                    self.fetchDraftDiaries(submit: false, uid: UserSingleton.sharedInstance.uid)
+                    self?.fetchDraftDiaries(submit: false, uid: UserSingleton.sharedInstance.uid)
                 default: break
                 }
             }).disposed(by: viewModel.disposeBag)

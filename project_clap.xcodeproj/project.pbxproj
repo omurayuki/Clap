@@ -179,6 +179,12 @@
 		C9FF9295227C0821005EF4F0 /* ReplySingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF9294227C0821005EF4F0 /* ReplySingleton.swift */; };
 		C9FF9297227C22BC005EF4F0 /* ReplyCellResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF9296227C22BC005EF4F0 /* ReplyCellResources.swift */; };
 		C9FF9299227DFAAC005EF4F0 /* DraftDiaryValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF9298227DFAAC005EF4F0 /* DraftDiaryValidation.swift */; };
+		C9FF929B227E2A3D005EF4F0 /* SubmittedDetailRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF929A227E2A3C005EF4F0 /* SubmittedDetailRouting.swift */; };
+		C9FF929D227E2A9E005EF4F0 /* DraftDetailRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF929C227E2A9E005EF4F0 /* DraftDetailRouting.swift */; };
+		C9FF929F227F1220005EF4F0 /* CommentDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF929E227F1220005EF4F0 /* CommentDataStore.swift */; };
+		C9FF92A1227F141A005EF4F0 /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF92A0227F141A005EF4F0 /* CommentRepository.swift */; };
+		C9FF92A3227F203A005EF4F0 /* ReplyDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF92A2227F2039005EF4F0 /* ReplyDataStore.swift */; };
+		C9FF92A5227F2124005EF4F0 /* ReplyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF92A4227F2124005EF4F0 /* ReplyRepository.swift */; };
 		DFB5334197BF2263EBE8960C /* Pods_project_clap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
@@ -360,6 +366,12 @@
 		C9FF9294227C0821005EF4F0 /* ReplySingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplySingleton.swift; sourceTree = "<group>"; };
 		C9FF9296227C22BC005EF4F0 /* ReplyCellResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyCellResources.swift; sourceTree = "<group>"; };
 		C9FF9298227DFAAC005EF4F0 /* DraftDiaryValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftDiaryValidation.swift; sourceTree = "<group>"; };
+		C9FF929A227E2A3C005EF4F0 /* SubmittedDetailRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittedDetailRouting.swift; sourceTree = "<group>"; };
+		C9FF929C227E2A9E005EF4F0 /* DraftDetailRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftDetailRouting.swift; sourceTree = "<group>"; };
+		C9FF929E227F1220005EF4F0 /* CommentDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDataStore.swift; sourceTree = "<group>"; };
+		C9FF92A0227F141A005EF4F0 /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
+		C9FF92A2227F2039005EF4F0 /* ReplyDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyDataStore.swift; sourceTree = "<group>"; };
+		C9FF92A4227F2124005EF4F0 /* ReplyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyRepository.swift; sourceTree = "<group>"; };
 		E7FE8D4EDE255747AFF42437 /* Pods-project_clap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-project_clap.debug.xcconfig"; path = "Target Support Files/Pods-project_clap/Pods-project_clap.debug.xcconfig"; sourceTree = "<group>"; };
 		E918C44DB5DF39D8A7F023A7 /* Pods_project_clap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_project_clap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -511,6 +523,8 @@
 				C98D64C8226DB72A00A1D7F9 /* DiaryRegistRepository.swift */,
 				C9A28AD3226F08B700F4AF2B /* TimelineRepository.swift */,
 				C950E2C822721F820074A5C4 /* DiaryDetailRepository.swift */,
+				C9FF92A0227F141A005EF4F0 /* CommentRepository.swift */,
+				C9FF92A4227F2124005EF4F0 /* ReplyRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -875,6 +889,7 @@
 			children = (
 				C9A28AE42270100800F4AF2B /* SubmittedDetailViewController.swift */,
 				C9A28AE62270103E00F4AF2B /* SubmittedDetailUI.swift */,
+				C9FF929A227E2A3C005EF4F0 /* SubmittedDetailRouting.swift */,
 				C9A28AE82270109F00F4AF2B /* SubmittedDetailViewModel.swift */,
 				C9A28AEA227010AD00F4AF2B /* SubmittedDetailResources.swift */,
 				C9A28AF122701B8500F4AF2B /* View */,
@@ -906,6 +921,7 @@
 			children = (
 				C9A28AF722706B6100F4AF2B /* DraftDetailViewController.swift */,
 				C9A28AF922706B7F00F4AF2B /* DraftDetailUI.swift */,
+				C9FF929C227E2A9E005EF4F0 /* DraftDetailRouting.swift */,
 				C9A28AFB22706B8800F4AF2B /* DraftDetailViewModel.swift */,
 				C9A28AFD22706B9200F4AF2B /* DraftDetailResources.swift */,
 				C9FF9298227DFAAC005EF4F0 /* DraftDiaryValidation.swift */,
@@ -937,6 +953,8 @@
 				C98D64C6226DB2AF00A1D7F9 /* DiaryRegistDataStore.swift */,
 				C9A28AD1226F02CD00F4AF2B /* TimelineDataStore.swift */,
 				C950E2C622721E180074A5C4 /* DiaryDetailDataStore.swift */,
+				C9FF929E227F1220005EF4F0 /* CommentDataStore.swift */,
+				C9FF92A2227F2039005EF4F0 /* ReplyDataStore.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -1196,9 +1214,11 @@
 			files = (
 				C9F086D72233C24600F25E7A /* CalendarLogic.swift in Sources */,
 				C98D64D0226E268A00A1D7F9 /* FirstdayOfMonth.swift in Sources */,
+				C9FF92A1227F141A005EF4F0 /* CommentRepository.swift in Sources */,
 				C98D64D2226EB02500A1D7F9 /* TimelineSingleton.swift in Sources */,
 				C959BF76222D4C2E00207986 /* RepresentMemberRegisterResources.swift in Sources */,
 				C959BF5B222CC45E00207986 /* UILabel+Extension.swift in Sources */,
+				C9FF929D227E2A9E005EF4F0 /* DraftDetailRouting.swift in Sources */,
 				C9C6FE832240A8B4001FE7A5 /* SelectUI.swift in Sources */,
 				C9A28AEB227010AD00F4AF2B /* SubmittedDetailResources.swift in Sources */,
 				C987790A22411B23005AAEA5 /* LoginRouting.swift in Sources */,
@@ -1238,6 +1258,7 @@
 				C950E2BD2271BDFF0074A5C4 /* TabBarRepository.swift in Sources */,
 				C937FD7E2222E22B00F9624E /* LoginViewModel.swift in Sources */,
 				C959BF66222D124300207986 /* MemberInfoRegisterViewModel.swift in Sources */,
+				C9FF92A3227F203A005EF4F0 /* ReplyDataStore.swift in Sources */,
 				C91329AC2253937C00514EDE /* RandomString.swift in Sources */,
 				C98D64C9226DB72A00A1D7F9 /* DiaryRegistRepository.swift in Sources */,
 				C9A28B002270DB7A00F4AF2B /* DiarySingleton.swift in Sources */,
@@ -1283,6 +1304,7 @@
 				C9EA286C22434F00003F40DD /* MypageEditResources.swift in Sources */,
 				C91156182250A60100CB97E9 /* UIView+Layout.swift in Sources */,
 				C911562D22520B2900CB97E9 /* TimeLineHeaderCell.swift in Sources */,
+				C9FF92A5227F2124005EF4F0 /* ReplyRepository.swift in Sources */,
 				C9557CC62236457000D6F7A6 /* RegistCalendarViewController.swift in Sources */,
 				C98A093C2247454700AFAEF2 /* RegistCalendarEnum.swift in Sources */,
 				C9EA28642243455F003F40DD /* MypageUI.swift in Sources */,
@@ -1317,6 +1339,8 @@
 				C9FF9299227DFAAC005EF4F0 /* DraftDiaryValidation.swift in Sources */,
 				C913298E2252FBC000514EDE /* IndicatorShowable.swift in Sources */,
 				C98D64C1226D7DDA00A1D7F9 /* DiaryRegistValidation.swift in Sources */,
+				C9FF929B227E2A3D005EF4F0 /* SubmittedDetailRouting.swift in Sources */,
+				C9FF929F227F1220005EF4F0 /* CommentDataStore.swift in Sources */,
 				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
 				C987790C22412021005AAEA5 /* TeamIdWriteUI.swift in Sources */,
 				C959BF6C222D4AE500207986 /* LoginResources.swift in Sources */,

@@ -16,6 +16,12 @@ class DraftDetailViewController: UIViewController {
         return ui
     }()
     
+    private lazy var routing: DraftDetailRouting = {
+        let routing = DraftDetailRoutingImpl()
+        routing.viewController = self
+        return routing
+    }()
+    
     init(timelineCellData: TimelineCellData) {
         recievedTimelineCellData = timelineCellData
         super.init(nibName: nil, bundle: nil)
@@ -80,7 +86,7 @@ extension DraftDetailViewController {
                                             }
                                             this.hideIndicator()
                                             this.delegate?.reloadData()
-                                            this.navigationController?.popViewController(animated: true)
+                                            this.routing.popViewController(completion: nil)
                 })
             }).disposed(by: viewModel.disposeBag)
 
@@ -101,7 +107,9 @@ extension DraftDetailViewController {
                                                 }
                                                 this.hideIndicator()
                                                 this.delegate?.reloadData()
-                                                this.navigationController?.popViewController(animated: true)
+                                                this.routing.popViewController(completion: {
+                                                    DiarySingleton.sharedInstance.diaryId = ""
+                                                })
                     })
                 })
             }).disposed(by: viewModel.disposeBag)
@@ -119,7 +127,7 @@ extension DraftDetailViewController {
         ui.viewTapGesture.rx.event
             .bind { [weak self] _ in
                 self?.view.endEditing(true)
-            }.disposed(by: DisposeBag())
+            }.disposed(by: viewModel.disposeBag)
     }
     
     private func fetchDiaryDetail() {

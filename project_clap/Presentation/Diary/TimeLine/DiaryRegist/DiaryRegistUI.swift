@@ -24,7 +24,7 @@ protocol DiaryRegistUI: UI {
 
 final class DiaryRegistUIImpl: DiaryRegistUI {
     
-    var viewController: UIViewController?
+    weak var viewController: UIViewController?
     
     var slides: [DiaryView] = []
     

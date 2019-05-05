@@ -16,6 +16,12 @@ class SubmittedDetailViewController: UIViewController {
         return ui
     }()
     
+    private lazy var routing: SubmittedDetailRouting = {
+        let routing = SubmittedDetailRoutingImpl()
+        routing.viewController = self
+        return routing
+    }()
+    
     init(timelineCellData: TimelineCellData) {
         recievedTimelineCellData = timelineCellData
         super.init(nibName: nil, bundle: nil)
@@ -44,82 +50,30 @@ extension SubmittedDetailViewController {
     private func setupViewModel() {
         ui.commentWriteField.rx.controlEvent(.editingDidEndOnExit).asDriver()
             .filter({ self.ui.commentWriteField.text?.count ?? 0 > 0 })
-            .drive(onNext: { _ in
-                let commentId = RandomString.generateRandomString(length: 15)
-                let setData = [
-                    "commentId": commentId,
-                    "image": UserSingleton.sharedInstance.image,
-                    "name": UserSingleton.sharedInstance.name,
-                    "userId": UserSingleton.sharedInstance.uid,
-                    "comment": self.ui.commentWriteField.text ?? "",
-                    "time": DateFormatter.acquireCurrentTime(),
-                    "replied": false,
-                    "created_at": FieldValue.serverTimestamp(),
-                    ] as [String : Any]
-                Firebase.db
-                    .collection("diary")
-                    .document(AppUserDefaults.getValue(keyName: "teamId"))
-                    .collection("diaries")
-                    .document(DiarySingleton.sharedInstance.diaryId)
-                    .collection("comments")
-                    .document(commentId)
-                    .setData(setData, completion: { error in
-                        if let _ = error {
-                            AlertController.showAlertMessage(alertType: .sendCommentFailure, viewController: self)
-                            return
-                        }
-                        Firebase.db
-                            .collection("diary")
-                            .document(AppUserDefaults.getValue(keyName: "teamId"))
-                            .collection("diaries")
-                            .document(DiarySingleton.sharedInstance.diaryId)
-                            .updateData(["commented": true])
-                    })
-                self.ui.commentWriteField.text = ""
-                self.ui.commentTable.reloadData()
+            .drive(onNext: { [weak self] _ in
+                guard let this = self else { return }
+                this.viewModel.submitComment(comment: this.ui.commentWriteField.text ?? "", completion: { _, error in
+                    if let _ = error {
+                        AlertController.showAlertMessage(alertType: .sendCommentFailure, viewController: this)
+                        return
+                    }
+                    this.ui.commentWriteField.text = ""
+                    this.ui.commentTable.reloadData()
+                })
             }).disposed(by: viewModel.disposeBag)
         
         ui.diaryScrollView.rx.contentOffset
             .filter({ point in point.y >= 300 })
             .take(1)
-            .subscribe(onNext: { point in
-                Firebase.db
-                    .collection("diary")
-                    .document(AppUserDefaults.getValue(keyName: "teamId"))
-                    .collection("diaries")
-                    .document(DiarySingleton.sharedInstance.diaryId)
-                    .collection("comments")
-                    .order(by: "created_at", descending: true)
-                    .addSnapshotListener({ snapshot, error in
-                        if let _ = error {
-                            AlertController.showAlertMessage(alertType: .fetchCommentfailure, viewController: self)
-                            return
-                        }
-                        guard let snapshot = snapshot else { return }
-                        let documents = snapshot.documents
-                        var commentIdArr = [String](); var userIdArr = [String]()
-                        var imageArr = [String](); var nameArr = [String]()
-                        var timeArr = [String](); var commentArr = [String]()
-                        var repliedArr = [Bool]()
-                        for tuple in documents.enumerated() {
-                            let data = tuple.element.data()
-                            guard
-                                let commentId = data["commentId"] as? String, let userId = data["userId"] as? String,
-                                let image = data["image"] as? String, let name = data["name"] as? String,
-                                let time = data["time"] as? String, let comment = data["comment"] as? String,
-                                let replied = data["replied"] as? Bool
-                            else { return }
-                            commentIdArr.append(commentId); userIdArr.append(userId)
-                            imageArr.append(image); nameArr.append(name)
-                            timeArr.append(time); commentArr.append(comment)
-                            repliedArr.append(replied)
-                        }
-                        CommentSingleton.sharedInstance.commentId = commentIdArr; CommentSingleton.sharedInstance.userId = userIdArr
-                        CommentSingleton.sharedInstance.image = imageArr; CommentSingleton.sharedInstance.name = nameArr
-                        CommentSingleton.sharedInstance.time = timeArr; CommentSingleton.sharedInstance.comment = commentArr
-                        CommentSingleton.sharedInstance.replied = repliedArr
-                        self.ui.commentTable.reloadData()
-                    })
+            .subscribe(onNext: { [weak self] point in
+                guard let this = self else { return }
+                this.viewModel.fetchComment(completion: { _, error in
+                    if let _ = error {
+                        AlertController.showAlertMessage(alertType: .fetchCommentfailure, viewController: this)
+                        return
+                    }
+                    this.ui.commentTable.reloadData()
+                })
             }).disposed(by: viewModel.disposeBag)
         
         ui.commentWriteField.rx.controlEvent(.editingDidEndOnExit)
@@ -167,6 +121,14 @@ extension SubmittedDetailViewController {
                 self?.ui.text5.text = data?[4]; self?.ui.text6.text = data?[5]
             }
     }
+    
+    func isHiddenReplyBtn(cell: CommentCell, indexPath: IndexPath) {
+        cell.delegate = self
+        if CommentSingleton.sharedInstance.replied[indexPath.row] == false {
+            cell.replyCountBtn.isHidden = true
+            cell.viewMovedOverRight.isHidden = true
+        }
+    }
 }
 
 extension SubmittedDetailViewController: UITableViewDataSource {
@@ -183,11 +145,7 @@ extension SubmittedDetailViewController: UITableViewDataSource {
                            comment: CommentSingleton.sharedInstance.comment[indexPath.row],
                            commentId: CommentSingleton.sharedInstance.commentId[indexPath.row],
                            identificationId: indexPath.row)
-        cell.delegate = self
-        if CommentSingleton.sharedInstance.replied[indexPath.row] == false {
-            cell.replyCountBtn.isHidden = true
-            cell.viewMovedOverRight.isHidden = true
-        }
+        isHiddenReplyBtn(cell: cell, indexPath: indexPath)
         return cell
     }
 }
@@ -196,12 +154,12 @@ extension SubmittedDetailViewController: UITableViewDataSource {
 extension SubmittedDetailViewController: CommentCellDelegate {
     
     func selectReplyBtn(index: Int) {
-        present(ReplyViewController(userImage: CommentSingleton.sharedInstance.image[index],
-                                    name: CommentSingleton.sharedInstance.name[index],
-                                    time: CommentSingleton.sharedInstance.time[index],
-                                    comment: CommentSingleton.sharedInstance.comment[index],
-                                    commentId: CommentSingleton.sharedInstance.commentId[index]),
-                animated: true)
+        let vc = ReplyViewController(userImage: CommentSingleton.sharedInstance.image[index],
+                                     name: CommentSingleton.sharedInstance.name[index],
+                                     time: CommentSingleton.sharedInstance.time[index],
+                                     comment: CommentSingleton.sharedInstance.comment[index],
+                                     commentId: CommentSingleton.sharedInstance.commentId[index])
+        routing.showReply(vc: vc)
     }
     
     func selectDoingReplyBtn(index: Int) {
@@ -210,10 +168,9 @@ extension SubmittedDetailViewController: CommentCellDelegate {
                                      time: CommentSingleton.sharedInstance.time[index],
                                      comment: CommentSingleton.sharedInstance.comment[index],
                                      commentId: CommentSingleton.sharedInstance.commentId[index])
-        present(vc,
-                animated: true, completion: {
-                    vc.ui.replyWriteField.becomeFirstResponder()
-        })
+        routing.showReplyAndOpeningField(vc: vc) {
+            vc.ui.replyWriteField.becomeFirstResponder()
+        }
     }
 }
 

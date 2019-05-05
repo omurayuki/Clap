@@ -26,7 +26,7 @@ protocol DraftDetailUI: UI {
 
 final class DraftDetailUIImpl: DraftDetailUI {
     
-    var viewController: UIViewController?
+    weak var viewController: UIViewController?
     
     private(set) var viewTapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer()

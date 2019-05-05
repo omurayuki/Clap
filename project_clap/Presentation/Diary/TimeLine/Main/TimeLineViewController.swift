@@ -4,8 +4,6 @@ import RxCocoa
 import Firebase
 
 class TimeLineViewController: UIViewController {
-    //routingから
-    //rxに全て置き換える calendarの前に
     //ここまでとreplyが終わればカレンダーに行く前にissue消化
     //画像
     //マイページで自分の日記一覧見れる機能
@@ -90,21 +88,6 @@ extension TimeLineViewController {
     }
 }
 
-//// MARK:- Delegate
-extension TimeLineViewController: TimelineDelegate {
-    func reloadData() {
-        ui.timelineTableView.reloadData()
-    }
-    
-    func showTimelineIndicator() {
-        showIndicator()
-    }
-    
-    func hideTimelineIndicator() {
-        hideIndicator()
-    }
-}
-
 extension TimeLineViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -127,7 +110,10 @@ extension TimeLineViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TimelineCell.self), for: indexPath) as? TimelineCell else { return UITableViewCell() }
         let cellDetail = TimelineSingleton.sharedInstance.sections[indexPath.section].rowItems[indexPath.row]
-        cell.configureInit(image: "cellDetail.image", title: cellDetail.title ?? "", name: cellDetail.name ?? "", time: cellDetail.time ?? "")
+        cell.configureInit(image: "cellDetail.image",
+                           title: cellDetail.title ?? "",
+                           name: cellDetail.name ?? "",
+                           time: cellDetail.time ?? "")
         return cell
     }
 }
@@ -138,16 +124,25 @@ extension TimeLineViewController: UITableViewDelegate {
         let timelineCellData = TimelineSingleton.sharedInstance.sections[indexPath.section].rowItems[indexPath.row]
         let submit = TimelineSingleton.sharedInstance.sections[indexPath.section].rowItems[indexPath.row].submit
         switch submit {
-        case true:
-            let vc = SubmittedDetailViewController(timelineCellData: timelineCellData)
-            navigationController?.pushViewController(vc, animated: true)
-        case false:
-            let vc = DraftDetailViewController(timelineCellData: timelineCellData)
-            vc.delegate = self
-            navigationController?.pushViewController(vc, animated: true)
-        default:
-            break
+        case true:  routing.showSubmittedDiary(timelineData: timelineCellData)
+        case false: routing.showDraftDiary(timelineData: timelineCellData)
+        default:    break
         }
+    }
+}
+
+//// MARK:- Delegate
+extension TimeLineViewController: TimelineDelegate {
+    func reloadData() {
+        ui.timelineTableView.reloadData()
+    }
+    
+    func showTimelineIndicator() {
+        showIndicator()
+    }
+    
+    func hideTimelineIndicator() {
+        hideIndicator()
     }
 }
 

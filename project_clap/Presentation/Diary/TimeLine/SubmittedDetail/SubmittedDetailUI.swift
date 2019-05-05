@@ -27,7 +27,7 @@ protocol SubmittedDetailUI: UI {
 
 final class SubmittedDetailUIImpl: SubmittedDetailUI {
     
-    var viewController: UIViewController?
+    weak var viewController: UIViewController?
     
     private(set) var diaryScrollView: UIScrollView = {
         let scroll = UIScrollView()

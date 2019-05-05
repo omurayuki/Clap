@@ -10,8 +10,8 @@ class ReplyViewController: UIViewController {
     private var time: String
     private var comment: String
     private var commentId: String
+    private var viewModel: ReplyViewModel!
     let activityIndicator = UIActivityIndicatorView()
-    let disposeBag = DisposeBag()
     
     lazy var ui: ReplyUI = {
         let ui = ReplyUIImpl()
@@ -37,8 +37,9 @@ class ReplyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ui.setupUI(userImage: userImage, name: name, time: time, comment: comment)
+        viewModel = ReplyViewModel()
         setupViewModel()
-        fetchDiaryDetail(teamId: AppUserDefaults.getValue(keyName: "teamId"),
+        fetchReplies(teamId: AppUserDefaults.getValue(keyName: "teamId"),
                          diaryId: DiarySingleton.sharedInstance.diaryId,
                          commentId: self.commentId)
     }
@@ -50,88 +51,35 @@ extension ReplyViewController {
             .bind { [weak self] _ in
                 guard let this = self else { return }
                 this.dismiss(animated: true)
-            }.disposed(by: disposeBag)
+            }.disposed(by: viewModel.disposeBag)
         
         ui.replyWriteField.rx.controlEvent(.editingDidEndOnExit).asDriver()
             .filter({ self.ui.replyWriteField.text?.count ?? 0 > 0 })
-            .drive(onNext: { _ in
-                let replyId = RandomString.generateRandomString(length: 15)
-                let setData = [
-                    "replyId": replyId,
-                    "image": UserSingleton.sharedInstance.image,
-                    "name": UserSingleton.sharedInstance.name,
-                    "userId": UserSingleton.sharedInstance.uid,
-                    "reply": self.ui.replyWriteField.text ?? "",
-                    "time": DateFormatter.acquireCurrentTime(),
-                    "created_at": FieldValue.serverTimestamp(),
-                    ] as [String : Any]
-                Firebase.db
-                    .collection("diary")
-                    .document(AppUserDefaults.getValue(keyName: "teamId"))
-                    .collection("diaries")
-                    .document(DiarySingleton.sharedInstance.diaryId)
-                    .collection("comments")
-                    .document(self.commentId)
-                    .collection("replied")
-                    .document(replyId)
-                    .setData(setData, completion: { error in
-                        if let _ = error {
-                            AlertController.showAlertMessage(alertType: .sendCommentFailure, viewController: self)
-                            return
-                        }
-                        Firebase.db
-                            .collection("diary")
-                            .document(AppUserDefaults.getValue(keyName: "teamId"))
-                            .collection("diaries")
-                            .document(DiarySingleton.sharedInstance.diaryId)
-                            .collection("comments")
-                            .document(self.commentId)
-                            .updateData(["replied": true])
-                    })
-                self.ui.replyWriteField.text = ""
-                self.ui.replyTable.reloadData()
-            }).disposed(by: disposeBag)
+            .drive(onNext: { [weak self] _ in
+                guard let this = self else { return }
+                this.viewModel.submitReply(reply: this.ui.replyWriteField.text ?? "", commentId: this.commentId, completion: { _, error in
+                    if let _ = error {
+                        AlertController.showAlertMessage(alertType: .sendCommentFailure, viewController: this)
+                        return
+                    }
+                    this.ui.replyWriteField.text = ""
+                    this.ui.replyTable.reloadData()
+                })
+            }).disposed(by: viewModel.disposeBag)
     }
     
-    private func fetchDiaryDetail(teamId: String, diaryId: String, commentId: String) {
+    private func fetchReplies(teamId: String, diaryId: String, commentId: String) {
         showIndicator()
-        Firebase.db
-            .collection("diary")
-            .document(teamId)
-            .collection("diaries")
-            .document(diaryId)
-            .collection("comments")
-            .document(commentId)
-            .collection("replied")
-            .order(by: "created_at", descending: true)
-            .addSnapshotListener({ snapshot, error in
-                if let _ = error {
-                    self.hideIndicator()
-                    AlertController.showAlertMessage(alertType: .fetchReplyFailure, viewController: self)
-                    return
-                }
-                guard let snapshot = snapshot else { return }
-                let documents = snapshot.documents
-                var replyIdArr = [String](); var userIdArr = [String]()
-                var imageArr = [String](); var nameArr = [String]()
-                var timeArr = [String](); var replyArr = [String]()
-                for tuple in documents.enumerated() {
-                    let data = tuple.element.data()
-                    guard
-                        let replyId = data["replyId"] as? String, let userId = data["userId"] as? String,
-                        let image = data["image"] as? String, let name = data["name"] as? String,
-                        let time = data["time"] as? String, let reply = data["reply"] as? String
-                        else { return }
-                    replyIdArr.append(replyId); userIdArr.append(userId)
-                    imageArr.append(image); nameArr.append(name)
-                    timeArr.append(time); replyArr.append(reply)
-                }
-                ReplySingleton.sharedInstance.replyId = replyIdArr; ReplySingleton.sharedInstance.userId = userIdArr
-                ReplySingleton.sharedInstance.image = imageArr; ReplySingleton.sharedInstance.name = nameArr
-                ReplySingleton.sharedInstance.time = timeArr; ReplySingleton.sharedInstance.reply = replyArr
-                self.hideIndicator()
-                self.ui.replyTable.reloadData()
-            })
+        self.viewModel.fetchReplies(teamId: teamId, diaryId: diaryId, commentId: commentId) { [weak self] _, error in
+            guard let this = self else { return }
+            if let _ = error {
+                this.hideIndicator()
+                AlertController.showAlertMessage(alertType: .fetchReplyFailure, viewController: this)
+                return
+            }
+            this.hideIndicator()
+            this.ui.replyTable.reloadData()
+        }
     }
 }
 
@@ -142,7 +90,10 @@ extension ReplyViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ReplyCell.self), for: indexPath) as? ReplyCell else { return UITableViewCell() }
-        cell.configureInit(image: ReplySingleton.sharedInstance.image[indexPath.row], name: ReplySingleton.sharedInstance.name[indexPath.row], time: ReplySingleton.sharedInstance.time[indexPath.row], reply: ReplySingleton.sharedInstance.reply[indexPath.row])
+        cell.configureInit(image: ReplySingleton.sharedInstance.image[indexPath.row],
+                           name: ReplySingleton.sharedInstance.name[indexPath.row],
+                           time: ReplySingleton.sharedInstance.time[indexPath.row],
+                           reply: ReplySingleton.sharedInstance.reply[indexPath.row])
         return cell
     }
 }
