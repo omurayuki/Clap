@@ -59,7 +59,8 @@ class MypageEditViewModel: MypageEditViewModelType, MypageEditViewModelInput, My
     
     func updateMypage(uid: String, team: String, role: String, mail: String, completion: @escaping (String?, Error?) -> Void) {
         let updateData = ["team": team, "role": role, "mail": mail]
-        MypageRepositoryImpl().updateMypageData(uid: uid, updateData: updateData)
+        let updateTeam = ["belong": team]
+        MypageRepositoryImpl().updateMypageData(uid: uid, updateData: updateData, updateTeam: updateTeam)
             .subscribe { single in
                 switch single {
                 case .success(let data):

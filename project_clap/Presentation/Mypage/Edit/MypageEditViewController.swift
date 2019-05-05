@@ -81,9 +81,10 @@ extension MypageEditViewController {
                     this.viewModel?.updateMypage(uid: this.recievedUid, team: this.ui.belongTeamField.text ?? "",
                                                  role: this.ui.positionField.text ?? "",
                                                  mail: this.ui.mailField.text ?? "",
-                                                 completion: { (_, error) in
+                                                 completion: { _, error in
                         if let error = error {
                             this.hideIndicator(completion: { print(error.localizedDescription) })
+                            return
                         }
                         this.hideIndicator(completion: { this.routing.showPrev(vc: this) })
                     })

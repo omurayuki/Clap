@@ -8,7 +8,9 @@ protocol SignupDataStore {
     func signup(email: String, pass: String, completion: ((String?) -> Void)?) -> Single<AuthDataResult>
     func saveTeamData(teamId: String, team: String, grade: String, sportsKind: String) -> Single<String>
     func registUserWithTeam(teamId: String, uid: String) -> Single<String>
-    func saveUserData(user: String, teamId: String, name: String, role: String, mail: String, team: String) -> Single<String>
+    func saveUserData(user: String, teamId: String,
+                      name: String, role: String,
+                      mail: String, team: String) -> Single<String>
     func fetchBelongData(teamId: String) -> Single<String>
     func fetchBelongData(teamId: String, completion: @escaping (String?) -> Void)
 }
@@ -67,7 +69,9 @@ struct SignupDataStoreImpl: SignupDataStore {
         })
     }
     
-    func saveUserData(user: String, teamId: String, name: String, role: String, mail: String, team: String) -> Single<String> {
+    func saveUserData(user: String, teamId: String,
+                      name: String, role: String,
+                      mail: String, team: String) -> Single<String> {
         return Single.create(subscribe: { single -> Disposable in
             let setData = ["teamId": teamId, "name": name, "role": role, "userId": user, "mail": mail, "team": team]
             Firebase.db

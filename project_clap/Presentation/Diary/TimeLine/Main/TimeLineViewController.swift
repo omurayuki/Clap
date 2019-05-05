@@ -4,7 +4,6 @@ import RxCocoa
 import Firebase
 
 class TimeLineViewController: UIViewController {
-    //ここまでとreplyが終わればカレンダーに行く前にissue消化
     //画像
     //マイページで自分の日記一覧見れる機能
     //カレンダーで提出した自分の最新日記表示and詳細見れる
@@ -77,7 +76,6 @@ extension TimeLineViewController {
         viewModel.fetchDiaries { [weak self] (data, error) in
             if let _ = error {
                 self?.hideIndicator()
-                AlertController.showAlertMessage(alertType: .logoutFailure, viewController: self ?? UIViewController())
             }
             TimelineSingleton.sharedInstance.sections = TableSection.group(rowItems: data ?? [TimelineCellData](), by: { headline in
                 DateOperator.firstDayOfMonth(date: headline.date ?? Date())

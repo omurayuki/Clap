@@ -6,7 +6,7 @@ import RealmSwift
 
 protocol MypageDataStore {
     func fetchMypageData(uid: String) -> Single<Mypage>
-    func updateMypageData(uid: String, updateData: [String: Any]) -> Single<String>
+    func updateMypageData(uid: String, updateData: [String: Any], updateTeam: [String: Any]) -> Single<String>
     func updateEmail(email: String)
 }
 
@@ -19,6 +19,7 @@ class MypageDataStoreImpl: MypageDataStore {
                 .getDocument(completion: { (response, error) in
                 if let error = error {
                     single(.error(error))
+                    return
                 }
                 guard let document = response, document.exists else { return }
                 guard let documentData = document.data() as? [String : String] else { return }
@@ -29,16 +30,23 @@ class MypageDataStoreImpl: MypageDataStore {
         })
     }
     
-    func updateMypageData(uid: String, updateData: [String: Any]) -> Single<String> {
+    func updateMypageData(uid: String, updateData: [String: Any], updateTeam: [String: Any]) -> Single<String> {
         return Single.create(subscribe: { single -> Disposable in
             Firebase.db
                 .collection("users")
                 .document(uid)
                 .updateData(updateData, completion: { error in
-                if let error = error {
-                    single(.error(error))
-                }
-                single(.success("successful"))
+                    if let _ = error { return }
+                    Firebase.db
+                        .collection("team")
+                        .document(AppUserDefaults.getValue(keyName: "teamId"))
+                        .updateData(updateTeam, completion: { error in
+                            if let error = error {
+                                single(.error(error))
+                                return
+                            }
+                            single(.success("successful"))
+                        })
             })
             return Disposables.create()
         })

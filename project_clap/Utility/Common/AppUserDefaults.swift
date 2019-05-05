@@ -12,4 +12,10 @@ struct AppUserDefaults {
         let userDefaults: UserDefaults = UserDefaults.standard
         return userDefaults.string(forKey: keyName) ?? ""
     }
+    
+    static func removeValue(keyName: String) {
+        let userDefaults: UserDefaults = UserDefaults.standard
+        userDefaults.removeObject(forKey: keyName)
+        userDefaults.synchronize()
+    }
 }

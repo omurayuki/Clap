@@ -45,8 +45,6 @@ extension TimeLineHeaderController {
         self.viewModel.fetchDiaries { [weak self] (data, error) in
             if let _ = error {
                 self?.delegate?.hideTimelineIndicator()
-                AlertController.showAlertMessage(alertType: .diaryFetchFailure, viewController: self ?? UIViewController())
-                
             }
             TimelineSingleton.sharedInstance.sections = TableSection.group(rowItems: data ?? [TimelineCellData](), by: { headline in
                 DateOperator.firstDayOfMonth(date: headline.date ?? Date())
@@ -61,7 +59,6 @@ extension TimeLineHeaderController {
         viewModel.fetchSubmittedDiaries(submit: submit, uid: uid) { [weak self] (data, error) in
             if let _ = error {
                 self?.delegate?.hideTimelineIndicator()
-                AlertController.showAlertMessage(alertType: .diaryFetchFailure, viewController: self ?? UIViewController())
             }
             TimelineSingleton.sharedInstance.sections = TableSection.group(rowItems: data ?? [TimelineCellData](), by: { headline in
                 DateOperator.firstDayOfMonth(date: headline.date ?? Date())
@@ -76,7 +73,6 @@ extension TimeLineHeaderController {
         viewModel.fetchSubmittedDiaries(submit: submit, uid: uid) { [weak self] (data, error) in
             if let _ = error {
                 self?.delegate?.hideTimelineIndicator()
-                AlertController.showAlertMessage(alertType: .diaryFetchFailure, viewController: self ?? UIViewController())
             }
             TimelineSingleton.sharedInstance.sections = TableSection.group(rowItems: data ?? [TimelineCellData](), by: { headline in
                 DateOperator.firstDayOfMonth(date: headline.date ?? Date())

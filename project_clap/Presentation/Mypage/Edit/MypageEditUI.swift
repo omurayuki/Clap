@@ -33,13 +33,11 @@ final class MypageEditUIImple: MypageEditUI {
         image.backgroundColor = .gray
         image.clipsToBounds = true
         image.layer.cornerRadius = MypageResources.View.userPhotoLayerCornerRadius
-        image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
     private(set) var userPhotoWrapView: CustomView = {
         let view = CustomView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -60,7 +58,6 @@ final class MypageEditUIImple: MypageEditUI {
     private(set) var belongStack: CustomStackView = {
         let stack = CustomStackView()
         stack.axis = .horizontal
-        stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
@@ -90,7 +87,6 @@ final class MypageEditUIImple: MypageEditUI {
     private(set) var positionStack: CustomStackView = {
         let stack = CustomStackView()
         stack.axis = .horizontal
-        stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
@@ -111,7 +107,6 @@ final class MypageEditUIImple: MypageEditUI {
     private(set) var mailStack: CustomStackView = {
         let stack = CustomStackView()
         stack.axis = .horizontal
-        stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
@@ -131,7 +126,6 @@ final class MypageEditUIImple: MypageEditUI {
         button.layer.cornerRadius = MypageEditResources.View.saveBtnLayerCornerRadius
         button.setTitle(R.string.locarizable.save(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 }
