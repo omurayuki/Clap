@@ -108,7 +108,11 @@ extension MemberInfoRegistViewController {
                                                       role: self?.ui.memberPosition.text ?? "",
                                                       mail: self?.ui.mailField.text ?? "",
                                                       team: self?.recievedBelongTeam ?? "",
-                                                      completion: {
+                                                      completion: { _, error in
+                            if let _ = error {
+                                AlertController.showAlertMessage(alertType: .loginFailed, viewController: self ?? UIViewController())
+                                return
+                            }
                             self?.viewModel?.saveToSingleton(uid: uid , completion: {
                                 self?.hideIndicator()
                                 self?.routing.showTabBar(uid: UserSingleton.sharedInstance.uid)

@@ -3,14 +3,14 @@ import RxSwift
 import RealmSwift
 
 protocol LoginRepository {
-    func login(mail: String, pass: String, completion: ((String?, Error?) -> Void)?)
+    func login(mail: String, pass: String) -> Single<String>
 }
 
 struct LoginRepositoryImpl: LoginRepository {
     
-    private let dataSrore: LoginDataStore = LoginDataStoreImpl()
+    private let dataStore: LoginDataStore = LoginDataStoreImpl()
     
-    func login(mail: String, pass: String, completion: ((String?, Error?) -> Void)? = nil) {
-        dataSrore.login(mail: mail, pass: pass, completion: completion)
+    func login(mail: String, pass: String) -> Single<String> {
+        return dataStore.login(mail: mail, pass: pass)
     }
 }

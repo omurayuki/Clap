@@ -42,7 +42,11 @@ extension TeamIdWriteViewController {
                 self?.ui.confirmTeamIdBtn.bounce(completion: {
                     self?.showIndicator()
                     guard let teamId = self?.ui.teamIdField.text else { return }
-                    self?.viewModel.fetchBelongData(teamId: teamId, completion: { belong in
+                    self?.viewModel.fetchBelongData(teamId: teamId, completion: { belong, error  in
+                        if let _ = error {
+                            AlertController.showAlertMessage(alertType: .loginFailed, viewController: self ?? UIViewController())
+                            return
+                        }
                         self?.hideIndicator()
                         self?.routing.showConfirmationTeamId(teamId: teamId)
                     })

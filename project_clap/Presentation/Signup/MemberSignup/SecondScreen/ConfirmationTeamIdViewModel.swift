@@ -19,7 +19,15 @@ final class ConfirmationTeamIdViewModel: ConfirmationTeamIdViewModelType, Confir
     var outputs: ConfirmationTeamIdViewModelOutput { return self }
     let disposeBag = DisposeBag()
     
-    func fetchBelongData(teamId: String, completion: @escaping (String?) -> Void) {
-        SignupRepositoryImpl().fetchBelongData(teamId: teamId, completion: completion)
+    func fetchBelongData(teamId: String, completion: @escaping (String?, Error?) -> Void) {
+        SignupRepositoryImpl().fetchBelongData(teamId: teamId)
+            .subscribe { response in
+                switch response {
+                case .success(let data):
+                    completion(data, nil)
+                case .error(let error):
+                    completion(nil, error)
+                }
+            }.disposed(by: disposeBag)
     }
 }

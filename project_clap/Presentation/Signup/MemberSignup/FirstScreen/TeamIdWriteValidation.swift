@@ -38,14 +38,11 @@ class TeamIdWriteValidation {
     
     func validMatch(teamId: String, completion: ((TeamIdWriteValidationResult) -> Void)? = nil) {
         signupRepository.fetchBelongData(teamId: teamId) { description in
-            print("1")
             if description == nil {
-                print("nonononono")
                 guard let completion = completion else { return }
                 completion(.notFetchBelongData)
                 return
             }
-            print("okokokokok")
             completion?(.ok)
         }
     }

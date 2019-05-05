@@ -61,7 +61,11 @@ extension ConfirmationTeamIdViewController {
     }
     
     private func fetchBelongData(teamId: String) {
-        viewModel.fetchBelongData(teamId: recievedTeamId) { [weak self] description in
+        viewModel.fetchBelongData(teamId: recievedTeamId) { [weak self] description, error in
+            if let _ = error {
+                AlertController.showAlertMessage(alertType: .loginFailed, viewController: self ?? UIViewController())
+                return
+            }
             self?.ui.confirmationTeamTitle.text = "あなたのチームは\(description ?? "")でお間違いないですか？"
             self?.recievedBelongTeam = description ?? ""
         }

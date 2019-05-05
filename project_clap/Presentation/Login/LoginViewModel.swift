@@ -43,10 +43,14 @@ struct LoginViewModel: LoginViewModelType, LoginViewModelInput, LoginViewModelOu
     }
     
     func login(mail: String, pass: String, completion: @escaping (String?, Error?) -> Void) {
-        LoginRepositoryImpl().login(mail: mail,
-                                  pass: pass,
-                                  completion: { uid, error in
-            completion(uid, error)
-        })
+        LoginRepositoryImpl().login(mail: mail, pass: pass)
+            .subscribe { response in
+                switch response {
+                case .success(let data):
+                    completion(data, nil)
+                case .error(let error):
+                    completion(nil, error)
+                }
+            }.disposed(by: disposeBag)
     }
 }

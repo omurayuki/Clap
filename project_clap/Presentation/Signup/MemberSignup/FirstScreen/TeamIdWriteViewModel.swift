@@ -57,9 +57,9 @@ final class TeamIdWriteViewModel: TeamIdWriteViewModelType, TeamIdWriteViewModel
         .share(replay: 1)
     }
     
-    func fetchBelongData(teamId: String, completion: @escaping (String) -> Void) {
+    func fetchBelongData(teamId: String, completion: @escaping (String?, Error?) -> Void) {
         SignupRepositoryImpl().fetchBelongData(teamId: teamId, completion: { belong in
-            completion(belong ?? "")
+            completion(belong ?? "", nil)
         })
     }
 }
