@@ -3,6 +3,7 @@ import UIKit
 
 protocol RepresentMemberRegisterUI: UI {
     var noticeUserRegistTitle: UILabel { get }
+    var userPhoto: UIImageView { get }
     var userPhotoRegistBtn: UIButton { get }
     var nameField: CustomTextField { get }
     var mailField: CustomTextField { get }
@@ -35,9 +36,18 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
         return label
     }()
     
+    private(set) var userPhoto: UIImageView = {
+        let image = UIImageView()
+        image.clipsToBounds = true
+        image.isUserInteractionEnabled = true
+        image.backgroundColor = .gray
+        image.layer.cornerRadius = RepresentMemberRegisterResources.View.photoCornerRadius
+        return image
+    }()
+    
     private(set) var userPhotoRegistBtn: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .gray
+        button.setTitle("追加", for: .normal)
         button.layer.cornerRadius = RepresentMemberRegisterResources.View.photoCornerRadius
         return button
     }()
@@ -100,6 +110,8 @@ final class RepresentMemberRegisterUIImpl: RepresentMemberRegisterUI {
     private(set) var teamRegistBtn: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.regist(), for: .normal)
+        button.alpha = 0.2
+        button.isUserInteractionEnabled = false
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = RepresentMemberRegisterResources.View.btnCornerRadius
         return button
@@ -143,24 +155,30 @@ extension RepresentMemberRegisterUIImpl {
         positionToolBar.items = [positionDoneBtn]
         yearToolBar.items = [yearDoneBtn]
         [representMemberPosition, representMemberYear].forEach { stack.addArrangedSubview($0) }
-        [noticeUserRegistTitle, userPhotoRegistBtn, nameField, mailField,
+        [noticeUserRegistTitle, userPhoto, nameField, mailField,
         passField, rePassField, stack, teamRegistBtn].forEach { vc.view.addSubview($0) }
+        userPhoto.addSubview(userPhotoRegistBtn)
         
         noticeUserRegistTitle.anchor()
             .centerXToSuperview()
             .top(to: vc.view.topAnchor, constant: vc.view.bounds.size.width / 2.5)
             .activate()
         
-        userPhotoRegistBtn.anchor()
+        userPhoto.anchor()
             .centerXToSuperview()
             .top(to: noticeUserRegistTitle.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.userPhotoRegistBtnTopConstraint)
             .width(constant: RepresentMemberRegisterResources.Constraint.btnHeightConstraint)
             .height(constant: RepresentMemberRegisterResources.Constraint.btnWidthConstraint)
             .activate()
         
+        userPhotoRegistBtn.anchor()
+            .centerXToSuperview()
+            .centerYToSuperview()
+            .activate()
+        
         nameField.anchor()
             .centerXToSuperview()
-            .top(to: userPhotoRegistBtn.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.nameFieldtopConstraint)
+            .top(to: userPhoto.bottomAnchor, constant: RepresentMemberRegisterResources.Constraint.nameFieldtopConstraint)
             .width(constant: vc.view.bounds.size.width / 1.5)
             .activate()
         

@@ -45,6 +45,8 @@ final class LoginUIImpl: LoginUI {
     
     private(set) var logintBtn: UIButton = {
         let button = UIButton()
+        button.alpha = 0.2
+        button.isUserInteractionEnabled = false
         button.setTitle(R.string.locarizable.log_in(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = LoginResources.View.BtnCornerRadius

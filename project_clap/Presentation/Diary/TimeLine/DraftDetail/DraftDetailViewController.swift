@@ -66,7 +66,10 @@ extension DraftDetailViewController {
                 let arr = [this.ui.text1, this.ui.text2, this.ui.text3, this.ui.text4, this.ui.text5, this.ui.text6]
                 for tuple in arr.enumerated() {
                     tuple.element.textColor = isCountOver[tuple.offset] ? .red : .black
-                    if isCountOver[tuple.offset] { AlertController.showAlertMessage(alertType: .overChar, viewController: this) }
+                    if isCountOver[tuple.offset] {
+                        AlertController.showAlertMessage(alertType: .overChar, viewController: this)
+                        tuple.element.setupAnimation()
+                    }
                 }
             }).disposed(by: viewModel.disposeBag)
         

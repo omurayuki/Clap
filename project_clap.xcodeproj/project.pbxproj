@@ -170,6 +170,8 @@
 		C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086E32233F6AF00F25E7A /* MypageEditValidation.swift */; };
 		C9F086E622346ACC00F25E7A /* DisplayEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086E522346ACC00F25E7A /* DisplayEventCell.swift */; };
 		C9F086E82235DC6900F25E7A /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F086E72235DC6900F25E7A /* CalendarEvent.swift */; };
+		C9F2C6A522886A2D00E3DEB9 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2C6A422886A2D00E3DEB9 /* UIButton+Extension.swift */; };
+		C9F2C6A72288782600E3DEB9 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F2C6A62288782600E3DEB9 /* UITextView+Extension.swift */; };
 		C9FF9289227803A1005EF4F0 /* ReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF9288227803A1005EF4F0 /* ReplyViewController.swift */; };
 		C9FF928B227803AE005EF4F0 /* ReplyUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF928A227803AE005EF4F0 /* ReplyUI.swift */; };
 		C9FF928D227803B7005EF4F0 /* ReplyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FF928C227803B7005EF4F0 /* ReplyViewModel.swift */; };
@@ -357,6 +359,8 @@
 		C9F086E32233F6AF00F25E7A /* MypageEditValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageEditValidation.swift; sourceTree = "<group>"; };
 		C9F086E522346ACC00F25E7A /* DisplayEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayEventCell.swift; sourceTree = "<group>"; };
 		C9F086E72235DC6900F25E7A /* CalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEvent.swift; sourceTree = "<group>"; };
+		C9F2C6A422886A2D00E3DEB9 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		C9F2C6A62288782600E3DEB9 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		C9FF9288227803A1005EF4F0 /* ReplyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
 		C9FF928A227803AE005EF4F0 /* ReplyUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyUI.swift; sourceTree = "<group>"; };
 		C9FF928C227803B7005EF4F0 /* ReplyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyViewModel.swift; sourceTree = "<group>"; };
@@ -612,6 +616,8 @@
 				C9DBEE0E223E613800979664 /* DateFormatter+Extension.swift */,
 				C92716CB2244BD2700372B77 /* NSLayoutAnchor+Extension.swift */,
 				C91156172250A60100CB97E9 /* UIView+Layout.swift */,
+				C9F2C6A422886A2D00E3DEB9 /* UIButton+Extension.swift */,
+				C9F2C6A62288782600E3DEB9 /* UITextView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1345,6 +1351,7 @@
 				C987790C22412021005AAEA5 /* TeamIdWriteUI.swift in Sources */,
 				C959BF6C222D4AE500207986 /* LoginResources.swift in Sources */,
 				C913299F2253485100514EDE /* SignupRepository.swift in Sources */,
+				C9F2C6A72288782600E3DEB9 /* UITextView+Extension.swift in Sources */,
 				C9F086E622346ACC00F25E7A /* DisplayEventCell.swift in Sources */,
 				C98A093922473B8400AFAEF2 /* RegistCalendarUI.swift in Sources */,
 				C9DBEE0F223E613800979664 /* DateFormatter+Extension.swift in Sources */,
@@ -1367,6 +1374,7 @@
 				C9C6FE812240A59E001FE7A5 /* R.generated.swift in Sources */,
 				C9FF9297227C22BC005EF4F0 /* ReplyCellResources.swift in Sources */,
 				C987791622412D02005AAEA5 /* MemberInfoRegistRouting.swift in Sources */,
+				C9F2C6A522886A2D00E3DEB9 /* UIButton+Extension.swift in Sources */,
 				C9F086E22233F6A200F25E7A /* MypageEditViewModel.swift in Sources */,
 				C959BF68222D125B00207986 /* MemberInfoRegisterValidation.swift in Sources */,
 				C96560E7225B4B0F00C22B24 /* Mypage.swift in Sources */,

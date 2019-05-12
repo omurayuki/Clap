@@ -32,8 +32,9 @@ extension TeamIdWriteViewController {
     
     private func setupViewModel() {
         viewModel?.outputs.isConfirmBtnEnable
+            .distinctUntilChanged()
             .subscribe(onNext: { [weak self] isValid in
-                self?.ui.confirmTeamIdBtn.isHidden = !isValid
+                isValid ? self?.ui.confirmTeamIdBtn.setupAnimation() : self?.ui.confirmTeamIdBtn.teardownAnimation()
             }).disposed(by: viewModel.disposeBag)
         //ボタンを押せない処理実装必須(でないとindicatorが消えないerrorの時)
         ui.confirmTeamIdBtn.rx.tap.asObservable()

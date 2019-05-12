@@ -87,6 +87,8 @@ final class MemberInfoRegistUIImpl: MemberInfoRegistUI {
     
     private(set) var memberRegistBtn: UIButton = {
         let button = UIButton()
+        button.alpha = 0.2
+        button.isUserInteractionEnabled = false
         button.setTitle(R.string.locarizable.regist(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = MemberInfoRegisterResources.View.BtnCornerRadius

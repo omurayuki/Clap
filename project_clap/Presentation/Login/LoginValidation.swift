@@ -19,7 +19,7 @@ extension LoginValidationResult {
 
 struct LoginValidation {
     static func validateEmpty(email: String, pass: String) -> LoginValidationResult {
-        guard email.count != 0 && pass.count != 0 else {
+        guard email.count != 0 && pass.count >= 10 else {
             return .empty
         }
         return .ok

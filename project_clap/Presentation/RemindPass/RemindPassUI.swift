@@ -36,6 +36,8 @@ final class RemindPassUIImple: RemindPassUI {
     
     private(set) var submitBtn: UIButton = {
         let button = UIButton()
+        button.alpha = 0.2
+        button.isUserInteractionEnabled = false
         button.setTitle(R.string.locarizable.submit(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = TeamInfoRegisterResources.View.nextBtnCornerRadius

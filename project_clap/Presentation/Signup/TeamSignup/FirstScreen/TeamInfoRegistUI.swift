@@ -58,6 +58,8 @@ final class TeamInfoRegistUIImpl: TeamInfoRegistUI {
     private(set) var nextBtn: UIButton = {
         let button = UIButton()
         button.setTitle(R.string.locarizable.next(), for: .normal)
+        button.alpha = 0.2
+        button.isUserInteractionEnabled = false
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = TeamInfoRegisterResources.View.nextBtnCornerRadius
         return button

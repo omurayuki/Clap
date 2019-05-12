@@ -9,6 +9,7 @@ target 'project_clap' do
     pod 'Firebase/Core'
     pod 'Firebase/Auth'
     pod 'Firebase/Firestore'
+    pod 'Firebase/Storage'
     pod 'RealmSwift'
     pod 'R.swift'
     pod 'Kingfisher', '~> 5.0'

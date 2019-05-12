@@ -44,7 +44,10 @@ extension DiaryRegistViewController {
                 guard let this = self else { return }
                 for tuple in this.ui.slides.enumerated() {
                     tuple.element.textCount.textColor = isCountOver[tuple.offset] ? .red : .black
-                    if isCountOver[tuple.offset] { AlertController.showAlertMessage(alertType: .overChar, viewController: this) }
+                    if isCountOver[tuple.offset] {
+                        AlertController.showAlertMessage(alertType: .overChar, viewController: this)
+                        tuple.element.text.setupAnimation()
+                    }
                 }
             }).disposed(by: viewModel.disposeBag)
         

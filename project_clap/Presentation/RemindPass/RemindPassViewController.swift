@@ -24,8 +24,9 @@ extension RemindPassViewController {
     
     private func setupViewModel() {
         viewModel?.outputs.isSubmitBtnEnable.asObservable()
+            .distinctUntilChanged()
             .subscribe(onNext: { [weak self] isValid in
-                self?.ui.submitBtn.isHidden = !isValid
+                isValid ? self?.ui.submitBtn.setupAnimation() : self?.ui.submitBtn.teardownAnimation()
             }).disposed(by: viewModel.disposeBag)
 
         ui.emailField.rx.controlEvent(.editingDidEndOnExit)

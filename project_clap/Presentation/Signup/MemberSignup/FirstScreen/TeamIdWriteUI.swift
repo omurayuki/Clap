@@ -37,6 +37,8 @@ final class TeamIdWriteUIImpl: TeamIdWriteUI {
     
     private(set) var confirmTeamIdBtn: UIButton = {
         let button = UIButton()
+        button.alpha = 0.2
+        button.isUserInteractionEnabled = false
         button.setTitle(R.string.locarizable.confirm(), for: .normal)
         button.backgroundColor = AppResources.ColorResources.normalBlueColor
         button.layer.cornerRadius = TeamIdWriteResources.View.confirmBtnCornerRadius

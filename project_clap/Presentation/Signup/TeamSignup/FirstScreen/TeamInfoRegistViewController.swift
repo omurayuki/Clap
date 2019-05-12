@@ -46,9 +46,10 @@ extension TeamInfoRegistViewController {
     
     private func setupViewModel() {
         viewModel?.outputs.isNextBtnEnable
+            .distinctUntilChanged()
             .asObservable()
             .subscribe(onNext: { [weak self] isValid in
-                self?.ui.nextBtn.isHidden = !isValid
+                isValid ? self?.ui.nextBtn.setupAnimation() : self?.ui.nextBtn.teardownAnimation()
             }).disposed(by: viewModel.disposeBag)
         
         viewModel.outputs.isOverTeamField

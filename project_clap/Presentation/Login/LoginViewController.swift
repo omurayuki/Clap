@@ -37,8 +37,9 @@ extension LoginViewCountroller {
     
     private func setupViewModel() {
         viewModel?.outputs.isLoginBtnEnable.asObservable()
+            .distinctUntilChanged()
             .subscribe(onNext: { [weak self] isValid in
-                self?.ui.logintBtn.isHidden = !isValid
+                isValid ? self?.ui.logintBtn.setupAnimation() : self?.ui.logintBtn.teardownAnimation()
             }).disposed(by: viewModel.disposeBag)
         
         ui.logintBtn.rx.tap

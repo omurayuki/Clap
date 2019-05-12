@@ -1,7 +1,10 @@
 import Foundation
+import UIKit
 import RxSwift
 import RxCocoa
 import RealmSwift
+import FirebaseStorage
+
 
 class RepresentMemberRegisterViewController: UIViewController {
     
@@ -49,8 +52,9 @@ class RepresentMemberRegisterViewController: UIViewController {
 extension RepresentMemberRegisterViewController {
     private func setupViewModel() {
         viewModel?.outputs.isRegistBtnEnable.asObservable()
+            .distinctUntilChanged()
             .subscribe(onNext: { [weak self] isValid in
-                self?.ui.teamRegistBtn.isHidden = !isValid
+                isValid ? self?.ui.teamRegistBtn.setupAnimation() : self?.ui.teamRegistBtn.teardownAnimation()
             }).disposed(by: viewModel.disposeBag)
         
         viewModel.outputs.isOverName

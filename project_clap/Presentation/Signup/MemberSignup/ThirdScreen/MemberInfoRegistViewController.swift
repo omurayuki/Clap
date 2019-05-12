@@ -54,8 +54,9 @@ extension MemberInfoRegistViewController {
     
     private func setupViewModel() {
         viewModel?.outputs.isRegistBtnEnable.asObservable()
+            .distinctUntilChanged()
             .subscribe(onNext: { [weak self] isValid in
-                self?.ui.memberRegistBtn.isHidden = !isValid
+                isValid ? self?.ui.memberRegistBtn.setupAnimation() : self?.ui.memberRegistBtn.teardownAnimation()
             }).disposed(by: viewModel.disposeBag)
         
         viewModel.outputs.isOverName
