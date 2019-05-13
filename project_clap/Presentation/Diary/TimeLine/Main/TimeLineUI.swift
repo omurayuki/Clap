@@ -1,7 +1,7 @@
 import UIKit
 
 protocol TimeLineUI: UI {
-    var timelineHeaderView: TimeLineHeaderCell { get }
+    var timelineHeaderView: TimeLineHeader { get }
     var timelineTableView: UITableView { get }
     var menuBtn: UIButton { get }
     var memberBtn: UIButton { get }
@@ -21,8 +21,8 @@ class TimeLineUIImpl: TimeLineUI {
     weak var viewController: UIViewController?
     var isSelected = false
     
-    private(set) var timelineHeaderView: TimeLineHeaderCell = {
-        let view = TimeLineHeaderCell()
+    private(set) var timelineHeaderView: TimeLineHeader = {
+        let view = TimeLineHeader()
         return view
     }()
     

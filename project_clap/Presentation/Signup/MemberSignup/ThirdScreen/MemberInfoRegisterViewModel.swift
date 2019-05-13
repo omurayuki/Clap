@@ -125,7 +125,10 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
             }.disposed(by: disposeBag)
     }
     
-    func saveUserData(uid: String, teamId: String, name: String, role: String, mail: String, team: String, completion: @escaping (String?, Error?) -> Void) {
+    func saveUserData(uid: String, teamId: String,
+                      name: String, role: String,
+                      mail: String, team: String,
+                      completion: @escaping (String?, Error?) -> Void) {
         SignupRepositoryImpl().saveUserData(user: uid, teamId: teamId,
                                             name: name, role: role,
                                             mail: mail, team: team)

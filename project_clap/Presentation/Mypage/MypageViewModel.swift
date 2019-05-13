@@ -30,4 +30,16 @@ class MypageViewModel: MypageViewModeType, MypageViewModelInput, MypageViewModel
                 }
             }.disposed(by: disposeBag)
     }
+    
+    func fetchDiaries(uid: String, completion: @escaping ([TimelineCellData]?, Error?) -> Void) {
+        MypageRepositoryImpl().fetchDiaryData(submit: true, uid: uid)
+            .subscribe { response in
+                switch response {
+                case .success(let data):
+                    completion(data, nil)
+                case .error(let error):
+                    completion(nil, error)
+                }
+            }.disposed(by: disposeBag)
+    }
 }

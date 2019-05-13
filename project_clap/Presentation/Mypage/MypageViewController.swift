@@ -12,6 +12,8 @@ class MypageViewController: UIViewController {
     
     private lazy var ui: MypageUI = {
         let ui = MypageUIImpl()
+        ui.mypageTable.dataSource = self
+        ui.mypageTable.delegate = self
         ui.viewController = self
         return ui
     }()
@@ -39,8 +41,8 @@ class MypageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ui.setup(vc: self)
-        ui.setupInsideStack(vc: self)
+        ui.setup()
+        ui.mypageHeaderView.mypageHeaderViewController.delegate = self
         viewModel = MypageViewModel()
         self.showIndicator()
         setupViewModel()
@@ -55,29 +57,73 @@ extension MypageViewController {
                 self.routing.showEditPage(vc: self, uid: self.recievedUid)
             }.disposed(by: viewModel.disposeBag)
         
-        ui.logoutBtn.rx.tap
-            .bind { [weak self] _ in
-                self?.ui.createLogoutAlert(vc: self ?? UIViewController(), completion: {
-                    do {
-                        try Firebase.fireAuth.signOut()
-                        UserSingleton.sharedInstance.uid = ""; UserSingleton.sharedInstance.name = ""
-                        UserSingleton.sharedInstance.image = ""; AppUserDefaults.removeValue(keyName: "teamId")
-                        
-                    } catch {
-                        AlertController.showAlertMessage(alertType: .logoutFailure, viewController: self ?? UIViewController())
-                    }
-                })
-            }.disposed(by: viewModel.disposeBag)
+//        ui.logoutBtn.rx.tap
+//            .bind { [weak self] _ in
+//                self?.ui.createLogoutAlert(vc: self ?? UIViewController(), completion: {
+//                    do {
+//                        try Firebase.fireAuth.signOut()
+//                        UserSingleton.sharedInstance.uid = ""; UserSingleton.sharedInstance.name = ""
+//                        UserSingleton.sharedInstance.image = ""; AppUserDefaults.removeValue(keyName: "teamId")
+//
+//                    } catch {
+//                        AlertController.showAlertMessage(alertType: .logoutFailure, viewController: self ?? UIViewController())
+//                    }
+//                })
+//            }.disposed(by: viewModel.disposeBag)
     }
     
     private func fetchMypageData() {
         viewModel.fetchMypageData(uid: recievedUid) { [weak self] data in
             self?.hideIndicator()
             self?.ui.belongTeam.text = data.team
-            self?.ui.teamId.text = data.teamId
+            self?.ui.username.text = data.name
             self?.ui.position.text = data.role
-            self?.ui.mail.text = data.mail
+            self?.ui.teamId.text = data.teamId
         }
+    }
+}
+
+extension MypageViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return TimelineSingleton.sharedInstance.sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return TimelineSingleton.sharedInstance.sections[section].rowItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let date = TimelineSingleton.sharedInstance.sections[section].sectionItem
+        return DateFormatter().convertToMonthAndYears(date)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TimelineCell.self), for: indexPath) as? TimelineCell else { return UITableViewCell() }
+        let cellDetail = TimelineSingleton.sharedInstance.sections[indexPath.section].rowItems[indexPath.row]
+        cell.configureInit(image: "cellDetail.image",
+                           title: cellDetail.title ?? "",
+                           name: cellDetail.name ?? "",
+                           time: cellDetail.time ?? "")
+        return cell
+    }
+}
+
+extension MypageViewController: UITableViewDelegate {
+    
+}
+
+//// MARK:- Delegate
+extension MypageViewController: DiaryDelegate {
+    func reloadData() {
+        ui.mypageTable.reloadData()
+    }
+    
+    func showTimelineIndicator() {
+        showIndicator()
+    }
+    
+    func hideTimelineIndicator() {
+        hideIndicator()
     }
 }
 

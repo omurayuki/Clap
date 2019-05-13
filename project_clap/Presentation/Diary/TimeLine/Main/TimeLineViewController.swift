@@ -130,7 +130,7 @@ extension TimeLineViewController: UITableViewDelegate {
 }
 
 //// MARK:- Delegate
-extension TimeLineViewController: TimelineDelegate {
+extension TimeLineViewController: DiaryDelegate {
     func reloadData() {
         ui.timelineTableView.reloadData()
     }

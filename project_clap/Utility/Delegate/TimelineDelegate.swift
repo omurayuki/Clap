@@ -1,6 +1,6 @@
 import Foundation
 
-protocol TimelineDelegate: AnyObject {
+protocol DiaryDelegate: AnyObject {
     func reloadData()
     func showTimelineIndicator()
     func hideTimelineIndicator()

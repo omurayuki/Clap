@@ -28,7 +28,7 @@ final class TimeLineRoutingImpl: TimeLineRouting {
     
     func showDraftDiary(timelineData: TimelineCellData) {
         let vc = DraftDetailViewController(timelineCellData: timelineData)
-        vc.delegate = viewController as? TimelineDelegate
+        vc.delegate = viewController as? DiaryDelegate
         viewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

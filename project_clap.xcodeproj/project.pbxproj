@@ -13,7 +13,7 @@
 		C911561D2250A6AE00CB97E9 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911561C2250A6AE00CB97E9 /* VerticalStackView.swift */; };
 		C91156202250B5E000CB97E9 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911561F2250B5E000CB97E9 /* TimeLineViewController.swift */; };
 		C91156252250C47D00CB97E9 /* TimeLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91156242250C47D00CB97E9 /* TimeLineCell.swift */; };
-		C911562D22520B2900CB97E9 /* TimeLineHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911562C22520B2900CB97E9 /* TimeLineHeaderCell.swift */; };
+		C911562D22520B2900CB97E9 /* TimeLineHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911562C22520B2900CB97E9 /* TimeLineHeader.swift */; };
 		C911562F22520B5C00CB97E9 /* TimeLineHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C911562E22520B5C00CB97E9 /* TimeLineHeaderController.swift */; };
 		C913297E2252309B00514EDE /* TimeLineUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913297D2252309B00514EDE /* TimeLineUI.swift */; };
 		C91329802252360E00514EDE /* TimeLineRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C913297F2252360E00514EDE /* TimeLineRouting.swift */; };
@@ -30,6 +30,10 @@
 		C91329AE22539F8100514EDE /* memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329AD22539F8100514EDE /* memo.swift */; };
 		C91329B12253BC1800514EDE /* LoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329B02253BC1800514EDE /* LoginRepository.swift */; };
 		C91329B52254559700514EDE /* TeamIdWriteRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91329B42254559700514EDE /* TeamIdWriteRouting.swift */; };
+		C914AC3C22897A7E0054C8CD /* MypageHeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC3B22897A7E0054C8CD /* MypageHeaderViewController.swift */; };
+		C914AC3E22897B900054C8CD /* MypageHeaderUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC3D22897B900054C8CD /* MypageHeaderUI.swift */; };
+		C914AC4122897CDE0054C8CD /* MypageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC4022897CDE0054C8CD /* MypageHeader.swift */; };
+		C914AC4322897D340054C8CD /* MypageHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC4222897D340054C8CD /* MypageHeaderViewModel.swift */; };
 		C91C1DBC225AF56C005BDA5F /* MypageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */; };
 		C91C1DBE225B0800005BDA5F /* UserSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91C1DBD225B0800005BDA5F /* UserSingleton.swift */; };
 		C92704222232C2E300B15B45 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92704212232C2E300B15B45 /* CustomView.swift */; };
@@ -198,7 +202,7 @@
 		C911561C2250A6AE00CB97E9 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		C911561F2250B5E000CB97E9 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		C91156242250C47D00CB97E9 /* TimeLineCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineCell.swift; sourceTree = "<group>"; };
-		C911562C22520B2900CB97E9 /* TimeLineHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineHeaderCell.swift; sourceTree = "<group>"; };
+		C911562C22520B2900CB97E9 /* TimeLineHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineHeader.swift; sourceTree = "<group>"; };
 		C911562E22520B5C00CB97E9 /* TimeLineHeaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineHeaderController.swift; sourceTree = "<group>"; };
 		C913297D2252309B00514EDE /* TimeLineUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUI.swift; sourceTree = "<group>"; };
 		C913297F2252360E00514EDE /* TimeLineRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineRouting.swift; sourceTree = "<group>"; };
@@ -215,6 +219,10 @@
 		C91329AD22539F8100514EDE /* memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memo.swift; sourceTree = "<group>"; };
 		C91329B02253BC1800514EDE /* LoginRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRepository.swift; sourceTree = "<group>"; };
 		C91329B42254559700514EDE /* TeamIdWriteRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamIdWriteRouting.swift; sourceTree = "<group>"; };
+		C914AC3B22897A7E0054C8CD /* MypageHeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageHeaderViewController.swift; sourceTree = "<group>"; };
+		C914AC3D22897B900054C8CD /* MypageHeaderUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageHeaderUI.swift; sourceTree = "<group>"; };
+		C914AC4022897CDE0054C8CD /* MypageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageHeader.swift; sourceTree = "<group>"; };
+		C914AC4222897D340054C8CD /* MypageHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageHeaderViewModel.swift; sourceTree = "<group>"; };
 		C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageRepository.swift; sourceTree = "<group>"; };
 		C91C1DBD225B0800005BDA5F /* UserSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSingleton.swift; sourceTree = "<group>"; };
 		C92704212232C2E300B15B45 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
@@ -441,7 +449,7 @@
 				C911562E22520B5C00CB97E9 /* TimeLineHeaderController.swift */,
 				C9A28AD5226F33A100F4AF2B /* TimelineHeaderUI.swift */,
 				C9A28AD7226F33B200F4AF2B /* TimelineHeaderViewModel.swift */,
-				C913297C22522F6700514EDE /* Cell */,
+				C913297C22522F6700514EDE /* View */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -454,12 +462,12 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		C913297C22522F6700514EDE /* Cell */ = {
+		C913297C22522F6700514EDE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C911562C22520B2900CB97E9 /* TimeLineHeaderCell.swift */,
+				C911562C22520B2900CB97E9 /* TimeLineHeader.swift */,
 			);
-			path = Cell;
+			path = View;
 			sourceTree = "<group>";
 		};
 		C91329832252407E00514EDE /* Main */ = {
@@ -541,6 +549,25 @@
 				C98D64CF226E268A00A1D7F9 /* FirstdayOfMonth.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		C914AC3A22897A4A0054C8CD /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				C914AC3B22897A7E0054C8CD /* MypageHeaderViewController.swift */,
+				C914AC3D22897B900054C8CD /* MypageHeaderUI.swift */,
+				C914AC4222897D340054C8CD /* MypageHeaderViewModel.swift */,
+				C914AC3F22897CCD0054C8CD /* View */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		C914AC3F22897CCD0054C8CD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C914AC4022897CDE0054C8CD /* MypageHeader.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		C937FD46222287B800F9624E = {
@@ -782,6 +809,7 @@
 				C9EA286522434978003F40DD /* MypageRouting.swift */,
 				C96560E8225B525100C22B24 /* MypageViewModel.swift */,
 				C9F086DC2233E92100F25E7A /* MypageResources.swift */,
+				C914AC3A22897A4A0054C8CD /* Header */,
 				C9F086DE2233ECB000F25E7A /* Edit */,
 			);
 			path = Mypage;
@@ -1296,6 +1324,7 @@
 				C937FD722222D7F300F9624E /* UIColor+Extension.swift in Sources */,
 				C987790422411317005AAEA5 /* TeamInfoRegistRouting.swift in Sources */,
 				C913299C2253480A00514EDE /* DiaryWritter.swift in Sources */,
+				C914AC4322897D340054C8CD /* MypageHeaderViewModel.swift in Sources */,
 				C959BF6E222D4B3500207986 /* TeamIdWriteResources.swift in Sources */,
 				C91329B12253BC1800514EDE /* LoginRepository.swift in Sources */,
 				C9FF928D227803B7005EF4F0 /* ReplyViewModel.swift in Sources */,
@@ -1309,7 +1338,8 @@
 				C9EA286222433B48003F40DD /* RemindPassUI.swift in Sources */,
 				C9EA286C22434F00003F40DD /* MypageEditResources.swift in Sources */,
 				C91156182250A60100CB97E9 /* UIView+Layout.swift in Sources */,
-				C911562D22520B2900CB97E9 /* TimeLineHeaderCell.swift in Sources */,
+				C911562D22520B2900CB97E9 /* TimeLineHeader.swift in Sources */,
+				C914AC3C22897A7E0054C8CD /* MypageHeaderViewController.swift in Sources */,
 				C9FF92A5227F2124005EF4F0 /* ReplyRepository.swift in Sources */,
 				C9557CC62236457000D6F7A6 /* RegistCalendarViewController.swift in Sources */,
 				C98A093C2247454700AFAEF2 /* RegistCalendarEnum.swift in Sources */,
@@ -1340,6 +1370,7 @@
 				C9B67DD1225C997700F82AE7 /* MypageDataStore.swift in Sources */,
 				C9557CCA223689C300D6F7A6 /* RegistCalendarViewModel.swift in Sources */,
 				C9C6FE8C2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift in Sources */,
+				C914AC4122897CDE0054C8CD /* MypageHeader.swift in Sources */,
 				C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */,
 				C950E2C32272160B0074A5C4 /* CommentCellResources.swift in Sources */,
 				C9FF9299227DFAAC005EF4F0 /* DraftDiaryValidation.swift in Sources */,
@@ -1347,6 +1378,7 @@
 				C98D64C1226D7DDA00A1D7F9 /* DiaryRegistValidation.swift in Sources */,
 				C9FF929B227E2A3D005EF4F0 /* SubmittedDetailRouting.swift in Sources */,
 				C9FF929F227F1220005EF4F0 /* CommentDataStore.swift in Sources */,
+				C914AC3E22897B900054C8CD /* MypageHeaderUI.swift in Sources */,
 				C959BF64222CEDD700207986 /* TeamIdWriteValidation.swift in Sources */,
 				C987790C22412021005AAEA5 /* TeamIdWriteUI.swift in Sources */,
 				C959BF6C222D4AE500207986 /* LoginResources.swift in Sources */,

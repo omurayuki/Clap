@@ -18,6 +18,6 @@ struct MypageResources {
     }
     
     struct View {
-        static let userPhotoLayerCornerRadius: CGFloat = 50
+        static let userPhotoLayerCornerRadius: CGFloat = 32.5
     }
 }

@@ -8,7 +8,7 @@ class DraftDetailViewController: UIViewController {
     private let recievedTimelineCellData: TimelineCellData
     private var viewModel: DraftDetailViewModel!
     let activityIndicator = UIActivityIndicatorView()
-    weak var delegate: TimelineDelegate?
+    weak var delegate: DiaryDelegate?
     
     private lazy var ui: DraftDetailUI = {
         let ui = DraftDetailUIImpl()
