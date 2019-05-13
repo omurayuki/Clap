@@ -36,15 +36,15 @@ class MypageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
-        fetchMypageData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.showIndicator()
         ui.setup()
         ui.mypageHeaderView.mypageHeaderViewController.delegate = self
         viewModel = MypageViewModel()
-        self.showIndicator()
+        fetchMypageData()
         setupViewModel()
     }
 }
@@ -56,6 +56,11 @@ extension MypageViewController {
             .bind { _ in
                 self.routing.showEditPage(vc: self, uid: self.recievedUid)
             }.disposed(by: viewModel.disposeBag)
+        
+        ui.settingBtn.rx.tap.asDriver()
+            .drive(onNext: { _ in
+                self.routing.showSettingsPage(vc: self)
+            }).disposed(by: viewModel.disposeBag)
         
 //        ui.logoutBtn.rx.tap
 //            .bind { [weak self] _ in

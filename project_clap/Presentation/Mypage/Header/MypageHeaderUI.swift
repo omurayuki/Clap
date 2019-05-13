@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 
+#warning("R.string")
 protocol MypageHeaderUI: UI {
     var mypageSegment: UISegmentedControl { get }
     

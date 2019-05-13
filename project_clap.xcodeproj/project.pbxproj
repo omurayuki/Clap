@@ -34,6 +34,13 @@
 		C914AC3E22897B900054C8CD /* MypageHeaderUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC3D22897B900054C8CD /* MypageHeaderUI.swift */; };
 		C914AC4122897CDE0054C8CD /* MypageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC4022897CDE0054C8CD /* MypageHeader.swift */; };
 		C914AC4322897D340054C8CD /* MypageHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC4222897D340054C8CD /* MypageHeaderViewModel.swift */; };
+		C914AC462289CD410054C8CD /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC452289CD410054C8CD /* SettingsViewController.swift */; };
+		C914AC482289CD690054C8CD /* SettingsUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC472289CD690054C8CD /* SettingsUI.swift */; };
+		C914AC4A2289CD730054C8CD /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC492289CD730054C8CD /* SettingsViewModel.swift */; };
+		C914AC4C2289CD7C0054C8CD /* SettingsResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC4B2289CD7C0054C8CD /* SettingsResources.swift */; };
+		C914AC4E2289D0AA0054C8CD /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC4D2289D0AA0054C8CD /* SettingsCell.swift */; };
+		C914AC522289DBED0054C8CD /* SettingsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC512289DBED0054C8CD /* SettingsEnum.swift */; };
+		C914AC542289DC680054C8CD /* SettingsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914AC532289DC680054C8CD /* SettingsData.swift */; };
 		C91C1DBC225AF56C005BDA5F /* MypageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */; };
 		C91C1DBE225B0800005BDA5F /* UserSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91C1DBD225B0800005BDA5F /* UserSingleton.swift */; };
 		C92704222232C2E300B15B45 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92704212232C2E300B15B45 /* CustomView.swift */; };
@@ -223,6 +230,13 @@
 		C914AC3D22897B900054C8CD /* MypageHeaderUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageHeaderUI.swift; sourceTree = "<group>"; };
 		C914AC4022897CDE0054C8CD /* MypageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageHeader.swift; sourceTree = "<group>"; };
 		C914AC4222897D340054C8CD /* MypageHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageHeaderViewModel.swift; sourceTree = "<group>"; };
+		C914AC452289CD410054C8CD /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C914AC472289CD690054C8CD /* SettingsUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUI.swift; sourceTree = "<group>"; };
+		C914AC492289CD730054C8CD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		C914AC4B2289CD7C0054C8CD /* SettingsResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsResources.swift; sourceTree = "<group>"; };
+		C914AC4D2289D0AA0054C8CD /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		C914AC512289DBED0054C8CD /* SettingsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEnum.swift; sourceTree = "<group>"; };
+		C914AC532289DC680054C8CD /* SettingsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsData.swift; sourceTree = "<group>"; };
 		C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageRepository.swift; sourceTree = "<group>"; };
 		C91C1DBD225B0800005BDA5F /* UserSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSingleton.swift; sourceTree = "<group>"; };
 		C92704212232C2E300B15B45 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
@@ -570,6 +584,34 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C914AC442289CBC50054C8CD /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C914AC452289CD410054C8CD /* SettingsViewController.swift */,
+				C914AC472289CD690054C8CD /* SettingsUI.swift */,
+				C914AC4B2289CD7C0054C8CD /* SettingsResources.swift */,
+				C914AC492289CD730054C8CD /* SettingsViewModel.swift */,
+				C914AC4F2289D0AD0054C8CD /* Cell */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		C914AC4F2289D0AD0054C8CD /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C914AC4D2289D0AA0054C8CD /* SettingsCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C914AC502289DBD70054C8CD /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C914AC512289DBED0054C8CD /* SettingsEnum.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		C937FD46222287B800F9624E = {
 			isa = PBXGroup;
 			children = (
@@ -619,6 +661,7 @@
 				C970578A222E86D1007F8B1C /* Calendar */,
 				C970578B222E86FC007F8B1C /* Diary */,
 				C970578C222E8708007F8B1C /* Mypage */,
+				C914AC442289CBC50054C8CD /* Settings */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -897,6 +940,7 @@
 			isa = PBXGroup;
 			children = (
 				C908D2972223AEE3000344B0 /* AppResources.swift */,
+				C914AC532289DC680054C8CD /* SettingsData.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1016,6 +1060,7 @@
 				C9C6FE8A2240B6DC001FE7A5 /* RepresentMemberRegister */,
 				C98A093A224744CB00AFAEF2 /* RegistCalendar */,
 				C9A28AD9226F3D7400F4AF2B /* TimelineHeader */,
+				C914AC502289DBD70054C8CD /* Settings */,
 			);
 			path = Enumration;
 			sourceTree = "<group>";
@@ -1292,6 +1337,7 @@
 				C950E2BD2271BDFF0074A5C4 /* TabBarRepository.swift in Sources */,
 				C937FD7E2222E22B00F9624E /* LoginViewModel.swift in Sources */,
 				C959BF66222D124300207986 /* MemberInfoRegisterViewModel.swift in Sources */,
+				C914AC4E2289D0AA0054C8CD /* SettingsCell.swift in Sources */,
 				C9FF92A3227F203A005EF4F0 /* ReplyDataStore.swift in Sources */,
 				C91329AC2253937C00514EDE /* RandomString.swift in Sources */,
 				C98D64C9226DB72A00A1D7F9 /* DiaryRegistRepository.swift in Sources */,
@@ -1300,6 +1346,7 @@
 				C959BF522227EA7F00207986 /* TeamInfoRegistValidation.swift in Sources */,
 				C9705796222E8B29007F8B1C /* DiaryGroupViewController.swift in Sources */,
 				C9FF9293227BF059005EF4F0 /* CommentCellDelegate.swift in Sources */,
+				C914AC522289DBED0054C8CD /* SettingsEnum.swift in Sources */,
 				C9CC6199223F7B8D0093D37F /* DiaryRegistViewController.swift in Sources */,
 				C9705798222E8B6F007F8B1C /* MypageViewController.swift in Sources */,
 				C91C1DBC225AF56C005BDA5F /* MypageRepository.swift in Sources */,
@@ -1371,6 +1418,8 @@
 				C9557CCA223689C300D6F7A6 /* RegistCalendarViewModel.swift in Sources */,
 				C9C6FE8C2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift in Sources */,
 				C914AC4122897CDE0054C8CD /* MypageHeader.swift in Sources */,
+				C914AC4A2289CD730054C8CD /* SettingsViewModel.swift in Sources */,
+				C914AC542289DC680054C8CD /* SettingsData.swift in Sources */,
 				C9C6FE7F2240A2EE001FE7A5 /* UI.swift in Sources */,
 				C950E2C32272160B0074A5C4 /* CommentCellResources.swift in Sources */,
 				C9FF9299227DFAAC005EF4F0 /* DraftDiaryValidation.swift in Sources */,
@@ -1389,6 +1438,7 @@
 				C9DBEE0F223E613800979664 /* DateFormatter+Extension.swift in Sources */,
 				C9C6FE852240ADB4001FE7A5 /* TeamInfoRegistUI.swift in Sources */,
 				C96560E9225B525100C22B24 /* MypageViewModel.swift in Sources */,
+				C914AC462289CD410054C8CD /* SettingsViewController.swift in Sources */,
 				C9A28AD0226EFB1900F4AF2B /* TimeLineViewModel.swift in Sources */,
 				C987791422412991005AAEA5 /* MemberInfoRegistUI.swift in Sources */,
 				C908D2982223AEE3000344B0 /* AppResources.swift in Sources */,
@@ -1402,6 +1452,7 @@
 				C9A28AF322701B9400F4AF2B /* UserInfo.swift in Sources */,
 				C9F086E42233F6AF00F25E7A /* MypageEditValidation.swift in Sources */,
 				C9FF928F227803C2005EF4F0 /* ReplyResources.swift in Sources */,
+				C914AC482289CD690054C8CD /* SettingsUI.swift in Sources */,
 				C98D64C7226DB2AF00A1D7F9 /* DiaryRegistDataStore.swift in Sources */,
 				C9C6FE812240A59E001FE7A5 /* R.generated.swift in Sources */,
 				C9FF9297227C22BC005EF4F0 /* ReplyCellResources.swift in Sources */,
@@ -1424,6 +1475,7 @@
 				C913298222523D6B00514EDE /* TimeLineResources.swift in Sources */,
 				C9CC619C223F963B0093D37F /* DiaryView.swift in Sources */,
 				C9F086E02233ECD800F25E7A /* MypageEditViewController.swift in Sources */,
+				C914AC4C2289CD7C0054C8CD /* SettingsResources.swift in Sources */,
 				C950E2C922721F820074A5C4 /* DiaryDetailRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

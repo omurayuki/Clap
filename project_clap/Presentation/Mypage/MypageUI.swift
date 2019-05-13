@@ -3,6 +3,7 @@ import UIKit
 import PopupDialog
 
 //設定でログアウト、チームID確認、メールアドレス確認、
+#warning("ハードコード")
 protocol MypageUI: UI {
     var settingBtn: UIBarButtonItem { get }
     var wrapView: UIView { get }
@@ -31,7 +32,7 @@ final class MypageUIImpl: MypageUI {
     }()
     
     private(set) var settingBtn: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "⚙", style: .plain, target: nil, action: nil)
+        let button = UIBarButtonItem(title: "🃖", style: .plain, target: nil, action: nil)
         return button
     }()
     
