@@ -7,6 +7,9 @@ import CalculateCalendarLogic
 import PopupDialog
 
 class DisplayCalendarViewController: UIViewController {
+    //イベントを登録
+    //階層構造をgetObjectFromServerが受け取れる形にする
+    //階層構造 calendar 日付 events イベント(情報持)
     
     //Realmだと仮定
     private var recievedFromServer: [String: [String]] = [:]

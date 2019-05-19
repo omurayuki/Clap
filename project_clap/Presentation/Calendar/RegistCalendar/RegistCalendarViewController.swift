@@ -31,7 +31,7 @@ class RegistCalendarViewController: UIViewController {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError()
     }
     
     override func viewDidLoad() {
@@ -57,14 +57,65 @@ extension RegistCalendarViewController {
             .subscribe(onNext: { event in
                 if event {
                     self.isOnCalendarLabel(event, size: RegistCalendarResources.Font.largeDateFont)
+                    self.isOnInteractiveDate(event)
                 } else {
                     self.isOnCalendarLabel(event, size: RegistCalendarResources.Font.defaultDateFont)
+                    self.isOnInteractiveDate(event)
                 }
             }).disposed(by: disposeBag)
         
         ui.eventAddBtn.rx.tap
             .bind { _ in
-                //DBに保存+ローカルDBに保存
+                let setData = [
+                    "userId": UserSingleton.sharedInstance.uid,
+                    "startDate": self.ui.startDate.text ?? "",
+                    "endDate": self.ui.endDate.text ?? "",
+                    "startTime": self.ui.startTime.text ?? "",
+                    "endTime": self.ui.endTime.text ?? "",
+                    "title": self.ui.titleField.text ?? "",
+                    "content": self.ui.detailField.text ?? ""
+                ] as [String : Any]
+                Firebase.db
+                    .collection("calendar")
+                    .document(AppUserDefaults.getValue(keyName: "teamId"))
+                    .collection("events")
+                    .document(UserSingleton.sharedInstance.uid)
+                    .setData(setData, completion: { error in
+                        if let _ = error {
+                            return
+                        }
+                    })
+//                let formatter = DateFormatter()
+//                formatter.dateFormat = "yyyy年MM月dd日"
+//                var a = self.ui.startDate.text!
+//                let date = formatter.date(from: a)
+//                print(date?.timeIntervalSince1970)
+//                var b = self.ui.endDate.text!
+//                let dateb = formatter.date(from: b)
+//                print(dateb?.timeIntervalSince1970)
+//                guard let end = dateb?.timeIntervalSince1970 else { return }
+//                guard let start = date?.timeIntervalSince1970 else { return }
+//                let intEnd = Int(end)
+//                let intStart = Int(start)
+//                var dateCount = (intEnd - intStart) / (60 * 60 * 24)
+//                var array = [a]
+//                for date in 1...dateCount {
+//                    let result = date * (60 * 60 * 24)
+////                    let resultStringDate = formatter.string(from: <#T##Date#>)
+//                    let saikyouResult = intStart + result
+//                    let timeInterval = TimeInterval(saikyouResult)
+//                    let dateee = Date(timeIntervalSince1970: timeInterval)
+//                    let dateStr: String = formatter.string(from: dateee)
+//                    array.append(dateStr)
+//                }
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+//                    var array2 = [String: String]()
+//                    array.map { date in
+//                        array2[date] = "aa"
+//                    }
+//
+//                    print(array2)
+//                })
         }.disposed(by: disposeBag)
         
         ui.cancelBtn.rx.tap
@@ -82,7 +133,7 @@ extension RegistCalendarViewController {
         ui.endDatePicker.rx.controlEvent(.valueChanged)
             .bind { [weak self] _ in
                 self?.formatter.dateFormat = "yyyy年MM月dd日"
-                self?.ui.endDate.text = self?.formatter.convertToMonthAndYears(self?.ui.startDatePicker.date)
+                self?.ui.endDate.text = self?.formatter.convertToMonthAndYears(self?.ui.endDatePicker.date)
             }.disposed(by: disposeBag)
         
         ui.startTimePicker.rx.controlEvent(.valueChanged)
@@ -108,5 +159,11 @@ extension RegistCalendarViewController {
         ui.endTime.isHidden = isOn
         ui.startDate.font = size
         ui.endDate.font = size
+        ui.endDate.text = isOn ? ui.endDate.text : ui.startDate.text
+    }
+    
+    private func isOnInteractiveDate(_ isOn: Bool) {
+        ui.startDate.isUserInteractionEnabled = isOn
+        ui.endDate.isUserInteractionEnabled = isOn
     }
 }
