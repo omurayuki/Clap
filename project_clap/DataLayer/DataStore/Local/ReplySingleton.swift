@@ -10,6 +10,7 @@ class ReplySingleton: NSObject {
             static let instance: ReplySingleton = ReplySingleton()
         }
         return Static.instance
+        Int()
     }
     
     private override init() {

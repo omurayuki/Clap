@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-import PopupDialog
 
 //設定でログアウト、チームID確認、メールアドレス確認、
 #warning("ハードコード")
@@ -19,7 +18,6 @@ protocol MypageUI: UI {
     var mypageTable: UITableView { get }
     
     func setup()
-    func createLogoutAlert(vc: UIViewController, completion: @escaping () -> Void)
 }
 
 final class MypageUIImpl: MypageUI {
@@ -185,17 +183,5 @@ extension MypageUIImpl {
         ])
         stack.spacing = 50
         return stack
-    }
-    
-    func createLogoutAlert(vc: UIViewController, completion: @escaping () -> Void) {
-        let alert = PopupDialog(title: R.string.locarizable.message(), message: R.string.locarizable.do_you_wanto_logout())
-        let logout = DefaultButton(title: R.string.locarizable.yes()) {
-            vc.present(UINavigationController(rootViewController: TopViewController()), animated: true, completion: {
-                completion()
-            })
-        }
-        let cancel = CancelButton(title: R.string.locarizable.cancel()) {}
-        alert.addButtons([logout, cancel])
-        vc.present(alert, animated: true)
     }
 }

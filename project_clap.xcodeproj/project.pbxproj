@@ -45,6 +45,12 @@
 		C91C1DBE225B0800005BDA5F /* UserSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91C1DBD225B0800005BDA5F /* UserSingleton.swift */; };
 		C92704222232C2E300B15B45 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92704212232C2E300B15B45 /* CustomView.swift */; };
 		C92716CC2244BD2700372B77 /* NSLayoutAnchor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92716CB2244BD2700372B77 /* NSLayoutAnchor+Extension.swift */; };
+		C92BE634228B394500DEEA14 /* PasswordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE633228B394500DEEA14 /* PasswordEditViewController.swift */; };
+		C92BE636228B395700DEEA14 /* EmailEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE635228B395700DEEA14 /* EmailEditViewController.swift */; };
+		C92BE638228B396100DEEA14 /* PasswordEditUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE637228B396100DEEA14 /* PasswordEditUI.swift */; };
+		C92BE63A228B396A00DEEA14 /* EmailEditUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE639228B396A00DEEA14 /* EmailEditUI.swift */; };
+		C92BE63C228B397700DEEA14 /* PasswordEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE63B228B397700DEEA14 /* PasswordEditViewModel.swift */; };
+		C92BE63E228B398000DEEA14 /* EmailEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE63D228B398000DEEA14 /* EmailEditViewModel.swift */; };
 		C937FD53222287B800F9624E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD52222287B800F9624E /* AppDelegate.swift */; };
 		C937FD5A222287B900F9624E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C937FD59222287B900F9624E /* Assets.xcassets */; };
 		C937FD5D222287B900F9624E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C937FD5B222287B900F9624E /* LaunchScreen.storyboard */; };
@@ -241,6 +247,12 @@
 		C91C1DBD225B0800005BDA5F /* UserSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSingleton.swift; sourceTree = "<group>"; };
 		C92704212232C2E300B15B45 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		C92716CB2244BD2700372B77 /* NSLayoutAnchor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutAnchor+Extension.swift"; sourceTree = "<group>"; };
+		C92BE633228B394500DEEA14 /* PasswordEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEditViewController.swift; sourceTree = "<group>"; };
+		C92BE635228B395700DEEA14 /* EmailEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEditViewController.swift; sourceTree = "<group>"; };
+		C92BE637228B396100DEEA14 /* PasswordEditUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEditUI.swift; sourceTree = "<group>"; };
+		C92BE639228B396A00DEEA14 /* EmailEditUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEditUI.swift; sourceTree = "<group>"; };
+		C92BE63B228B397700DEEA14 /* PasswordEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEditViewModel.swift; sourceTree = "<group>"; };
+		C92BE63D228B398000DEEA14 /* EmailEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEditViewModel.swift; sourceTree = "<group>"; };
 		C937FD4F222287B800F9624E /* project_clap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project_clap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C937FD52222287B800F9624E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C937FD59222287B900F9624E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -528,14 +540,14 @@
 			path = Local;
 			sourceTree = "<group>";
 		};
-		C913299A2253327F00514EDE /* Entity */ = {
+		C913299A2253327F00514EDE /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				C91329A6225365BF00514EDE /* User.swift */,
 				C96560E6225B4B0F00C22B24 /* Mypage.swift */,
 				C913299B2253480A00514EDE /* DiaryWritter.swift */,
 			);
-			path = Entity;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C913299D2253483300514EDE /* Repository */ = {
@@ -592,6 +604,7 @@
 				C914AC4B2289CD7C0054C8CD /* SettingsResources.swift */,
 				C914AC492289CD730054C8CD /* SettingsViewModel.swift */,
 				C914AC4F2289D0AD0054C8CD /* Cell */,
+				C92BE62D228AF95000DEEA14 /* SettingsItems */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -610,6 +623,35 @@
 				C914AC512289DBED0054C8CD /* SettingsEnum.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		C92BE62D228AF95000DEEA14 /* SettingsItems */ = {
+			isa = PBXGroup;
+			children = (
+				C92BE631228B392A00DEEA14 /* PasswordEdit */,
+				C92BE632228B393200DEEA14 /* EmailEdit */,
+			);
+			path = SettingsItems;
+			sourceTree = "<group>";
+		};
+		C92BE631228B392A00DEEA14 /* PasswordEdit */ = {
+			isa = PBXGroup;
+			children = (
+				C92BE633228B394500DEEA14 /* PasswordEditViewController.swift */,
+				C92BE637228B396100DEEA14 /* PasswordEditUI.swift */,
+				C92BE63B228B397700DEEA14 /* PasswordEditViewModel.swift */,
+			);
+			path = PasswordEdit;
+			sourceTree = "<group>";
+		};
+		C92BE632228B393200DEEA14 /* EmailEdit */ = {
+			isa = PBXGroup;
+			children = (
+				C92BE635228B395700DEEA14 /* EmailEditViewController.swift */,
+				C92BE639228B396A00DEEA14 /* EmailEditUI.swift */,
+				C92BE63D228B398000DEEA14 /* EmailEditViewModel.swift */,
+			);
+			path = EmailEdit;
 			sourceTree = "<group>";
 		};
 		C937FD46222287B800F9624E = {
@@ -913,7 +955,7 @@
 		C98A09352247357600AFAEF2 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
-				C913299A2253327F00514EDE /* Entity */,
+				C913299A2253327F00514EDE /* Model */,
 				C9132997225331EB00514EDE /* DataStore */,
 				C913299D2253483300514EDE /* Repository */,
 			);
@@ -1297,6 +1339,7 @@
 				C98D64D2226EB02500A1D7F9 /* TimelineSingleton.swift in Sources */,
 				C959BF76222D4C2E00207986 /* RepresentMemberRegisterResources.swift in Sources */,
 				C959BF5B222CC45E00207986 /* UILabel+Extension.swift in Sources */,
+				C92BE63A228B396A00DEEA14 /* EmailEditUI.swift in Sources */,
 				C9FF929D227E2A9E005EF4F0 /* DraftDetailRouting.swift in Sources */,
 				C9C6FE832240A8B4001FE7A5 /* SelectUI.swift in Sources */,
 				C9A28AEB227010AD00F4AF2B /* SubmittedDetailResources.swift in Sources */,
@@ -1304,6 +1347,7 @@
 				C98779122241256D005AAEA5 /* ConfirmationTeamIdRouting.swift in Sources */,
 				C9A28AD6226F33A200F4AF2B /* TimelineHeaderUI.swift in Sources */,
 				C937FD7A2222E1B400F9624E /* LoginViewController.swift in Sources */,
+				C92BE636228B395700DEEA14 /* EmailEditViewController.swift in Sources */,
 				C92716CC2244BD2700372B77 /* NSLayoutAnchor+Extension.swift in Sources */,
 				C9A28AD4226F08B700F4AF2B /* TimelineRepository.swift in Sources */,
 				C950E2BB2271BBDC0074A5C4 /* TabBarDataStore.swift in Sources */,
@@ -1340,6 +1384,7 @@
 				C914AC4E2289D0AA0054C8CD /* SettingsCell.swift in Sources */,
 				C9FF92A3227F203A005EF4F0 /* ReplyDataStore.swift in Sources */,
 				C91329AC2253937C00514EDE /* RandomString.swift in Sources */,
+				C92BE638228B396100DEEA14 /* PasswordEditUI.swift in Sources */,
 				C98D64C9226DB72A00A1D7F9 /* DiaryRegistRepository.swift in Sources */,
 				C9A28B002270DB7A00F4AF2B /* DiarySingleton.swift in Sources */,
 				C9A5C24A2224170B00BF1EBC /* TeamInfoRegistViewModel.swift in Sources */,
@@ -1397,6 +1442,7 @@
 				C9A28AF822706B6100F4AF2B /* DraftDetailViewController.swift in Sources */,
 				C913299622532FA100514EDE /* TeamSignupSingleton.swift in Sources */,
 				C91329802252360E00514EDE /* TimeLineRouting.swift in Sources */,
+				C92BE63E228B398000DEEA14 /* EmailEditViewModel.swift in Sources */,
 				C91156202250B5E000CB97E9 /* TimeLineViewController.swift in Sources */,
 				C9FF9291227976C0005EF4F0 /* EqualingStackView.swift in Sources */,
 				C9B67DC8225B99B500F82AE7 /* RemindPassRepository.swift in Sources */,
@@ -1417,6 +1463,7 @@
 				C9B67DD1225C997700F82AE7 /* MypageDataStore.swift in Sources */,
 				C9557CCA223689C300D6F7A6 /* RegistCalendarViewModel.swift in Sources */,
 				C9C6FE8C2240B6F9001FE7A5 /* RepresentMemberRegisterEnum.swift in Sources */,
+				C92BE63C228B397700DEEA14 /* PasswordEditViewModel.swift in Sources */,
 				C914AC4122897CDE0054C8CD /* MypageHeader.swift in Sources */,
 				C914AC4A2289CD730054C8CD /* SettingsViewModel.swift in Sources */,
 				C914AC542289DC680054C8CD /* SettingsData.swift in Sources */,
@@ -1445,6 +1492,7 @@
 				C98A09372247384F00AFAEF2 /* DisplayCalendarRouting.swift in Sources */,
 				C9C6FE872240B5D5001FE7A5 /* TeamInfoRegistEnum.swift in Sources */,
 				C91329AE22539F8100514EDE /* memo.swift in Sources */,
+				C92BE634228B394500DEEA14 /* PasswordEditViewController.swift in Sources */,
 				C9705790222E8A43007F8B1C /* DisplayCalendarViewController.swift in Sources */,
 				C9A28ADE226F66D800F4AF2B /* TimelineDelegate.swift in Sources */,
 				C950E2C5227219F10074A5C4 /* UserInfoResources.swift in Sources */,

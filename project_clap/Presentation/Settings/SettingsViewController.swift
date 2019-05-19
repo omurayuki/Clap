@@ -17,6 +17,21 @@ class SettingsViewController: UIViewController {
     }
 }
 
+extension SettingsViewController {
+    func createLogoutAlert() {
+        ui.createLogoutAlert(vc: self, completion: {
+            do {
+                try Firebase.fireAuth.signOut()
+                UserSingleton.sharedInstance.uid = ""; UserSingleton.sharedInstance.name = ""
+                UserSingleton.sharedInstance.image = ""; AppUserDefaults.removeValue(keyName: "teamId")
+                
+            } catch {
+                AlertController.showAlertMessage(alertType: .logoutFailure, viewController: self)
+            }
+        })
+    }
+}
+
 extension SettingsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -59,7 +74,24 @@ extension SettingsViewController: UITableViewDataSource {
 }
 
 extension SettingsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        #warning("各画面遷移")
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let section = SettingsSection(rawValue: indexPath.section) else { return }
+        switch section {
+        case .account:
+            switch indexPath.row {
+            case SettingsSection.Account.passwordEdit.rawValue:
+                print("pass")
+            case SettingsSection.Account.emailEdit.rawValue:
+                print("email")
+            default: return
+            }
+        case .general:
+            switch indexPath.row {
+            case SettingsSection.General.logout.rawValue:
+                createLogoutAlert()
+            default: return
+            }
+        }
     }
 }

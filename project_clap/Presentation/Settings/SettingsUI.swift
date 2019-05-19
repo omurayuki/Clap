@@ -1,10 +1,12 @@
 import Foundation
 import UIKit
+import PopupDialog
 
 protocol SettingsUI: UI {
     var settingsTable: UITableView { get }
     
     func setup()
+    func createLogoutAlert(vc: UIViewController, completion: @escaping () -> Void)
 }
 
 final class SettingsUIImpl: SettingsUI {
@@ -31,4 +33,17 @@ extension SettingsUIImpl {
             .bottom(to: vc.view.bottomAnchor)
             .activate()
     }
+    
+    func createLogoutAlert(vc: UIViewController, completion: @escaping () -> Void) {
+        let alert = PopupDialog(title: R.string.locarizable.message(), message: R.string.locarizable.do_you_wanto_logout())
+        let logout = DefaultButton(title: R.string.locarizable.yes()) {
+            vc.present(UINavigationController(rootViewController: TopViewController()), animated: true, completion: {
+                completion()
+            })
+        }
+        let cancel = CancelButton(title: R.string.locarizable.cancel()) {}
+        alert.addButtons([logout, cancel])
+        vc.present(alert, animated: true)
+    }
+
 }

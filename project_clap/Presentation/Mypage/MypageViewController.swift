@@ -61,20 +61,6 @@ extension MypageViewController {
             .drive(onNext: { _ in
                 self.routing.showSettingsPage(vc: self)
             }).disposed(by: viewModel.disposeBag)
-        
-//        ui.logoutBtn.rx.tap
-//            .bind { [weak self] _ in
-//                self?.ui.createLogoutAlert(vc: self ?? UIViewController(), completion: {
-//                    do {
-//                        try Firebase.fireAuth.signOut()
-//                        UserSingleton.sharedInstance.uid = ""; UserSingleton.sharedInstance.name = ""
-//                        UserSingleton.sharedInstance.image = ""; AppUserDefaults.removeValue(keyName: "teamId")
-//
-//                    } catch {
-//                        AlertController.showAlertMessage(alertType: .logoutFailure, viewController: self ?? UIViewController())
-//                    }
-//                })
-//            }.disposed(by: viewModel.disposeBag)
     }
     
     private func fetchMypageData() {

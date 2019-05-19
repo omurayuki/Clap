@@ -5,7 +5,6 @@ import RxCocoa
 import RealmSwift
 import FirebaseStorage
 
-
 class RepresentMemberRegisterViewController: UIViewController {
     
     private var viewModel: RepresentMemberRegisterViewModel!
@@ -89,7 +88,7 @@ extension RepresentMemberRegisterViewController {
                     self.ui.rePassField.backgroundColor = .white
                 }
             }).disposed(by: viewModel.disposeBag)
-        
+        #warning("ボタンをsubscribeするのではなく、ボタンに対してflatmapLatestを使って型を変更して、viewmodelのメソッドを叩く")
         ui.teamRegistBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
             .bind(onNext: { [weak self] _ in
