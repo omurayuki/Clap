@@ -4,16 +4,9 @@ protocol TimeLineUI: UI {
     var timelineHeaderView: TimeLineHeader { get }
     var timelineTableView: UITableView { get }
     var menuBtn: UIButton { get }
-    var memberBtn: UIButton { get }
-    var diaryBtn: UIButton { get }
     var isSelected: Bool { get set }
     
     func setup(vc: UIViewController)
-    func hiddenBtnPosition(vc: UIViewController)
-    func showBtnPosition(vc: UIViewController)
-    func selectedTargetMenu(vc: UIViewController)
-    func showBtn()
-    func hiddenBtn()
 }
 
 class TimeLineUIImpl: TimeLineUI {
@@ -43,24 +36,6 @@ class TimeLineUIImpl: TimeLineUI {
         button.layer.cornerRadius = DisplayCalendarResources.View.eventAddBtnCornerLayerRadius
         return button
     }()
-    
-    private(set) var memberBtn: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = AppResources.ColorResources.deepBlueColor
-        button.setTitle("＊", for: .normal)
-        button.titleLabel?.font = DisplayCalendarResources.Font.eventAddBtnFont
-        button.layer.cornerRadius = DisplayCalendarResources.View.eventAddBtnCornerLayerRadius
-        return button
-    }()
-    
-    private(set) var diaryBtn: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = AppResources.ColorResources.deepBlueColor
-        button.setTitle("＠", for: .normal)
-        button.titleLabel?.font = DisplayCalendarResources.Font.eventAddBtnFont
-        button.layer.cornerRadius = DisplayCalendarResources.View.eventAddBtnCornerLayerRadius
-        return button
-    }()
 }
 
 extension TimeLineUIImpl {
@@ -70,7 +45,7 @@ extension TimeLineUIImpl {
         vc.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         vc.navigationController?.navigationBar.shadowImage = UIImage()
         vc.navigationController?.navigationBar.barTintColor = AppResources.ColorResources.appCommonClearColor
-        [timelineHeaderView, timelineTableView, menuBtn, memberBtn, diaryBtn].forEach { vc.view.addSubview($0) }
+        [timelineHeaderView, timelineTableView, menuBtn].forEach { vc.view.addSubview($0) }
         
         timelineHeaderView.anchor()
             .top(to: vc.view.safeAreaLayoutGuide.topAnchor)
@@ -93,92 +68,5 @@ extension TimeLineUIImpl {
                        padding: .init(top: 0, left: 0, bottom: 10, right: 10))
         menuBtn.constrainWidth(constant: TimeLineResources.Constraint.BtnWidthConstraint)
         menuBtn.constrainHeight(constant: TimeLineResources.Constraint.BtnHeightConstraint)
-        
-        memberBtn.anchor(top: nil,
-                         leading: nil,
-                         bottom: vc.view.safeAreaLayoutGuide.bottomAnchor,
-                         trailing: menuBtn.leadingAnchor,
-                         padding: .init(top: 0, left: 0, bottom: 10, right: 50))
-        memberBtn.constrainWidth(constant: TimeLineResources.Constraint.BtnWidthConstraint)
-        memberBtn.constrainHeight(constant: TimeLineResources.Constraint.BtnHeightConstraint)
-        
-        diaryBtn.anchor(top: nil,
-                        leading: nil,
-                        bottom: menuBtn.topAnchor,
-                        trailing: vc.view.trailingAnchor,
-                        padding: .init(top: 0, left: 0, bottom: 50, right: 10))
-        diaryBtn.constrainWidth(constant: TimeLineResources.Constraint.BtnWidthConstraint)
-        diaryBtn.constrainHeight(constant: TimeLineResources.Constraint.BtnHeightConstraint)
-    }
-    
-    func hiddenBtnPosition(vc: UIViewController) {
-        memberBtn.anchor(top: nil,
-                         leading: nil,
-                         bottom: vc.view.safeAreaLayoutGuide.bottomAnchor,
-                         trailing: menuBtn.leadingAnchor,
-                         padding: .init(top: 0, left: 0, bottom: 10, right: 50))
-        memberBtn.constrainWidth(constant: TimeLineResources.Constraint.BtnWidthConstraint)
-        memberBtn.constrainHeight(constant: TimeLineResources.Constraint.BtnHeightConstraint)
-        
-        diaryBtn.anchor(top: nil,
-                        leading: nil,
-                        bottom: menuBtn.topAnchor,
-                        trailing: vc.view.trailingAnchor,
-                        padding: .init(top: 0, left: 0, bottom: 50, right: 10))
-        diaryBtn.constrainWidth(constant: TimeLineResources.Constraint.BtnWidthConstraint)
-        diaryBtn.constrainHeight(constant: TimeLineResources.Constraint.BtnHeightConstraint)
-    }
-    
-    func showBtnPosition(vc: UIViewController) {
-        memberBtn.anchor(top: nil,
-                         leading: nil,
-                         bottom: vc.view.safeAreaLayoutGuide.bottomAnchor,
-                         trailing: menuBtn.leadingAnchor,
-                         padding: .init(top: 0, left: 0, bottom: 10, right: 0))
-        memberBtn.constrainWidth(constant: TimeLineResources.Constraint.BtnWidthConstraint)
-        memberBtn.constrainHeight(constant: TimeLineResources.Constraint.BtnHeightConstraint)
-        
-        diaryBtn.anchor(top: nil,
-                        leading: nil,
-                        bottom: menuBtn.topAnchor,
-                        trailing: vc.view.trailingAnchor,
-                        padding: .init(top: 0, left: 0, bottom: 0, right: 10))
-        diaryBtn.constrainWidth(constant: TimeLineResources.Constraint.BtnWidthConstraint)
-        diaryBtn.constrainHeight(constant: TimeLineResources.Constraint.BtnHeightConstraint)
-    }
-    
-    func selectedTargetMenu(vc: UIViewController) {
-        if isSelected {
-            UIView.animate(withDuration: 0.7,
-                           delay: 0,
-                           usingSpringWithDamping: 0.7,
-                           initialSpringVelocity: 0.7,
-                           options: .curveEaseOut,
-                           animations: {
-                            self.hiddenBtnPosition(vc: vc)
-                            self.hiddenBtn()
-            })
-        } else {
-            UIView.animate(withDuration: 0.7,
-                           delay: 0,
-                           usingSpringWithDamping: 0.7,
-                           initialSpringVelocity: 0.7,
-                           options: .curveEaseOut,
-                           animations: {
-                            self.showBtnPosition(vc: vc)
-                            self.showBtn()
-            })
-        }
-        isSelected = !isSelected
-    }
-    
-    func showBtn() {
-        memberBtn.alpha = 1
-        diaryBtn.alpha = 1
-    }
-    
-    func hiddenBtn() {
-        memberBtn.alpha = 0
-        diaryBtn.alpha = 0
     }
 }

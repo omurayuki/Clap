@@ -11,7 +11,7 @@ class CustomView: UIView {
     }
     
     private func composeUnderline() {
-        underline.frame = CGRect(x: 20, y: frame.height + 10, width: frame.width - 40, height: 2.5)
+        underline.frame = CGRect(x: 20, y: frame.height + 10, width: frame.width - 40, height: 0.5)
         underline.backgroundColor = AppResources.ColorResources.shallowBlueColor
         addSubview(underline)
         bringSubviewToFront(underline)

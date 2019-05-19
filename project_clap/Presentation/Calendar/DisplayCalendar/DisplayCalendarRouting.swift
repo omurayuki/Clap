@@ -2,14 +2,17 @@ import Foundation
 import UIKit
 
 protocol DisplayCalendarRouting: Routing {
-    func showRegistCalendar(date: Date)
+    func showRegistCalendar(date: Date, modalTransion: ModalTransitionDelegate)
 }
 
 final class DisplayCalendarRoutingImpl: DisplayCalendarRouting {
     
     weak var viewController: UIViewController?
     
-    func showRegistCalendar(date: Date) {
-        viewController?.present(RegistCalendarViewController(selectedDate: date), animated: true)
+    func showRegistCalendar(date: Date, modalTransion: ModalTransitionDelegate) {
+        let vc = RegistCalendarViewController(selectedDate: date)
+        vc.modalPresentationStyle = .custom
+        vc.transitioningDelegate = modalTransion
+        viewController?.present(vc, animated: true)
     }
 }

@@ -32,10 +32,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dr3-Hk-1af">
-                    <rect key="frame" x="10" y="91" width="355" height="5"/>
+                    <rect key="frame" x="10" y="91" width="355" height="2"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="5" id="99R-J3-yPJ"/>
+                        <constraint firstAttribute="height" constant="2" id="99R-J3-yPJ"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1.5" id="RyG-Cm-N75"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -54,7 +55,7 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="V1r-iU-R5Z" secondAttribute="trailing" constant="15" id="Gcg-aG-Lu1"/>
                 <constraint firstItem="V1r-iU-R5Z" firstAttribute="top" secondItem="z9s-IQ-VbQ" secondAttribute="bottom" constant="10" id="LMZ-6d-ArK"/>
-                <constraint firstItem="MxN-Sw-3qa" firstAttribute="top" secondItem="dr3-Hk-1af" secondAttribute="bottom" constant="5" id="QTB-kf-eR7"/>
+                <constraint firstItem="MxN-Sw-3qa" firstAttribute="top" secondItem="dr3-Hk-1af" secondAttribute="bottom" constant="8" id="QTB-kf-eR7"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="z9s-IQ-VbQ" secondAttribute="trailing" constant="50" id="U1s-78-bYI"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="MxN-Sw-3qa" secondAttribute="bottom" constant="20" id="kxW-LU-wMt"/>
                 <constraint firstItem="dr3-Hk-1af" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="lji-Rt-L0F"/>

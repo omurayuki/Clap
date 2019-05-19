@@ -34,7 +34,6 @@ class TimeLineViewController: UIViewController {
         super.viewDidLoad()
         ui.setup(vc: self)
         ui.timelineHeaderView.timelineHeaderController.delegate = self
-        ui.hiddenBtn()
         viewModel = TimelineViewModel()
         setupViewModel()
         fetchDiaries()
@@ -48,24 +47,6 @@ extension TimeLineViewController {
             .bind(onNext: { [weak self] _ in
                 self?.ui.menuBtn.bounce(completion: {
                     guard let this = self else { return }
-                    this.ui.selectedTargetMenu(vc: this)
-                })
-            }).disposed(by: viewModel.disposeBag)
-        
-        ui.memberBtn.rx.tap
-            .bind(onNext: { [weak self] _ in
-                self?.ui.memberBtn.bounce(completion: {
-                    guard let this = self else { return }
-                    this.ui.selectedTargetMenu(vc: this)
-                    this.routing.showDiaryGroup()
-                })
-            }).disposed(by: viewModel.disposeBag)
-        
-        ui.diaryBtn.rx.tap.asObservable()
-            .subscribe(onNext: { [weak self] _ in
-                self?.ui.diaryBtn.bounce(completion: {
-                    guard let this = self else { return }
-                    this.ui.selectedTargetMenu(vc: this)
                     this.routing.showDiaryRegist()
                 })
             }).disposed(by: viewModel.disposeBag)
