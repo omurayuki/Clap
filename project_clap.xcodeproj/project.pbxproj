@@ -51,6 +51,8 @@
 		C92BE63A228B396A00DEEA14 /* EmailEditUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE639228B396A00DEEA14 /* EmailEditUI.swift */; };
 		C92BE63C228B397700DEEA14 /* PasswordEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE63B228B397700DEEA14 /* PasswordEditViewModel.swift */; };
 		C92BE63E228B398000DEEA14 /* EmailEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE63D228B398000DEEA14 /* EmailEditViewModel.swift */; };
+		C92BE6722291940200DEEA14 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE6712291940100DEEA14 /* CustomPresentationController.swift */; };
+		C92BE67422919A9300DEEA14 /* ModalTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE67322919A9300DEEA14 /* ModalTransitionDelegate.swift */; };
 		C937FD53222287B800F9624E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD52222287B800F9624E /* AppDelegate.swift */; };
 		C937FD5A222287B900F9624E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C937FD59222287B900F9624E /* Assets.xcassets */; };
 		C937FD5D222287B900F9624E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C937FD5B222287B900F9624E /* LaunchScreen.storyboard */; };
@@ -253,6 +255,8 @@
 		C92BE639228B396A00DEEA14 /* EmailEditUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEditUI.swift; sourceTree = "<group>"; };
 		C92BE63B228B397700DEEA14 /* PasswordEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEditViewModel.swift; sourceTree = "<group>"; };
 		C92BE63D228B398000DEEA14 /* EmailEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEditViewModel.swift; sourceTree = "<group>"; };
+		C92BE6712291940100DEEA14 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
+		C92BE67322919A9300DEEA14 /* ModalTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransitionDelegate.swift; sourceTree = "<group>"; };
 		C937FD4F222287B800F9624E /* project_clap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project_clap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C937FD52222287B800F9624E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C937FD59222287B900F9624E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -445,6 +449,8 @@
 				C913298F225306AB00514EDE /* AlertProtocol.swift */,
 				C91329A822538D9E00514EDE /* Firebase.swift */,
 				C98D64BC226D609900A1D7F9 /* AppUserDefaults.swift */,
+				C92BE6712291940100DEEA14 /* CustomPresentationController.swift */,
+				C92BE67322919A9300DEEA14 /* ModalTransitionDelegate.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1404,6 +1410,7 @@
 				C9A28ADB226F3D8C00F4AF2B /* SegmentEnum.swift in Sources */,
 				C959BF74222D4BEE00207986 /* TeamInfoRegisterResources.swift in Sources */,
 				C98D64BD226D609900A1D7F9 /* AppUserDefaults.swift in Sources */,
+				C92BE67422919A9300DEEA14 /* ModalTransitionDelegate.swift in Sources */,
 				C91329A922538D9F00514EDE /* Firebase.swift in Sources */,
 				C9A28AFE22706B9200F4AF2B /* DraftDetailResources.swift in Sources */,
 				C9FF9295227C0821005EF4F0 /* ReplySingleton.swift in Sources */,
@@ -1520,6 +1527,7 @@
 				C9877908224117CB005AAEA5 /* LoginUI.swift in Sources */,
 				C913297E2252309B00514EDE /* TimeLineUI.swift in Sources */,
 				C9A28AE72270103E00F4AF2B /* SubmittedDetailUI.swift in Sources */,
+				C92BE6722291940200DEEA14 /* CustomPresentationController.swift in Sources */,
 				C913298222523D6B00514EDE /* TimeLineResources.swift in Sources */,
 				C9CC619C223F963B0093D37F /* DiaryView.swift in Sources */,
 				C9F086E02233ECD800F25E7A /* MypageEditViewController.swift in Sources */,

@@ -12,6 +12,7 @@ class DisplayCalendarViewController: UIViewController {
     //階層構造 calendar 日付 events イベント(情報持)
     
     //Realmだと仮定
+    let modalTransitionDelegate = ModalTransitionDelegate()
     private var recievedFromServer: [String: [String]] = [:]
     private let disposeBag = DisposeBag()
     
@@ -71,8 +72,11 @@ extension DisplayCalendarViewController {
             .throttle(0.5, scheduler: MainScheduler.instance)
             .bind(onNext: { [weak self] _ in
                 self?.ui.eventAddBtn.bounce(completion: {
-                    guard let selectedDate = self?.ui.selectedDateToSendRegistPage else { return }
-                    self?.routing.showRegistCalendar(date: selectedDate)
+                    guard
+                        let selectedDate = self?.ui.selectedDateToSendRegistPage,
+                        let vc = self
+                    else { return }
+                    vc.routing.showRegistCalendar(date: selectedDate, modalTransion: vc.modalTransitionDelegate)
                 })
             }).disposed(by: disposeBag)
     }
