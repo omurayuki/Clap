@@ -38,12 +38,12 @@ class RepresentMemberRegisterViewController: UIViewController {
         ui.setupToolBar(ui.representMemberPosition,
                         type: .position,
                         toolBar: ui.positionToolBar,
-                        content: viewModel?.outputs.positionArr ?? [R.string.locarizable.empty()],
+                        content: viewModel?.outputs.positionArr.value ?? [R.string.locarizable.empty()],
                         vc: self)
         ui.setupToolBar(ui.representMemberYear,
                         type: .year,
                         toolBar: ui.yearToolBar,
-                        content: viewModel?.outputs.yearArr ?? [R.string.locarizable.empty()],
+                        content: viewModel?.outputs.yearArr.value ?? [R.string.locarizable.empty()],
                         vc: self)
     }
 }
@@ -98,14 +98,16 @@ extension RepresentMemberRegisterViewController {
                                           mail: self?.ui.mailField.text ?? "",
                                           representMemberPosition: self?.ui.representMemberPosition.text ?? "",
                                           representMemberYear: self?.ui.representMemberYear.text ?? "")
-                    self?.viewModel?.signup(email: self?.ui.mailField.text ?? "", pass: self?.ui.passField.text ?? "", completion: { uid in
+                    self?.viewModel?.signup(email: self?.ui.mailField.text ?? "",
+                                            pass: self?.ui.passField.text ?? "",
+                                            completion: { uid in
                         self?.viewModel?.saveTeamData(teamId: self?.teamId ?? "",
                                                       team: TeamSignupSingleton.sharedInstance.team,
                                                       grade: TeamSignupSingleton.sharedInstance.grade,
                                                       sportsKind: TeamSignupSingleton.sharedInstance.sportsKind)
-                        let realm = try? Realm()
-                        let results = realm?.objects(User.self)
-                        self?.viewModel?.registUserWithTeam(teamId: self?.teamId ?? "", uid: results?.last?.uid ?? "")
+                        let results = self?.viewModel.getUserData()
+                        self?.viewModel?.registUserWithTeam(teamId: self?.teamId ?? "",
+                                                            uid: results?.last?.uid ?? "")
                         self?.viewModel?.saveUserData(uid: results?.last?.uid ?? "", teamId: self?.teamId ?? "",
                                                       name: TeamSignupSingleton.sharedInstance.name,
                                                       role: TeamSignupSingleton.sharedInstance.representMemberPosition,
@@ -182,8 +184,8 @@ extension RepresentMemberRegisterViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
-        case is PositionPickerView: return viewModel?.outputs.positionArr.count ?? 0
-        case is YearPickerView: return viewModel?.outputs.yearArr.count ?? 0
+        case is PositionPickerView: return viewModel?.outputs.positionArr.value.count ?? 0
+        case is YearPickerView: return viewModel?.outputs.yearArr.value.count ?? 0
         default: return 0
         }
     }
@@ -192,16 +194,16 @@ extension RepresentMemberRegisterViewController: UIPickerViewDataSource {
 extension RepresentMemberRegisterViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
-        case is PositionPickerView: return viewModel?.outputs.positionArr[row] ?? R.string.locarizable.empty()
-        case is YearPickerView: return viewModel?.outputs.yearArr[row] ?? R.string.locarizable.empty()
+        case is PositionPickerView: return viewModel?.outputs.positionArr.value[row] ?? R.string.locarizable.empty()
+        case is YearPickerView: return viewModel?.outputs.yearArr.value[row] ?? R.string.locarizable.empty()
         default: return Optional<String>("")
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
-        case is PositionPickerView: ui.representMemberPosition.text = viewModel?.outputs.positionArr[row]
-        case is YearPickerView: ui.representMemberYear.text = viewModel?.outputs.yearArr[row]
+        case is PositionPickerView: ui.representMemberPosition.text = viewModel?.outputs.positionArr.value[row]
+        case is YearPickerView: ui.representMemberYear.text = viewModel?.outputs.yearArr.value[row]
         default: break
         }
     }

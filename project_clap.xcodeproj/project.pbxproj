@@ -53,6 +53,8 @@
 		C92BE63E228B398000DEEA14 /* EmailEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE63D228B398000DEEA14 /* EmailEditViewModel.swift */; };
 		C92BE6722291940200DEEA14 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE6712291940100DEEA14 /* CustomPresentationController.swift */; };
 		C92BE67422919A9300DEEA14 /* ModalTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE67322919A9300DEEA14 /* ModalTransitionDelegate.swift */; };
+		C92BE6792291B4F200DEEA14 /* LoSignupDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE6782291B4F200DEEA14 /* LoSignupDataStore.swift */; };
+		C92BE67E2291B5FA00DEEA14 /* LoSignupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92BE67D2291B5FA00DEEA14 /* LoSignupRepository.swift */; };
 		C937FD53222287B800F9624E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD52222287B800F9624E /* AppDelegate.swift */; };
 		C937FD5A222287B900F9624E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C937FD59222287B900F9624E /* Assets.xcassets */; };
 		C937FD5D222287B900F9624E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C937FD5B222287B900F9624E /* LaunchScreen.storyboard */; };
@@ -257,6 +259,8 @@
 		C92BE63D228B398000DEEA14 /* EmailEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailEditViewModel.swift; sourceTree = "<group>"; };
 		C92BE6712291940100DEEA14 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
 		C92BE67322919A9300DEEA14 /* ModalTransitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalTransitionDelegate.swift; sourceTree = "<group>"; };
+		C92BE6782291B4F200DEEA14 /* LoSignupDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoSignupDataStore.swift; sourceTree = "<group>"; };
+		C92BE67D2291B5FA00DEEA14 /* LoSignupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoSignupRepository.swift; sourceTree = "<group>"; };
 		C937FD4F222287B800F9624E /* project_clap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = project_clap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C937FD52222287B800F9624E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C937FD59222287B900F9624E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -536,12 +540,8 @@
 		C9132998225331F400514EDE /* Local */ = {
 			isa = PBXGroup;
 			children = (
-				C913299522532FA100514EDE /* TeamSignupSingleton.swift */,
-				C91C1DBD225B0800005BDA5F /* UserSingleton.swift */,
-				C98D64D1226EB02500A1D7F9 /* TimelineSingleton.swift */,
-				C9A28AFF2270DB7A00F4AF2B /* DiarySingleton.swift */,
-				C950E2CA2273179D0074A5C4 /* CommentSingleton.swift */,
-				C9FF9294227C0821005EF4F0 /* ReplySingleton.swift */,
+				C92BE6772291B49800DEEA14 /* Store */,
+				C92BE6782291B4F200DEEA14 /* LoSignupDataStore.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -559,16 +559,8 @@
 		C913299D2253483300514EDE /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				C913299E2253485100514EDE /* SignupRepository.swift */,
-				C91329B02253BC1800514EDE /* LoginRepository.swift */,
-				C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */,
-				C950E2BC2271BDFF0074A5C4 /* TabBarRepository.swift */,
-				C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */,
-				C98D64C8226DB72A00A1D7F9 /* DiaryRegistRepository.swift */,
-				C9A28AD3226F08B700F4AF2B /* TimelineRepository.swift */,
-				C950E2C822721F820074A5C4 /* DiaryDetailRepository.swift */,
-				C9FF92A0227F141A005EF4F0 /* CommentRepository.swift */,
-				C9FF92A4227F2124005EF4F0 /* ReplyRepository.swift */,
+				C92BE67C2291B5CC00DEEA14 /* Local */,
+				C92BE67A2291B5C200DEEA14 /* Remote */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -658,6 +650,44 @@
 				C92BE63D228B398000DEEA14 /* EmailEditViewModel.swift */,
 			);
 			path = EmailEdit;
+			sourceTree = "<group>";
+		};
+		C92BE6772291B49800DEEA14 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				C913299522532FA100514EDE /* TeamSignupSingleton.swift */,
+				C91C1DBD225B0800005BDA5F /* UserSingleton.swift */,
+				C98D64D1226EB02500A1D7F9 /* TimelineSingleton.swift */,
+				C9A28AFF2270DB7A00F4AF2B /* DiarySingleton.swift */,
+				C950E2CA2273179D0074A5C4 /* CommentSingleton.swift */,
+				C9FF9294227C0821005EF4F0 /* ReplySingleton.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		C92BE67A2291B5C200DEEA14 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				C913299E2253485100514EDE /* SignupRepository.swift */,
+				C91329B02253BC1800514EDE /* LoginRepository.swift */,
+				C9B67DC7225B99B500F82AE7 /* RemindPassRepository.swift */,
+				C950E2BC2271BDFF0074A5C4 /* TabBarRepository.swift */,
+				C91C1DBB225AF56C005BDA5F /* MypageRepository.swift */,
+				C98D64C8226DB72A00A1D7F9 /* DiaryRegistRepository.swift */,
+				C9A28AD3226F08B700F4AF2B /* TimelineRepository.swift */,
+				C950E2C822721F820074A5C4 /* DiaryDetailRepository.swift */,
+				C9FF92A0227F141A005EF4F0 /* CommentRepository.swift */,
+				C9FF92A4227F2124005EF4F0 /* ReplyRepository.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		C92BE67C2291B5CC00DEEA14 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				C92BE67D2291B5FA00DEEA14 /* LoSignupRepository.swift */,
+			);
+			path = Local;
 			sourceTree = "<group>";
 		};
 		C937FD46222287B800F9624E = {
@@ -1363,6 +1393,7 @@
 				C98779022241117C005AAEA5 /* SelectRouting.swift in Sources */,
 				C9FF928B227803AE005EF4F0 /* ReplyUI.swift in Sources */,
 				C9877910224123C2005AAEA5 /* ConfirmationTeamIdUI.swift in Sources */,
+				C92BE67E2291B5FA00DEEA14 /* LoSignupRepository.swift in Sources */,
 				C9EA286822434ADF003F40DD /* MypageEditUI.swift in Sources */,
 				C937FD8522237E5A00F9624E /* TeamIdWriteViewController.swift in Sources */,
 				C95EBC54222F5DD200D24181 /* DisplayCalendarCell.swift in Sources */,
@@ -1412,6 +1443,7 @@
 				C98D64BD226D609900A1D7F9 /* AppUserDefaults.swift in Sources */,
 				C92BE67422919A9300DEEA14 /* ModalTransitionDelegate.swift in Sources */,
 				C91329A922538D9F00514EDE /* Firebase.swift in Sources */,
+				C92BE6792291B4F200DEEA14 /* LoSignupDataStore.swift in Sources */,
 				C9A28AFE22706B9200F4AF2B /* DraftDetailResources.swift in Sources */,
 				C9FF9295227C0821005EF4F0 /* ReplySingleton.swift in Sources */,
 				C9C6FE902240B7C7001FE7A5 /* RepresentMemberRegisterUI.swift in Sources */,

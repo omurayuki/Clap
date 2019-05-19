@@ -10,8 +10,8 @@ protocol TeamInfoRegistViewModelInput {
 
 protocol TeamInfoRegistViewModelOutput {
     var isNextBtnEnable: Observable<Bool> { get }
-    var gradeArr: Array<String> { get }
-    var sportsKindArr: Array<String> { get }
+    var gradeArr: BehaviorRelay<[String]> { get }
+    var sportsKindArr: BehaviorRelay<[String]> { get }
     var isOverTeamField: Observable<Bool> { get }
 }
 
@@ -27,24 +27,27 @@ struct TeamInfoRegistViewModel: TeamInfoRegistViewModelType, TeamInfoRegistViewM
     var representGrade: Driver<String>
     var representSportsKind: Driver<String>
     var isNextBtnEnable: Observable<Bool>
-    var gradeArr: Array<String>
-    var sportsKindArr: Array<String>
+    var gradeArr: BehaviorRelay<[String]> = BehaviorRelay<[String]>(value: [""])
+    var sportsKindArr: BehaviorRelay<[String]> = BehaviorRelay<[String]>(value: [""])
     var isOverTeamField: Observable<Bool>
+    let localRepository: LoSignupRepository = LoSignupRepositoryImpl()
     let disposeBag = DisposeBag()
     
     init(teamField: Driver<String>, gradeField: Driver<String>, sportsKindField: Driver<String>) {
         teamText = teamField
         representGrade = gradeField
         representSportsKind = sportsKindField
-        gradeArr = [
+        gradeArr.accept([
             R.string.locarizable.empty(), R.string.locarizable.junior_high_school(),
-            R.string.locarizable.high_school(), R.string.locarizable.university(), R.string.locarizable.social()
-        ]
-        sportsKindArr = [
+            R.string.locarizable.high_school(), R.string.locarizable.university(),
+            R.string.locarizable.social()
+        ])
+        sportsKindArr.accept([
             R.string.locarizable.empty(), R.string.locarizable.rugby(),
             R.string.locarizable.base_ball(), R.string.locarizable.soccer(),
-            R.string.locarizable.basket_ball(), R.string.locarizable.kendo(), R.string.locarizable.judo()
-        ]
+            R.string.locarizable.basket_ball(), R.string.locarizable.kendo(),
+            R.string.locarizable.judo()
+        ])
         
         isOverTeamField = teamText
             .map { text -> Bool in
@@ -70,8 +73,6 @@ struct TeamInfoRegistViewModel: TeamInfoRegistViewModelType, TeamInfoRegistViewM
     }
     
     func saveToSingleton(team: String, grade: String, sportsKind: String) {
-        TeamSignupSingleton.sharedInstance.team = team
-        TeamSignupSingleton.sharedInstance.grade = grade
-        TeamSignupSingleton.sharedInstance.sportsKind = sportsKind
+        localRepository.saveToTeamSingleton(team: team, grade: grade, sportsKind: sportsKind)
     }
 }

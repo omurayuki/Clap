@@ -17,6 +17,7 @@ target 'project_clap' do
     pod 'CalculateCalendarLogic' 
     pod 'PopupDialog', '~> 0.9'
     pod 'KeychainAccess'
+    pod 'Result', '~> 4.0.0'
 
   # Pods for project_clap
 

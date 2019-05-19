@@ -30,7 +30,7 @@ extension TopViewController {
     
     private func setupViewModel() {
         ui.loginBtn.rx.tap
-            .throttle(1, scheduler: MainScheduler.instance)
+            .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.ui.loginBtn.bounce(completion: {
                     self?.routing.showLogin()
@@ -38,7 +38,7 @@ extension TopViewController {
             }).disposed(by: disposeBag)
         
         ui.signupBtn.rx.tap
-            .throttle(1, scheduler: MainScheduler.instance)
+            .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
                 self?.ui.signupBtn.bounce(completion: {
                     self?.routing.showSignup()

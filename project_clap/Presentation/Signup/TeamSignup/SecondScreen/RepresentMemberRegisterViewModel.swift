@@ -1,4 +1,6 @@
 import Foundation
+import Realm
+import RealmSwift
 import RxSwift
 import Firebase
 import RxCocoa
@@ -15,8 +17,8 @@ protocol RepresentMemberRegisterViewModelInput {
 
 protocol RepresentMemberRegisterViewModelOutput {
     var isRegistBtnEnable: Observable<Bool> { get }
-    var positionArr: Array<String> { get }
-    var yearArr: Array<String> { get }
+    var positionArr: BehaviorRelay<[String]> { get }
+    var yearArr: BehaviorRelay<[String]> { get }
     var isOverName: Observable<Bool> { get }
     var isOverPass: Observable<Bool> { get }
     var isOverRepass: Observable<Bool> { get }
@@ -38,11 +40,12 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
     var memberPosition: Observable<String>
     var memberYear: Observable<String>
     var isRegistBtnEnable: Observable<Bool>
-    var positionArr: Array<String>
-    var yearArr: Array<String>
+    var positionArr: BehaviorRelay<[String]> = BehaviorRelay<[String]>(value: [""])
+    var yearArr: BehaviorRelay<[String]> = BehaviorRelay<[String]>(value: [""])
     var isOverName: Observable<Bool>
     var isOverPass: Observable<Bool>
     var isOverRepass: Observable<Bool>
+    let localRepository: LoSignupRepository = LoSignupRepositoryImpl()
     let disposeBag = DisposeBag()
     
     init(nameField: Observable<String>, mailField: Observable<String>,
@@ -55,13 +58,15 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
         memberPosition = positionField
         memberYear = yearField
         registBtnTap = registBtn
-        positionArr = [
-            R.string.locarizable.empty(), R.string.locarizable.player(), R.string.locarizable.leader(), R.string.locarizable.manager()
-        ]
-        yearArr = [
+        positionArr.accept([
+            R.string.locarizable.empty(), R.string.locarizable.player(),
+            R.string.locarizable.leader(), R.string.locarizable.manager()
+            ])
+        yearArr.accept([
             R.string.locarizable.empty(), R.string.locarizable.first_year_student(),
-            R.string.locarizable.second_year_student(), R.string.locarizable.third_year_student(), R.string.locarizable.fourth_year_student()
-        ]
+            R.string.locarizable.second_year_student(), R.string.locarizable.third_year_student(),
+            R.string.locarizable.fourth_year_student()
+            ])
         
         isOverName = nameText
             .map{ text -> Bool in
@@ -78,26 +83,37 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
                 return RepresentMemberRegisterValidation.validateIsOverPass(pass: text)
             }.asObservable()
         
-        let isEmptyField = Observable.combineLatest(nameText, mailText, passText, rePassText) { name, mail, pass, rePass -> RepresentMemberRegisterValidationResult in
+        let isEmptyField = Observable
+            .combineLatest(nameText,
+                           mailText,
+                           passText,
+                           rePassText) { name, mail, pass, rePass -> RepresentMemberRegisterValidationResult in
             return RepresentMemberRegisterValidation.validateEmpty(name: name, mail: mail, pass: pass, rePass: rePass)
         }
         .share(replay: 1)
         
-        let passFieldWhetherMatch = Observable.combineLatest(passText, rePassText) { pass, repass -> RepresentMemberRegisterValidationResult in
+        let passFieldWhetherMatch = Observable
+            .combineLatest(passText, rePassText) { pass, repass -> RepresentMemberRegisterValidationResult in
             return RepresentMemberRegisterValidation.validatePass(pass: pass, rePass: repass)
         }
         .share(replay: 1)
         
-        let emailFieldWhetherMatch = Observable.combineLatest([mailText], { mail -> RepresentMemberRegisterValidationResult in
+        let emailFieldWhetherMatch = Observable
+            .combineLatest([mailText], { mail -> RepresentMemberRegisterValidationResult in
             return RepresentMemberRegisterValidation.validateEmail(email: mail[0])
         })
         .share(replay: 1)
         
-        let isEmptyPicker = Observable.combineLatest(memberPosition, memberYear) { position, year -> RepresentMemberRegisterValidationResult in
+        let isEmptyPicker = Observable
+            .combineLatest(memberPosition, memberYear) { position, year -> RepresentMemberRegisterValidationResult in
             return RepresentMemberRegisterValidation.validatePicker(position: position, year: year)
         }
         
-        isRegistBtnEnable = Observable.combineLatest(isEmptyField, passFieldWhetherMatch, emailFieldWhetherMatch, isEmptyPicker) { (empty, pass, mail, picker) in
+        isRegistBtnEnable = Observable
+            .combineLatest(isEmptyField,
+                           passFieldWhetherMatch,
+                           emailFieldWhetherMatch,
+                           isEmptyPicker) { (empty, pass, mail, picker) in
             empty.isValid &&
             pass.isValid &&
             mail.isValid &&
@@ -106,11 +122,14 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
         .share(replay: 1)
     }
     
-    func saveToSingleton(name: String, mail: String, representMemberPosition: String, representMemberYear: String) {
-        TeamSignupSingleton.sharedInstance.name = name
-        TeamSignupSingleton.sharedInstance.mail = mail
-        TeamSignupSingleton.sharedInstance.representMemberPosition = representMemberPosition
-        TeamSignupSingleton.sharedInstance.representMemberYear = representMemberYear
+    func saveToSingleton(name: String,
+                         mail: String,
+                         representMemberPosition: String,
+                         representMemberYear: String) {
+        localRepository.saveToTeamSingleton(name: name,
+                                        mail: mail,
+                                        representMemberPosition: representMemberPosition,
+                                        representMemberYear: representMemberYear)
     }
     
     func saveToSingleton(uid: String, completion: @escaping () -> Void) {
@@ -118,6 +137,10 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
         completion()
     }
     
+    func getUserData() -> Results<User>? {
+        return localRepository.getUserData()
+    }
+
     func signup(email: String, pass: String, completion: @escaping (String) -> Void) {
         SignupRepositoryImpl().signup(email: email, pass: pass, completion: { uid in
                 completion(uid ?? "")
@@ -162,7 +185,10 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
             }.disposed(by: disposeBag)
     }
     
-    func saveUserData(uid: String, teamId: String, name: String, role: String, mail: String, team: String, completion: @escaping (String?, Error?) -> Void) {
+    func saveUserData(uid: String, teamId: String,
+                      name: String, role: String,
+                      mail: String, team: String,
+                      completion: @escaping (String?, Error?) -> Void) {
         SignupRepositoryImpl().saveUserData(user: uid, teamId: teamId,
                                           name: name, role: role,
                                           mail: mail, team: team)

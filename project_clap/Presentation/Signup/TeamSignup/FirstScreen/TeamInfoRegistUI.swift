@@ -144,7 +144,11 @@ extension TeamInfoRegistUIImpl {
         return pickerView
     }
     
-    func setupToolBar(_ textField: UITextField, type: TeamInfoRegistPickerType, toolBar: UIToolbar, content: Array<String>, vc: UIViewController) {
+    func setupToolBar(_ textField: UITextField,
+                      type: TeamInfoRegistPickerType,
+                      toolBar: UIToolbar,
+                      content: Array<String>,
+                      vc: UIViewController) {
         textField.inputView = getPickerView(type: type, vc: vc)
         textField.inputAccessoryView = toolBar
         textField.text = content[0]

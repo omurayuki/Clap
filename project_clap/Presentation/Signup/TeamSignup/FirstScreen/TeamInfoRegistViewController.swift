@@ -32,12 +32,12 @@ class  TeamInfoRegistViewController: UIViewController {
         ui.setupToolBar(ui.gradeField,
                         type: .grade,
                         toolBar: ui.gradeToolBar,
-                        content: viewModel?.outputs.gradeArr ?? [R.string.locarizable.empty()],
+                        content: viewModel?.outputs.gradeArr.value ?? [R.string.locarizable.empty()],
                         vc: self)
         ui.setupToolBar(ui.sportsKindField,
                         type: .sports,
                         toolBar: ui.sportsKindToolBar,
-                        content: viewModel?.outputs.sportsKindArr ?? [R.string.locarizable.empty()],
+                        content: viewModel?.outputs.sportsKindArr.value ?? [R.string.locarizable.empty()],
                         vc: self)
     }
 }
@@ -109,8 +109,8 @@ extension TeamInfoRegistViewController: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
-        case is GradePickerView: return viewModel?.outputs.gradeArr.count ?? 0
-        case is SportsKindPickerView: return viewModel?.outputs.sportsKindArr.count ?? 0
+        case is GradePickerView: return viewModel?.outputs.gradeArr.value.count ?? 0
+        case is SportsKindPickerView: return viewModel?.outputs.sportsKindArr.value.count ?? 0
         default: return 0
         }
     }
@@ -119,16 +119,16 @@ extension TeamInfoRegistViewController: UIPickerViewDataSource {
 extension TeamInfoRegistViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView {
-        case is GradePickerView: return viewModel?.outputs.gradeArr[row] ?? R.string.locarizable.empty()
-        case is SportsKindPickerView: return viewModel?.outputs.sportsKindArr[row] ?? R.string.locarizable.empty()
+        case is GradePickerView: return viewModel?.outputs.gradeArr.value[row] ?? R.string.locarizable.empty()
+        case is SportsKindPickerView: return viewModel?.outputs.sportsKindArr.value[row] ?? R.string.locarizable.empty()
         default: return Optional<String>("")
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
-        case is GradePickerView: ui.gradeField.text = viewModel?.outputs.gradeArr[row]
-        case is SportsKindPickerView: ui.sportsKindField.text = viewModel?.outputs.sportsKindArr[row]
+        case is GradePickerView: ui.gradeField.text = viewModel?.outputs.gradeArr.value[row]
+        case is SportsKindPickerView: ui.sportsKindField.text = viewModel?.outputs.sportsKindArr.value[row]
         default: break
         }
     }
