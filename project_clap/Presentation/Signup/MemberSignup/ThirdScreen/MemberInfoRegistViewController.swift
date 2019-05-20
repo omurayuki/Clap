@@ -44,7 +44,7 @@ class MemberInfoRegistViewController: UIViewController {
                                                 registBtn: ui.memberRegistBtn.rx.tap.asObservable())
         ui.setupToolBar(ui.memberPosition,
                         toolBar: ui.positionToolBar,
-                        content: viewModel?.outputs.positionArr ?? [R.string.locarizable.empty()],
+                        content: viewModel?.outputs.positionArr.value ?? [R.string.locarizable.empty()],
                         vc: self)
         setupViewModel()
     }
@@ -93,31 +93,34 @@ extension MemberInfoRegistViewController {
             }).disposed(by: viewModel.disposeBag)
         
         ui.memberRegistBtn.rx.tap
-            .throttle(0.5, scheduler: MainScheduler.instance)
             .bind(onNext: { [weak self] _ in
                 self?.ui.memberRegistBtn.bounce(completion: {
                     self?.showIndicator()
-                    self?.viewModel?.saveToSingleton(name: self?.ui.nameField.text ?? "",
-                                                     mail: self?.ui.mailField.text ?? "",
-                                                     representMemberPosition: self?.ui.memberPosition.text ?? "")
-                    self?.viewModel?.signup(email: self?.ui.mailField.text ?? "", pass: self?.ui.passField.text ?? "", completion: { uid in
-                        let realm = try? Realm()
-                        let results = realm?.objects(User.self)
-                        self?.viewModel?.saveUserData(uid: results?.last?.uid ?? "",
-                                                      teamId: self?.recievedTeamId ?? "",
-                                                      name: self?.ui.nameField.text ?? "",
-                                                      role: self?.ui.memberPosition.text ?? "",
-                                                      mail: self?.ui.mailField.text ?? "",
-                                                      team: self?.recievedBelongTeam ?? "",
-                                                      completion: { _, error in
-                            if let _ = error {
-                                AlertController.showAlertMessage(alertType: .loginFailed, viewController: self ?? UIViewController())
-                                return
-                            }
-                            self?.viewModel?.saveToSingleton(uid: uid , completion: {
-                                self?.hideIndicator()
-                                self?.routing.showTabBar(uid: UserSingleton.sharedInstance.uid)
-                            })
+                })
+            }).disposed(by: viewModel.disposeBag)
+        
+        ui.memberRegistBtn.rx.tap
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .bind(onNext: { [weak self] _ in
+                self?.viewModel?.saveToSingleton(name: self?.ui.nameField.text ?? "",
+                                                 mail: self?.ui.mailField.text ?? "",
+                                                 representMemberPosition: self?.ui.memberPosition.text ?? "")
+                self?.viewModel?.signup(email: self?.ui.mailField.text ?? "", pass: self?.ui.passField.text ?? "", completion: { uid in
+                    let results = self?.viewModel.getUserData()
+                    self?.viewModel?.saveUserData(uid: results?.last?.uid ?? "",
+                                                  teamId: self?.recievedTeamId ?? "",
+                                                  name: self?.ui.nameField.text ?? "",
+                                                  role: self?.ui.memberPosition.text ?? "",
+                                                  mail: self?.ui.mailField.text ?? "",
+                                                  team: self?.recievedBelongTeam ?? "",
+                                                  completion: { _, error in
+                        if let _ = error {
+                            AlertController.showAlertMessage(alertType: .loginFailed, viewController: self ?? UIViewController())
+                            return
+                        }
+                        self?.viewModel?.saveToSingleton(uid: uid , completion: {
+                            self?.hideIndicator()
+                            self?.routing.showTabBar(uid: UserSingleton.sharedInstance.uid)
                         })
                     })
                 })
@@ -172,17 +175,17 @@ extension MemberInfoRegistViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return viewModel?.outputs.positionArr.count ?? 0
+        return viewModel?.outputs.positionArr.value.count ?? 0
     }
 }
 
 extension MemberInfoRegistViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return viewModel?.outputs.positionArr[row] ?? R.string.locarizable.empty()
+        return viewModel?.outputs.positionArr.value[row] ?? R.string.locarizable.empty()
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        ui.memberPosition.text = viewModel?.outputs.positionArr[row] ?? R.string.locarizable.empty()
+        ui.memberPosition.text = viewModel?.outputs.positionArr.value[row] ?? R.string.locarizable.empty()
     }
 }
 

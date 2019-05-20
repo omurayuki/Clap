@@ -8,6 +8,9 @@ protocol LoSignupRepository {
                          mail: String,
                          representMemberPosition: String,
                          representMemberYear: String)
+    func saveToSingleton(name: String,
+                         mail: String,
+                         representMemberPosition: String)
     func getUserData() -> Results<User>?
     func saveUserData(uid: String, email: String, completion: @escaping (Error?) -> Void)
 }
@@ -28,6 +31,14 @@ struct LoSignupRepositoryImpl: LoSignupRepository {
                                        mail: mail,
                                        representMemberPosition: representMemberPosition,
                                        representMemberYear: representMemberYear)
+    }
+    
+    func saveToSingleton(name: String,
+                         mail: String,
+                         representMemberPosition: String) {
+        localStore.saveToSingleton(name: name,
+                                        mail: mail,
+                                        representMemberPosition: representMemberPosition)
     }
     
     func getUserData() -> Results<User>? {

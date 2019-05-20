@@ -8,6 +8,9 @@ protocol LoSignupDataStore {
                          mail: String,
                          representMemberPosition: String,
                          representMemberYear: String)
+    func saveToSingleton(name: String,
+                         mail: String,
+                         representMemberPosition: String)
     func getUserData() -> Results<User>?
     func saveUserData(uid: String, email: String, completion: @escaping (Error?) -> Void)
 }
@@ -27,6 +30,14 @@ struct LoSignupDataStoreImpl: LoSignupDataStore {
         TeamSignupSingleton.sharedInstance.mail = mail
         TeamSignupSingleton.sharedInstance.representMemberPosition = representMemberPosition
         TeamSignupSingleton.sharedInstance.representMemberYear = representMemberYear
+    }
+    
+    func saveToSingleton(name: String,
+                         mail: String,
+                         representMemberPosition: String) {
+        TeamSignupSingleton.sharedInstance.name = name
+        TeamSignupSingleton.sharedInstance.mail = mail
+        TeamSignupSingleton.sharedInstance.representMemberPosition = representMemberPosition
     }
     
     func getUserData() -> Results<User>? {
