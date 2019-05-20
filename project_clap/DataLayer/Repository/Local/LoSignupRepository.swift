@@ -9,6 +9,7 @@ protocol LoSignupRepository {
                          representMemberPosition: String,
                          representMemberYear: String)
     func getUserData() -> Results<User>?
+    func saveUserData(uid: String, email: String, completion: @escaping (Error?) -> Void)
 }
 
 struct LoSignupRepositoryImpl: LoSignupRepository {
@@ -31,5 +32,9 @@ struct LoSignupRepositoryImpl: LoSignupRepository {
     
     func getUserData() -> Results<User>? {
         return localStore.getUserData()
+    }
+    
+    func saveUserData(uid: String, email: String, completion: @escaping (Error?) -> Void) {
+        localStore.saveUserData(uid: uid, email: email, completion: completion)
     }
 }

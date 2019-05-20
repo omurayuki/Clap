@@ -9,6 +9,7 @@ protocol LoSignupDataStore {
                          representMemberPosition: String,
                          representMemberYear: String)
     func getUserData() -> Results<User>?
+    func saveUserData(uid: String, email: String, completion: @escaping (Error?) -> Void)
 }
 
 struct LoSignupDataStoreImpl: LoSignupDataStore {
@@ -32,5 +33,12 @@ struct LoSignupDataStoreImpl: LoSignupDataStore {
         let realm = try? Realm()
         let results = realm?.objects(User.self)
         return results
+    }
+    
+    func saveUserData(uid: String, email: String, completion: @escaping (Error?) -> Void) {
+        let user = User()
+        user.uid = uid
+        user.email = email
+        user.saveUserData(user: user, completion: completion)
     }
 }

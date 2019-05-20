@@ -118,7 +118,7 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
                     let user = User()
                     user.uid = data.user.uid
                     user.email = data.user.email ?? ""
-                    user.saveUserData(user: user)
+                    user.saveUserData(user: user, completion: nil)
                 case .error(_):
                     return
                 }

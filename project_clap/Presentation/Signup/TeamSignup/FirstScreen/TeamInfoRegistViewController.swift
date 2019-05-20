@@ -62,16 +62,19 @@ extension TeamInfoRegistViewController {
                     self.ui.teamNameField.backgroundColor = .white
                 }
             }).disposed(by: viewModel.disposeBag)
+        
+        ui.nextBtn.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.ui.nextBtn.bounce()
+            }).disposed(by: viewModel.disposeBag)
 
         ui.nextBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
             .bind(onNext: { [weak self] _ in
-                self?.ui.nextBtn.bounce(completion: {
-                    self?.viewModel?.saveToSingleton(team: self?.ui.teamNameField.text ?? "",
-                                          grade: self?.ui.gradeField.text ?? "",
-                                          sportsKind: self?.ui.sportsKindField.text ?? "")
-                    self?.routing.RepresentMemberRegister()
-                })
+                self?.viewModel?.saveToSingleton(team: self?.ui.teamNameField.text ?? "",
+                                                 grade: self?.ui.gradeField.text ?? "",
+                                                 sportsKind: self?.ui.sportsKindField.text ?? "")
+                self?.routing.RepresentMemberRegister()
             }).disposed(by: viewModel.disposeBag)
         
         ui.gradeDoneBtn.rx.tap
