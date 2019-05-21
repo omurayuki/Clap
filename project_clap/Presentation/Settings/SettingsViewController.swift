@@ -19,6 +19,8 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController {
     func createLogoutAlert() {
+        #warning("UIとは関係ない")
+        #warning("singleton, userdefsult直接")
         ui.createLogoutAlert(vc: self, completion: {
             do {
                 try Firebase.fireAuth.signOut()

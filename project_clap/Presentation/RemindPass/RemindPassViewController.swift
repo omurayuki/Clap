@@ -23,7 +23,7 @@ class RemindPassViewController: UIViewController {
 extension RemindPassViewController {
     
     private func setupViewModel() {
-        viewModel?.outputs.isSubmitBtnEnable.asObservable()
+        viewModel?.outputs.isSubmitBtnEnable
             .distinctUntilChanged()
             .subscribe(onNext: { [weak self] isValid in
                 isValid ? self?.ui.submitBtn.setupAnimation() : self?.ui.submitBtn.teardownAnimation()
@@ -43,15 +43,18 @@ extension RemindPassViewController {
         
         ui.submitBtn.rx.tap
             .bind(onNext: { [weak self] _ in
+                self?.ui.submitBtn.bounce()
+            }).disposed(by: viewModel.disposeBag)
+        
+        ui.submitBtn.rx.tap
+            .bind(onNext: { [weak self] _ in
                 guard let this = self else { return }
-                this.ui.submitBtn.bounce(completion: {
-                    this.viewModel.resettingPassword(email: this.ui.emailField.text ?? "", completion: { (_, error) in
-                        if let _ = error {
-                            AlertController.showAlertMessage(alertType: .sendMailFailed, viewController: this)
-                            return
-                        }
-                        AlertController.showAlertMessage(alertType: .sendMailSuccess, viewController: this)
-                    })
+                this.viewModel.resettingPassword(email: this.ui.emailField.text ?? "", completion: { (_, error) in
+                    if let _ = error {
+                        AlertController.showAlertMessage(alertType: .sendMailFailed, viewController: this)
+                        return
+                    }
+                    AlertController.showAlertMessage(alertType: .sendMailSuccess, viewController: this)
                 })
             }).disposed(by: viewModel.disposeBag)
     }

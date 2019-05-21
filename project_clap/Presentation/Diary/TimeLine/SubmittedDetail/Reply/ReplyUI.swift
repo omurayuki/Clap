@@ -90,7 +90,9 @@ extension ReplyUIImpl {
         self.comment.text = comment
         navigationItem.leftBarButtonItem = cancelBtn
         navigationBar.pushItem(navigationItem, animated: true)
-        [navigationBar, self.userImage, self.name, self.time, self.comment, replyWriteField, replyTable].forEach { vc.view.addSubview($0) }
+        [navigationBar, self.userImage,
+         self.name, self.time,
+         self.comment, replyWriteField, replyTable].forEach { vc.view.addSubview($0) }
         
         navigationBar.anchor()
             .top(to: vc.view.safeAreaLayoutGuide.topAnchor)

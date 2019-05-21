@@ -1,8 +1,6 @@
 import Foundation
 import UIKit
 
-//// Is it use for component?
-//// comment is section, reply is row
 protocol SubmittedDetailUI: UI {
     var diaryScrollView: UIScrollView { get }
     var userInfo: UserInfo { get set }

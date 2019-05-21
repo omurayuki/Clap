@@ -36,6 +36,7 @@ class CommentCell: UITableViewCell {
         return label
     }()
     
+    #warning("アイコン")
     private lazy var goodBtn: UIButton = {
         let button = UIButton()
         button.titleLabel?.font = CommentCellResources.Font.goodBtnFont

@@ -94,7 +94,7 @@ extension SubmittedDetailViewController {
                                   name: recievedTimelineCellData.name ?? "",
                                   date: recievedTimelineCellData.date ?? Date())
     }
-    
+    #warning("直接呼んでる")
     private func setdiaryDataFromSingleton() {
         ui.text1.text = DiarySingleton.sharedInstance.text1; ui.text2.text = DiarySingleton.sharedInstance.text2
         ui.text3.text = DiarySingleton.sharedInstance.text3; ui.text4.text = DiarySingleton.sharedInstance.text4
@@ -104,6 +104,8 @@ extension SubmittedDetailViewController {
     private func fetchDiaryDetail() {
         showIndicator()
         view.isUserInteractionEnabled = false
+        #warning("CONSTファイルにkeyを定義")
+        #warning("userdefsultを直接呼ばない")
         viewModel.fetchDiaryDetail(
             teamId: AppUserDefaults.getValue(keyName: "teamId"),
             diaryId: recievedTimelineCellData.diaryID ?? "")
@@ -138,7 +140,8 @@ extension SubmittedDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentCell.self), for: indexPath) as? CommentCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentCell.self),
+                                                       for: indexPath) as? CommentCell else { return UITableViewCell() }
         cell.configureInit(image: CommentSingleton.sharedInstance.image[indexPath.row],
                            name: CommentSingleton.sharedInstance.name[indexPath.row],
                            time: CommentSingleton.sharedInstance.time[indexPath.row],
@@ -149,7 +152,7 @@ extension SubmittedDetailViewController: UITableViewDataSource {
         return cell
     }
 }
-
+#warning("インスタンス作成はroutingの仕事")
 //// MARK:- Delegate
 extension SubmittedDetailViewController: CommentCellDelegate {
     

@@ -13,7 +13,6 @@ class LoginViewCountroller: UIViewController {
     private lazy var ui: LoginUI = {
         let ui = LoginUIImpl()
         ui.viewController = self
-        
         return ui
     }()
     
@@ -44,19 +43,23 @@ extension LoginViewCountroller {
         
         ui.logintBtn.rx.tap
             .bind(onNext: { [weak self] _ in
+                self?.ui.logintBtn.bounce(completion: {
+                    self?.showIndicator()
+                })
+            }).disposed(by: viewModel.disposeBag)
+        
+        ui.logintBtn.rx.tap
+            .bind(onNext: { [weak self] _ in
                 guard let this = self else { return }
-                this.showIndicator()
-                this.ui.logintBtn.bounce(completion: {
-                    this.viewModel?.login(mail: this.ui.mailField.text ?? "", pass: this.ui.passField.text ?? "", completion: { (uid, error) in
-                        if let _ = error {
-                            self?.hideIndicator()
-                            AlertController.showAlertMessage(alertType: .loginFailed, viewController: this)
-                            return
-                        }
-                        self?.viewModel?.saveToSingleton(uid: uid ?? "", completion: {
-                            self?.hideIndicator(completion: {
-                                this.routing.showTabBar(uid: UserSingleton.sharedInstance.uid)
-                            })
+                this.viewModel?.login(mail: this.ui.mailField.text ?? "", pass: this.ui.passField.text ?? "", completion: { (uid, error) in
+                    if let _ = error {
+                        self?.hideIndicator()
+                        AlertController.showAlertMessage(alertType: .loginFailed, viewController: this)
+                        return
+                    }
+                    self?.viewModel?.saveToSingleton(uid: uid ?? "", completion: {
+                        self?.hideIndicator(completion: {
+                            this.routing.showTabBar(uid: UserSingleton.sharedInstance.uid)
                         })
                     })
                 })
