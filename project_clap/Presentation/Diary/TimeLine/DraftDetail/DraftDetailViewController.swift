@@ -138,9 +138,8 @@ extension DraftDetailViewController {
     private func fetchDiaryDetail() {
         showIndicator()
         view.isUserInteractionEnabled = false
-        #warning("userdefaultとsingleton直接呼んでる")
         viewModel.fetchDiaryDetail(
-            teamId: AppUserDefaults.getValue(keyName: "teamId"),
+            teamId: viewModel.getTeamId(),
             diaryId: recievedTimelineCellData.diaryID ?? "")
         { [weak self] (data, error) in
             if let _ = error {

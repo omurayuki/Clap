@@ -41,6 +41,7 @@ class ReplyViewController: UIViewController {
         setupViewModel()
         #warning("Constファイルでkeysakusei")
         #warning("userdefsultとsingletonを直接呼ばない")
+        
         fetchReplies(teamId: AppUserDefaults.getValue(keyName: "teamId"),
                      diaryId: DiarySingleton.sharedInstance.diaryId,
                      commentId: self.commentId)

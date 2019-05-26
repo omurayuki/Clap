@@ -97,6 +97,10 @@
 		C959BF78222D4C6A00207986 /* SelectResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF77222D4C6A00207986 /* SelectResources.swift */; };
 		C959BF7A222D4C8E00207986 /* TopResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = C959BF79222D4C8E00207986 /* TopResources.swift */; };
 		C95EBC54222F5DD200D24181 /* DisplayCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95EBC52222F5DD200D24181 /* DisplayCalendarCell.swift */; };
+		C95F5C8A22944B8B003FFB7D /* LoTimelineDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F5C8922944B8B003FFB7D /* LoTimelineDataStore.swift */; };
+		C95F5C8C22944F57003FFB7D /* LoTimelineRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F5C8B22944F57003FFB7D /* LoTimelineRepository.swift */; };
+		C95F5C8E229459C1003FFB7D /* LoDiaryDetailDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F5C8D229459C1003FFB7D /* LoDiaryDetailDataStore.swift */; };
+		C95F5C9022945A1B003FFB7D /* LoDiaryDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95F5C8F22945A1B003FFB7D /* LoDiaryDetailRepository.swift */; };
 		C96560E7225B4B0F00C22B24 /* Mypage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96560E6225B4B0F00C22B24 /* Mypage.swift */; };
 		C96560E9225B525100C22B24 /* MypageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96560E8225B525100C22B24 /* MypageViewModel.swift */; };
 		C970577E222E5E68007F8B1C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C970577D222E5E68007F8B1C /* CustomTextField.swift */; };
@@ -304,6 +308,10 @@
 		C959BF77222D4C6A00207986 /* SelectResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectResources.swift; sourceTree = "<group>"; };
 		C959BF79222D4C8E00207986 /* TopResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopResources.swift; sourceTree = "<group>"; };
 		C95EBC52222F5DD200D24181 /* DisplayCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCalendarCell.swift; sourceTree = "<group>"; };
+		C95F5C8922944B8B003FFB7D /* LoTimelineDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoTimelineDataStore.swift; sourceTree = "<group>"; };
+		C95F5C8B22944F57003FFB7D /* LoTimelineRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoTimelineRepository.swift; sourceTree = "<group>"; };
+		C95F5C8D229459C1003FFB7D /* LoDiaryDetailDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoDiaryDetailDataStore.swift; sourceTree = "<group>"; };
+		C95F5C8F22945A1B003FFB7D /* LoDiaryDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoDiaryDetailRepository.swift; sourceTree = "<group>"; };
 		C96560E6225B4B0F00C22B24 /* Mypage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mypage.swift; sourceTree = "<group>"; };
 		C96560E8225B525100C22B24 /* MypageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewModel.swift; sourceTree = "<group>"; };
 		C970577D222E5E68007F8B1C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -540,6 +548,8 @@
 			children = (
 				C92BE6772291B49800DEEA14 /* Store */,
 				C92BE6782291B4F200DEEA14 /* LoSignupDataStore.swift */,
+				C95F5C8922944B8B003FFB7D /* LoTimelineDataStore.swift */,
+				C95F5C8D229459C1003FFB7D /* LoDiaryDetailDataStore.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -684,6 +694,8 @@
 			isa = PBXGroup;
 			children = (
 				C92BE67D2291B5FA00DEEA14 /* LoSignupRepository.swift */,
+				C95F5C8B22944F57003FFB7D /* LoTimelineRepository.swift */,
+				C95F5C8F22945A1B003FFB7D /* LoDiaryDetailRepository.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -1509,6 +1521,7 @@
 				C9F2C6A72288782600E3DEB9 /* UITextView+Extension.swift in Sources */,
 				C9F086E622346ACC00F25E7A /* DisplayEventCell.swift in Sources */,
 				C98A093922473B8400AFAEF2 /* RegistCalendarUI.swift in Sources */,
+				C95F5C9022945A1B003FFB7D /* LoDiaryDetailRepository.swift in Sources */,
 				C9DBEE0F223E613800979664 /* DateFormatter+Extension.swift in Sources */,
 				C9C6FE852240ADB4001FE7A5 /* TeamInfoRegistUI.swift in Sources */,
 				C96560E9225B525100C22B24 /* MypageViewModel.swift in Sources */,
@@ -1543,6 +1556,8 @@
 				C9A28AF0227014BC00F4AF2B /* ReplyCell.swift in Sources */,
 				C97057A1222E9B0F007F8B1C /* TabBarResources.swift in Sources */,
 				C9A28AD2226F02CD00F4AF2B /* TimelineDataStore.swift in Sources */,
+				C95F5C8E229459C1003FFB7D /* LoDiaryDetailDataStore.swift in Sources */,
+				C95F5C8C22944F57003FFB7D /* LoTimelineRepository.swift in Sources */,
 				C959BF572229100500207986 /* RepresentMemberRegisterValidation.swift in Sources */,
 				C9877908224117CB005AAEA5 /* LoginUI.swift in Sources */,
 				C913297E2252309B00514EDE /* TimeLineUI.swift in Sources */,
@@ -1551,6 +1566,7 @@
 				C913298222523D6B00514EDE /* TimeLineResources.swift in Sources */,
 				C9CC619C223F963B0093D37F /* DiaryView.swift in Sources */,
 				C9F086E02233ECD800F25E7A /* MypageEditViewController.swift in Sources */,
+				C95F5C8A22944B8B003FFB7D /* LoTimelineDataStore.swift in Sources */,
 				C914AC4C2289CD7C0054C8CD /* SettingsResources.swift in Sources */,
 				C950E2C922721F820074A5C4 /* DiaryDetailRepository.swift in Sources */,
 			);
