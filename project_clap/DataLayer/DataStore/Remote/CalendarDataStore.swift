@@ -30,21 +30,21 @@ struct CalendarDataStoreImpl: CalendarDataStore {
             "content": content
         ] as [String : Any]
         return Single.create(subscribe: { single -> Disposable in
-            for i in 0 ..< startToEnd.count {
+            startToEnd.enumerated().forEach { index, _ in
                 Firebase.db
                     .collection("calendar")
                     .document(AppUserDefaults.getValue(keyName: "teamId"))
                     .collection("dates")
-                    .document(startToEnd[i])
-                    .setData(["date": startToEnd[i]], completion: { error in
-                        if let error = error {
-                            single(.error(FirebaseError.fetchError(error)))
-                            return
-                        }
+                    .document(startToEnd[index])
+                    .setData(["date": startToEnd[index]], completion: { error in
+                    if let error = error {
+                        single(.error(FirebaseError.fetchError(error)))
+                        return
+                    }
                     Firebase.db.collection("calendar")
                         .document(AppUserDefaults.getValue(keyName: "teamId"))
                         .collection("dates")
-                        .document(startToEnd[i])
+                        .document(startToEnd[index])
                         .collection("events")
                         .document(eventCollectionPath)
                         .setData(setData, completion: { error in
