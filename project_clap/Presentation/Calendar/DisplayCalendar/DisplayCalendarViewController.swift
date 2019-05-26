@@ -12,12 +12,12 @@ class DisplayCalendarViewController: UIViewController {
     
     //Realmだと仮定
     let modalTransitionDelegate = ModalTransitionDelegate()
-    private var recievedFromServer: [String: [String]] = [:]
+    private var recievedDisplaingCalendarDataFromServer: [String: [String]] = [:]
     private let disposeBag = DisposeBag()
     
     private let formatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy MM dd"
+        formatter.dateFormat = "yyyy年MM月dd日"
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         return formatter
@@ -45,7 +45,6 @@ class DisplayCalendarViewController: UIViewController {
         ui.setupInsideDisplayCalendar(vc: self)
         setupCalendar()
         getCurrentDay()
-        loadEventData()
         setupViewModel()
         //以下のapiはcalendar作業の時に移動させる
         //datastore移動
@@ -57,8 +56,9 @@ class DisplayCalendarViewController: UIViewController {
             guard let snapshot = snapshot, snapshot.exists, let data = snapshot.data() else { return }
             if let teamId = data["teamId"] as? String {
                 //view.isUserInteractionEnabled必要　fetch中にdiaryページに行かせないため
-                
-                AppUserDefaults.setValue(value: teamId, keyName: "teamId")
+                AppUserDefaults.setValue(value: teamId, keyName: "teamId", completion: {
+                    self.loadEventData()
+                })
             }
         })
     }
@@ -93,24 +93,26 @@ extension DisplayCalendarViewController {
     }
     
     private func loadEventData() {
-        //firebaseから取得して、[string: [string]]に変換して、recievedFromServerに渡す
-        Firebase.db.collection("calendar").document(AppUserDefaults.getValue(keyName: "teamId")).collection("events").addSnapshotListener { query, error in
-            if let _ = error {
-                return
-            }
-            
-        }
-        
-        DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) {
-            let recievedData = self.getObjectFromServer()
-            for (date, event) in recievedData {
-                let stringDate = self.formatter.string(from: date)
-                self.recievedFromServer[stringDate] = event
-            }
-            DispatchQueue.main.async {
-                self.ui.calendarView.reloadData()
-            }
-        }
+        formatter.dateFormat = "yyyy年MM月dd日"
+            Firebase.db.collection("calendar").document(AppUserDefaults.getValue(keyName: "teamId")).collection("dates").addSnapshotListener({ snapshot, error in
+                if let _ = error {
+                    return
+                }
+                self.recievedDisplaingCalendarDataFromServer = [String: [String]]()
+                guard let documents = snapshot?.documents else { return }
+                for document in documents {
+                    guard let date = document["date"] as? String else { return }
+                    self.recievedDisplaingCalendarDataFromServer.updateValue([String](), forKey: date)
+                    Firebase.db.collection("calendar").document(AppUserDefaults.getValue(keyName: "teamId")).collection("dates").document(date).collection("events").addSnapshotListener({ eventsSnapshot, error in
+                        guard let eventsDocuments = eventsSnapshot?.documents else { return }
+                        for eventsDocument in eventsDocuments {
+                            guard let title = eventsDocument["title"] as? String else { return }
+                            self.recievedDisplaingCalendarDataFromServer[date]?.append(title)
+                            self.ui.calendarView.reloadData()
+                        }
+                    })
+                }
+            })
     }
     
     private func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
@@ -125,7 +127,7 @@ extension DisplayCalendarViewController {
         guard let cell = view as? DisplayCalendarCell else { return }
         
         let todaysDate = Date()
-        formatter.dateFormat = "yyyy MM dd"
+        formatter.dateFormat = "yyyy年MM月dd日"
         let todaysDateString = formatter.string(from: todaysDate)
         let monthDateString = formatter.string(from: cellState.date)
         
@@ -166,32 +168,14 @@ extension DisplayCalendarViewController {
     
     private func handleCellEvents(view: JTAppleCell?, cellState: CellState) {
         guard let cell = view as? DisplayCalendarCell else { return }
-        cell.calendarEventDots.isHidden = !recievedFromServer.contains { $0.key == formatter.string(from: cellState.date) }
-    }
-    
-    #warning("仮実装や")
-    private func getObjectFromServer() -> [Date: [String]] {
-        //年ごとにデータを取得してローカルDBにセット
-        formatter.dateFormat = "yyyy MM dd"
-        return [
-            formatter.date(from: "2019 04 06")!: ["aaaaa"],
-            formatter.date(from: "2019 04 05")!: ["bbbbb"],
-            formatter.date(from: "2019 04 01")!: ["ccccc"],
-            formatter.date(from: "2019 04 09")!: ["ddddd"],
-            formatter.date(from: "2019 04 18")!: ["eeeee", "fffff"],
-            formatter.date(from: "2019 04 21")!: ["eeeee", "fffff"],
-            formatter.date(from: "2019 04 24")!: ["eeeee", "fffff", "eeeee", "fffff"],
-            formatter.date(from: "2019 04 30")!: ["eeeee", "fffff"],
-            formatter.date(from: "2019 04 02")!: ["eeeee", "fffff", "eeeee", "fffff"],
-            formatter.date(from: "2019 04 23")!: ["eeeee", "fffff", "eeeee", "fffff", "eeeee", "fffff"],
-        ]
+        cell.calendarEventDots.isHidden = !recievedDisplaingCalendarDataFromServer.contains { $0.key == formatter.string(from: cellState.date) }
     }
 }
 
 extension DisplayCalendarViewController: JTAppleCalendarViewDataSource {
     
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        guard let startDate = formatter.date(from: "2019 01 01"), let endDate = formatter.date(from: "2100 12 31") else {
+        guard let startDate = formatter.date(from: "2019年01月01日"), let endDate = formatter.date(from: "2100年12月31日") else {
             return ConfigurationParameters(startDate: Date(), endDate: Date())
         }
         let parameters = ConfigurationParameters(startDate: startDate,
@@ -231,7 +215,7 @@ extension DisplayCalendarViewController: JTAppleCalendarViewDelegate {
         ui.selectedDateToSendRegistPage = date
         let stringDate = formatter.string(from: cellState.date)
         ui.selectedDayEvent = []
-        for (date, events) in recievedFromServer {
+        for (date, events) in recievedDisplaingCalendarDataFromServer {
             if date == stringDate {
                 _ = events.map { event in
                     self.ui.selectedDayEvent.append(CalendarEvent(event: event))

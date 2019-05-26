@@ -78,7 +78,7 @@ extension RegistCalendarViewController {
                 let startDateIntType = Int(startDate)
                 let dateCount = (endDateIntType - startDateIntType) / (60 * 60 * 24)
                 var array = [eventStartDateText]
-                for date in 1...dateCount {
+                for date in 0..<dateCount {
                     let addingValue = date * (60 * 60 * 24)
                     let addedDateValue = startDateIntType + addingValue
                     let addedDateValueConvertToTimeInterval = TimeInterval(addedDateValue)
@@ -98,12 +98,19 @@ extension RegistCalendarViewController {
                     Firebase.db
                         .collection("calendar")
                         .document(AppUserDefaults.getValue(keyName: "teamId"))
-                        .collection(array[i])
-                        .document(eventCollectionPath)
-                        .setData(setData, completion: { error in
+                        .collection("dates")
+                        .document(array[i])
+                        .setData(["date": array[i]], completion: { error in
                             if let _ = error {
                                 return
                             }
+                            Firebase.db.collection("calendar")
+                                .document(AppUserDefaults.getValue(keyName: "teamId"))
+                                .collection("dates")
+                                .document(array[i])
+                                .collection("events")
+                                .document(eventCollectionPath)
+                                .setData(setData)
                         })
                     }
             }.disposed(by: disposeBag)
