@@ -6,12 +6,12 @@ import JTAppleCalendar
 import CalculateCalendarLogic
 import PopupDialog
 
+// 要リファクタ
+
 class DisplayCalendarViewController: UIViewController {
-    //階層構造をgetObjectFromServerが受け取れる形にする
-    //階層構造 calendar 日付 events イベント(情報持)
     
-    //Realmだと仮定
     let modalTransitionDelegate = ModalTransitionDelegate()
+    //// ライブラリがdictionaryを見にいくので作成
     private var recievedDisplaingCalendarDataFromServer: [String: [String]] = [:]
     private let disposeBag = DisposeBag()
     
@@ -94,25 +94,36 @@ extension DisplayCalendarViewController {
     
     private func loadEventData() {
         formatter.dateFormat = "yyyy年MM月dd日"
-            Firebase.db.collection("calendar").document(AppUserDefaults.getValue(keyName: "teamId")).collection("dates").addSnapshotListener({ snapshot, error in
-                if let _ = error {
-                    return
-                }
-                self.recievedDisplaingCalendarDataFromServer = [String: [String]]()
-                guard let documents = snapshot?.documents else { return }
-                for document in documents {
-                    guard let date = document["date"] as? String else { return }
-                    self.recievedDisplaingCalendarDataFromServer.updateValue([String](), forKey: date)
-                    Firebase.db.collection("calendar").document(AppUserDefaults.getValue(keyName: "teamId")).collection("dates").document(date).collection("events").addSnapshotListener({ eventsSnapshot, error in
-                        guard let eventsDocuments = eventsSnapshot?.documents else { return }
-                        for eventsDocument in eventsDocuments {
-                            guard let title = eventsDocument["title"] as? String else { return }
-                            self.recievedDisplaingCalendarDataFromServer[date]?.append(title)
-                            self.ui.calendarView.reloadData()
-                        }
-                    })
-                }
-            })
+        Firebase.db
+            .collection("calendar")
+            .document(AppUserDefaults.getValue(keyName: "teamId"))
+            .collection("dates")
+            .addSnapshotListener({ snapshot, error in
+            if let _ = error {
+                return
+            }
+            self.recievedDisplaingCalendarDataFromServer = [String: [String]]()
+            guard let documents = snapshot?.documents else { return }
+            for document in documents {
+                guard let date = document["date"] as? String else { return }
+                self.recievedDisplaingCalendarDataFromServer.updateValue([String](), forKey: date)
+                Firebase.db
+                    .collection("calendar")
+                    .document(AppUserDefaults.getValue(keyName: "teamId"))
+                    .collection("dates")
+                    .document(date)
+                    .collection("events")
+                    .addSnapshotListener({ eventsSnapshot, error in
+                    guard let eventsDocuments = eventsSnapshot?.documents else { return }
+                    self.recievedDisplaingCalendarDataFromServer[date] = [String]()
+                    for eventsDocument in eventsDocuments {
+                        guard let title = eventsDocument["title"] as? String else { return }
+                        self.recievedDisplaingCalendarDataFromServer[date]?.append(title)
+                        self.ui.calendarView.reloadData()
+                    }
+                })
+            }
+        })
     }
     
     private func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {

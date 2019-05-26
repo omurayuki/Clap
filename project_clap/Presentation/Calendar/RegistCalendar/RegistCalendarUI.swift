@@ -3,6 +3,7 @@ import UIKit
 import PopupDialog
 
 protocol RegistCalendarUI: UI {
+    var formatter: DateFormatter { get set }
     var eventAddBtn: UIBarButtonItem { get }
     var cancelBtn: UIBarButtonItem { get }
     var registEvebtNavItem: UINavigationItem { get }
@@ -31,6 +32,12 @@ protocol RegistCalendarUI: UI {
 final class RegistCalendarUIImple: RegistCalendarUI {
     
     var viewController: UIViewController?
+    
+    var formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
+        return formatter
+    }()
     
     var eventAddBtn: UIBarButtonItem = {
         let button = UIBarButtonItem(title: R.string.locarizable.check(), style: .plain, target: nil, action: nil)
