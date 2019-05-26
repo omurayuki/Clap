@@ -2,7 +2,6 @@ import UIKit
 
 protocol TimeLineRouting: Routing {
     func showDiaryRegist()
-    func showDiaryGroup()
     func showSubmittedDiary(timelineData: TimelineCellData)
     func showDraftDiary(timelineData: TimelineCellData)
 }
@@ -13,11 +12,6 @@ final class TimeLineRoutingImpl: TimeLineRouting {
     
     func showDiaryRegist() {
         let vc = DiaryRegistViewController()
-        viewController?.present(vc, animated: true)
-    }
-    
-    func showDiaryGroup() {
-        let vc = DiaryGroupViewController()
         viewController?.present(vc, animated: true)
     }
     

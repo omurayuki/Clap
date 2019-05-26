@@ -21,6 +21,7 @@ protocol RegistCalendarUI: UI {
     var switchLongdayOrShortday: UISwitch { get }
     var detailTitle: UILabel { get }
     var detailField: UITextView { get }
+    var submitBtn: UIButton { get }
     var viewTapGesture: UITapGestureRecognizer { get }
     
     func setup(vc: UIViewController)
@@ -162,6 +163,15 @@ final class RegistCalendarUIImple: RegistCalendarUI {
         return field
     }()
     
+    var submitBtn: UIButton = {
+        let button = UIButton()
+        button.setTitle("送信", for: .normal)
+        button.backgroundColor = AppResources.ColorResources.shallowBlueColor
+        button.layer.cornerRadius = 15
+        button.frame.size.width = 200
+        return button
+    }()
+    
     var viewTapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer()
         return gesture
@@ -211,7 +221,8 @@ extension RegistCalendarUIImple {
             ]),
             VerticalStackView(arrangeSubViews: [
                 detailTitle,
-                detailField
+                detailField,
+                submitBtn
             ], spacing: 5)
         ], spacing: 10)
         

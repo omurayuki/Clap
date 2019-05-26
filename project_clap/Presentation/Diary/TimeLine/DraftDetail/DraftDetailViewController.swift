@@ -53,15 +53,15 @@ extension DraftDetailViewController {
     
     private func setupViewModel() {
         
-        viewModel.isBtnEnable.asObservable()
-            .subscribe(onNext: { [weak self] isEnable in
+        viewModel.isBtnEnable
+            .drive(onNext: { [weak self] isEnable in
                 guard let this = self else { return }
                 this.ui.submitBtn.isHidden = !isEnable
             }).disposed(by: viewModel.disposeBag)
         
-        viewModel.isCountEnable.asObservable()
+        viewModel.isCountEnable
             .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] isCountOver in
+            .drive(onNext: { [weak self] isCountOver in
                 guard let this = self else { return }
                 let arr = [this.ui.text1, this.ui.text2, this.ui.text3, this.ui.text4, this.ui.text5, this.ui.text6]
                 for tuple in arr.enumerated() {
@@ -78,6 +78,7 @@ extension DraftDetailViewController {
             .bind(onNext: { [weak self] _ in
                 guard let this = self else { return }
                 this.showIndicator()
+                #warning("singletonを直接呼んでいる")
                 this.viewModel.registDiary(text1: this.ui.text1.text ?? "", text2: this.ui.text2.text ?? "",
                                            text3: this.ui.text3.text ?? "", text4: this.ui.text4.text ?? "",
                                            text5: this.ui.text5.text ?? "", text6: this.ui.text6.text ?? "",
@@ -93,6 +94,7 @@ extension DraftDetailViewController {
                 })
             }).disposed(by: viewModel.disposeBag)
 
+        #warning("エラーハンドリング、bounce、singleton直接呼んでる、singleton直接セットしてる")
         ui.submitBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
@@ -137,7 +139,7 @@ extension DraftDetailViewController {
         showIndicator()
         view.isUserInteractionEnabled = false
         viewModel.fetchDiaryDetail(
-            teamId: AppUserDefaults.getValue(keyName: "teamId"),
+            teamId: viewModel.getTeamId(),
             diaryId: recievedTimelineCellData.diaryID ?? "")
         { [weak self] (data, error) in
             if let _ = error {

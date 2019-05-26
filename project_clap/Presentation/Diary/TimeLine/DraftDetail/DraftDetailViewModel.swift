@@ -32,6 +32,7 @@ class DraftDetailViewModel: DraftDetailViewModelType, DraftDetailViewModelInput,
     var text6: Driver<String>
     var isBtnEnable: Driver<Bool>
     var isCountEnable: Driver<[Bool]>
+    let localRepository: LoDiaryDetailRepository = LoDiaryDetailRepositoryImpl()
     let disposeBag = DisposeBag()
     
     init(text1: Driver<String>, text2: Driver<String>,
@@ -104,5 +105,9 @@ class DraftDetailViewModel: DraftDetailViewModelType, DraftDetailViewModelInput,
                     completion(nil, error)
                 }
             }.disposed(by: disposeBag)
+    }
+    
+    func getTeamId() -> String {
+        return localRepository.getTeamId()
     }
 }

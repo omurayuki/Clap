@@ -6,7 +6,6 @@ protocol IndicatorShowable {
     func hideIndicator(completion: (() -> Void)?)
 }
 
-//UIを定義しているから、わざわざそれぞれのコントローラーで切り分ける必要はない？
 extension IndicatorShowable where Self: UIViewController {
     func showIndicator() {
         DispatchQueue.main.async {

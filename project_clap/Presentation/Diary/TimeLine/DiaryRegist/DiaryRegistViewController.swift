@@ -32,15 +32,15 @@ class DiaryRegistViewController: UIViewController {
 extension DiaryRegistViewController {
     
     private func setupViewModel() {
-        viewModel.isBtnEnable.asObservable()
-            .subscribe(onNext: { [weak self] isEnable in
+        viewModel.isBtnEnable
+            .drive(onNext: { [weak self] isEnable in
                 guard let this = self else { return }
                 this.ui.submitBtn.isHidden = !isEnable
             }).disposed(by: viewModel.disposeBag)
         
-        viewModel.isCountEnable.asObservable()
+        viewModel.isCountEnable
             .distinctUntilChanged()
-            .subscribe(onNext: { [weak self] isCountOver in
+            .drive(onNext: { [weak self] isCountOver in
                 guard let this = self else { return }
                 for tuple in this.ui.slides.enumerated() {
                     tuple.element.textCount.textColor = isCountOver[tuple.offset] ? .red : .black
@@ -51,6 +51,7 @@ extension DiaryRegistViewController {
                 }
             }).disposed(by: viewModel.disposeBag)
         
+        #warning("forEachでまとめられると思う")
         ui.slides[0].text.rx.text.asDriver()
             .drive(onNext: { [weak self] text in
                 guard let this = self else { return }

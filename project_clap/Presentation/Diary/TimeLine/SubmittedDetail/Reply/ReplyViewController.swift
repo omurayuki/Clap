@@ -4,7 +4,7 @@ import RxCocoa
 import FirebaseFirestore
 
 class ReplyViewController: UIViewController {
-    
+    #warning("structで情報の塊として作成")
     private var userImage: String
     private var name: String
     private var time: String
@@ -39,9 +39,12 @@ class ReplyViewController: UIViewController {
         ui.setupUI(userImage: userImage, name: name, time: time, comment: comment)
         viewModel = ReplyViewModel()
         setupViewModel()
+        #warning("Constファイルでkeysakusei")
+        #warning("userdefsultとsingletonを直接呼ばない")
+        
         fetchReplies(teamId: AppUserDefaults.getValue(keyName: "teamId"),
-                         diaryId: DiarySingleton.sharedInstance.diaryId,
-                         commentId: self.commentId)
+                     diaryId: DiarySingleton.sharedInstance.diaryId,
+                     commentId: self.commentId)
     }
 }
 

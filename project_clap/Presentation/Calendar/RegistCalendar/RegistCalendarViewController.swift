@@ -64,59 +64,49 @@ extension RegistCalendarViewController {
                 }
             }).disposed(by: disposeBag)
         
-        ui.eventAddBtn.rx.tap
+        ui.submitBtn.rx.tap
             .bind { _ in
-                let setData = [
-                    "userId": UserSingleton.sharedInstance.uid,
-                    "startDate": self.ui.startDate.text ?? "",
-                    "endDate": self.ui.endDate.text ?? "",
-                    "startTime": self.ui.startTime.text ?? "",
-                    "endTime": self.ui.endTime.text ?? "",
-                    "title": self.ui.titleField.text ?? "",
-                    "content": self.ui.detailField.text ?? ""
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy年MM月dd日"
+                let eventStartDateText = self.ui.startDate.text!
+                let eventStartDate = formatter.date(from: eventStartDateText)
+                let eventEndDateText = self.ui.endDate.text!
+                let eventEndDate = formatter.date(from: eventEndDateText)
+                guard let endDate = eventEndDate?.timeIntervalSince1970 else { return }
+                guard let startDate = eventStartDate?.timeIntervalSince1970 else { return }
+                let endDateIntType = Int(endDate)
+                let startDateIntType = Int(startDate)
+                let dateCount = (endDateIntType - startDateIntType) / (60 * 60 * 24)
+                var array = [eventStartDateText]
+                for date in 1...dateCount {
+                    let addingValue = date * (60 * 60 * 24)
+                    let addedDateValue = startDateIntType + addingValue
+                    let addedDateValueConvertToTimeInterval = TimeInterval(addedDateValue)
+                    let addedDateValueConvertToDateType = Date(timeIntervalSince1970: addedDateValueConvertToTimeInterval)
+                    let addedDateValueConvertToStringType: String = formatter.string(from: addedDateValueConvertToDateType)
+                    array.append(addedDateValueConvertToStringType)
+                }
+            let setData = [
+                "userId": UserSingleton.sharedInstance.uid,
+                "startTime": self.ui.startTime.text ?? "",
+                "endTime": self.ui.endTime.text ?? "",
+                "title": self.ui.titleField.text ?? "",
+                "content": self.ui.detailField.text ?? ""
                 ] as [String : Any]
-                Firebase.db
-                    .collection("calendar")
-                    .document(AppUserDefaults.getValue(keyName: "teamId"))
-                    .collection("events")
-                    .document(UserSingleton.sharedInstance.uid)
-                    .setData(setData, completion: { error in
-                        if let _ = error {
-                            return
-                        }
-                    })
-//                let formatter = DateFormatter()
-//                formatter.dateFormat = "yyyy年MM月dd日"
-//                var a = self.ui.startDate.text!
-//                let date = formatter.date(from: a)
-//                print(date?.timeIntervalSince1970)
-//                var b = self.ui.endDate.text!
-//                let dateb = formatter.date(from: b)
-//                print(dateb?.timeIntervalSince1970)
-//                guard let end = dateb?.timeIntervalSince1970 else { return }
-//                guard let start = date?.timeIntervalSince1970 else { return }
-//                let intEnd = Int(end)
-//                let intStart = Int(start)
-//                var dateCount = (intEnd - intStart) / (60 * 60 * 24)
-//                var array = [a]
-//                for date in 1...dateCount {
-//                    let result = date * (60 * 60 * 24)
-////                    let resultStringDate = formatter.string(from: <#T##Date#>)
-//                    let saikyouResult = intStart + result
-//                    let timeInterval = TimeInterval(saikyouResult)
-//                    let dateee = Date(timeIntervalSince1970: timeInterval)
-//                    let dateStr: String = formatter.string(from: dateee)
-//                    array.append(dateStr)
-//                }
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-//                    var array2 = [String: String]()
-//                    array.map { date in
-//                        array2[date] = "aa"
-//                    }
-//
-//                    print(array2)
-//                })
-        }.disposed(by: disposeBag)
+                let eventCollectionPath = RandomString.generateRandomString(length: 20)
+                for i in 0 ..< array.count {
+                    Firebase.db
+                        .collection("calendar")
+                        .document(AppUserDefaults.getValue(keyName: "teamId"))
+                        .collection(array[i])
+                        .document(eventCollectionPath)
+                        .setData(setData, completion: { error in
+                            if let _ = error {
+                                return
+                            }
+                        })
+                    }
+            }.disposed(by: disposeBag)
         
         ui.cancelBtn.rx.tap
             .bind { [weak self] _ in

@@ -1,11 +1,9 @@
 import Foundation
 import RxSwift
 
-protocol MypageViewModelInput {
-}
+protocol MypageViewModelInput {}
 
-protocol MypageViewModelOutput {
-}
+protocol MypageViewModelOutput {}
 
 protocol MypageViewModeType {
     var inputs: MypageViewModelInput { get }

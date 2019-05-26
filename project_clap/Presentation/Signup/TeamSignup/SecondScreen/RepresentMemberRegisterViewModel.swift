@@ -141,21 +141,12 @@ struct RepresentMemberRegisterViewModel: RepresentMemberRegisterViewModelType, R
         return localRepository.getUserData()
     }
 
-    func signup(email: String, pass: String, completion: @escaping (String) -> Void) {
-        SignupRepositoryImpl().signup(email: email, pass: pass, completion: { uid in
-                completion(uid ?? "")
-            })
-            .subscribe { response in
-                switch response {
-                case .success(let data):
-                    let user = User()
-                    user.uid = data.user.uid
-                    user.email = data.user.email ?? ""
-                    user.saveUserData(user: user)
-                case .error(_):
-                    return
-                }
-            }.disposed(by: disposeBag)
+    func signup(email: String, pass: String) -> Single<AuthDataResult> {
+        return SignupRepositoryImpl().signup(email: email, pass: pass)
+    }
+    
+    func saveUserData(uid: String, email: String, completion: @escaping (Error?) -> Void) {
+        localRepository.saveUserData(uid: uid, email: email, completion: completion)
     }
     
     func saveTeamData(teamId: String, team: String, grade: String, sportsKind: String) {

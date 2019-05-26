@@ -67,6 +67,7 @@ extension TimeLineViewController {
     }
 }
 
+// 共通dataSource作ってもいい(同じtable, dataStoreをいくつか使っているから)
 extension TimeLineViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -4,6 +4,7 @@ import RxSwift
 import RxCocoa
 import RealmSwift
 import FirebaseStorage
+import FirebaseAuth
 
 class RepresentMemberRegisterViewController: UIViewController {
     
@@ -88,40 +89,51 @@ extension RepresentMemberRegisterViewController {
                     self.ui.rePassField.backgroundColor = .white
                 }
             }).disposed(by: viewModel.disposeBag)
-        #warning("ボタンをsubscribeするのではなく、ボタンに対してflatmapLatestを使って型を変更して、viewmodelのメソッドを叩く")
+        
+        ui.teamRegistBtn.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.ui.teamRegistBtn.bounce(completion: { self?.showIndicator() })
+            }).disposed(by: viewModel.disposeBag)
+        
         ui.teamRegistBtn.rx.tap
             .throttle(0.5, scheduler: MainScheduler.instance)
-            .bind(onNext: { [weak self] _ in
-                self?.ui.teamRegistBtn.bounce(completion: {
-                    self?.showIndicator()
-                    self?.viewModel?.saveToSingleton(name: self?.ui.nameField.text ?? "",
-                                          mail: self?.ui.mailField.text ?? "",
-                                          representMemberPosition: self?.ui.representMemberPosition.text ?? "",
-                                          representMemberYear: self?.ui.representMemberYear.text ?? "")
-                    self?.viewModel?.signup(email: self?.ui.mailField.text ?? "",
-                                            pass: self?.ui.passField.text ?? "",
-                                            completion: { uid in
-                        self?.viewModel?.saveTeamData(teamId: self?.teamId ?? "",
-                                                      team: TeamSignupSingleton.sharedInstance.team,
-                                                      grade: TeamSignupSingleton.sharedInstance.grade,
-                                                      sportsKind: TeamSignupSingleton.sharedInstance.sportsKind)
-                        let results = self?.viewModel.getUserData()
-                        self?.viewModel?.registUserWithTeam(teamId: self?.teamId ?? "",
-                                                            uid: results?.last?.uid ?? "")
-                        self?.viewModel?.saveUserData(uid: results?.last?.uid ?? "", teamId: self?.teamId ?? "",
-                                                      name: TeamSignupSingleton.sharedInstance.name,
-                                                      role: TeamSignupSingleton.sharedInstance.representMemberPosition,
-                                                      mail: self?.ui.mailField.text ?? "", team: TeamSignupSingleton.sharedInstance.team,
-                                                      completion: { _, error in
-                            if let _ = error {
-                                AlertController.showAlertMessage(alertType: .loginFailed, viewController: self ?? UIViewController())
-                                return
-                            }
-                            self?.viewModel?.saveToSingleton(uid: uid, completion: {
-                                self?.hideIndicator()
-                                self?.routing.showTabBar(uid: UserSingleton.sharedInstance.uid)
-                            })
-                        })
+            .flatMap { [unowned self] _ -> Single<AuthDataResult> in
+                    self.viewModel.signup(email: self.ui.mailField.text ?? "",
+                                           pass: self.ui.passField.text ?? "")
+            }
+            .subscribe(onNext: { [weak self] response in
+                self?.viewModel.saveUserData(uid: response.user.uid,
+                                             email: response.user.email ?? "",
+                                             completion: { error in
+                    if let _ = error {
+                        AlertController.showAlertMessage(alertType: .loginFailed, viewController: self ?? UIViewController())
+                        return
+                    }
+                })
+                self?.viewModel?.saveToSingleton(name: self?.ui.nameField.text ?? "",
+                                      mail: self?.ui.mailField.text ?? "",
+                                      representMemberPosition: self?.ui.representMemberPosition.text ?? "",
+                                      representMemberYear: self?.ui.representMemberYear.text ?? "")
+                self?.viewModel?.saveTeamData(teamId: self?.teamId ?? "",
+                                              team: TeamSignupSingleton.sharedInstance.team,
+                                              grade: TeamSignupSingleton.sharedInstance.grade,
+                                              sportsKind: TeamSignupSingleton.sharedInstance.sportsKind)
+                let results = self?.viewModel.getUserData()
+                self?.viewModel?.registUserWithTeam(teamId: self?.teamId ?? "",
+                                                    uid: results?.last?.uid ?? "")
+                self?.viewModel?.saveUserData(uid: results?.last?.uid ?? "", teamId: self?.teamId ?? "",
+                                              name: TeamSignupSingleton.sharedInstance.name,
+                                              role: TeamSignupSingleton.sharedInstance.representMemberPosition,
+                                              mail: self?.ui.mailField.text ?? "", team: TeamSignupSingleton.sharedInstance.team,
+                                              completion: { _, error in
+                    if let _ = error {
+                        self?.hideIndicator()
+                        AlertController.showAlertMessage(alertType: .loginFailed, viewController: self ?? UIViewController())
+                        return
+                    }
+                    self?.viewModel?.saveToSingleton(uid: response.user.uid, completion: {
+                        self?.hideIndicator()
+                        self?.routing.showTabBar(uid: UserSingleton.sharedInstance.uid)
                     })
                 })
             }).disposed(by: viewModel.disposeBag)

@@ -15,6 +15,7 @@ class SubmittedDetailViewModel: SubmittedDetailViewModelType, SubmittedDetailVie
     var inputs: SubmittedDetailViewModelInput { return self }
     var outputs: SubmittedDetailViewModelOutput { return self }
     let commentRepository: CommentRepository = CommentRepositoryImpl()
+    let localRepository: LoTimelineRepository = LoTimelineRepositoryImpl()
     let disposeBag = DisposeBag()
     
     func fetchDiaryDetail(teamId: String, diaryId: String, completion: @escaping ([String]?, Error?) -> Void) {
@@ -51,6 +52,13 @@ class SubmittedDetailViewModel: SubmittedDetailViewModelType, SubmittedDetailVie
                     completion(nil, error)
                 }
             }.disposed(by: disposeBag)
-            
+    }
+    
+    func fetchDiary() -> [String] {
+        return localRepository.fetchDiary()
+    }
+    
+    func getTeamId() -> String {
+        return localRepository.getTeamId()
     }
 }

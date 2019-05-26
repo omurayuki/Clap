@@ -1,6 +1,8 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import RealmSwift
+import Realm
 
 protocol MemberInfoRegisterViewModelInput {
     var nameText: Observable<String> { get }
@@ -13,7 +15,7 @@ protocol MemberInfoRegisterViewModelInput {
 
 protocol MemberInfoRegisterViewModelOutput {
     var isRegistBtnEnable: Observable<Bool> { get }
-    var positionArr: Array<String> { get }
+    var positionArr: BehaviorRelay<[String]> { get }
     var isOverName: Observable<Bool> { get }
     var isOverPass: Observable<Bool> { get }
     var isOverRepass: Observable<Bool> { get }
@@ -34,10 +36,11 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
     var registBtnTap: Observable<()>
     var memberPosition: Observable<String>
     var isRegistBtnEnable: Observable<Bool>
-    var positionArr: Array<String>
+    var positionArr: BehaviorRelay<[String]> = BehaviorRelay<[String]>(value: [""])
     var isOverName: Observable<Bool>
     var isOverPass: Observable<Bool>
     var isOverRepass: Observable<Bool>
+    let localRepository: LoSignupRepository = LoSignupRepositoryImpl()
     let disposeBag = DisposeBag()
     
     init(nameField: Observable<String>, mailField: Observable<String>,
@@ -49,10 +52,10 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
         rePassText = rePassField
         memberPosition = positionField
         registBtnTap = registBtn
-        positionArr = [
+        positionArr.accept([
             R.string.locarizable.empty(), R.string.locarizable.player(), R.string.locarizable.manager(),
             R.string.locarizable.boss(), R.string.locarizable.department(), R.string.locarizable.staff()
-        ]
+        ])
         
         isOverName = nameText
             .map{ text -> Bool in
@@ -70,7 +73,11 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
             }.asObservable()
         
         let isEmptyField = Observable
-            .combineLatest(nameText, mailText, passText, rePassText) { name, mail, pass, rePass -> MemberInfoRegisterValidationResult in
+            .combineLatest(nameText,
+                           mailText,
+                           passText,
+                           rePassText)
+            { name, mail, pass, rePass -> MemberInfoRegisterValidationResult in
                 return MemberInfoRegisterValidation.validateEmpty(name: name, mail: mail, pass: pass, rePass: rePass)
             }
         
@@ -89,7 +96,12 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
                 return MemberInfoRegisterValidation.validatePicker(position: position[0])
             }
         
-        isRegistBtnEnable = Observable.combineLatest(isEmptyField, passFieldWhetherMatch, emailFieldWhetherMatch, isEmptyPicker) { (empty, pass, mail, picker) in
+        isRegistBtnEnable = Observable
+            .combineLatest(isEmptyField,
+                           passFieldWhetherMatch,
+                           emailFieldWhetherMatch,
+                           isEmptyPicker)
+            { (empty, pass, mail, picker) in
             empty.isValid &&
                 pass.isValid &&
                 mail.isValid &&
@@ -97,15 +109,21 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
             }.share(replay: 1)
     }
     
-    func saveToSingleton(name: String, mail: String, representMemberPosition: String) {
-        TeamSignupSingleton.sharedInstance.name = name
-        TeamSignupSingleton.sharedInstance.mail = mail
-        TeamSignupSingleton.sharedInstance.representMemberPosition = representMemberPosition
+    func saveToSingleton(name: String,
+                         mail: String,
+                         representMemberPosition: String) {
+        localRepository.saveToSingleton(name: name,
+                                   mail: mail,
+                                   representMemberPosition: representMemberPosition)
     }
     
     func saveToSingleton(uid: String, completion: @escaping () -> Void) {
         UserSingleton.sharedInstance.uid = uid
         completion()
+    }
+    
+    func getUserData() -> Results<User>? {
+        return localRepository.getUserData()
     }
     
     func signup(email: String, pass: String, completion: @escaping(String) -> Void) {
@@ -118,7 +136,7 @@ struct MemberInfoRegisterViewModel: MemberInfoRegisterViewModelType, MemberInfoR
                     let user = User()
                     user.uid = data.user.uid
                     user.email = data.user.email ?? ""
-                    user.saveUserData(user: user)
+                    user.saveUserData(user: user, completion: nil)
                 case .error(_):
                     return
                 }

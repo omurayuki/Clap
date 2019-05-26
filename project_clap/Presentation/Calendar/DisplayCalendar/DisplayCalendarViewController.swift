@@ -7,7 +7,6 @@ import CalculateCalendarLogic
 import PopupDialog
 
 class DisplayCalendarViewController: UIViewController {
-    //イベントを登録
     //階層構造をgetObjectFromServerが受け取れる形にする
     //階層構造 calendar 日付 events イベント(情報持)
     
@@ -94,6 +93,14 @@ extension DisplayCalendarViewController {
     }
     
     private func loadEventData() {
+        //firebaseから取得して、[string: [string]]に変換して、recievedFromServerに渡す
+        Firebase.db.collection("calendar").document(AppUserDefaults.getValue(keyName: "teamId")).collection("events").addSnapshotListener { query, error in
+            if let _ = error {
+                return
+            }
+            
+        }
+        
         DispatchQueue.global().asyncAfter(deadline: .now() + 0.1) {
             let recievedData = self.getObjectFromServer()
             for (date, event) in recievedData {

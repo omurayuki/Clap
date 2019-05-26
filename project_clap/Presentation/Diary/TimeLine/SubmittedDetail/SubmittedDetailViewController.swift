@@ -4,6 +4,7 @@ import RxCocoa
 import FirebaseFirestore
 
 class SubmittedDetailViewController: UIViewController {
+    #warning("全体的にcommentModel作ればそれぞれに対応できる")
     
     private let recievedTimelineCellData: TimelineCellData
     private var viewModel: SubmittedDetailViewModel!
@@ -96,16 +97,17 @@ extension SubmittedDetailViewController {
     }
     
     private func setdiaryDataFromSingleton() {
-        ui.text1.text = DiarySingleton.sharedInstance.text1; ui.text2.text = DiarySingleton.sharedInstance.text2
-        ui.text3.text = DiarySingleton.sharedInstance.text3; ui.text4.text = DiarySingleton.sharedInstance.text4
-        ui.text5.text = DiarySingleton.sharedInstance.text5; ui.text6.text = DiarySingleton.sharedInstance.text6
+        let text = viewModel.fetchDiary()
+        ui.text1.text = text[0]; ui.text2.text = text[1]
+        ui.text3.text = text[2]; ui.text4.text = text[3]
+        ui.text5.text = text[4]; ui.text6.text = text[5]
     }
     
     private func fetchDiaryDetail() {
         showIndicator()
         view.isUserInteractionEnabled = false
         viewModel.fetchDiaryDetail(
-            teamId: AppUserDefaults.getValue(keyName: "teamId"),
+            teamId: viewModel.getTeamId(),
             diaryId: recievedTimelineCellData.diaryID ?? "")
             { [weak self] (data, error) in
                 if let _ = error {
@@ -138,7 +140,8 @@ extension SubmittedDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentCell.self), for: indexPath) as? CommentCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CommentCell.self),
+                                                       for: indexPath) as? CommentCell else { return UITableViewCell() }
         cell.configureInit(image: CommentSingleton.sharedInstance.image[indexPath.row],
                            name: CommentSingleton.sharedInstance.name[indexPath.row],
                            time: CommentSingleton.sharedInstance.time[indexPath.row],
@@ -149,11 +152,12 @@ extension SubmittedDetailViewController: UITableViewDataSource {
         return cell
     }
 }
-
+#warning("インスタンス作成はroutingの仕事")
 //// MARK:- Delegate
 extension SubmittedDetailViewController: CommentCellDelegate {
     
     func selectReplyBtn(index: Int) {
+        #warning("commentSingletonをcontrollerで呼んで、routingにStructとして渡す")
         let vc = ReplyViewController(userImage: CommentSingleton.sharedInstance.image[index],
                                      name: CommentSingleton.sharedInstance.name[index],
                                      time: CommentSingleton.sharedInstance.time[index],

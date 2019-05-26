@@ -1,5 +1,6 @@
 import Foundation
 import RealmSwift
+import Result
 
 class User: Object {
     static let realm = try? Realm()
@@ -7,13 +8,14 @@ class User: Object {
     @objc dynamic var uid: String = ""
     @objc dynamic var email: String = ""
     
-    func saveUserData(user: User) {
+    func saveUserData(user: User, completion: ((Error?) -> Void)?) {
         do {
             try? User.realm?.write {
                 User.realm?.add(user)
+                completion?(nil)
             }
         } catch let error {
-            print(error.localizedDescription)
+            completion?(error)
         }
     }
 }

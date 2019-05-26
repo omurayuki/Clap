@@ -132,6 +132,7 @@ extension TeamInfoRegistUIImpl {
             .activate()
     }
     
+    #warning("共通化処理できる")
     func getPickerView(type: TeamInfoRegistPickerType, vc: UIViewController) -> UIPickerView {
         var pickerView = UIPickerView()
         switch type {

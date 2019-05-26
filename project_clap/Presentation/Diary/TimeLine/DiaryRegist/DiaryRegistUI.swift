@@ -159,7 +159,8 @@ extension DiaryRegistUIImpl {
             .width(constant: vc.view.bounds.size.width / 1.5)
             .activate()
     }
-    
+    #warning("viewcontrollerの拡張としてまとめる")
+    #warning("routing設定")
     func createCancelAlert(vc: UIViewController) {
         let alert = PopupDialog(title: R.string.locarizable.message(), message: R.string.locarizable.lost_written_info())
         let logout = DefaultButton(title: R.string.locarizable.yes()) { vc.dismiss(animated: true) }
@@ -167,7 +168,7 @@ extension DiaryRegistUIImpl {
         alert.addButtons([logout, cancel])
         vc.present(alert, animated: true)
     }
-    
+    #warning("DiaryRegistUIのprotocolExtensionでまとめる以下二つ")
     func createSlides(vc: UIViewController, slides: Int) -> [DiaryView] {
         var returningSlide = [DiaryView]()
         for _ in 0 ..< slides {
