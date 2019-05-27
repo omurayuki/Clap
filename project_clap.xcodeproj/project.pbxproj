@@ -65,6 +65,7 @@
 		C937FD7E2222E22B00F9624E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD7D2222E22B00F9624E /* LoginViewModel.swift */; };
 		C937FD8322237E0000F9624E /* TeamInfoRegistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD8222237E0000F9624E /* TeamInfoRegistViewController.swift */; };
 		C937FD8522237E5A00F9624E /* TeamIdWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C937FD8422237E5A00F9624E /* TeamIdWriteViewController.swift */; };
+		C941349A229BE7B6000F936D /* DisplayCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9413499229BE7B6000F936D /* DisplayCalendarViewModel.swift */; };
 		C950E2BB2271BBDC0074A5C4 /* TabBarDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2BA2271BBDC0074A5C4 /* TabBarDataStore.swift */; };
 		C950E2BD2271BDFF0074A5C4 /* TabBarRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2BC2271BDFF0074A5C4 /* TabBarRepository.swift */; };
 		C950E2BF2271BEA50074A5C4 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C950E2BE2271BEA50074A5C4 /* TabBarViewModel.swift */; };
@@ -278,6 +279,7 @@
 		C937FD7D2222E22B00F9624E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C937FD8222237E0000F9624E /* TeamInfoRegistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoRegistViewController.swift; sourceTree = "<group>"; };
 		C937FD8422237E5A00F9624E /* TeamIdWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamIdWriteViewController.swift; sourceTree = "<group>"; };
+		C9413499229BE7B6000F936D /* DisplayCalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCalendarViewModel.swift; sourceTree = "<group>"; };
 		C950E2BA2271BBDC0074A5C4 /* TabBarDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarDataStore.swift; sourceTree = "<group>"; };
 		C950E2BC2271BDFF0074A5C4 /* TabBarRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRepository.swift; sourceTree = "<group>"; };
 		C950E2BE2271BEA50074A5C4 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
@@ -956,6 +958,7 @@
 				C970578F222E8A43007F8B1C /* DisplayCalendarViewController.swift */,
 				C9EA286D22435109003F40DD /* DisplayCalendarUI.swift */,
 				C98A09362247384F00AFAEF2 /* DisplayCalendarRouting.swift */,
+				C9413499229BE7B6000F936D /* DisplayCalendarViewModel.swift */,
 				C9F086E72235DC6900F25E7A /* CalendarEvent.swift */,
 				C9F086D62233C24600F25E7A /* CalendarLogic.swift */,
 				C9F086D82233C91000F25E7A /* DisplayCalendarResources.swift */,
@@ -1497,6 +1500,7 @@
 				C9705783222E6680007F8B1C /* RemindPassViewController.swift in Sources */,
 				C911562F22520B5C00CB97E9 /* TimeLineHeaderController.swift in Sources */,
 				C959BF78222D4C6A00207986 /* SelectResources.swift in Sources */,
+				C941349A229BE7B6000F936D /* DisplayCalendarViewModel.swift in Sources */,
 				C91329A7225365BF00514EDE /* User.swift in Sources */,
 				C9A5C2442223DEBC00BF1EBC /* RepresentMemberRegisterViewController.swift in Sources */,
 				C9A28AEE227014B000F4AF2B /* CommentCell.swift in Sources */,

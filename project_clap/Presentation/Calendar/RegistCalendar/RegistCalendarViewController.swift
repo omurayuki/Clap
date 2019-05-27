@@ -49,8 +49,8 @@ extension RegistCalendarViewController {
     }
     
     private func setupViewModel() {
-        ui.switchLongdayOrShortday.rx.isOn.asObservable()
-            .subscribe(onNext: { event in
+        ui.switchLongdayOrShortday.rx.isOn
+            .bind(onNext: { event in
                 if event {
                     self.isOnCalendarLabel(event, size: RegistCalendarResources.Font.largeDateFont)
                     self.isOnInteractiveDate(event)
@@ -63,11 +63,11 @@ extension RegistCalendarViewController {
         ui.submitBtn.rx.tap
             .flatMap { _ -> Single<Result<String, FirebaseError>> in
                 let array = self.ui.formatter.generateBetweenDate(start: self.ui.startDate.text ?? "",
-                                                               end: self.ui.endDate.text ?? "")
+                                                                  end: self.ui.endDate.text ?? "")
                 return self.viewModel.registEvent(startToEnd: array, startDate: self.ui.startDate.text ?? "",
-                                           endDate: self.ui.endDate.text ?? "", startTime: self.ui.startTime.text ?? "",
-                                           endTime: self.ui.endTime.text ?? "", title: self.ui.titleField.text ?? "",
-                                           content: self.ui.detailField.text ?? "")
+                                                  endDate: self.ui.endDate.text ?? "", startTime: self.ui.startTime.text ?? "",
+                                                  endTime: self.ui.endTime.text ?? "", title: self.ui.titleField.text ?? "",
+                                                  content: self.ui.detailField.text ?? "")
             }.bind { response in
                 switch response {
                 case .failure(_):

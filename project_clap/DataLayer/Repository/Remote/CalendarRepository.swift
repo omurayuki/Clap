@@ -7,6 +7,7 @@ protocol CalendarRepository {
                      endDate: String, startTime: String,
                      endTime: String, title: String,
                      content: String) -> Single<Result<String, FirebaseError>>
+    func loadEvent() -> Observable<Result<[String: [String]], FirebaseError>>
 }
 
 struct CalendarRepositoryImpl: CalendarRepository {
@@ -20,5 +21,9 @@ struct CalendarRepositoryImpl: CalendarRepository {
         return dataStore.registEvent(startToEnd: startToEnd, startDate: startDate,
                                      endDate: endDate, startTime: startTime,
                                      endTime: endTime, title: title, content: content)
+    }
+    
+    func loadEvent() -> Observable<Result<[String: [String]], FirebaseError>> {
+        return dataStore.loadEvent()
     }
 }

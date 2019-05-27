@@ -9,11 +9,14 @@ import PopupDialog
 // 要リファクタ
 
 class DisplayCalendarViewController: UIViewController {
+    // calendarクラスの拡張作ってビジネスロジック
+    // loadEvent
+    // datasource切り分け
     
     let modalTransitionDelegate = ModalTransitionDelegate()
     //// ライブラリがdictionaryを見にいくので作成
     private var recievedDisplaingCalendarDataFromServer: [String: [String]] = [:]
-    private let disposeBag = DisposeBag()
+    private var viewModel: DisplayCalendarViewModel!
     
     private let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -43,6 +46,7 @@ class DisplayCalendarViewController: UIViewController {
         super.viewDidLoad()
         ui.setup(vc: self)
         ui.setupInsideDisplayCalendar(vc: self)
+        viewModel = DisplayCalendarViewModel()
         setupCalendar()
         getCurrentDay()
         setupViewModel()
@@ -57,7 +61,18 @@ class DisplayCalendarViewController: UIViewController {
             if let teamId = data["teamId"] as? String {
                 //view.isUserInteractionEnabled必要　fetch中にdiaryページに行かせないため
                 AppUserDefaults.setValue(value: teamId, keyName: "teamId", completion: {
-                    self.loadEventData()
+                    self.viewModel.loadEvent()
+                        .subscribe(onNext: { [weak self] response in
+                            switch response {
+                            case .failure(_):
+                                AlertController.showAlertMessage(alertType: .logoutFailure, viewController: self ?? UIViewController())
+                            case .success(let v):
+                                self?.recievedDisplaingCalendarDataFromServer = v
+                                self?.ui.calendarView.reloadData()
+                            }
+                        }, onError: { [weak self] _ in
+                            AlertController.showAlertMessage(alertType: .loginFailed, viewController: self ?? UIViewController())
+                        }).disposed(by: self.viewModel.disposeBag)
                 })
             }
         })
@@ -77,7 +92,7 @@ extension DisplayCalendarViewController {
                     else { return }
                     vc.routing.showRegistCalendar(date: selectedDate, modalTransion: vc.modalTransitionDelegate)
                 })
-            }).disposed(by: disposeBag)
+            }).disposed(by: viewModel.disposeBag)
     }
     
     private func setupCalendar() {
@@ -90,40 +105,6 @@ extension DisplayCalendarViewController {
         ui.calendarView.scrollToDate(Date(), animateScroll: false) {
             self.ui.calendarView.selectDates([Date()])
         }
-    }
-    
-    private func loadEventData() {
-        formatter.dateFormat = "yyyy年MM月dd日"
-        Firebase.db
-            .collection("calendar")
-            .document(AppUserDefaults.getValue(keyName: "teamId"))
-            .collection("dates")
-            .addSnapshotListener({ snapshot, error in
-            if let _ = error {
-                return
-            }
-            self.recievedDisplaingCalendarDataFromServer = [String: [String]]()
-            guard let documents = snapshot?.documents else { return }
-            for document in documents {
-                guard let date = document["date"] as? String else { return }
-                self.recievedDisplaingCalendarDataFromServer.updateValue([String](), forKey: date)
-                Firebase.db
-                    .collection("calendar")
-                    .document(AppUserDefaults.getValue(keyName: "teamId"))
-                    .collection("dates")
-                    .document(date)
-                    .collection("events")
-                    .addSnapshotListener({ eventsSnapshot, error in
-                    guard let eventsDocuments = eventsSnapshot?.documents else { return }
-                    self.recievedDisplaingCalendarDataFromServer[date] = [String]()
-                    for eventsDocument in eventsDocuments {
-                        guard let title = eventsDocument["title"] as? String else { return }
-                        self.recievedDisplaingCalendarDataFromServer[date]?.append(title)
-                        self.ui.calendarView.reloadData()
-                    }
-                })
-            }
-        })
     }
     
     private func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {

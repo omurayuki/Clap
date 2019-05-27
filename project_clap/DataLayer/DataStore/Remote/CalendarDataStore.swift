@@ -13,6 +13,7 @@ protocol CalendarDataStore {
                      endDate: String, startTime: String,
                      endTime: String, title: String,
                      content: String) -> Single<Result<String, FirebaseError>>
+    func loadEvent() -> Observable<Result<[String: [String]], FirebaseError>>
 }
 
 struct CalendarDataStoreImpl: CalendarDataStore {
@@ -55,6 +56,44 @@ struct CalendarDataStoreImpl: CalendarDataStore {
                         })
                     })
             }
+            return Disposables.create()
+        })
+    }
+    
+    func loadEvent() -> Observable<Result<[String: [String]], FirebaseError>> {
+        return Observable.create({ observer -> Disposable in
+            var returnArray = [String: [String]]()
+            Firebase.db
+                .collection("calendar")
+                .document(AppUserDefaults.getValue(keyName: "teamId"))
+                .collection("dates")
+                .addSnapshotListener({ snapshot, error in
+                    if let e = error {
+                        observer.on(.error(FirebaseError.fetchError(e)))
+                        return
+                    }
+                    guard let documents = snapshot?.documents else { return }
+                    for document in documents {
+                        guard let date = document["date"] as? String else { return }
+                        returnArray.updateValue([String](), forKey: date)
+                        Firebase.db
+                            .collection("calendar")
+                            .document(AppUserDefaults.getValue(keyName: "teamId"))
+                            .collection("dates")
+                            .document(date)
+                            .collection("events")
+                            .addSnapshotListener({ eventsSnapshot, error in
+                                guard let eventsDocuments = eventsSnapshot?.documents else { return }
+                                returnArray[date] = [String]()
+                                for eventsDocument in eventsDocuments {
+                                    guard let title = eventsDocument["title"] as? String else { return }
+                                    returnArray[date]?.append(title)
+                                    observer.on(.next(.success(returnArray)))
+                                }
+                            })
+                    }
+                    
+                })
             return Disposables.create()
         })
     }
