@@ -22,11 +22,11 @@ This project is written in Swift 4.2 and requires Xcode 10.1 to build and run.
 
 
 ## Main functions
-- timeline
-- calendar
-- mypage
-- comment
-- reply
+- Timeline
+- Calendar
+- Mypage
+- Comment
+- Reply
 
 
 
